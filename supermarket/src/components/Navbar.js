@@ -22,45 +22,17 @@ export const Navbar = () => {
                     </div>
                     <div className="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                         <div className="d-flex align-items-center justify-content-between ms-4">
-                            <div className="text-center">
-                                <div className="dropdown">
-                                    <Link to="#" className="text-reset" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div className="lh-1">
-                                            <div className="position-relative d-inline-block mb-2">
-                                                <i className="bi bi-bell fs-4"></i>
-                                                <span
-                                                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                    1
-                                                    <span className="visually-hidden">unread messages</span>
-                                                </span>
-                                            </div>
-                                            <p className="mb-0 d-none d-xl-block small">Notification</p>
-                                        </div>
-                                    </Link>
-
-                                    <div className="dropdown-menu dropdown-menu-lg p-0">
-                                        <div>
-                                            <h6 className="px-4 border-bottom py-3 mb-0">Notification
-                                            </h6>
-                                            <p className="mb-0 px-4 py-3 ">
-                                                <Link to="#">Sign in</Link> or
-                                                <Link to="#">register</Link>
-                                                in or so you don t have to enter your details every time
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="ms-6 text-center">
-                                <Link to="#" className="text-reset" data-bs-toggle="modal" data-bs-target="#userModal">
+                                <Link className="text-reset" onClick={checkMode}>
                                     <div className="lh-1">
                                         <div className="mb-2">
-                                            <i className="bi bi-person-circle fs-4"></i>
+                                            <i className="bi bi-moon fs-4"></i>
                                         </div>
-                                        <p className="mb-0 d-none d-xl-block small">Sign up</p>
+                                        <p className="mb-0 d-none d-xl-block small">Dark</p>
                                     </div>
                                 </Link>
                             </div>
+
                             <div className="ms-6 text-center">
                                 <Link to="../pages/account-orders.html" className="text-reset">
                                     <div className="lh-1">
@@ -82,17 +54,27 @@ export const Navbar = () => {
                                     </div>
                                 </Link>
                             </div>
-                            <div className="ms-6 text-center">
-                                <Link className="text-reset" onClick={checkMode}>
-                                    <div className="lh-1">
-                                        <div className="mb-2">
-                                            <i className="bi bi-moon fs-4"></i>
+                            <div className="text-center ms-6">
+                                <Link role="button" className="text-reset">
+                                    <div className="text-center">
+                                        <div className="">
+                                            <i className="bi bi-bookmark-heart fs-4"></i>
                                         </div>
-                                        <p className="mb-0 d-none d-xl-block small">Dark</p>
+                                        <p className="mb-0 d-none d-xl-block small">Wishlist</p>
                                     </div>
                                 </Link>
                             </div>
 
+                            <div className="ms-6 text-center">
+                                <Link to="#" className="text-reset" data-bs-toggle="modal" data-bs-target="#userModal">
+                                    <div className="lh-1">
+                                        <div className="mb-2">
+                                            <i className="bi bi-person-circle fs-4"></i>
+                                        </div>
+                                        <p className="mb-0 d-none d-xl-block small">Sign up</p>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,7 +120,7 @@ export const Navbar = () => {
                                                         <span className="ms-1">Fruits &amp; Vegetables</span>
                                                     </div>
                                                     <div>
-                                                        <i className="feather-icon icon-chevron-right"></i>
+                                                    <i className="bi bi-chevron-right"></i>
                                                     </div>
 
                                                 </Link>
@@ -622,12 +604,27 @@ export const Navbar = () => {
                                             Home
                                         </Link>
                                     </li>
-
                                     <li className="nav-item">
-                                        <Link className="nav-link" to="#"
+                                        <Link className="nav-link" to="/about">
+                                            About Us
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/contact">
+                                            Contact Us
+                                        </Link>
+                                    </li>
+
+                                    <li className="nav-item dropdown w-100 w-lg-auto">
+                                        <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                             Account
                                         </Link>
+                                        <ul className="dropdown-menu">
+                                            <li><Link className="dropdown-item" to="/login">Sign in</Link></li>
+                                            <li><Link className="dropdown-item" to="./register">Signup</Link></li>
+                                          
+                                        </ul>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" to="../dashboard/index.html">

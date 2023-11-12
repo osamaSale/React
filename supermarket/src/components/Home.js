@@ -7,12 +7,12 @@ export const Home = () => {
     function SampleNextArrow1(props) {
         const { onClick } = props;
 
-        return <span onClick={onClick} class="slick-prev"><i class="fa fa-arrow-left"></i></span>
+        return <span onClick={onClick} className="slick-prev border"><i className="fa fa-arrow-left"></i></span>
     }
 
     function SamplePrevArrow1(props) {
         const { onClick } = props;
-        return <span class="slick-next " onClick={onClick}><i class="fa fa-arrow-right"></i></span>
+        return <span className="slick-next border" onClick={onClick}><i className="fa fa-arrow-right"></i></span>
     }
     const bestSellingProducts = {
         infinite: !0,
@@ -20,7 +20,6 @@ export const Home = () => {
         slidesToScroll: 1,
         autoplay: !0,
         dots: !1,
-        arrows: !0,
         arrows: !0,
         speed: 1e3,
         loop: !0,
@@ -561,80 +560,80 @@ export const Home = () => {
                                     <h3 className="mb-0">New Arrivals</h3>
                                 </div>
                                 <Slider  {...settings}>
-                                    <div class="item">
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
-                                                <a href="#">
-                                                    <img src="./assets/images/category/category-snack-munchies.jpg" alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                    <div className="item">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
+                                                <Link to="#">
+                                                    <img src="./assets/images/category/category-snack-munchies.jpg" alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Salted Instant
-                                                Popcorn</a></h2>
-                                            <div><span class=" fs-5 fw-bold">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
+                                            <span className="badge bg-danger rounded-pill">-45%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Salted Instant
+                                                Popcorn</Link></h2>
+                                            <div><span className=" fs-5 fw-bold">$18</span> <span
+                                                className="text-decoration-line-through text-muted">$24</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">4.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">4.5</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-lg-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-lg-4">
+                                            <div className="card-body text-center py-8">
 
-                                                <a href="#"><img
+                                                <Link to="#"><img
                                                     src="./assets/images/category/category-dairy-bread-eggs.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" />
-                                                </a>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" />
+                                                </Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-12%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Blueberry Greek
-                                                Yogurt</a></h2>
-                                            <div><span class=" fs-5 fw-bold">$15</span> <span
-                                                class="text-decoration-line-through text-muted">$20</span>
+                                            <span className="badge bg-danger rounded-pill">-12%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Blueberry Greek
+                                                Yogurt</Link></h2>
+                                            <div><span className=" fs-5 fw-bold">$15</span> <span
+                                                className="text-decoration-line-through text-muted">$20</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i></small> <span
-                                                        class="text-muted small">5.0</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i></small> <span
+                                                        className="text-muted small">5.0</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
-                                                <a href="#"><img src="./assets/images/category/category-snack-munchies.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                <Link to="#"><img src="./assets/images/category/category-snack-munchies.jpg"
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Kellogg s Original
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Kellogg s Original
                                                 Cereals
-                                            </a></h2>
+                                            </Link></h2>
                                             <div><span class=" fs-5 fw-bold">$18</span> <span
                                                 class="text-decoration-line-through text-muted">$24</span>
                                             </div>
@@ -655,16 +654,16 @@ export const Home = () => {
                                         <div class="card card-product mb-4">
                                             <div class="card-body text-center py-8">
 
-                                                <a href="#"><img
+                                                <Link to="#"><img
                                                     src="./assets/images/category/category-tea-coffee-drinks.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Tea Coffee & Drinks</a>
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Tea Coffee & Drinks</Link>
                                             </h2>
                                             <div><span class=" fs-5 fw-bold">$18</span> <span
                                                 class="text-decoration-line-through text-muted">$24</span>
@@ -686,17 +685,17 @@ export const Home = () => {
                                         <div class="card card-product mb-4">
                                             <div class="card-body text-center py-8">
 
-                                                <a href="#"><img
+                                                <Link to="#"><img
                                                     src="./assets/images/category/category-bakery-biscuits.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Slurrp Millet
-                                                Chocolate</a></h2>
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Slurrp Millet
+                                                Chocolate</Link></h2>
                                             <div><span class=" fs-5 fw-bold">$120</span> <span
                                                 class="text-decoration-line-through text-muted">$165</span>
                                             </div>
@@ -717,16 +716,16 @@ export const Home = () => {
                                         <div class="card card-product mb-4">
                                             <div class="card-body text-center py-8">
 
-                                                <a href="#"><img src="./assets/images/category/category-atta-rice-dal.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                <Link to="#"><img src="./assets/images/category/category-atta-rice-dal.jpg"
+                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Atta, Rice & Dal
-                                            </a></h2>
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Atta, Rice & Dal
+                                            </Link></h2>
                                             <div><span class=" fs-5 fw-bold">$18</span> <span
                                                 class="text-decoration-line-through text-muted">$24</span>
                                             </div>
@@ -747,16 +746,16 @@ export const Home = () => {
                                         <div class="card card-product mb-4">
                                             <div class="card-body text-center py-8">
 
-                                                <a href="#"><img
+                                                <Link to="#"><img
                                                     src="./assets/images/category/category-chicken-meat-fish.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Chicken, Meat & Fish</a>
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Chicken, Meat & Fish</Link>
                                             </h2>
                                             <div><span class=" fs-5 fw-bold">$18</span> <span
                                                 class="text-decoration-line-through text-muted">$24</span>
@@ -779,16 +778,16 @@ export const Home = () => {
                                         <div class="card card-product mb-4">
                                             <div class="card-body text-center py-8">
 
-                                                <a href="#"><img
+                                                <Link to="#"><img
                                                     src="./assets/images/category/category-cleaning-essentials.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></a>
+                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
                                             <span class="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 class="mt-3 fs-6"> <a href="#" class="text-inherit">Cleaning Essentials</a>
+                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Cleaning Essentials</Link>
                                             </h2>
                                             <div><span class=" fs-5 fw-bold">$120</span> <span
                                                 class="text-decoration-line-through text-muted">$165</span>
@@ -818,35 +817,35 @@ export const Home = () => {
                         <div class="row flex-nowrap">
                             <div class="col-md">
                                 <div class="card border-0 card-hover">
-                                    <a href="#" class="img-zoom">
+                                    <Link to="#" class="img-zoom">
                                         <img src="./assets/images/banner/ad-banner-4.jpg" alt=""
-                                            class="rounded w-100" /></a>
+                                            class="rounded w-100" /></Link>
                                     <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <a href="#" class="text-white  d-flex align-items-center btn-transition">Offer
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></a>
+                                        <Link to="#" class="text-white  d-flex align-items-center btn-transition">Offer
+                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="card border-0">
-                                    <a href="#" class="img-zoom">
-                                        <img src="./assets/images/banner/ad-banner-5.jpg" alt="" class=" rounded w-100" /></a>
+                                    <Link to="#" class="img-zoom">
+                                        <img src="./assets/images/banner/ad-banner-5.jpg" alt="" class=" rounded w-100" /></Link>
                                     <div class="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <a href="#" class="text-white  d-flex align-items-center btn-transition">Fresh Food
+                                        <Link to="#" class="text-white  d-flex align-items-center btn-transition">Fresh Food
                                             &
                                             Bakery
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></a>
+                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="card border-0">
-                                    <a href="#" class="img-zoom"><img src="./assets/images/banner/ad-banner-6.jpg" alt=""
-                                        class="rounded w-100" /></a>
+                                    <Link to="#" class="img-zoom"><img src="./assets/images/banner/ad-banner-6.jpg" alt=""
+                                        class="rounded w-100" /></Link>
                                     <div class="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <a href="#" class="text-white   btn-transition">Mixed and
+                                        <Link to="#" class="text-white   btn-transition">Mixed and
                                             Assorted fruits
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></a>
+                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
@@ -895,23 +894,23 @@ export const Home = () => {
                                                         <span class="badge bg-danger">Sale</span>
                                                     </div>
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-1.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link to="#!"> <img src="./assets/images/products/product-img-1.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!"
-                                                    class="text-inherit text-decoration-none">Haldiram's Sev Bhujia</a>
+                                                <h2 class="fs-6"><Link to="#!"
+                                                    class="text-inherit text-decoration-none">Haldiram's Sev Bhujia</Link>
                                                 </h2>
                                                 <div>
 
@@ -932,7 +931,7 @@ export const Home = () => {
                                                     </div>
                                                 </div>
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -944,24 +943,24 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-2.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link to="#!"> <img src="./assets/images/products/product-img-2.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!"
+                                                <h2 class="fs-6"><Link to="#!"
                                                     class="text-inherit text-decoration-none">Britannia NutriChoice
-                                                    Digestive Biscuits</a>
+                                                    Digestive Biscuits</Link>
                                                 </h2>
                                                 <div>
 
@@ -981,7 +980,7 @@ export const Home = () => {
                                                     </div>
                                                 </div>
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -993,24 +992,24 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-3.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link to="#!"> <img src="./assets/images/products/product-img-3.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Cadbury
+                                                <h2 class="fs-6"><Link to="#!" class="text-inherit text-decoration-none">Cadbury
                                                     5 star
-                                                    chocolate</a>
+                                                    chocolate</Link>
                                                 </h2>
                                                 <div>
 
@@ -1031,7 +1030,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1043,23 +1042,23 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-4.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link to="#!"> <img src="./assets/images/products/product-img-4.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Onion
-                                                    Flavour Potato</a>
+                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Onion
+                                                    Flavour Potato</Link>
                                                 </h2>
                                                 <div>
 
@@ -1081,7 +1080,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1096,24 +1095,24 @@ export const Home = () => {
                                                         <span class="badge bg-warning ">14%</span>
                                                     </div>
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-5.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link href="#!"> <img src="./assets/images/products/product-img-5.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Salted
+                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Salted
                                                     Instant
-                                                    Popcorn</a>
+                                                    Popcorn</Link>
                                                 </h2>
                                                 <div>
 
@@ -1135,7 +1134,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1147,25 +1146,25 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-6.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link href="#!"> <img src="./assets/images/products/product-img-6.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Epigamia
+                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Epigamia
                                                     Blueberry Greek
                                                     Yogurt,
-                                                    90g</a>
+                                                    90g</Link>
                                                 </h2>
                                                 <div>
 
@@ -1186,7 +1185,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1198,25 +1197,25 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-8.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link href="#!"> <img src="./assets/images/products/product-img-8.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!"
+                                                <h2 class="fs-6"><Link href="#!"
                                                     class="text-inherit text-decoration-none">Kellogg's Special K
                                                     Original
-                                                    Cereal</a>
+                                                    Cereal</Link>
                                                 </h2>
                                                 <div>
 
@@ -1238,7 +1237,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1250,25 +1249,25 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-9.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link href="#!"> <img src="./assets/images/products/product-img-9.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!" class="text-inherit text-decoration-none">Slurrp
+                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Slurrp
                                                     Farm No Maida
                                                     Millet
-                                                    Pancake Mix</a>
+                                                    Pancake Mix</Link>
                                                 </h2>
                                                 <div>
 
@@ -1290,7 +1289,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1302,24 +1301,24 @@ export const Home = () => {
 
                                                 <div class="text-center position-relative ">
 
-                                                    <a href="#!"> <img src="./assets/images/products/product-img-2.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></a>
+                                                    <Link href="#!"> <img src="./assets/images/products/product-img-2.jpg"
+                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
 
                                                     <div class="product-action-btn">
-                                                        <a href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></a>
-                                                        <a href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></a>
-                                                        <a href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                class="bi bi-heart"></i></Link>
+                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></a>
+                                                                class="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><a href="#!"
+                                                <h2 class="fs-6"><Link href="#!"
                                                     class="text-inherit text-decoration-none">Britannia NutriChoice
-                                                    Digestive Biscuits</a>
+                                                    Digestive Biscuits</Link>
                                                 </h2>
                                                 <div>
 
@@ -1340,7 +1339,7 @@ export const Home = () => {
                                                 </div>
 
                                                 <div class="d-grid mt-4">
-                                                    <a href="#" class="btn btn-primary rounded-pill">Add to Cart</a>
+                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1391,7 +1390,7 @@ export const Home = () => {
                                 <h3 class="h5 mb-3">Easy Returns</h3>
                                 <p>Not satisfied with a product? Return it at the doorstep & get a refund within hours. No
                                     questions asked
-                                    <a href="#!">policy</a>.
+                                    <Link href="#!">policy</Link>.
                                 </p>
                             </div>
                         </div>
