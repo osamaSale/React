@@ -6,6 +6,9 @@ import { Login } from './components/Account/Login';
 import { Register } from './components/Account/Register';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
+import { Shop } from './components/shop/Shop';
+import { Wishlist } from './components/shop/Wishlist';
+import { Cart } from './components/shop/Cart';
 function App() {
   return (
     <div className="App">
@@ -18,6 +21,9 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='/wishlist' element={<Wishlist />} />
+            <Route path='/cart' element={<Cart />} />
           </Routes>
         </main>
         <Footer />

@@ -4642,7 +4642,7 @@ fieldset:disabled .btn {
   --fc-dropdown-padding-y: 0.5rem;
   --fc-dropdown-spacer: 0.125rem;
   --fc-dropdown-font-size: 0.875rem;
-  --fc-dropdown-color: var(--fc-gray-600);
+  --fc-dropdown-color: var(--fc-body-color);
   --fc-dropdown-bg: #fff;
   --fc-dropdown-border-color: transparent;
   --fc-dropdown-border-radius: 0.5rem;
@@ -4851,7 +4851,7 @@ fieldset:disabled .btn {
   border: 0;
   border-radius: var(--fc-dropdown-item-border-radius, 0);
   clear: both;
-  color: var(--fc-dropdown-link-color);
+  color: var(--fc-body-color);
   display: block;
   font-weight: 400;
   padding: var(--fc-dropdown-item-padding-y) var(--fc-dropdown-item-padding-x);
@@ -6334,8 +6334,8 @@ fieldset:disabled .btn {
 }
 .list-group-item {
   background-color: var(--fc-list-group-bg);
-  border: var(--fc-list-group-border-width) solid
-    var(--fc-list-group-border-color);
+ /*  border: var(--fc-list-group-border-width) solid
+    var(--fc-list-group-border-color); */
   color: var(--fc-list-group-color);
   display: block;
   padding: var(--fc-list-group-item-padding-y)
@@ -21846,7 +21846,7 @@ h3 {
   margin-right: 0.255em;
 }
 .dropdown-item-icon {
-  color: var(--fc-gray-600);
+  color: var(--fc-body-color);
   display: inline-block;
   font-size: 0.8125rem;
   opacity: 0.7;

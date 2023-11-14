@@ -630,176 +630,176 @@ export const Home = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Kellogg s Original
+                                            <span className="badge bg-danger rounded-pill">-55%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Kellogg s Original
                                                 Cereals
                                             </Link></h2>
-                                            <div><span class=" fs-5 fw-bold">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
+                                            <div><span className=" fs-5 fw-bold">$18</span> <span
+                                                className="text-decoration-line-through text-muted">$24</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">3.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">3.5</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
                                                 <Link to="#"><img
                                                     src="./assets/images/category/category-tea-coffee-drinks.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Tea Coffee & Drinks</Link>
+                                            <span className="badge bg-danger rounded-pill">-45%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Tea Coffee & Drinks</Link>
                                             </h2>
-                                            <div><span class=" fs-5 fw-bold">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
+                                            <div><span className=" fs-5 fw-bold">$18</span> <span
+                                                className="text-decoration-line-through text-muted">$24</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">4.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">4.5</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
                                                 <Link to="#"><img
                                                     src="./assets/images/category/category-bakery-biscuits.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Slurrp Millet
+                                            <span className="badge bg-danger rounded-pill">-25%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Slurrp Millet
                                                 Chocolate</Link></h2>
-                                            <div><span class=" fs-5 fw-bold">$120</span> <span
-                                                class="text-decoration-line-through text-muted">$165</span>
+                                            <div><span className=" fs-5 fw-bold">$120</span> <span
+                                                className="text-decoration-line-through text-muted">$165</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">4.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">4.5</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
                                                 <Link to="#"><img src="./assets/images/category/category-atta-rice-dal.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Atta, Rice & Dal
+                                            <span className="badge bg-danger rounded-pill">-55%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Atta, Rice & Dal
                                             </Link></h2>
-                                            <div><span class=" fs-5 fw-bold">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
+                                            <div><span className=" fs-5 fw-bold">$18</span> <span
+                                                className="text-decoration-line-through text-muted">$24</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">3.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">3.5</span>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
                                                 <Link to="#"><img
                                                     src="./assets/images/category/category-chicken-meat-fish.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Chicken, Meat & Fish</Link>
+                                            <span className="badge bg-danger rounded-pill">-45%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Chicken, Meat & Fish</Link>
                                             </h2>
-                                            <div><span class=" fs-5 fw-bold">$18</span> <span
-                                                class="text-decoration-line-through text-muted">$24</span>
+                                            <div><span className=" fs-5 fw-bold">$18</span> <span
+                                                className="text-decoration-line-through text-muted">$24</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">4.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">4.5</span>
                                             </div>
 
                                         </div>
                                     </div>
 
-                                    <div class="item">
+                                    <div className="item">
 
-                                        <div class="card card-product mb-4">
-                                            <div class="card-body text-center py-8">
+                                        <div className="card card-product mb-4">
+                                            <div className="card-body text-center py-8">
 
                                                 <Link to="#"><img
                                                     src="./assets/images/category/category-cleaning-essentials.jpg"
-                                                    alt="Grocery Ecommerce Template" class="rounded mx-auto d-block mb-3" /></Link>
+                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
 
 
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 class="mt-3 fs-6"> <Link to="#" class="text-inherit">Cleaning Essentials</Link>
+                                            <span className="badge bg-danger rounded-pill">-25%</span>
+                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Cleaning Essentials</Link>
                                             </h2>
-                                            <div><span class=" fs-5 fw-bold">$120</span> <span
-                                                class="text-decoration-line-through text-muted">$165</span>
+                                            <div><span className=" fs-5 fw-bold">$120</span> <span
+                                                className="text-decoration-line-through text-muted">$165</span>
                                             </div>
-                                            <div class="text-warning">
+                                            <div className="text-warning">
 
-                                                <small> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i></small> <span
-                                                        class="text-muted small">4.5</span>
+                                                <small> <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i></small> <span
+                                                        className="text-muted small">4.5</span>
                                             </div>
 
                                         </div>
@@ -811,41 +811,41 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
-            <section class="mt-lg-12 mb-lg-14 mb-8 mt-8">
-                <div class="container-fluid">
-                    <div class="table-responsive-xxl pb-6 pb-lg-0">
-                        <div class="row flex-nowrap">
-                            <div class="col-md">
-                                <div class="card border-0 card-hover">
-                                    <Link to="#" class="img-zoom">
+            <section className="mt-lg-12 mb-lg-14 mb-8 mt-8">
+                <div className="container-fluid">
+                    <div className="table-responsive-xxl pb-6 pb-lg-0">
+                        <div className="row flex-nowrap">
+                            <div className="col-md">
+                                <div className="card border-0 card-hover">
+                                    <Link to="#" className="img-zoom">
                                         <img src="./assets/images/banner/ad-banner-4.jpg" alt=""
-                                            class="rounded w-100" /></Link>
-                                    <div class="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <Link to="#" class="text-white  d-flex align-items-center btn-transition">Offer
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
+                                            className="rounded w-100" /></Link>
+                                    <div className="position-absolute bg-dark-info w-100 bottom-0 py-3 px-4 rounded-bottom">
+                                        <Link to="#" className="text-white  d-flex align-items-center btn-transition">Offer
+                                            <i className="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md">
-                                <div class="card border-0">
-                                    <Link to="#" class="img-zoom">
-                                        <img src="./assets/images/banner/ad-banner-5.jpg" alt="" class=" rounded w-100" /></Link>
-                                    <div class="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <Link to="#" class="text-white  d-flex align-items-center btn-transition">Fresh Food
+                            <div className="col-md">
+                                <div className="card border-0">
+                                    <Link to="#" className="img-zoom">
+                                        <img src="./assets/images/banner/ad-banner-5.jpg" alt="" className=" rounded w-100" /></Link>
+                                    <div className="position-absolute bg-dark-warning w-100 bottom-0 py-3 px-4 rounded-bottom">
+                                        <Link to="#" className="text-white  d-flex align-items-center btn-transition">Fresh Food
                                             &
                                             Bakery
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
+                                            <i className="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md">
-                                <div class="card border-0">
-                                    <Link to="#" class="img-zoom"><img src="./assets/images/banner/ad-banner-6.jpg" alt=""
-                                        class="rounded w-100" /></Link>
-                                    <div class="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
-                                        <Link to="#" class="text-white   btn-transition">Mixed and
+                            <div className="col-md">
+                                <div className="card border-0">
+                                    <Link to="#" className="img-zoom"><img src="./assets/images/banner/ad-banner-6.jpg" alt=""
+                                        className="rounded w-100" /></Link>
+                                    <div className="position-absolute bg-dark-danger w-100 bottom-0 py-3 px-4 rounded-bottom">
+                                        <Link to="#" className="text-white   btn-transition">Mixed and
                                             Assorted fruits
-                                            <i class="feather-icon icon-chevron-right fs-5"></i></Link>
+                                            <i className="feather-icon icon-chevron-right fs-5"></i></Link>
                                     </div>
                                 </div>
                             </div>
@@ -854,492 +854,492 @@ export const Home = () => {
                 </div>
             </section>
 
-            <section class="mt-lg-12 mb-lg-14 mb-8 mt-8">
-                <div class="container-fluid ">
-                    <div class="row align-items-center mb-6">
-                        <div class="col-lg-10 col-9">
-                            <div class="d-xl-flex justify-content-between align-items-center">
+            <section className="mt-lg-12 mb-lg-14 mb-8 mt-8">
+                <div className="container-fluid ">
+                    <div className="row align-items-center mb-6">
+                        <div className="col-lg-10 col-9">
+                            <div className="d-xl-flex justify-content-between align-items-center">
 
-                                <div class="d-flex">
-                                    <div class="mt-1">
+                                <div className="d-flex">
+                                    <div className="mt-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-shopping-bag text-primary">
+                                            fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                            strokeLinejoin="round" className="feather feather-shopping-bag text-primary">
                                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                                             <line x1="3" y1="6" x2="21" y2="6"></line>
                                             <path d="M16 10a4 4 0 0 1-8 0"></path>
                                         </svg>
                                     </div>
-                                    <div class="ms-3">
-                                        <h3 class=" mb-0">Best Selling Products</h3>
-                                        <p class="mb-0">Find the bestseller products in your area with discount.</p>
+                                    <div className="ms-3">
+                                        <h3 className=" mb-0">Best Selling Products</h3>
+                                        <p className="mb-0">Find the bestseller products in your area with discount.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-3">
-                            <div class="slider-arrow  " id="slider-third-arrows"></div>
+                        <div className="col-lg-2 col-3">
+                            <div className="slider-arrow  " id="slider-third-arrows"></div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product-slider-second " id="slider-third">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="product-slider-second " id="slider-third">
                                 <Slider  {...bestSellingProducts}>
-                                    <div class="item ">
-                                        <div class="card card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                    <div className="item ">
+                                        <div className="card card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
-                                                    <div class=" position-absolute top-0 start-0">
-                                                        <span class="badge bg-danger">Sale</span>
+                                                <div className="text-center position-relative ">
+                                                    <div className=" position-absolute top-0 start-0">
+                                                        <span className="badge bg-danger">Sale</span>
                                                     </div>
 
                                                     <Link to="#!"> <img src="./assets/images/products/product-img-1.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link to="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link to="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link to="#!"
-                                                    class="text-inherit text-decoration-none">Haldiram's Sev Bhujia</Link>
+                                                <h2 className="fs-6"><Link to="#!"
+                                                    className="text-inherit text-decoration-none">Haldiram's Sev Bhujia</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.5(149)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.5(149)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div><span class="text-danger">$18</span> <span
-                                                        class="text-decoration-line-through text-muted">$24</span>
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
+                                                    <div><span className="text-danger">$18</span> <span
+                                                        className="text-decoration-line-through text-muted">$24</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
-                                                <div class="d-grid mt-4">
-                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link to="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link to="#!"> <img src="./assets/images/products/product-img-2.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link to="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link to="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link to="#!"
-                                                    class="text-inherit text-decoration-none">Britannia NutriChoice
+                                                <h2 className="fs-6"><Link to="#!"
+                                                    className="text-inherit text-decoration-none">Britannia NutriChoice
                                                     Digestive Biscuits</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.4(3,149)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.4(3,149)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
                                                     <div><span >$15</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
-                                                <div class="d-grid mt-4">
-                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link to="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link to="#!"> <img src="./assets/images/products/product-img-3.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link to="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link to="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link to="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link to="#!" class="text-inherit text-decoration-none">Cadbury
+                                                <h2 className="fs-6"><Link to="#!" className="text-inherit text-decoration-none">Cadbury
                                                     5 star
                                                     chocolate</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.7(1,130)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.7(1,130)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
                                                     <div><span >$32</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link to="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link to="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link to="#!"> <img src="./assets/images/products/product-img-4.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link to="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link to="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link to="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link to="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Onion
+                                                <h2 className="fs-6"><Link href="#!" className="text-inherit text-decoration-none">Onion
                                                     Flavour Potato</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.5(140)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.5(140)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div><span class="text-danger">$12</span><span
-                                                        class="text-muted text-decoration-line-through ms-1">$18</span>
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
+                                                    <div><span className="text-danger">$12</span><span
+                                                        className="text-muted text-decoration-line-through ms-1">$18</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
-                                                    <div class=" position-absolute top-0 start-0">
-                                                        <span class="badge bg-warning ">14%</span>
+                                                <div className="text-center position-relative ">
+                                                    <div className=" position-absolute top-0 start-0">
+                                                        <span className="badge bg-warning ">14%</span>
                                                     </div>
 
                                                     <Link href="#!"> <img src="./assets/images/products/product-img-5.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link href="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Salted
+                                                <h2 className="fs-6"><Link href="#!" className="text-inherit text-decoration-none">Salted
                                                     Instant
                                                     Popcorn</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.5(212)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.5(212)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div><span class="text-danger">$40</span> <span
-                                                        class="text-decoration-line-through text-muted">$65</span>
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
+                                                    <div><span className="text-danger">$40</span> <span
+                                                        className="text-decoration-line-through text-muted">$65</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link href="#!"> <img src="./assets/images/products/product-img-6.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link href="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Epigamia
+                                                <h2 className="fs-6"><Link href="#!" className="text-inherit text-decoration-none">Epigamia
                                                     Blueberry Greek
                                                     Yogurt,
                                                     90g</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.4(694)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.4(694)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
                                                     <div><span >$17</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link href="#!"> <img src="./assets/images/products/product-img-8.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link href="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!"
-                                                    class="text-inherit text-decoration-none">Kellogg's Special K
+                                                <h2 className="fs-6"><Link href="#!"
+                                                    className="text-inherit text-decoration-none">Kellogg's Special K
                                                     Original
                                                     Cereal</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.7(1,130)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.7(1,130)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div><span class="text-danger">$25</span><span
-                                                        class="text-muted text-decoration-line-through ms-1">$28</span>
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
+                                                    <div><span className="text-danger">$25</span><span
+                                                        className="text-muted text-decoration-line-through ms-1">$28</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link href="#!"> <img src="./assets/images/products/product-img-9.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link href="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!" class="text-inherit text-decoration-none">Slurrp
+                                                <h2 className="fs-6"><Link href="#!" className="text-inherit text-decoration-none">Slurrp
                                                     Farm No Maida
                                                     Millet
                                                     Pancake Mix</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.5(212)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.5(212)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                                    <div><span class="text-danger">$34</span><span
-                                                        class="text-muted text-decoration-line-through ms-1">$38</span>
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
+                                                    <div><span className="text-danger">$34</span><span
+                                                        className="text-muted text-decoration-line-through ms-1">$38</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item ">
+                                    <div className="item ">
 
-                                        <div class="card  card-product h-100 mb-4">
-                                            <div class="card-body position-relative">
+                                        <div className="card  card-product h-100 mb-4">
+                                            <div className="card-body position-relative">
 
-                                                <div class="text-center position-relative ">
+                                                <div className="text-center position-relative ">
 
                                                     <Link href="#!"> <img src="./assets/images/products/product-img-2.jpg"
-                                                        alt="Grocery Ecommerce Template" class="mb-3 img-fluid" /></Link>
+                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
 
-                                                    <div class="product-action-btn">
-                                                        <Link href="#!" class="btn-action mb-1" data-bs-toggle="modal"
-                                                            data-bs-target="#quickViewModal"><i class="bi bi-eye"></i></Link>
-                                                        <Link href="../pages/shop-wishlist.html" class="btn-action mb-1"
+                                                    <div className="product-action-btn">
+                                                        <Link href="#!" className="btn-action mb-1" data-bs-toggle="modal"
+                                                            data-bs-target="#quickViewModal"><i className="bi bi-eye"></i></Link>
+                                                        <Link href="../pages/shop-wishlist.html" className="btn-action mb-1"
                                                             data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i
-                                                                class="bi bi-heart"></i></Link>
-                                                        <Link href="#!" class="btn-action" data-bs-toggle="tooltip"
+                                                                className="bi bi-heart"></i></Link>
+                                                        <Link href="#!" className="btn-action" data-bs-toggle="tooltip"
                                                             data-bs-html="true" title="Compare"><i
-                                                                class="bi bi-arrow-left-right"></i></Link>
+                                                                className="bi bi-arrow-left-right"></i></Link>
                                                     </div>
                                                 </div>
 
-                                                <h2 class="fs-6"><Link href="#!"
-                                                    class="text-inherit text-decoration-none">Britannia NutriChoice
+                                                <h2 className="fs-6"><Link href="#!"
+                                                    className="text-inherit text-decoration-none">Britannia NutriChoice
                                                     Digestive Biscuits</Link>
                                                 </h2>
                                                 <div>
 
-                                                    <small class="text-warning"> <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i></small> <span
-                                                            class="text-muted small">4.4(3,149)</span>
+                                                    <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-fill"></i>
+                                                        <i className="bi bi-star-half"></i></small> <span
+                                                            className="text-muted small">4.4(3,149)</span>
                                                 </div>
 
-                                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div className="d-flex justify-content-between align-items-center mt-3">
                                                     <div><span >$15</span>
                                                     </div>
-                                                    <div><span class="text-uppercase small text-primary">
+                                                    <div><span className="text-uppercase small text-primary">
                                                         In Stock</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="d-grid mt-4">
-                                                    <Link href="#" class="btn btn-primary rounded-pill">Add to Cart</Link>
+                                                <div className="d-grid mt-4">
+                                                    <Link href="#" className="btn btn-primary rounded-pill">Add to Cart</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -1352,42 +1352,42 @@ export const Home = () => {
 
             </section>
 
-            <section class="mt-lg-12 mb-lg-14 mb-8 mt-8">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="mb-8 mb-xl-0">
-                                <div class="mb-6"><img src="assets/images/icons/clock.svg" alt="" /></div>
-                                <h3 class="h5 mb-3">
+            <section className="mt-lg-12 mb-lg-14 mb-8 mt-8">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-6 col-lg-3">
+                            <div className="mb-8 mb-xl-0">
+                                <div className="mb-6"><img src="assets/images/icons/clock.svg" alt="" /></div>
+                                <h3 className="h5 mb-3">
                                     10 minute grocery now
                                 </h3>
                                 <p>Get your order delivered to your doorstep at the earliest from FreshCart pickup stores
                                     near you.</p>
                             </div>
                         </div>
-                        <div class="col-md-6  col-lg-3">
-                            <div class="mb-8 mb-xl-0">
-                                <div class="mb-6"><img src="assets/images/icons/gift.svg" alt="" /></div>
-                                <h3 class="h5 mb-3">Best Prices & Offers</h3>
+                        <div className="col-md-6  col-lg-3">
+                            <div className="mb-8 mb-xl-0">
+                                <div className="mb-6"><img src="assets/images/icons/gift.svg" alt="" /></div>
+                                <h3 className="h5 mb-3">Best Prices & Offers</h3>
                                 <p>Cheaper prices than your local supermarket, great cashback offers to top it off. Get best
                                     pricess &
                                     offers.
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="mb-8 mb-xl-0">
-                                <div class="mb-6"><img src="assets/images/icons/package.svg" alt="" /></div>
-                                <h3 class="h5 mb-3">Wide Assortment</h3>
+                        <div className="col-md-6 col-lg-3">
+                            <div className="mb-8 mb-xl-0">
+                                <div className="mb-6"><img src="assets/images/icons/package.svg" alt="" /></div>
+                                <h3 className="h5 mb-3">Wide Assortment</h3>
                                 <p>Choose from 5000+ products across food, personal care, household, bakery, veg and non-veg
                                     & other
                                     categories.</p>
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="mb-8 mb-xl-0">
-                                <div class="mb-6"><img src="assets/images/icons/refresh-cw.svg" alt="" /></div>
-                                <h3 class="h5 mb-3">Easy Returns</h3>
+                        <div className="col-md-6 col-lg-3">
+                            <div className="mb-8 mb-xl-0">
+                                <div className="mb-6"><img src="assets/images/icons/refresh-cw.svg" alt="" /></div>
+                                <h3 className="h5 mb-3">Easy Returns</h3>
                                 <p>Not satisfied with a product? Return it at the doorstep & get a refund within hours. No
                                     questions asked
                                     <Link href="#!">policy</Link>.
