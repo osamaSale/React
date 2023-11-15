@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Modal } from '../Modal';
 
 export const Shop = () => {
     return (
@@ -1051,6 +1052,7 @@ export const Shop = () => {
                     </section>
                 </div>
             </div>
+            <Modal />
         </div>
     );
 }
