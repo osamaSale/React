@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 export const Footer = () => {
+    const location = useLocation();
+    if (location.pathname === "/dashboard") { return }
     return (
 
         <footer className=" mt-5 border-top">
@@ -9,8 +10,8 @@ export const Footer = () => {
                 <div className="container-fluid text-center text-md-start pt-4 pb-4">
                     <div className="row mt-8 mb-8">
                         <div className="col-12 col-lg-3 col-sm-12 mb-4">
-                            <Link  target="_blank" className="">
-                                <img src="assets/images/logo/freshcart-logo.svg" height="35" alt=''/>
+                            <Link target="_blank" className="">
+                                <img src="assets/images/logo/freshcart-logo.svg" height="35" alt='' />
                             </Link>
                             <p className="mt-3">
                                 © 2023 Copyright: MDBootstrap.com

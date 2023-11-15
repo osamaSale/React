@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { Modal } from './Modal';
 export const Navbar = () => {
     let element = document.body
@@ -7,6 +7,8 @@ export const Navbar = () => {
         element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
         localStorage.setItem("mode", element.dataset.bsTheme)
     }
+    const location = useLocation();
+    if (location.pathname === "/dashboard") { return }
     return (
         <header className="border-bottom">
             <div className="container-fluid">
@@ -629,7 +631,7 @@ export const Navbar = () => {
                                             </li>
                                         </ul>
                                     </li>
-                 
+
 
                                     <li className="nav-item dropdown w-100 w-lg-auto">
                                         <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
@@ -643,7 +645,7 @@ export const Navbar = () => {
                                         </ul>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link" to="../dashboard/index.html">
+                                        <Link className="nav-link" to="/dashboard">
                                             Dashboard
                                         </Link>
                                     </li>

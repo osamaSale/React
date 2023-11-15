@@ -23,7 +23,7 @@ export const Contact = () => {
                                 <input type="email" className="form-control border"  placeholder="Email" />
                             </div>
                             <div className="col-12">
-                                <input type="email" className="form-control border"  placeholder="Email" />
+                                <input type="text" className="form-control border"  placeholder="meassage" />
                             </div>
                           
                             <div className="col-12 d-grid"> <button type="submit" className="btn btn-primary">Send</button>
