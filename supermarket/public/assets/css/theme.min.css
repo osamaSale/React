@@ -2554,8 +2554,9 @@ progress {
   color: var(--fc-table-active-color);
 }
 .table-hover > tbody > tr:hover > * {
-  --fc-table-accent-bg: var(--fc-table-hover-bg);
-  color: var(--fc-table-hover-color);
+
+  --fc-table-accent-bg: var(--fc-gray-700);
+  color: var(--fc-white); 
 }
 .table-primary {
   --fc-table-color: #000;
@@ -23236,7 +23237,6 @@ input::-webkit-outer-spin-button {
 }
 .navbar-vertical-nav .navbar-vertical {
   background-color: var(--fc-body-bg);
-  border-right: 1px dashed var(--fc-gray-300);
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;

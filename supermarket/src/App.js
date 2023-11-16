@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Navbar } from "./components/Navbar"
 import { Home } from './components/Home';
 import { Footer } from './components/Footer';
@@ -11,8 +11,7 @@ import { Wishlist } from './components/shop/Wishlist';
 import { Cart } from './components/shop/Cart';
 import { Dashboard } from './components/Dashboard/Dashboard';
 function App() {
-    const location = useLocation();
-    console.log(location);
+
   return (
     <div className="App">
       <Navbar />
