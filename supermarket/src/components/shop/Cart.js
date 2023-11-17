@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const Cart = () => {
     return (
-        <div>
-
-
+      
             <section class="mb-lg-14 mb-8 mt-10">
                 <div class="container-fluid">
 
@@ -317,7 +315,7 @@ export const Cart = () => {
 
                                 <div class="d-flex justify-content-between mt-4">
                                     <Link to="#!" class="btn btn-primary">Continue Shopping</Link>
-                                 
+
                                 </div>
                             </div>
                         </div>
@@ -394,7 +392,7 @@ export const Cart = () => {
                     </div>
                 </div>
             </section>
-        </div>
+       
     );
 }
 

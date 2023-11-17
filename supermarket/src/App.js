@@ -10,6 +10,7 @@ import { Shop } from './components/shop/Shop';
 import { Wishlist } from './components/shop/Wishlist';
 import { Cart } from './components/shop/Cart';
 import { Dashboard } from './components/Dashboard/Dashboard';
+import { ShopSingle } from './components/shop/Shop-Single';
 function App() {
 
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/single' element={<ShopSingle />} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/dashboard' element={<Dashboard />} />

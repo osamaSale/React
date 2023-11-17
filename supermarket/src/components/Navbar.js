@@ -624,7 +624,7 @@ export const Navbar = () => {
                                         </Link>
                                         <ul className="dropdown-menu">
                                             <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
-                                            <li><Link className="dropdown-item" to="../pages/shop-single.html">Shop Single</Link></li>
+                                            <li><Link className="dropdown-item" to="/shop/single">Shop Single</Link></li>
                                             <li><Link className="dropdown-item" to="/wishlist">Shop Wishlist</Link> </li>
                                             <li><Link className="dropdown-item" to="/cart">Shop Cart</Link></li>
                                             <li><Link className="dropdown-item" to="../pages/shop-checkout.html">Shop Checkout</Link>

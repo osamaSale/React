@@ -411,10 +411,10 @@ export const Modal = () => {
                                         <div>
                                             <img src="./assets/images/products/product-single-img-1.jpg" alt='' />
                                         </div>
-                                        <div class="thumbnails-img" onMouseMove="zoom(event)">
+                                        <div class="thumbnails-img" >
                                             <img src="./assets/images/products/product-single-img-2.jpg" alt='' />
                                         </div >
-                                        <div class="thumbnails-img" onMouseMove="zoom(event)">
+                                        <div class="thumbnails-img">
                                             <img src="./assets/images/products/product-single-img-3.jpg" alt='' />
                                         </div>
                                         <div class="thumbnails-img">
