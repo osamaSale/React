@@ -11587,6 +11587,7 @@ fieldset:disabled .btn {
 .text-dark {
   --fc-text-opacity: 1;
   color: rgba(var(--fc-dark-rgb), var(--fc-text-opacity)) !important;
+  
 }
 .text-gray-400 {
   --fc-text-opacity: 1;
@@ -25781,10 +25782,12 @@ span.flatpickr-weekday {
   width: 100%;
   max-height: calc(89% - -2.4rem);
   margin: 0.8rem auto;
-
   overflow: auto;
   overflow: overlay;
 }
  .main {
-  height: 80vh;
+  height: 70vh;
 }
+
+
+

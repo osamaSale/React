@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from "react-router-dom"
 import { Modal } from './Modal';
-export const Navbar = () => {
+export const Navbar = ({ update, theme }) => {
     let element = document.body
-    function checkMode() {
-        element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
-        localStorage.setItem("mode", element.dataset.bsTheme)
+    const switchTheme = () => {
+      console.log("element.dataset.bsTheme" ,  element.dataset.bsTheme)
+      element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
+      localStorage.setItem("mode", element.dataset.bsTheme)
+      console.log("element.dataset.bsTheme")
     }
+
     const location = useLocation();
     if (location.pathname === "/dashboard") { return }
     return (
@@ -25,7 +28,7 @@ export const Navbar = () => {
                     <div className="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                         <div className="d-flex align-items-center justify-content-between ms-4">
                             <div className="ms-6 text-center">
-                                <Link className="text-reset" onClick={checkMode}>
+                                <Link  className="text-reset" onClick={switchTheme}>
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-moon fs-4"></i>

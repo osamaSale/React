@@ -423,59 +423,7 @@ export const Modal = () => {
                                      
 
                                     </Carousel>
-                                    {/* <div class="product productModal" id="productModal">
-                                        <div class="zoom" onmousemove="zoom(event)" style={{ backgroundImage: "url(./assets/images/products/product-single-img-1.jpg)"}}>
-
-                                            <img src="./assets/images/products/product-single-img-1.jpg" alt="" />
-                                        </div>
-                                        <div>
-                                            <div class="zoom" onmousemove="zoom(event)" style={{ backgroundImage: "url(./assets/images/products/product-single-img-1.jpg)"}}>
-
-                                                <img src="./assets/images/products/product-single-img-2.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="zoom" onmousemove="zoom(event)" style={{ backgroundImage: "url(./assets/images/products/product-single-img-1.jpg)"}}>
-
-                                                <img src="./assets/images/products/product-single-img-3.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="zoom" onmousemove="zoom(event)" style={{ backgroundImage: "url(./assets/images/products/product-single-img-1.jpg)"}}>
-
-                                                <img src="./assets/images/products/product-single-img-4.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                    </div> */}
-
-                                    {/* <div class="product-tools">
-                                        <div class="thumbnails row g-3" id="productModalThumbnails">
-                                            <div class="col-3" >
-                                                <div class="thumbnails-img">
-
-                                                    <img src="./assets/images/products/product-single-img-1.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="thumbnails-img">
-
-                                                    <img src="./assets/images/products/product-single-img-2.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="thumbnails-img">
-
-                                                    <img src="./assets/images/products/product-single-img-3.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="thumbnails-img">
-
-                                                    <img src="./assets/images/products/product-single-img-4.jpg" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> */}
+                                    
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="ps-lg-8 mt-6 mt-lg-0">

@@ -1,27 +1,52 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Navbar } from "./components/Navbar"
 import { Dashboard } from "./components/Dashboard/Dashboard"
 import { getAllUsers, singleUser } from './redux/api/users';
+import { getAllBrands } from './redux/api/brands';
+import { getAllDevices } from './redux/api/devices';
+import { getAllProducts } from './redux/api/products';
+import { Home } from './components/Home';
+import { Footer } from './components/Footer';
+import { About } from './components/About';
+import { Contact } from './components/Contact';
+import { Login } from './components/Account/Login';
+import { Register } from './components/Account/Register';
+import { getAllContact } from './redux/api/contact';
+import { Shop } from './components/Shop/Shop';
 function App() {
+
   const dispatch = useDispatch()
   useEffect(() => {
     update()
   }, [])
   const update = () => {
     dispatch(getAllUsers())
+    dispatch(getAllBrands())
+    dispatch(getAllDevices())
+    dispatch(getAllProducts())
+    dispatch(getAllContact())
     dispatch(singleUser())
   }
   return (
-    <div className="App" >
-      <Navbar />
+    <div className="app" >
+      <ToastContainer />
+      <Navbar update={update} />
       <main>
         <Routes>
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/' element={<Home update={update} />} />
+          <Route path='/about' element={<About update={update} />} />
+          <Route path='/contact' element={<Contact update={update} />} />
+          <Route path='/login' element={<Login update={update} />} />
+          <Route path='/register' element={<Register update={update} />} />
+          <Route path='/shop' element={<Shop update={update} />} />
+          <Route path='/dashboard' element={<Dashboard update={update} />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
