@@ -59,7 +59,6 @@ export const Shop = () => {
 
                                                 </div>
                                             </div>
-
                                         </li>
 
                                         <li className="nav-item border-bottom w-100 " ><Link to="#"
@@ -177,9 +176,6 @@ export const Shop = () => {
                                                 </div>
                                             </div>
                                         </li>
-
-
-
                                         <li className="nav-item border-bottom w-100 " > <Link
                                             to="#" className="nav-link collapsed" data-bs-toggle="collapse"
                                             data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">Breakfast & Instant Food <i className="fa fa-arrow-right"></i></Link>
@@ -305,15 +301,12 @@ export const Shop = () => {
                                                 </div>
                                             </div>
                                         </li>
-
                                     </ul>
                                 </div>
 
                                 <div className="mb-8">
-
                                     <h5 className="mb-3">Stores</h5>
                                     <div className="my-4">
-
                                         <input type="search" className="form-control" placeholder="Search by store" />
                                     </div>
 
@@ -460,7 +453,7 @@ export const Shop = () => {
                                         <Link to="#" className="btn btn-dark">Shop Now<i className="feather-icon icon-arrow-right ms-1"></i></Link>
                                     </div>
 
-                                    <img src="../assets/images/banner/assortment-citrus-fruits.png" alt=""
+                                    <img src="assets/images/banner/assortment-citrus-fruits.png" alt=""
                                         className="img-fluid rounded " />
 
                                 </div>
@@ -487,7 +480,9 @@ export const Shop = () => {
                                             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                                             className="feather feather-filter me-2">
                                             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-                                        </svg> Filters</Link>
+                                        </svg>
+                                            Filters
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -518,59 +513,69 @@ export const Shop = () => {
 
                         <div className="row g-4 row-cols-xl-4 row-cols-lg-3 row-cols-2 row-cols-md-2 mt-2">
                             {products && products.map((row) => {
-                                return <div className="col">
-
+                                return <div className="col" key={row.id}>
                                     <div className="card card-product">
                                         <div className="card-body">
                                             <div className="text-center position-relative ">
                                                 <div className=" position-absolute top-0 start-0">
                                                     <span className="badge bg-danger">Sale</span>
                                                 </div>
-                                                <Link to="shop-single.html">
-                                                    <img src={row && row.image}
-                                                        alt="Grocery Ecommerce Template" className="mb-3 img-fluid" /></Link>
+                                                <Link to={`/shop/single/${row.id}`}>
+                                                    <img src={row && row.image} alt="Grocery Ecommerce Template" className="mb-3 img-fluid" />
+                                                </Link>
 
                                                 <div className="card-product-action">
-                                                    <Link to="#!" className="btn-action" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                    <Link to="#!" className="btn-action me-3" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
                                                         className="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i></Link>
-                                                    <Link to="shop-wishlist.html" className="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    <Link to="shop-wishlist.html" className="btn-action me-2" data-bs-toggle="tooltip" data-bs-html="true"
                                                         title="Wishlist"><i className="bi bi-heart"></i></Link>
                                                     <Link to="#!" className="btn-action" data-bs-toggle="tooltip" data-bs-html="true" title="Compare"><i
                                                         className="bi bi-arrow-left-right"></i></Link>
                                                 </div>
                                             </div>
 
-                                            <div className="text-small mb-1"><Link to="#!" className="text-decoration-none text-muted"><small>Snack &
-                                                Munchies</small></Link></div>
-                                            <h2 className="fs-6"><Link to="shop-single.html" className="text-inherit text-decoration-none">Haldiram's Sev Bhujia</Link></h2>
+                                            <div className="text-small mb-1">
+                                                <Link to="#!" className="text-decoration-none text-muted">
+                                                    <small>{row && row.brand} && {row && row.color}</small>
+                                                </Link>
+                                            </div>
+                                            <h2 className="fs-6">
+                                                <Link to="shop-single.html" className="text-inherit text-decoration-none">
+                                                    {`${row && row.name}`.slice(0, 20)}..
+                                                </Link>
+                                            </h2>
                                             <div>
-
-                                                <small className="text-warning"> <i className="bi bi-star-fill"></i>
+                                                <small className="text-warning me-2">
                                                     <i className="bi bi-star-fill"></i>
                                                     <i className="bi bi-star-fill"></i>
                                                     <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span className="text-muted small">4.5(149)</span>
+                                                    <i className="bi bi-star-fill"></i>
+                                                    <i className="bi bi-star-half"></i>
+                                                </small>
+                                                <span className="text-muted small">4.5(149)</span>
                                             </div>
 
                                             <div className="d-flex justify-content-between align-items-center mt-3">
-                                                <div><span >$18</span> <span
-                                                    className="text-decoration-line-through text-muted">$24</span>
+                                                <div>
+                                                    <span className='me-3'>$ {row && row.price}</span>
+                                                    <span className="text-decoration-line-through text-muted">$ {row && row.priceDiscount}</span>
                                                 </div>
 
-                                                <div><Link to="#!" className="btn btn-primary btn-sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                                        className="feather feather-plus">
-                                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                    </svg> Add</Link></div>
+                                                <div>
+                                                    <Link to="#!" className="btn btn-primary btn-sm">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                                            className="feather feather-plus">
+                                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg> Add
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             })}
-
-
                         </div>
                         <div className="row mt-8">
                             <div className="col">

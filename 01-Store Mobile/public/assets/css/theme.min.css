@@ -25790,4 +25790,6 @@ span.flatpickr-weekday {
 }
 
 
-
+.carousel .thumb {
+  border: var(--fc-border-width) var(--fc-border-style) var(--fc-border-color) !important;
+}

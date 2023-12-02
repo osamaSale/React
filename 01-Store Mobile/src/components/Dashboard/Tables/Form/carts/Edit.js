@@ -4,7 +4,7 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import { editCatrs } from '../../../../redux/api/carts';
+import { editCart } from '../../../../../redux/api/carts';
 export const Edit = ({ openEditCart, setEditOpenCart, cart, update }) => {
     const { users, products } = useSelector((store) => store.data)
     const [userId, setUserId] = useState(cart ? cart.userId : null)
@@ -74,26 +74,14 @@ export const Edit = ({ openEditCart, setEditOpenCart, cart, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                let findProduct = products.find((e) => e.id === parseInt(productid))
-
                                 let data = {
                                     id: cart.id,
                                     userId: userId,
                                     productid: productid,
-                                    price: findProduct.price,
-                                    device: findProduct.device,
-                                    name: findProduct.name,
-                                    color: findProduct.color,
-                                    image: findProduct.image,
-                                    editPrice: parseFloat(findProduct.price) * quantity,
                                     quantity: quantity
                                 }
-
-
-
-                                dispatch(editCatrs(data)).then((res) => {
+                                dispatch(editCart(data)).then((res) => {
                                     const { status } = res.payload
-
                                     if (status === 200) {
                                         setEditOpenCart(false);
                                         update()
@@ -108,9 +96,7 @@ export const Edit = ({ openEditCart, setEditOpenCart, cart, update }) => {
                         </button>
                         <button
                             className="btn btn-danger"
-                            onClick={() => {
-                                setEditOpenCart(false);
-                            }}
+                            onClick={() => setEditOpenCart(false)}
                         >
                             Close
                         </button>

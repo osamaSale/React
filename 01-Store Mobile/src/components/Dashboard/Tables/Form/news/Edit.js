@@ -4,7 +4,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import { useDispatch } from "react-redux"
-import { createNews } from "../../../../redux/api/News";
+import { editNews } from "../../../../../redux/api/news";
 export const Edit = ({ openEditNews, setEditOpenNews, news, update }) => {
     const [email, setEmail] = useState(news ? news.email : "")
     const [loading, setLoading] = useState(false);
@@ -45,8 +45,8 @@ export const Edit = ({ openEditNews, setEditOpenNews, news, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                let data = { email: email }
-                                dispatch(createNews(data)).then((res) => {
+                                let data = {id : news.id ,  email: email }
+                                dispatch(editNews(data)).then((res) => {
                                     const { status } = res.payload
                                     if (status === 200) {
                                         setEditOpenNews(false);

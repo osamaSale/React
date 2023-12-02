@@ -6,9 +6,9 @@ export const Navbar = () => {
     function checkMode() {
         element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
         localStorage.setItem("mode", element.dataset.bsTheme)
+
     }
-    const location = useLocation();
-    if (location.pathname === "/dashboard") { return }
+  
     return (
         <header className="border-bottom">
             <div className="container-fluid">

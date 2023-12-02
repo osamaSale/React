@@ -4,18 +4,18 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editSave } from '../../../../redux/api/save';
-export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
-    console.log("save", save)
+import { createWishlist } from '../../../../../redux/api/wishlist';
+
+export const Insert = ({ openWishlist, setOpenWishlist, update }) => {
     const { users, products } = useSelector((store) => store.data)
-    const [userId, setUserId] = useState(save ? save.userId : null)
-    const [productid, setProductid] = useState(save ? save.productid : null)
+    const [userId, setUserId] = useState(null)
+    const [productid, setProductid] = useState(null)
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     return (
         <Modal
-            open={openEditSave}
-            onClose={() => setEditOpenSave(false)}
+            open={openWishlist}
+            onClose={() => setOpenWishlist(false)}
             sx={{
                 display: "flex",
                 alignItems: "center",
@@ -23,7 +23,7 @@ export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
             }}
         >
             <Sheet
-                 sx={{
+                sx={{
                     minWidth: 400,
                     borderRadius: "sm",
                     p: 3,
@@ -32,13 +32,12 @@ export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
 
             >
                 <Stack spacing={2}>
-                    <Typography component="h2">Edit Save</Typography>
+                    <Typography component="h2">Add Save</Typography>
                     <div className="mb-1">
                         <select
                             name="userId"
                             className="form-control"
                             onChange={(e) => setUserId(e.target.value)}
-                            value={userId}
                         >
                             <option >Select Users</option>
                             {users && users.map((row, index) => {
@@ -51,7 +50,6 @@ export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
                             name="productid"
                             className="form-control"
                             onChange={(e) => setProductid(e.target.value)}
-                            value={productid}
                         >
                             <option >Select Products</option>
                             {products && products.map((row, index) => {
@@ -71,22 +69,15 @@ export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                let findProduct = products.find((e) => e.id === parseInt(productid))
-
                                 let data = {
-                                    id : save.id,
                                     userId: userId,
-                                    productid: productid,
-                                    price: findProduct.price,
-                                    device: findProduct.device,
-                                    name: findProduct.name,
-                                    image: findProduct.image
+                                    productid: productid
                                 }
 
-                                dispatch(editSave(data)).then((res) => {
+                                dispatch(createWishlist(data)).then((res) => {
                                     const { status } = res.payload
                                     if (status === 200) {
-                                        setEditOpenSave(false);
+                                        setOpenWishlist(false);
                                         update()
                                     }
                                     setLoading(false)
@@ -100,7 +91,7 @@ export const Edit = ({ openEditSave, setEditOpenSave, save, update }) => {
                         <button
                             className="btn btn-danger"
                             onClick={() => {
-                                setEditOpenSave(false);
+                                setOpenWishlist(false);
                             }}
                         >
                             Close

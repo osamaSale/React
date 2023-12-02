@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Insert } from "./Form/contact/Insert"
-import { Edit } from "./Form/contact/Edit"
-import { deleteContact } from "../../../redux/api/contact"
-
-export const Contact = ({ update }) => {
-    const { contact } = useSelector((store) => store.data)
-    // ================ Add Contact =======================// 
-    const [openContact, setOpenContact] = useState(false);
-    // ================ Edit Contact ====================== //
-    const [openEditContact, setEditOpenContact] = useState(false)
+import { Insert } from "./Form/wishlist/Insert"
+import { Edit } from "./Form/wishlist/Edit"
+import { deleteWishlist } from "../../../redux/api/wishlist"
+export const Wishlist = ({ update }) => {
+    const { wishlist } = useSelector((store) => store.data)
+    // ================ Add Wishlist =======================// 
+    const [openWishlist, setOpenWishlist] = useState(false);
+    // ================ Edit Wishlist ====================== //
+    const [openEditWishlist, setEditOpenWishlist] = useState(false)
     const [selectedEdit, setSelectedEdit] = useState(null);
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
     return (
         <section className="container">
             <div className="row mb-5">
                 <div className="col-md-12">
                     <div className="d-md-flex justify-content-between ">
                         <div className="mb-1">
-                            <h4>Contact Us</h4>
+                            <h4>Wishlist</h4>
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0">
                                     <li className="breadcrumb-item">
                                         <Link className="text-inherit">Number</Link>
                                     </li>
-                                    <li className="breadcrumb-item ">{contact && contact.length > 0 ? contact.length : 0}</li>
+                                    <li className="breadcrumb-item ">{wishlist && wishlist.length > 0 ? wishlist.length : 0}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -54,36 +53,52 @@ export const Contact = ({ update }) => {
                                     </div>
                                 </div>
                                 <div className="col-md-2 d-flex justify-content-end">
-                                    <Link className="btn btn-primary w-100" onClick={() => setOpenContact(true)}><i className="bi bi-plus me-2"></i>Add Contact</Link>
+                                    <Link className="btn btn-primary w-100" onClick={() => setOpenWishlist(true)}><i className="bi bi-plus me-2"></i>Add Wishlist</Link>
                                 </div>
                             </div>
                         </div>
                         <div className="card-body p-0 px-2 py-5 main">
                             <section className="table__body">
-                                {contact && contact.length > 0 ?
+                                {wishlist && wishlist.length > 0 ?
                                     <div className="table-responsive">
                                         <table className="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
                                             <thead className="bg-primary text-white">
                                                 <tr>
                                                     <th scope="col">Id</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">userId</th>
+                                                    <th scope="col">productid</th>
                                                     <th scope="col">Name</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Message</th>
+                                                    <th scope="col">Brand</th>
+                                                    <th scope="col">Device</th>
+                                                    <th scope="col">Color</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Discount</th>
+                                                    <th scope="col">Stock</th>
                                                     <th scope="col">Actions</th>
                                                     <th scope="col">Remove</th>
                                                 </tr>
 
                                             </thead>
                                             <tbody>
-                                                {contact && contact.map((row, index) => {
+                                                {wishlist && wishlist.map((row, index) => {
                                                     return <tr key={index} className='border'>
                                                         <td >{row && row.id}</td>
+                                                        <td >
+                                                            <img src={row && row.image} className="rounded-circle" alt="" height={35} width={35} />
+                                                        </td>
+                                                        <td >{row && row.userId}</td>
+                                                        <td >{row && row.productid}</td>
                                                         <td >{row && row.name}</td>
-                                                        <td >{row && row.email}</td>
-                                                        <td >{row && row.message}</td>
+                                                        <td >{row && row.brand}</td>
+                                                        <td >{row && row.device}</td>
+                                                        <td >{row && row.color}</td>
+                                                        <td >{row && row.price}</td>
+                                                        <td >{row && row.priceDiscount}</td>
+                                                        <td >{row && row.stock}</td>
                                                         <td >
                                                             <button type='submit' className="btn" onClick={() => {
-                                                                setEditOpenContact(true);
+                                                                setEditOpenWishlist(true);
                                                                 setSelectedEdit(row)
                                                             }}>
                                                                 <i className="fa-solid fa-pen-to-square text-primary"></i>
@@ -92,7 +107,7 @@ export const Contact = ({ update }) => {
                                                         <td >
                                                             <button className="btn" onClick={() => {
                                                                 if (window.confirm("Are you sure you want to delete this?")) {
-                                                                    dispatch(deleteContact(row.id)).then(() => update())
+                                                                    dispatch(deleteWishlist(row.id)).then(() => update())
                                                                 }
                                                             }}>
                                                                 <i className="fa-solid fa-trash icon-trash-2 text-danger"></i>
@@ -104,8 +119,23 @@ export const Contact = ({ update }) => {
                                         </table>
                                     </div> :
                                     <div className="justify-content-md-center pt-4 pb-4">
-                                        <h5 className='text-center'> Brands Is Empty </h5>
+                                        <h5 className='text-center'> News Is Empty </h5>
                                     </div>}
+                                {openWishlist && (
+                                    <Insert
+                                        openWishlist={openWishlist}
+                                        setOpenWishlist={setOpenWishlist}
+                                        update={update}
+                                    />
+                                )}
+                                {openEditWishlist && (
+                                    <Edit
+                                        openEditWishlist={openEditWishlist}
+                                        setEditOpenWishlist={setEditOpenWishlist}
+                                        wishlist={selectedEdit}
+                                        update={update}
+                                    />
+                                )}
                             </section>
                         </div>
 
@@ -114,21 +144,6 @@ export const Contact = ({ update }) => {
                 </div>
 
             </div>
-            {openContact && (
-                <Insert
-                    openContact={openContact}
-                    setOpenContact={setOpenContact}
-                    update={update}
-                />
-            )}
-            {openEditContact && (
-                <Edit
-                    openEditContact={openEditContact}
-                    setEditOpenContact={setEditOpenContact}
-                    contact={selectedEdit}
-                    update={update}
-                />
-            )}
         </section>
     );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-export const NavbarVertical = ({toggleState , settoggleState }) => {
+export const NavbarVertical = ({ toggleState, settoggleState }) => {
     return (
         <div>
             <nav className="navbar-vertical-nav d-none d-xl-block">
@@ -24,7 +24,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 <span className="nav-label">Store Managements</span>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 2 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(2)}>
+                                <Link className={toggleState === 2 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(2)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="bi bi-people-fill"></i></span>
                                         <span className="nav-link-text">Users</span>
@@ -32,7 +32,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 </Link>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 3 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(3)}>
+                                <Link className={toggleState === 3 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(3)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="fa-brands fa-product-hunt"></i></span>
                                         <span className="nav-link-text">Brands</span>
@@ -40,7 +40,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 </Link>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 4 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(4)}>
+                                <Link className={toggleState === 4 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(4)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="fa-solid fa-laptop"></i></span>
                                         <span className="nav-link-text">Devices</span>
@@ -63,6 +63,30 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                     </div>
                                 </Link>
                             </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 7 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(7)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-newspaper"></i></span>
+                                        <span className="nav-link-text">News</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 8 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(8)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-bookmark-heart"></i></span>
+                                        <span className="nav-link-text">wishlist</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 9 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(9)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-cart2"></i></span>
+                                        <span className="nav-link-text">Carts</span>
+                                    </div>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -78,7 +102,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                     </div>
                     <div className="navbar-vertical-content flex-grow-1" data-simplebar="">
                         <ul className="navbar-nav flex-column">
-                        <li className="nav-item ">
+                            <li className="nav-item ">
                                 <Link className={toggleState === 1 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(1)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"> <i className="bi bi-house"></i></span>
@@ -90,7 +114,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 <span className="nav-label">Store Managements</span>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 2 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(2)}>
+                                <Link className={toggleState === 2 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(2)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="bi bi-people-fill"></i></span>
                                         <span className="nav-link-text">Users</span>
@@ -98,7 +122,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 </Link>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 3 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(3)}>
+                                <Link className={toggleState === 3 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(3)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="fa-brands fa-product-hunt"></i></span>
                                         <span className="nav-link-text">Brands</span>
@@ -106,7 +130,7 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                                 </Link>
                             </li>
                             <li className="nav-item ">
-                                <Link  className={toggleState === 4 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(4)}>
+                                <Link className={toggleState === 4 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(4)}>
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"><i className="fa-solid fa-laptop"></i></span>
                                         <span className="nav-link-text">Devices</span>
@@ -124,8 +148,34 @@ export const NavbarVertical = ({toggleState , settoggleState }) => {
                             <li className="nav-item ">
                                 <Link className={toggleState === 6 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(6)}>
                                     <div className="d-flex align-items-center">
-                                        <span className="nav-link-icon"> <i class="bi bi-person-lines-fill"></i></span>
+                                        <span className="nav-link-icon"> <i className="bi bi-person-lines-fill"></i></span>
                                         <span className="nav-link-text">Contact Us</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 7 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(7)}>
+                                    <div className="d-flex align-items-center">
+
+                                        <span className="nav-link-icon"> <i className="bi bi-newspaper"></i></span>
+                                        <span className="nav-link-text">News</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 8 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(8)}>
+                                    <div className="d-flex align-items-center">
+
+                                        <span className="nav-link-icon"> <i className="bi bi-bookmark-heart"></i></span>
+                                        <span className="nav-link-text">wishlist</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 9 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(9)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-cart2"></i></span>
+                                        <span className="nav-link-text">Carts</span>
                                     </div>
                                 </Link>
                             </li>

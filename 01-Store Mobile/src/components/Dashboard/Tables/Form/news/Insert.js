@@ -4,7 +4,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import { useDispatch } from "react-redux"
-import { createNews } from "../../../../redux/api/News";
+import { createNews } from "../../../../../redux/api/news";
 export const Insert = ({ openNews, setOpenNews, update }) => {
     const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(false);

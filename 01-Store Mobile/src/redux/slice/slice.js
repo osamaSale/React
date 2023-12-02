@@ -5,6 +5,9 @@ import { createBrand, deleteBrand, editBrand, getAllBrands } from "../api/brands
 import { createDevices, deleteDevices, editDevices, getAllDevices } from "../api/devices";
 import { createProducts, deleteProducts, editProducts, getAllProducts } from "../api/products";
 import { createContact, deleteContact, editContact, getAllContact } from "../api/contact";
+import { createNews, deleteNews, editNews, getAllNews } from "../api/news";
+import { createWishlist, deleteWishlist, editWishlist, getAllWishlist } from "../api/wishlist";
+import { createCart, deleteCarts, editCart, getAllCarts } from "../api/carts";
 export const dataSlice = createSlice({
     name: 'data',
     initialState: {
@@ -14,6 +17,9 @@ export const dataSlice = createSlice({
         devices: [],
         products: [],
         contact: [],
+        news: [],
+        wishlist: [],
+        carts: [],
         user: null,
     },
     extraReducers: {
@@ -330,16 +336,16 @@ export const dataSlice = createSlice({
             state.loading = false
         },
 
-            /* 
-    ---------------------------------------------
-    End Brands
-    --------------------------------------------- 
-    */
         /* 
-      ---------------------------------------------
-      Start Devices
-      --------------------------------------------- 
-      */
+        ---------------------------------------------
+        End Brands
+        --------------------------------------------- 
+        */
+        /* 
+        ---------------------------------------------
+        Start Devices
+        --------------------------------------------- 
+        */
 
         /* ============================== Get All Devices   =============================== */
 
@@ -411,13 +417,14 @@ export const dataSlice = createSlice({
         /* 
         ---------------------------------------------
         End Products
-       --------------------------------------------- 
-       */
+        --------------------------------------------- 
+        */
         /* 
          ---------------------------------------------
          Start Contact
          --------------------------------------------- 
          */
+
         /* ============================== Get All Contact   =============================== */
 
         [getAllContact.pending]: (state) => {
@@ -482,7 +489,241 @@ export const dataSlice = createSlice({
         [deleteContact.rejected]: (state) => {
             state.loading = false
         },
+
+
+
+        /* 
+        ---------------------------------------------
+        End Contact
+       --------------------------------------------- 
+       */
+        /* 
+         ---------------------------------------------
+         Start News
+         --------------------------------------------- 
+         */
+
+        /* ============================== Get All News   =============================== */
+
+        [getAllNews.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllNews.fulfilled]: (state, action) => {
+            state.news = action.payload.result
+        },
+        [getAllNews.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Create News   =============================== */
+
+        [createNews.pending]: (state) => {
+            state.loading = true
+        },
+        [createNews.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 422) {
+                toast.error(massage)
+            } else if (status === 201) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [createNews.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Edit news   =============================== */
+
+        [editNews.pending]: (state) => {
+            state.loading = true
+        },
+        [editNews.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [editNews.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Delete news   =============================== */
+
+        [deleteNews.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteNews.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [deleteNews.rejected]: (state) => {
+            state.loading = false
+        },
+
+        /* 
+        ---------------------------------------------
+        End Contact
+        --------------------------------------------- 
+        */
+        /* 
+         ---------------------------------------------
+         Start News
+         --------------------------------------------- 
+         */
+
+        /* ============================== Get All wishlist   =============================== */
+
+        [getAllWishlist.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllWishlist.fulfilled]: (state, action) => {
+            state.wishlist = action.payload.result
+        },
+        [getAllWishlist.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Create Wishlist   =============================== */
+
+        [createWishlist.pending]: (state) => {
+            state.loading = true
+        },
+        [createWishlist.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 422) {
+                toast.error(massage)
+            } else if (status === 201) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [createWishlist.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Edit Wishlist   =============================== */
+
+        [editWishlist.pending]: (state) => {
+            state.loading = true
+        },
+        [editWishlist.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [editWishlist.rejected]: (state) => {
+            state.loading = false
+        },
+
+        /* ============================== Delete Wishlist   =============================== */
+
+        [deleteWishlist.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteWishlist.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [deleteWishlist.rejected]: (state) => {
+            state.loading = false
+        },
+
+         /* 
+        ---------------------------------------------
+        End wishlist
+        --------------------------------------------- 
+        */
+        /* 
+         ---------------------------------------------
+         Start Carts
+         --------------------------------------------- 
+         */
+
+        /* ============================== Get All Carts   =============================== */
+
+        [getAllCarts.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllCarts.fulfilled]: (state, action) => {
+            state.carts = action.payload.result
+        },
+        [getAllCarts.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Create Wishlist   =============================== */
+
+        [createCart.pending]: (state) => {
+            state.loading = true
+        },
+        [createCart.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 422) {
+                toast.error(massage)
+            } else if (status === 201) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [createCart.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Edit Wishlist   =============================== */
+
+        [editCart.pending]: (state) => {
+            state.loading = true
+        },
+        [editCart.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [editCart.rejected]: (state) => {
+            state.loading = false
+        },
+
+        /* ============================== Delete Wishlist   =============================== */
+
+        [deleteCarts.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteCarts.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [deleteCarts.rejected]: (state) => {
+            state.loading = false
+        },
+
     }
+
 })
 
 

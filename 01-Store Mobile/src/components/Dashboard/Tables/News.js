@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Insert } from "./Form/contact/Insert"
-import { Edit } from "./Form/contact/Edit"
-import { deleteContact } from "../../../redux/api/contact"
-
-export const Contact = ({ update }) => {
-    const { contact } = useSelector((store) => store.data)
-    // ================ Add Contact =======================// 
-    const [openContact, setOpenContact] = useState(false);
-    // ================ Edit Contact ====================== //
-    const [openEditContact, setEditOpenContact] = useState(false)
+import { Insert } from "./Form/news/Insert"
+import { Edit } from "./Form/news/Edit"
+import { deleteNews } from "../../../redux/api/news"
+export const News = ({ update }) => {
+    const { news } = useSelector((store) => store.data)
+    // ================ Add News =======================// 
+    const [openNews, setOpenNews] = useState(false);
+    // ================ Edit News ====================== //
+    const [openEditNews, setEditOpenNews] = useState(false)
     const [selectedEdit, setSelectedEdit] = useState(null);
     let dispatch = useDispatch()
     return (
@@ -19,13 +18,13 @@ export const Contact = ({ update }) => {
                 <div className="col-md-12">
                     <div className="d-md-flex justify-content-between ">
                         <div className="mb-1">
-                            <h4>Contact Us</h4>
+                            <h4>News</h4>
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-0">
                                     <li className="breadcrumb-item">
                                         <Link className="text-inherit">Number</Link>
                                     </li>
-                                    <li className="breadcrumb-item ">{contact && contact.length > 0 ? contact.length : 0}</li>
+                                    <li className="breadcrumb-item ">{news && news.length > 0 ? news.length : 0}</li>
                                 </ol>
                             </nav>
                         </div>
@@ -54,36 +53,32 @@ export const Contact = ({ update }) => {
                                     </div>
                                 </div>
                                 <div className="col-md-2 d-flex justify-content-end">
-                                    <Link className="btn btn-primary w-100" onClick={() => setOpenContact(true)}><i className="bi bi-plus me-2"></i>Add Contact</Link>
+                                    <Link className="btn btn-primary w-100" onClick={() => setOpenNews(true)}><i className="bi bi-plus me-2"></i>Add News</Link>
                                 </div>
                             </div>
                         </div>
                         <div className="card-body p-0 px-2 py-5 main">
                             <section className="table__body">
-                                {contact && contact.length > 0 ?
+                                {news && news.length > 0 ?
                                     <div className="table-responsive">
                                         <table className="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
                                             <thead className="bg-primary text-white">
                                                 <tr>
                                                     <th scope="col">Id</th>
-                                                    <th scope="col">Name</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Message</th>
                                                     <th scope="col">Actions</th>
                                                     <th scope="col">Remove</th>
                                                 </tr>
 
                                             </thead>
                                             <tbody>
-                                                {contact && contact.map((row, index) => {
+                                                {news && news.map((row, index) => {
                                                     return <tr key={index} className='border'>
                                                         <td >{row && row.id}</td>
-                                                        <td >{row && row.name}</td>
                                                         <td >{row && row.email}</td>
-                                                        <td >{row && row.message}</td>
                                                         <td >
                                                             <button type='submit' className="btn" onClick={() => {
-                                                                setEditOpenContact(true);
+                                                                setEditOpenNews(true);
                                                                 setSelectedEdit(row)
                                                             }}>
                                                                 <i className="fa-solid fa-pen-to-square text-primary"></i>
@@ -92,7 +87,7 @@ export const Contact = ({ update }) => {
                                                         <td >
                                                             <button className="btn" onClick={() => {
                                                                 if (window.confirm("Are you sure you want to delete this?")) {
-                                                                    dispatch(deleteContact(row.id)).then(() => update())
+                                                                    dispatch(deleteNews(row.id)).then(() => update())
                                                                 }
                                                             }}>
                                                                 <i className="fa-solid fa-trash icon-trash-2 text-danger"></i>
@@ -104,8 +99,23 @@ export const Contact = ({ update }) => {
                                         </table>
                                     </div> :
                                     <div className="justify-content-md-center pt-4 pb-4">
-                                        <h5 className='text-center'> Brands Is Empty </h5>
+                                        <h5 className='text-center'> News Is Empty </h5>
                                     </div>}
+                                {openNews && (
+                                    <Insert
+                                        openNews={openNews}
+                                        setOpenNews={setOpenNews}
+                                        update={update}
+                                    />
+                                )}
+                                {openEditNews && (
+                                    <Edit
+                                        openEditNews={openEditNews}
+                                        setEditOpenNews={setEditOpenNews}
+                                        news={selectedEdit}
+                                        update={update}
+                                    />
+                                )}
                             </section>
                         </div>
 
@@ -114,21 +124,6 @@ export const Contact = ({ update }) => {
                 </div>
 
             </div>
-            {openContact && (
-                <Insert
-                    openContact={openContact}
-                    setOpenContact={setOpenContact}
-                    update={update}
-                />
-            )}
-            {openEditContact && (
-                <Edit
-                    openEditContact={openEditContact}
-                    setEditOpenContact={setEditOpenContact}
-                    contact={selectedEdit}
-                    update={update}
-                />
-            )}
         </section>
     );
 }

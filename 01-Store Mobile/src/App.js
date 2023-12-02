@@ -17,6 +17,10 @@ import { Login } from './components/Account/Login';
 import { Register } from './components/Account/Register';
 import { getAllContact } from './redux/api/contact';
 import { Shop } from './components/Shop/Shop';
+import { ShopSingle } from './components/Shop/ShopSingle';
+import { getAllNews } from './redux/api/news';
+import { getAllWishlist } from './redux/api/wishlist';
+import { getAllCarts } from './redux/api/carts';
 function App() {
 
   const dispatch = useDispatch()
@@ -29,6 +33,9 @@ function App() {
     dispatch(getAllDevices())
     dispatch(getAllProducts())
     dispatch(getAllContact())
+    dispatch(getAllNews())
+    dispatch(getAllWishlist())
+    dispatch(getAllCarts())
     dispatch(singleUser())
   }
   return (
@@ -43,6 +50,7 @@ function App() {
           <Route path='/login' element={<Login update={update} />} />
           <Route path='/register' element={<Register update={update} />} />
           <Route path='/shop' element={<Shop update={update} />} />
+          <Route path='/shop/single/:id' element={<ShopSingle update={update} />} />
           <Route path='/dashboard' element={<Dashboard update={update} />} />
         </Routes>
       </main>

@@ -4,18 +4,17 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSave } from '../../../../redux/api/save';
-
-export const Insert = ({ openSave, setOpenSave, update }) => {
+import { editWishlist } from '../../../../../redux/api/wishlist';
+export const Edit = ({ openEditWishlist, setEditOpenWishlist, wishlist, update }) => {
     const { users, products } = useSelector((store) => store.data)
-    const [userId, setUserId] = useState(null)
-    const [productid, setProductid] = useState(null)
+    const [userId, setUserId] = useState(wishlist ? wishlist.userId : null)
+    const [productid, setProductid] = useState(wishlist ? wishlist.productid : null)
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     return (
         <Modal
-            open={openSave}
-            onClose={() => setOpenSave(false)}
+            open={openEditWishlist}
+            onClose={() => setEditOpenWishlist(false)}
             sx={{
                 display: "flex",
                 alignItems: "center",
@@ -23,7 +22,7 @@ export const Insert = ({ openSave, setOpenSave, update }) => {
             }}
         >
             <Sheet
-                  sx={{
+                 sx={{
                     minWidth: 400,
                     borderRadius: "sm",
                     p: 3,
@@ -32,12 +31,13 @@ export const Insert = ({ openSave, setOpenSave, update }) => {
 
             >
                 <Stack spacing={2}>
-                    <Typography component="h2">Add Save</Typography>
+                    <Typography component="h2">Edit Save</Typography>
                     <div className="mb-1">
                         <select
                             name="userId"
                             className="form-control"
                             onChange={(e) => setUserId(e.target.value)}
+                            value={userId}
                         >
                             <option >Select Users</option>
                             {users && users.map((row, index) => {
@@ -50,6 +50,7 @@ export const Insert = ({ openSave, setOpenSave, update }) => {
                             name="productid"
                             className="form-control"
                             onChange={(e) => setProductid(e.target.value)}
+                            value={productid}
                         >
                             <option >Select Products</option>
                             {products && products.map((row, index) => {
@@ -69,21 +70,18 @@ export const Insert = ({ openSave, setOpenSave, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                let findProduct = products.find((e) => e.id === parseInt(productid))
-
+                            
                                 let data = {
+                                    id : wishlist.id,
                                     userId: userId,
                                     productid: productid,
-                                    price: findProduct.price,
-                                    device: findProduct.device,
-                                    name: findProduct.name,
-                                    image: findProduct.image
+                                  
                                 }
 
-                                dispatch(createSave(data)).then((res) => {
+                                dispatch(editWishlist(data)).then((res) => {
                                     const { status } = res.payload
                                     if (status === 200) {
-                                        setOpenSave(false);
+                                        setEditOpenWishlist(false);
                                         update()
                                     }
                                     setLoading(false)
@@ -97,7 +95,7 @@ export const Insert = ({ openSave, setOpenSave, update }) => {
                         <button
                             className="btn btn-danger"
                             onClick={() => {
-                                setOpenSave(false);
+                                setEditOpenWishlist(false);
                             }}
                         >
                             Close

@@ -48,7 +48,7 @@ export const About = () => {
             <section className='mt-lg-12 mb-lg-14 mb-8 mt-8'>
                 <div className='container-fluid'>
                     <div className='row align-items-center'>
-                        <div className='col-md-6 mb-2'>
+                        <div className='col-md-6 mb-2 '>
                             <h1 className="mb-6">Who Are We ?</h1>
                             <p className='lh-lg pb-4'>
                                 is a form of electronic commerce which allows consumers to

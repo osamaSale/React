@@ -4,8 +4,8 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { useDispatch, useSelector } from 'react-redux';
-import { insertCatrs } from '../../../../redux/api/carts';
-export const Insert = ({openCarts ,  setOpenCarts , update}) => {
+import { createCart } from '../../../../../redux/api/carts';
+export const Insert = ({ openCarts, setOpenCarts, update }) => {
     const { users, products } = useSelector((store) => store.data)
     const [userId, setUserId] = useState(null)
     const [productid, setProductid] = useState(null)
@@ -14,105 +14,93 @@ export const Insert = ({openCarts ,  setOpenCarts , update}) => {
     const dispatch = useDispatch()
     return (
         <Modal
-        open={openCarts}
-        onClose={() => setOpenCarts(false)}
-        sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-        }}
-    >
-        <Sheet
-              sx={{
-                minWidth: 400,
-                borderRadius: "sm",
-                p: 3,
+            open={openCarts}
+            onClose={() => setOpenCarts(false)}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
             }}
-            variant="outlined"
-
         >
-            <Stack spacing={2}>
-                <Typography component="h2">Add Carts</Typography>
-                <div className="mb-1">
-                    <select
-                        name="userId"
-                        className="form-control"
-                        onChange={(e) => setUserId(e.target.value)}
-                    >
-                        <option >Select Users</option>
-                        {users && users.map((row, index) => {
-                            return <option key={index} value={row.id}>{row.name}</option>
-                        })}
-                    </select>
-                </div>
-                <div className="mb-1">
-                    <select
-                        name="productid"
-                        className="form-control"
-                        onChange={(e) => setProductid(e.target.value)}
-                    >
-                        <option >Select Products</option>
-                        {products && products.map((row, index) => {
-                            return <option key={index} value={row.id}>{row.name}</option>
-                        })}
-                    </select>
-                </div>
-                <div className="mb-1">
+            <Sheet
+                sx={{
+                    minWidth: 400,
+                    borderRadius: "sm",
+                    p: 3,
+                }}
+                variant="outlined"
+
+            >
+                <Stack spacing={2}>
+                    <Typography component="h2">Add Carts</Typography>
+                    <div className="mb-1">
+                        <select
+                            name="userId"
+                            className="form-control"
+                            onChange={(e) => setUserId(e.target.value)}
+                        >
+                            <option >Select Users</option>
+                            {users && users.map((row, index) => {
+                                return <option key={index} value={row.id}>{row.name}</option>
+                            })}
+                        </select>
+                    </div>
+                    <div className="mb-1">
+                        <select
+                            name="productid"
+                            className="form-control"
+                            onChange={(e) => setProductid(e.target.value)}
+                        >
+                            <option >Select Products</option>
+                            {products && products.map((row, index) => {
+                                return <option key={index} value={row.id}>{row.name}</option>
+                            })}
+                        </select>
+                    </div>
+                    <div className="mb-1">
                         <input type="text" className="form-control bg-transparent" placeholder="Enter Your Quantity"
                             onChange={(e) => setQuantity(e.target.value)} value={quantity} />
                     </div>
 
-                <Stack
-                    direction="row-reverse"
-                    justifyContent="flex-start"
-                    alignItems="flex-end"
-                    spacing={2}
-                >
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => {
-                            setLoading(true)
-                            let findProduct = products.find((e) => e.id === parseInt(productid))
-
-                            let data = {
-                                userId: userId,
-                                productid: productid,
-                                price: findProduct.price,
-                                device: findProduct.device,
-                                color: findProduct.color,
-                                name: findProduct.name,
-                                image: findProduct.image,
-                                editPrice: parseFloat(findProduct.price) * quantity,
-                                quantity: quantity
-                            }
-                            
-
-                            dispatch(insertCatrs(data)).then((res) => {
-                                const { status } = res.payload
-                                if (status === 200) {
-                                    setOpenCarts(false);
-                                    update()
+                    <Stack
+                        direction="row-reverse"
+                        justifyContent="flex-start"
+                        alignItems="flex-end"
+                        spacing={2}
+                    >
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => {
+                                setLoading(true)
+                                let data = {
+                                    userId: userId,
+                                    productid: productid,
+                                    quantity: quantity
                                 }
-                                setLoading(false)
-                            })
-                        }}
-                    >
-                        {!loading && <span className="indicator-label"> Save</span>}
-                        {loading && <span className="indicator-progress">Please wait...
-                            <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
-                    </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => {
-                            setOpenCarts(false);
-                        }}
-                    >
-                        Close
-                    </button>
+                                dispatch(createCart(data)).then((res) => {
+                                    const { status } = res.payload
+                                    if (status === 200) {
+                                        setOpenCarts(false);
+                                        update()
+                                    }
+                                    setLoading(false)
+                                })
+                            }}
+                        >
+                            {!loading && <span className="indicator-label"> Save</span>}
+                            {loading && <span className="indicator-progress">Please wait...
+                                <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
+                        </button>
+                        <button
+                            className="btn btn-danger"
+                            onClick={() => setOpenCarts(false)}
+                        >
+                            Close
+                        </button>
+                    </Stack>
                 </Stack>
-            </Stack>
-        </Sheet>
-    </Modal>
+            </Sheet>
+        </Modal>
     );
 }
 
