@@ -25789,6 +25789,13 @@ span.flatpickr-weekday {
   height: 70vh;
 }
 
+.navbarvertical {
+  width: 100%;
+  max-height: calc(89% - -2.4rem);
+  margin: 0.8rem auto;
+  overflow: auto;
+  overflow: overlay;
+}
 
 .carousel .thumb {
   border: var(--fc-border-width) var(--fc-border-style) var(--fc-border-color) !important;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 export const NavbarVertical = ({ toggleState, settoggleState }) => {
     return (
-        <div>
+        <div >
             <nav className="navbar-vertical-nav d-none d-xl-block">
                 <div className="navbar-vertical border-end">
                     <div className="px-4 py-5">
@@ -10,7 +10,7 @@ export const NavbarVertical = ({ toggleState, settoggleState }) => {
                             <img src="assets/images/logo/freshcart-logo.svg" alt="" />
                         </Link>
                     </div>
-                    <div className="navbar-vertical-content flex-grow-1" data-simplebar="">
+                    <div className="navbar-vertical-content flex-grow-1 navbarvertical" >
                         <ul className="navbar-nav flex-column" id="sideNavbar">
                             <li className="nav-item ">
                                 <Link className={toggleState === 1 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(1)}>
@@ -95,6 +95,8 @@ export const NavbarVertical = ({ toggleState, settoggleState }) => {
                                     </div>
                                 </Link>
                             </li>
+                         
+                           
                         </ul>
                     </div>
                 </div>
