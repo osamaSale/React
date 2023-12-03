@@ -1,105 +1,71 @@
+import Modal from '@mui/joy/Modal';
+import Sheet from '@mui/joy/Sheet';
 import React from 'react';
 
-export const Products = ({ selectedListProduct }) => {
+export const Products = ({ openOrderProduct, setOpenOrderProduct, orders }) => {
     const getTotalPrice = () => {
         let totalPrice = 0;
-        selectedListProduct?.forEach((e) => {
-            return totalPrice += e.editPrice
+        orders?.forEach((e) => {
+            return totalPrice += e.total
         })
         return totalPrice
     };
-    let discount = 10
-    let taxNum = 7
-    let Discount = getTotalPrice() - (getTotalPrice() * discount / 100)
-    let tax = getTotalPrice() * taxNum / 100
-    let result = Discount - tax
     return (
+        <Modal
+            open={openOrderProduct}
+            onClose={() => setOpenOrderProduct(false)}
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            <Sheet
+                sx={{
+                    minWidth: 400,
+                    borderRadius: "sm",
+                    p: 3,
+                }}
+                variant="outlined"
+            >
+                <p className='pb-2'>List Order Products</p>
+                <div className="table-responsive">
+                    <table className="table table-centered table-hover text-nowrap table-borderless mb-0 table-with-checkbox">
+                        <thead className="bg-primary text-white">
+                            <tr>
+                                <th scope="col">userId</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Device</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">quantity</th>
+                            </tr>
+                        </thead>
 
-        <div className="modal fade" id="myModal">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h4 className="modal-title fs-6">List Orders Products {selectedListProduct && selectedListProduct.length > 0 ? selectedListProduct.length : 0}</h4>
-                        <button type="button" className="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" data-bs-dismiss="modal">
-                            <i className="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-
-
-                    <div className="modal-body">
-                        {selectedListProduct && selectedListProduct.length > 0 ?
-                            <div className="table-responsive">
-                                <table className="table table-hover text-nowrap">
-                                    <thead>
-
-                                        <tr className="card-header">
-                                            <th scope="col">userId</th>
-                                            <th scope="col">productid</th>
-                                            <th scope="col">editPrice</th>
-                                            <th scope="col">device</th>
-                                            <th scope="col">color</th>
-                                            <th scope="col">image</th>
-                                            <th scope="col">quantity</th>
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        {selectedListProduct && selectedListProduct.map((row, index) => {
-                                            return <tr key={index}>
-                                                <td className='pt-2'>{row && row.userId}</td>
-                                                <td className='pt-2'>{row && row.productid}</td>
-                                                <td className='pt-2'>{row && row.editPrice}</td>
-                                                <td className='pt-2'>{row && row.device}</td>
-                                                <td className='pt-2'>{row && row.color}</td>
-                                                <td className='pt-2'>
-                                                    <img src={row && row.image} className="rounded-circle" alt="" height={25} />
-                                                </td>
-                                                <td className='pt-2'>{row && row.quantity}</td>
-
-
-
-                                            </tr>
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div> :
-                            <div className="justify-content-md-center pt-4">
-                                <h5 className='text-center'> Orders Is Empty </h5>
-                            </div>}
-                    </div>
-
-
-                    <div className="modal-footer">
-                     
-                            <div className="card-body">
-                                <div className="d-flex justify-content-between">
-                                    <p className="mb-2">Total Price:</p>
-                                    <p className="mb-2">${getTotalPrice()}</p>
-                                </div>
-                                <div className="d-flex justify-content-between">
-                                    <p className="mb-2">Discount:</p>
-                                    <p className="mb-2 text-success">${Discount}</p>
-                                </div>
-                                <div className="d-flex justify-content-between">
-                                    <p className="mb-2">TAX:</p>
-                                    <p className="mb-2">${tax}</p>
-                                </div>
-                                <hr />
-                                <div className="d-flex justify-content-between">
-                                    <p className="mb-2">Total price:</p>
-                                    <p className="mb-2 fw-bold">$ {result}</p>
-                                </div>
-
-                                
-                            </div>
-                        </div>
-
-                  
-
+                        <tbody>
+                            {orders && orders.map((row, index) => {
+                                return <tr key={index} className='border'>
+                                    <td >{row && row.userId}</td>
+                                    <td >{row && row.name}</td>
+                                    <td >
+                                        <img src={row && row.image} className="rounded-circle" alt="" height={35} width={35} />
+                                    </td>
+                                    <td >{row && row.brand}</td>
+                                    <td >{row && row.device}</td>
+                                    <td >{row && row.color}</td>
+                                    <td >{row && row.total}</td>
+                                    <td >{row && row.quantity}</td>
+                                </tr>
+                            })}
+                        </tbody>
+                      
+                        <caption className='text-end'>Result : ${getTotalPrice()}</caption>
+                    </table>
                 </div>
-            </div>
-        </div>
-
+            </Sheet>
+        </Modal>
     );
 }
 

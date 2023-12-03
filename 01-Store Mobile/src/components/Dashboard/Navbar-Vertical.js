@@ -87,6 +87,14 @@ export const NavbarVertical = ({ toggleState, settoggleState }) => {
                                     </div>
                                 </Link>
                             </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 10 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(10)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-archive"></i></span>
+                                        <span className="nav-link-text">Orders</span>
+                                    </div>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -176,6 +184,14 @@ export const NavbarVertical = ({ toggleState, settoggleState }) => {
                                     <div className="d-flex align-items-center">
                                         <span className="nav-link-icon"> <i className="bi bi-cart2"></i></span>
                                         <span className="nav-link-text">Carts</span>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <Link className={toggleState === 10 ? "nav-link active" : "nav-link"} onClick={() => settoggleState(10)}>
+                                    <div className="d-flex align-items-center">
+                                        <span className="nav-link-icon"> <i className="bi bi-archive"></i></span>
+                                        <span className="nav-link-text">Orders</span>
                                     </div>
                                 </Link>
                             </li>

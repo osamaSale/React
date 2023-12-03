@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Insert } from "./Form/carts/Insert"
 import { Edit } from "./Form/carts/Edit"
-import { deleteCarts } from "../../../redux/api/carts"
+import { deleteCart } from "../../../redux/api/carts"
 
 export const Carts = ({update}) => {
     const { carts } = useSelector((store) => store.data)
@@ -109,7 +109,7 @@ export const Carts = ({update}) => {
                                                     <td >
                                                         <button className="btn" onClick={() => {
                                                             if (window.confirm("Are you sure you want to delete this?")) {
-                                                                dispatch(deleteCarts(row.id)).then(() => update())
+                                                                dispatch(deleteCart(row.id)).then(() => update())
                                                             }
                                                         }}>
                                                             <i className="fa-solid fa-trash icon-trash-2 text-danger"></i>
@@ -121,7 +121,7 @@ export const Carts = ({update}) => {
                                     </table>
                                 </div> :
                                 <div className="justify-content-md-center pt-4 pb-4">
-                                    <h5 className='text-center'> News Is Empty </h5>
+                                    <h5 className='text-center'> Carts Is Empty </h5>
                                 </div>}
                             {openCart && (
                                 <Insert

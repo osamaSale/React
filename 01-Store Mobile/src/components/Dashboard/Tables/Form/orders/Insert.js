@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux"
-import { createOrder } from "../../../../redux/api/orders"
+import { createOrder } from "../../../../../redux/api/orders"
 
 export const Insert = ({ openOrder, setOpenOrder, update }) => {
     const { users, carts } = useSelector((store) => store.data)
@@ -75,28 +75,20 @@ export const Insert = ({ openOrder, setOpenOrder, update }) => {
                             type="submit"
                             onClick={() => {
                                 setLoading(true)
-                                const findOrder = carts.filter((u) => u.userId === parseInt(userId))
-                                if (userId === null) {
-                                    toast.error("No user")
-                                } else if (findOrder > 0) {
-                                    toast.error("Cart Is Empty")
-                                } else {
-                                    let data = {
-                                        userId: userId,
-                                        checkout: checkout,
-                                        total: total,
-                                        date: new Date().toLocaleDateString()
-                                    }
+                                const findCartsUser = (carts || []).filter((u) => parseInt(u.userId) === parseInt(userId))
+                                if (findCartsUser.length > 0) {
+                                    let data = { userId: userId, checkout: checkout, total: total }
                                     dispatch(createOrder(data)).then((res) => {
                                         const { status } = res.payload
                                         if (status === 200) {
                                             setOpenOrder(false);
                                             update()
                                         }
-                                        setLoading(false)
                                     })
+                                } else {
+                                    toast.error("Cart Is Empty")
                                 }
-
+                                setLoading(false)
                             }}
                         >
                             {!loading && <span className="indicator-label"> Save</span>}

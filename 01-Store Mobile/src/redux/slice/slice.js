@@ -7,7 +7,8 @@ import { createProducts, deleteProducts, editProducts, getAllProducts } from "..
 import { createContact, deleteContact, editContact, getAllContact } from "../api/contact";
 import { createNews, deleteNews, editNews, getAllNews } from "../api/news";
 import { createWishlist, deleteWishlist, editWishlist, getAllWishlist } from "../api/wishlist";
-import { createCart, deleteCarts, editCart, getAllCarts } from "../api/carts";
+import { createCart, deleteCart, editCart, getAllCarts } from "../api/carts";
+import { createOrder, editOrder, getAllOrders , deleteOrder } from "../api/orders";
 export const dataSlice = createSlice({
     name: 'data',
     initialState: {
@@ -20,6 +21,7 @@ export const dataSlice = createSlice({
         news: [],
         wishlist: [],
         carts: [],
+        orders: [],
         user: null,
     },
     extraReducers: {
@@ -645,11 +647,11 @@ export const dataSlice = createSlice({
             state.loading = false
         },
 
-         /* 
-        ---------------------------------------------
-        End wishlist
-        --------------------------------------------- 
-        */
+        /* 
+       ---------------------------------------------
+       End wishlist
+       --------------------------------------------- 
+       */
         /* 
          ---------------------------------------------
          Start Carts
@@ -706,10 +708,10 @@ export const dataSlice = createSlice({
 
         /* ============================== Delete Wishlist   =============================== */
 
-        [deleteCarts.pending]: (state) => {
+        [deleteCart.pending]: (state) => {
             state.loading = true
         },
-        [deleteCarts.fulfilled]: (state, action) => {
+        [deleteCart.fulfilled]: (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -718,10 +720,85 @@ export const dataSlice = createSlice({
             }
             state.loading = false
         },
-        [deleteCarts.rejected]: (state) => {
+        [deleteCart.rejected]: (state) => {
+            state.loading = false
+        },
+        /* 
+        ---------------------------------------------
+        End Carts
+        --------------------------------------------- 
+        */
+        /* 
+         ---------------------------------------------
+         Start Orders
+         --------------------------------------------- 
+        */
+
+        /* ============================== Get All Orders   =============================== */
+
+        [getAllOrders.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllOrders.fulfilled]: (state, action) => {
+            state.orders = action.payload.result
+        },
+        [getAllOrders.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Create Order   =============================== */
+
+        [createOrder.pending]: (state) => {
+            state.loading = true
+        },
+        [createOrder.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 422) {
+                toast.error(massage)
+            } else if (status === 201) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [createOrder.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Edit Order   =============================== */
+
+        [editOrder.pending]: (state) => {
+            state.loading = true
+        },
+        [editOrder.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [editOrder.rejected]: (state) => {
             state.loading = false
         },
 
+        /* ============================== Delete Wishlist   =============================== */
+
+        [deleteOrder.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteOrder.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [deleteOrder.rejected]: (state) => {
+            state.loading = false
+        },
     }
 
 })

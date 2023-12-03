@@ -21,6 +21,7 @@ import { ShopSingle } from './components/Shop/ShopSingle';
 import { getAllNews } from './redux/api/news';
 import { getAllWishlist } from './redux/api/wishlist';
 import { getAllCarts } from './redux/api/carts';
+import { getAllOrders } from './redux/api/orders';
 function App() {
 
   const dispatch = useDispatch()
@@ -36,6 +37,7 @@ function App() {
     dispatch(getAllNews())
     dispatch(getAllWishlist())
     dispatch(getAllCarts())
+    dispatch(getAllOrders())
     dispatch(singleUser())
   }
   return (

@@ -21,7 +21,7 @@ export const editCart = createAsyncThunk("editCart", async (cart, { rejectWithVa
 })
 
 // Delete Carts
-export const deleteCarts = createAsyncThunk("deleteCarts", async (id, { rejectWithValue }) => {
+export const deleteCart = createAsyncThunk("deleteCarts", async (id, { rejectWithValue }) => {
     const res = await axios.delete(`carts/${id}`)
     return res.data
 })

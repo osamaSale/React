@@ -4,7 +4,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editOrder } from '../../../../redux/api/orders';
+import { editOrder } from '../../../../../redux/api/orders';
 
 export const Edit = ({ openEditOrder, setEditOpenOrder, order, update }) => {
     const { users } = useSelector((store) => store.data)
@@ -12,7 +12,6 @@ export const Edit = ({ openEditOrder, setEditOpenOrder, order, update }) => {
     const [checkout, setcheckout] = useState( order ? order.checkout : null)
     const [total, setTotal] = useState(order ? order.total : null)
     const [loading, setLoading] = useState(false);
-    console.log(total)
     const dispatch = useDispatch()
     return (
         <Modal
@@ -41,6 +40,7 @@ export const Edit = ({ openEditOrder, setEditOpenOrder, order, update }) => {
                             className="form-control"
                             onChange={(e) => setUserId(e.target.value)}
                             value={userId}
+                            disabled
                         >
                             <option >Select Users</option>
                             {users && users.map((row, index) => {
@@ -55,7 +55,6 @@ export const Edit = ({ openEditOrder, setEditOpenOrder, order, update }) => {
                             onChange={(e) => setcheckout(e.target.value)}
                             value={checkout}
                         >
-                            <option >Select Checkout</option>
                             <option value='Success'>Success</option>
                             <option value='Cancelled'>Cancelled</option>
 
@@ -76,13 +75,11 @@ export const Edit = ({ openEditOrder, setEditOpenOrder, order, update }) => {
                             type="submit"
                             onClick={() => {
                                 setLoading(true)
-                                
                                     let data = {
                                         orderid: order.orderid,
                                         userId: userId,
                                         checkout: checkout,
                                         total: total,
-                                        date: new Date().toLocaleDateString()
                                     }
                                     dispatch(editOrder(data)).then((res) => {
                                         const { status } = res.payload
