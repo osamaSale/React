@@ -24,3 +24,8 @@ export const deleteWishlist = createAsyncThunk("deleteWishlist", async (id, { re
     const res = await axios.delete(`wishlist/${id}`)
     return res.data
 })
+// Delete wishlist
+export const searchWishlist = createAsyncThunk("searchWishlist", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`wishlist/search/${name}`)
+    return res.data
+})

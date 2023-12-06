@@ -79,7 +79,7 @@ export const Edit = ({ openEditUser, setEditOpenUser, user, update }) => {
           <div className="mb-1">
             <select
               name="authorization"
-              className="form-control text-dark"
+              className="form-control"
               onChange={(e) => setAuthorization(e.target.value)}
               value={authorization}
             >
@@ -94,12 +94,12 @@ export const Edit = ({ openEditUser, setEditOpenUser, user, update }) => {
             alignItems="flex-end"
             spacing={2}
           >
-            <button type='submit' className="btn btn-primary  btn-sm" onClick={handleSubmit}>
+            <button type='submit' className="btn btn-primary" onClick={handleSubmit}>
               {!loading && <span className="indicator-label"> Save</span>}
               {loading && <span className="indicator-progress">Please wait...
                 <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
             </button>
-            <button className="btn btn-danger  btn-sm" onClick={() => setEditOpenUser(false)}>Close</button>
+            <button className="btn btn-danger" onClick={() => setEditOpenUser(false)}>Close</button>
           </Stack>
         </Stack>
       </Sheet>

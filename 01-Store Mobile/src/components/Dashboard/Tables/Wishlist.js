@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Insert } from "./Form/wishlist/Insert"
 import { Edit } from "./Form/wishlist/Edit"
-import { deleteWishlist } from "../../../redux/api/wishlist"
+import { deleteWishlist, searchWishlist } from "../../../redux/api/wishlist"
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { downloadExcel } from "react-export-table-to-excel";
+import { PDFBrands } from './PDF/PDFBrands';
 export const Wishlist = ({ update }) => {
     const { wishlist } = useSelector((store) => store.data)
     // ================ Add Wishlist =======================// 
@@ -11,31 +14,48 @@ export const Wishlist = ({ update }) => {
     // ================ Edit Wishlist ====================== //
     const [openEditWishlist, setEditOpenWishlist] = useState(false)
     const [selectedEdit, setSelectedEdit] = useState(null);
+    const [search, setSearch] = useState("")
+    const header = ["ID", "Name"];
+
+    function handleDownloadExcel() {
+        downloadExcel({
+            fileName: "react-export-table-to-excel -> downloadExcel method",
+            sheet: "react-export-table-to-excel",
+            tablePayload: {
+                header,
+                body: wishlist,
+            },
+        });
+    }
     const dispatch = useDispatch()
     return (
         <section className="container">
-            <div className="row mb-5">
-                <div className="col-md-12">
-                    <div className="d-md-flex justify-content-between ">
-                        <div className="mb-1">
-                            <h4>Wishlist</h4>
-                            <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb mb-0">
-                                    <li className="breadcrumb-item">
-                                        <Link className="text-inherit">Number</Link>
-                                    </li>
-                                    <li className="breadcrumb-item ">{wishlist && wishlist.length > 0 ? wishlist.length : 0}</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div>
-                            <select className="form-select border">
-                                <option >Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                                <option value="3">Draft</option>
-                            </select>
-                        </div>
+            <div className="hstack gap-3 mb-4">
+                <div className="">
+                    <h4>Wishlist / <Link className="text-inherit"> {wishlist && wishlist.length > 0 ? wishlist.length : 0}</Link></h4>
+                </div>
+
+                <div className="ms-auto">
+                    <div className="dropdown">
+                        <button className="btn border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Download
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <PDFDownloadLink document={<PDFBrands wishlist={wishlist} />} fileName="somename.pdf" className="dropdown-item">
+                                    {({ loading }) => (loading ? 'Loading document...' :
+                                        <><i className="bi bi-filetype-pdf me-2"></i> PDF</>
+                                    )}
+                                </PDFDownloadLink>
+
+                            </li>
+                            <li>
+                                <Link className="dropdown-item" onClick={handleDownloadExcel}>
+                                    <i className="bi bi-file-earmark-excel me-2"></i> excel
+                                </Link>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -44,16 +64,26 @@ export const Wishlist = ({ update }) => {
                     <div className="card h-100 card-lg">
                         <div className="px-2 py-6">
                             <div className="row d-flex justify-content-between">
-                                <div className="col-lg-5 col-md-6 col-12 mb-2 mb-lg-0">
+                                <div className="col-md-10 col-md-6 col-12 mb-2 mb-lg-0">
                                     <div className="input-group">
                                         <input className="form-control border" type="search"
-                                            placeholder="Search for products" />
+                                            placeholder="Search for user"
+                                            onChange={(e) => setSearch(e.target.value)}
+                                            onKeyUp={() => {
+                                                if (search === "") {
+                                                    update();
+                                                } else {
+                                                    dispatch(searchWishlist(search))
+                                                }
+                                            }}
+                                        />
                                         <button className="btn btn-primary" type="button" id="button-addon2"><i
                                             className="bi bi-search"></i></button>
                                     </div>
                                 </div>
-                                <div className="col-md-2 d-flex justify-content-end">
-                                    <Link className="btn btn-primary w-100" onClick={() => setOpenWishlist(true)}><i className="bi bi-plus me-2"></i>Add Wishlist</Link>
+
+                                <div className='col-md'>
+                                    <Link className="btn btn-primary w-100" onClick={() => setOpenWishlist(true)}><i className="bi bi-plus-lg me-2"></i>Add wishlist</Link>
                                 </div>
                             </div>
                         </div>

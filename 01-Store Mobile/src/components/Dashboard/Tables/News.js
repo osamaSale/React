@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Insert } from "./Form/news/Insert"
 import { Edit } from "./Form/news/Edit"
-import { deleteNews } from "../../../redux/api/news"
+import { deleteNews  ,searchNews} from "../../../redux/api/news"
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { downloadExcel } from "react-export-table-to-excel";
+import { PDFBrands } from './PDF/PDFBrands';
 export const News = ({ update }) => {
     const { news } = useSelector((store) => store.data)
     // ================ Add News =======================// 
@@ -11,49 +14,76 @@ export const News = ({ update }) => {
     // ================ Edit News ====================== //
     const [openEditNews, setEditOpenNews] = useState(false)
     const [selectedEdit, setSelectedEdit] = useState(null);
+    const [search, setSearch] = useState("")
+    const header = ["ID", "Name"];
+
+    function handleDownloadExcel() {
+        downloadExcel({
+            fileName: "react-export-table-to-excel -> downloadExcel method",
+            sheet: "react-export-table-to-excel",
+            tablePayload: {
+                header,
+                body: news,
+            },
+        });
+    }
     let dispatch = useDispatch()
     return (
         <section className="container">
-            <div className="row mb-5">
-                <div className="col-md-12">
-                    <div className="d-md-flex justify-content-between ">
-                        <div className="mb-1">
-                            <h4>News</h4>
-                            <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb mb-0">
-                                    <li className="breadcrumb-item">
-                                        <Link className="text-inherit">Number</Link>
-                                    </li>
-                                    <li className="breadcrumb-item ">{news && news.length > 0 ? news.length : 0}</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div>
-                            <select className="form-select border">
-                                <option >Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                                <option value="3">Draft</option>
-                            </select>
-                        </div>
+             <div className="hstack gap-3 mb-4">
+                <div className="">
+                    <h4>News / <Link className="text-inherit"> {news && news.length > 0 ? news.length : 0}</Link></h4>
+                </div>
+
+                <div className="ms-auto">
+                    <div className="dropdown">
+                        <button className="btn border dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Download
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <PDFDownloadLink document={<PDFBrands news={news} />} fileName="somename.pdf" className="dropdown-item">
+                                    {({ loading }) => (loading ? 'Loading document...' :
+                                        <><i className="bi bi-filetype-pdf me-2"></i> PDF</>
+                                    )}
+                                </PDFDownloadLink>
+
+                            </li>
+                            <li>
+                                <Link className="dropdown-item" onClick={handleDownloadExcel}>
+                                    <i className="bi bi-file-earmark-excel me-2"></i> excel
+                                </Link>
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col-xl-12 col-12 mb-5">
                     <div className="card h-100 card-lg">
-                        <div className="px-2 py-6">
+                    <div className="px-2 py-6">
                             <div className="row d-flex justify-content-between">
-                                <div className="col-lg-5 col-md-6 col-12 mb-2 mb-lg-0">
+                                <div className="col-md-10 col-md-6 col-12 mb-2 mb-lg-0">
                                     <div className="input-group">
                                         <input className="form-control border" type="search"
-                                            placeholder="Search for products" />
+                                            placeholder="Search for Name"
+                                            onChange={(e) => setSearch(e.target.value)}
+                                            onKeyUp={() => {
+                                                if (search === "") {
+                                                    update();
+                                                } else {
+                                                    dispatch(searchNews(search))
+                                                }
+                                            }}
+                                        />
                                         <button className="btn btn-primary" type="button" id="button-addon2"><i
                                             className="bi bi-search"></i></button>
                                     </div>
                                 </div>
-                                <div className="col-md-2 d-flex justify-content-end">
-                                    <Link className="btn btn-primary w-100" onClick={() => setOpenNews(true)}><i className="bi bi-plus me-2"></i>Add News</Link>
+
+                                <div className='col-md'>
+                                    <Link className="btn btn-primary w-100" onClick={() => setOpenNews(true)}><i className="bi bi-plus-lg me-2"></i>Add News</Link>
                                 </div>
                             </div>
                         </div>

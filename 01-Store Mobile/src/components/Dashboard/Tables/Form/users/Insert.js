@@ -99,7 +99,7 @@ export function Insert({ openUser, setOpenAdd, update }) {
             <div className="mb-1">
               <select
                 name="authorization"
-                className="form-control text-dark"
+                className="form-control "
                 onChange={(e) => setAuthorization(e.target.value)}
               >
                 <option >Select Authorization</option>

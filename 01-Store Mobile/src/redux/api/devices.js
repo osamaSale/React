@@ -24,3 +24,9 @@ export const deleteDevices = createAsyncThunk("deleteDevices", async (id, { reje
     const res = await axios.delete(`devices/${id}`)
     return res.data
 })
+
+// search Devices
+export const searchDevices = createAsyncThunk("searchDevices", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`devices/search/${name}`)
+    return res.data
+})

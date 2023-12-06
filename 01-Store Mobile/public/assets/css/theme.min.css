@@ -25780,13 +25780,13 @@ span.flatpickr-weekday {
 
  .table__body {
   width: 100%;
-  max-height: calc(89% - -2.4rem);
+  max-height: calc(20% - -2.4rem);
   margin: 0.8rem auto;
   overflow: auto;
   overflow: overlay;
 }
  .main {
-  height: 70vh;
+  height: 60vh;
 }
 
 .navbarvertical {

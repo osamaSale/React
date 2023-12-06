@@ -24,3 +24,8 @@ export const deleteContact = createAsyncThunk("deleteContact", async (id, { reje
     const res = await axios.delete(`contact/${id}`)
     return res.data
 })
+// search Contact
+export const searchContact = createAsyncThunk("searchContact", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`contact/search/${name}`)
+    return res.data
+})

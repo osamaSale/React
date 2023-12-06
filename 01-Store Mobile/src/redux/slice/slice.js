@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
-import { createUser, deleteUser, editUser, getAllUsers, singleUser } from "../api/users"
-import { createBrand, deleteBrand, editBrand, getAllBrands } from "../api/brands";
-import { createDevices, deleteDevices, editDevices, getAllDevices } from "../api/devices";
-import { createProducts, deleteProducts, editProducts, getAllProducts } from "../api/products";
-import { createContact, deleteContact, editContact, getAllContact } from "../api/contact";
-import { createNews, deleteNews, editNews, getAllNews } from "../api/news";
-import { createWishlist, deleteWishlist, editWishlist, getAllWishlist } from "../api/wishlist";
-import { createCart, deleteCart, editCart, getAllCarts } from "../api/carts";
-import { createOrder, editOrder, getAllOrders , deleteOrder } from "../api/orders";
+import { createUser, deleteUser, editUser, getAllUsers, searchUser, singleUser } from "../api/users"
+import { createBrand, deleteBrand, editBrand, getAllBrands, searchBrand } from "../api/brands";
+import { createDevices, deleteDevices, editDevices, getAllDevices, searchDevices } from "../api/devices";
+import { createProducts, deleteProducts, editProducts, getAllProducts, searchProducts } from "../api/products";
+import { createContact, deleteContact, editContact, getAllContact, searchContact } from "../api/contact";
+import { createNews, deleteNews, editNews, getAllNews, searchNews } from "../api/news";
+import { createWishlist, deleteWishlist, editWishlist, getAllWishlist, searchWishlist } from "../api/wishlist";
+import { createCart, deleteCart, editCart, getAllCarts, searchCarts } from "../api/carts";
+import { createOrder, editOrder, getAllOrders, deleteOrder } from "../api/orders";
 export const dataSlice = createSlice({
     name: 'data',
     initialState: {
@@ -108,17 +108,34 @@ export const dataSlice = createSlice({
             state.loading = false
         },
 
+        /* ============================== Search user  =============================== */
+
+        [searchUser.pending]: (state) => {
+            state.loading = false
+        },
+        [searchUser.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.users = action.payload.result
+            } else {
+                state.users = [...state.users]
+            }
+        },
+        [searchUser.rejected]: (state) => {
+            state.loading = false
+        },
 
         /* 
-      ---------------------------------------------
-      End Users
-      --------------------------------------------- 
-      */
+        ---------------------------------------------
+        End Users
+        --------------------------------------------- 
+       */
+
         /* 
-      ---------------------------------------------
-      Start Brand
-      --------------------------------------------- 
-      */
+        ---------------------------------------------
+        Start Brand
+        --------------------------------------------- 
+        */
 
         /* ============================== Get All Brand   =============================== */
 
@@ -184,12 +201,27 @@ export const dataSlice = createSlice({
         [deleteBrand.rejected]: (state) => {
             state.loading = false
         },
+        /* ============================== Search brands  =============================== */
 
+        [searchBrand.pending]: (state) => {
+            state.loading = false
+        },
+        [searchBrand.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.brands = action.payload.result
+            } else {
+                state.brands = [...state.brands]
+            }
+        },
+        [searchBrand.rejected]: (state) => {
+            state.loading = false
+        },
         /* 
-    ---------------------------------------------
-    End Brands
-    --------------------------------------------- 
-    */
+        ---------------------------------------------
+        End Brands
+        --------------------------------------------- 
+        */
         /* 
       ---------------------------------------------
       Start Devices
@@ -262,7 +294,22 @@ export const dataSlice = createSlice({
         [deleteDevices.rejected]: (state) => {
             state.loading = false
         },
+        /* ============================== Search Devices  =============================== */
 
+        [searchDevices.pending]: (state) => {
+            state.loading = false
+        },
+        [searchDevices.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.devices = action.payload.result
+            } else {
+                state.devices = [...state.devices]
+            }
+        },
+        [searchDevices.rejected]: (state) => {
+            state.loading = false
+        },
         /* 
         ---------------------------------------------
         End Devices
@@ -337,90 +384,28 @@ export const dataSlice = createSlice({
         [deleteProducts.rejected]: (state) => {
             state.loading = false
         },
+        /* ============================== Search Product  =============================== */
 
-        /* 
-        ---------------------------------------------
-        End Brands
-        --------------------------------------------- 
-        */
-        /* 
-        ---------------------------------------------
-        Start Devices
-        --------------------------------------------- 
-        */
-
-        /* ============================== Get All Devices   =============================== */
-
-        [getAllDevices.pending]: (state) => {
-            state.loading = true
-        },
-        [getAllDevices.fulfilled]: (state, action) => {
-            state.devices = action.payload.result
-        },
-        [getAllDevices.rejected]: (state) => {
+        [searchProducts.pending]: (state) => {
             state.loading = false
         },
-        /* ============================== Create Devices   =============================== */
-
-        [createDevices.pending]: (state) => {
-            state.loading = true
-        },
-        [createDevices.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [createDevices.rejected]: (state) => {
-            state.loading = false
-        },
-
-        /* ============================== Edit Devices   =============================== */
-
-        [editDevices.pending]: (state) => {
-            state.loading = true
-        },
-        [editDevices.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
+        [searchProducts.fulfilled]: (state, action) => {
+            let { status } = action.payload
             if (status === 200) {
-                toast.error(massage)
+                state.products = action.payload.result
             } else {
-                toast.error(massage)
+                state.products = [...state.products]
             }
+        },
+        [searchProducts.rejected]: (state) => {
             state.loading = false
         },
-        [editDevices.rejected]: (state) => {
-            state.loading = false
-        },
-
-        /* ============================== Delete Devices   =============================== */
-
-        [deleteDevices.pending]: (state) => {
-            state.loading = true
-        },
-        [deleteDevices.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 200) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [deleteDevices.rejected]: (state) => {
-            state.loading = false
-        },
-
         /* 
         ---------------------------------------------
         End Products
         --------------------------------------------- 
         */
+
         /* 
          ---------------------------------------------
          Start Contact
@@ -492,13 +477,28 @@ export const dataSlice = createSlice({
             state.loading = false
         },
 
+        /* ============================== Search Contact  =============================== */
 
+        [searchContact.pending]: (state) => {
+            state.loading = false
+        },
+        [searchContact.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.contact = action.payload.result
+            } else {
+                state.contact = [...state.contact]
+            }
+        },
+        [searchContact.rejected]: (state) => {
+            state.loading = false
+        },
 
         /* 
         ---------------------------------------------
         End Contact
        --------------------------------------------- 
-       */
+        */
         /* 
          ---------------------------------------------
          Start News
@@ -569,6 +569,22 @@ export const dataSlice = createSlice({
         [deleteNews.rejected]: (state) => {
             state.loading = false
         },
+        /* ============================== Search news  =============================== */
+
+        [searchNews.pending]: (state) => {
+            state.loading = false
+        },
+        [searchNews.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.news = action.payload.result
+            } else {
+                state.news = [...state.news]
+            }
+        },
+        [searchNews.rejected]: (state) => {
+            state.loading = false
+        },
 
         /* 
         ---------------------------------------------
@@ -577,7 +593,7 @@ export const dataSlice = createSlice({
         */
         /* 
          ---------------------------------------------
-         Start News
+         Start wishlist
          --------------------------------------------- 
          */
 
@@ -646,7 +662,22 @@ export const dataSlice = createSlice({
         [deleteWishlist.rejected]: (state) => {
             state.loading = false
         },
+        /* ============================== Search wishlist  =============================== */
 
+        [searchWishlist.pending]: (state) => {
+            state.loading = false
+        },
+        [searchWishlist.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.wishlist = action.payload.result
+            } else {
+                state.wishlist = [...state.wishlist]
+            }
+        },
+        [searchWishlist.rejected]: (state) => {
+            state.loading = false
+        },
         /* 
        ---------------------------------------------
        End wishlist
@@ -669,7 +700,7 @@ export const dataSlice = createSlice({
         [getAllCarts.rejected]: (state) => {
             state.loading = false
         },
-        /* ============================== Create Wishlist   =============================== */
+        /* ============================== Create Cart   =============================== */
 
         [createCart.pending]: (state) => {
             state.loading = true
@@ -688,7 +719,7 @@ export const dataSlice = createSlice({
         [createCart.rejected]: (state) => {
             state.loading = false
         },
-        /* ============================== Edit Wishlist   =============================== */
+        /* ============================== Edit Cart   =============================== */
 
         [editCart.pending]: (state) => {
             state.loading = true
@@ -706,7 +737,7 @@ export const dataSlice = createSlice({
             state.loading = false
         },
 
-        /* ============================== Delete Wishlist   =============================== */
+        /* ============================== Delete Cart   =============================== */
 
         [deleteCart.pending]: (state) => {
             state.loading = true
@@ -721,6 +752,22 @@ export const dataSlice = createSlice({
             state.loading = false
         },
         [deleteCart.rejected]: (state) => {
+            state.loading = false
+        },
+        /* ============================== Search Cart  =============================== */
+
+        [searchCarts.pending]: (state) => {
+            state.loading = false
+        },
+        [searchCarts.fulfilled]: (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.carts = action.payload.result
+            } else {
+                state.carts = [...state.carts]
+            }
+        },
+        [searchCarts.rejected]: (state) => {
             state.loading = false
         },
         /* 

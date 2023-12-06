@@ -40,3 +40,8 @@ export const editUser = createAsyncThunk("editUser", async (user, { rejectWithVa
     const res = await axios.put(`users`, user)
     return res.data
 })
+// search User
+export const searchUser = createAsyncThunk("searchUser", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`users/search/${name}`)
+    return res.data
+})

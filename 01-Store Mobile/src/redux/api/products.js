@@ -24,3 +24,9 @@ export const deleteProducts = createAsyncThunk("deleteProducts", async (id, { re
     const res = await axios.delete(`products/${id}`)
     return res.data
 })
+
+// search Products
+export const searchProducts = createAsyncThunk("searchProducts", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`products/search/${name}`)
+    return res.data
+})

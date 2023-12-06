@@ -5,6 +5,8 @@ import { Insert } from "./Form/orders/Insert"
 import { Edit } from "./Form/orders/Edit"
 import { Products } from "./Form/orders/products"
 import { deleteOrder } from "../../../redux/api/orders"
+import { PDF } from '../PDF';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 export const Orders = ({ update }) => {
     const { orders } = useSelector((store) => store.data)
@@ -34,12 +36,9 @@ export const Orders = ({ update }) => {
                             </nav>
                         </div>
                         <div>
-                            <select className="form-select border">
-                                <option >Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                                <option value="3">Draft</option>
-                            </select>
+                            <div className="col-md d-flex justify-content-end">
+                                <Link className="btn btn-primary w-100" onClick={() => setOpenOrder(true)}><i className="bi bi-plus me-2"></i>Add Order</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +48,7 @@ export const Orders = ({ update }) => {
                     <div className="card h-100 card-lg">
                         <div className="px-2 py-6">
                             <div className="row d-flex justify-content-between">
-                                <div className="col-lg-5 col-md-6 col-12 mb-2 mb-lg-0">
+                                <div className="col-lg-5 col-md-6 col-12  mb-lg-0">
                                     <div className="input-group">
                                         <input className="form-control border" type="search"
                                             placeholder="Search for products" />
@@ -57,8 +56,11 @@ export const Orders = ({ update }) => {
                                             className="bi bi-search"></i></button>
                                     </div>
                                 </div>
-                                <div className="col-md-2 d-flex justify-content-end">
-                                    <Link className="btn btn-primary w-100" onClick={() => setOpenOrder(true)}><i className="bi bi-plus me-2"></i>Add Order</Link>
+                                <div className='col-6 d-flex justify-content-end'>
+                                    <PDFDownloadLink document={<PDF orders={orders}/>} fileName="somename.pdf" >
+                                        {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                                    </PDFDownloadLink>
+
                                 </div>
                             </div>
                         </div>

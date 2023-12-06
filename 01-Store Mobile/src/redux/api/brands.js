@@ -19,8 +19,14 @@ export const editBrand = createAsyncThunk("editBrand", async (brand, { rejectWit
     return res.data
 })
 
-// Delete User
+// Delete Brand
 export const deleteBrand = createAsyncThunk("deleteBrand", async (id, { rejectWithValue }) => {
     const res = await axios.delete(`brands/${id}`)
+    return res.data
+})
+
+// search Brand
+export const searchBrand = createAsyncThunk("searchBrand", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`brands/search/${name}`)
     return res.data
 })

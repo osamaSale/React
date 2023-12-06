@@ -24,3 +24,9 @@ export const deleteNews = createAsyncThunk("deleteNews", async (id, { rejectWith
     const res = await axios.delete(`news/${id}`)
     return res.data
 })
+
+// search News
+export const searchNews = createAsyncThunk("searchNews", async (email, { rejectWithValue }) => {
+    const res = await axios.get(`news/search/${email}`)
+    return res.data
+})
