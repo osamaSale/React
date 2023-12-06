@@ -377,83 +377,9 @@ export const Shop = () => {
                                 </div>
 
 
-                                <div className="mb-8">
-
-                                    <h5 className="mb-3">Rating</h5>
-                                    <div>
-
-                                        <div className="form-check mb-2">
-
-                                            <input className="form-check-input" type="checkbox" value="" id="ratingFive" />
-                                            <label className="form-check-label" htmlFor="ratingFive">
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check mb-2">
-
-                                            <input className="form-check-input" type="checkbox" value="" id="ratingFour" checked />
-                                            <label className="form-check-label" htmlFor="ratingFour">
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check mb-2">
-
-                                            <input className="form-check-input" type="checkbox" value="" id="ratingThree" />
-                                            <label className="form-check-label" htmlFor="ratingThree">
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star-fill text-warning "></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check mb-2">
-
-                                            <input className="form-check-input" type="checkbox" value="" id="ratingTwo" />
-                                            <label className="form-check-label" htmlFor="ratingTwo">
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                            </label>
-                                        </div>
-
-                                        <div className="form-check mb-2">
-
-                                            <input className="form-check-input" type="checkbox" value="" id="ratingOne" />
-                                            <label className="form-check-label" htmlFor="ratingOne">
-                                                <i className="bi bi-star-fill text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                                <i className="bi bi-star text-warning"></i>
-                                            </label>
-                                        </div>
-                                    </div>
-
-
-                                </div>
                                 <div className="mb-8 position-relative">
 
-                                    <div className="position-absolute p-5 py-8">
-                                        <h3 className="mb-0">Fresh Fruits </h3>
-                                        <p>Get Upto 25% Off</p>
-                                        <Link to="#" className="btn btn-dark">Shop Now<i className="feather-icon icon-arrow-right ms-1"></i></Link>
-                                    </div>
-
-                                    <img src="assets/images/banner/assortment-citrus-fruits.png" alt=""
+                                    <img src="assets/images/slider/slider-4.jpg" alt=""
                                         className="img-fluid rounded " />
 
                                 </div>

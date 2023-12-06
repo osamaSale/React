@@ -22,6 +22,7 @@ import { getAllNews } from './redux/api/news';
 import { getAllWishlist } from './redux/api/wishlist';
 import { getAllCarts } from './redux/api/carts';
 import { getAllOrders } from './redux/api/orders';
+import { BackTop } from './components/BackTop';
 function App() {
 
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <BackTop />
     </div>
   );
 }
