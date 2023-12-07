@@ -9,11 +9,9 @@ export const Admin = () => {
                 <div className="col-md-12">
                     <div className="card bg-light border-0 rounded-2"
                         style={{ backgroundImage: 'url(assets/images/slider/slider-3.jpg)', backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "right" }}>
-                        <div className="card-body p-lg-12">
-                            <h1>Welcome back! Store Mobile
-                            </h1>
+                        <div className="card-body text-secondary p-lg-12">
+                            <h1 className='text-dark'>Welcome back! Store Mobile</h1>
                             <p>Store Mobile is simple & clean design for developer and designer.</p>
-
                         </div>
                     </div>
                 </div>

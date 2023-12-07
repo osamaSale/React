@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
-import { createUser, deleteUser, editUser, getAllUsers, searchUser, singleUser } from "../api/users"
+import { createUser, deleteUser, editUser, getAllUsers, login, searchUser } from "../api/users"
 import { createBrand, deleteBrand, editBrand, getAllBrands, searchBrand } from "../api/brands";
 import { createDevices, deleteDevices, editDevices, getAllDevices, searchDevices } from "../api/devices";
 import { createProducts, deleteProducts, editProducts, getAllProducts, searchProducts } from "../api/products";
@@ -24,6 +24,13 @@ export const dataSlice = createSlice({
         orders: [],
         user: null,
     },
+    reducers :{
+        logout: (state, action) => {
+           localStorage.removeItem("user")
+           state.user  = null
+        }
+    },
+
     extraReducers: {
         /* 
           ---------------------------------------------
@@ -37,22 +44,18 @@ export const dataSlice = createSlice({
             state.loading = true
         },
         [getAllUsers.fulfilled]: (state, action) => {
+            let user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                state.user = state.users?.find((u) => u.id === user.id)
+            } else {
+                state.user = null
+            }
             state.users = action.payload.result
         },
         [getAllUsers.rejected]: (state) => {
             state.loading = false
         },
-        /* ============================== Single User   =============================== */
 
-        [singleUser.pending]: (state) => {
-            state.loading = true
-        },
-        [singleUser.fulfilled]: (state, action) => {
-            /*   state.user = action.payload.result[0] */
-        },
-        [singleUser.rejected]: (state) => {
-            state.loading = false
-        },
 
         /* ============================== Create User   =============================== */
 
@@ -105,6 +108,23 @@ export const dataSlice = createSlice({
             state.loading = false
         },
         [deleteUser.rejected]: (state) => {
+            state.loading = false
+        },
+        // =======================  Login   =========================== //
+
+        [login.pending]: (state) => {
+            state.loading = true
+        },
+        [login.fulfilled]: (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        },
+        [login.rejected]: (state) => {
             state.loading = false
         },
 
@@ -850,5 +870,5 @@ export const dataSlice = createSlice({
 
 })
 
-
+export const { logout } = dataSlice.actions;
 export default dataSlice.reducer

@@ -1,15 +1,19 @@
 import React from 'react';
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Modal } from './Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/slice/slice';
 export const Navbar = ({ update, theme }) => {
+    const { user } = useSelector((store) => store.data)
     let element = document.body
     const switchTheme = () => {
-      console.log("element.dataset.bsTheme" ,  element.dataset.bsTheme)
-      element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
-      localStorage.setItem("mode", element.dataset.bsTheme)
-      console.log("element.dataset.bsTheme")
+        console.log("element.dataset.bsTheme", element.dataset.bsTheme)
+        element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
+        localStorage.setItem("mode", element.dataset.bsTheme)
+        console.log("element.dataset.bsTheme")
     }
-
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const location = useLocation();
     if (location.pathname === "/dashboard") { return }
     return (
@@ -28,7 +32,9 @@ export const Navbar = ({ update, theme }) => {
                     <div className="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                         <div className="d-flex align-items-center justify-content-between ms-4">
                             <div className="ms-6 text-center">
-                                <Link  className="text-reset" onClick={switchTheme}>
+                                <Link className="text-reset" onClick={switchTheme}>
+
+
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-moon fs-4"></i>
@@ -40,6 +46,7 @@ export const Navbar = ({ update, theme }) => {
 
                             <div className="ms-6 text-center">
                                 <Link to="../pages/account-orders.html" className="text-reset">
+
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-archive fs-4"></i>
@@ -51,8 +58,9 @@ export const Navbar = ({ update, theme }) => {
                             <div className="text-center ms-6">
                                 <Link data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" to="#offcanvasExample"
                                     role="button" aria-controls="offcanvasRight" className="text-reset">
-                                    <div className="text-center">
-                                        <div className="">
+
+                                    <div className="lh-1">
+                                        <div className="mb-2">
                                             <i className="bi bi-cart2 fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">Shopping Cart</p>
@@ -61,8 +69,8 @@ export const Navbar = ({ update, theme }) => {
                             </div>
                             <div className="text-center ms-6">
                                 <Link role="button" className="text-reset">
-                                    <div className="text-center">
-                                        <div className="">
+                                    <div className="lh-1">
+                                        <div className="mb-2">
                                             <i className="bi bi-bookmark-heart fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">Wishlist</p>
@@ -71,14 +79,57 @@ export const Navbar = ({ update, theme }) => {
                             </div>
 
                             <div className="ms-6 text-center">
-                                <Link to="#" className="text-reset" data-bs-toggle="modal" data-bs-target="#userModal">
-                                    <div className="lh-1">
-                                        <div className="mb-2">
-                                            <i className="bi bi-person-circle fs-4"></i>
+                                {user ?
+                                    <Link className="text-reset" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div className="lh-1">
+                                            <div className="mb-2">
+                                                <img src={user && user.image} alt='' className="rounded-circle" width={35} height={20}/>
+                                            </div>
+                                            <p className="mb-0 d-none d-xl-block small">{user.name}</p>
+                                            <div className="dropdown-menu dropdown-menu-end p-0">
+                                                <div className="lh-1 px-5 py-4 border-bottom">
+                                                    <h5 className="mb-1 h6">Store Mobile</h5>
+                                                    <small>{user && user.email}</small>
+                                                </div>
+                                                <ul className="list-unstyled  px-2 py-3">
+                                                    <li>
+                                                        <Link className="dropdown-item" href="#!">
+                                                            <i class="bi bi-house me-2"></i>  Home
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link className="dropdown-item" href="#!">
+                                                            <i className="bi bi-person-circle me-2"></i>  Profile
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link className="dropdown-item" href="#!">
+                                                            <i className="bi bi-gear me-2"></i> Settings
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                                <div className="border-top px-5 py-2">
+
+                                                    <Link onClick={() => {
+                                                        if (window.confirm("Do you want to Exit")) {
+                                                            dispatch(logout())
+                                                            navigate('/')
+                                                        }
+                                                    }}>
+                                                        <i className="bi bi-box-arrow-right me-2"></i>Log Out</Link>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p className="mb-0 d-none d-xl-block small">Sign up</p>
-                                    </div>
-                                </Link>
+                                    </Link> :
+                                    <Link to="#" className="text-reset" data-bs-toggle="modal" data-bs-target="#userModal">
+                                        <div className="lh-1">
+                                            <div className="mb-2">
+                                                <i className="bi bi-person-circle fs-4"></i>
+                                            </div>
+                                            <p className="mb-0 d-none d-xl-block small">Sign up</p>
+                                        </div>
+                                    </Link>
+                                }
                             </div>
                         </div>
                     </div>

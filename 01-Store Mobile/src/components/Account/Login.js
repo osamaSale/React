@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginSocialGoogle } from 'reactjs-social-login'
 import { login } from "../../redux/api/users"
 import { useDispatch } from 'react-redux';
-export const Login = () => {
+export const Login = ({ update }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const loginGoogle = async ({ provider, data }) => {
         let data1 = {
             name: data.name,
@@ -18,8 +19,14 @@ export const Login = () => {
             phone: "null",
             authorization: "user"
         }
-        dispatch(login({ email: data1.email, password: data1.password }))
+        dispatch(login({ email: data1.email, password: data1.password })).then((res) => {
 
+            if (res.payload.status === 200) {
+                update()
+                localStorage.setItem("user", JSON.stringify(res.payload.result))
+                navigate('/')
+            }
+        })
     }
 
     return (
@@ -35,10 +42,10 @@ export const Login = () => {
                             <p>Welcome back to Store Mobile! Enter your email to get started.</p>
                         </div>
                         <div className="row g-4">
-                        <div className="col-12">
+                            <div className="col-12">
                                 <LoginSocialGoogle
                                     client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                               /*      onResolve={loginGoogle} */
+                                    onResolve={loginGoogle}
                                     onReject={(err) => {
                                         console.log(err)
                                     }}>
@@ -51,15 +58,15 @@ export const Login = () => {
                                 </LoginSocialGoogle>
                             </div>
                             <div className="col-12">
-                                <input type="email" className="form-control border" id="inputEmail4" placeholder="Email" />
+                                <input type="email" className="form-control border" name='email' placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="col-12">
                                 <div className="password-field position-relative">
-                                    <input type={passwordShown ? "text" : "password"} placeholder="Enter Password" className="form-control border" />
-                                  
+                                    <input type={passwordShown ? "text" : "password"} placeholder="Enter Password" className="form-control border" onChange={(e) => setPassword(e.target.value)} />
+
                                     <span onClick={() => { passwordShown === true ? setPasswordShown(false) : setPasswordShown(true) }}>
                                         {
-                                            passwordShown === true ?<i id="passwordToggler"  className="bi bi-eye"></i> 
+                                            passwordShown === true ? <i id="passwordToggler" className="bi bi-eye"></i>
                                                 : <i id="passwordToggler" className="bi bi-eye-slash"></i>
                                         }
                                     </span>
@@ -75,7 +82,29 @@ export const Login = () => {
                                 </div>
                                 <div> Forgot password? <Link to="../pages/forgot-password.html">Reset It</Link></div>
                             </div>
-                            <div className="col-12 d-grid"> <button type="submit" className="btn btn-primary">Sign In</button>
+                            <div className="col-12 d-grid">
+                                <button type="submit" className="btn btn-primary"
+                                    onClick={() => {
+                                        setLoading(true)
+                                        dispatch(login({ email: email, password: password })).then((res) => {
+
+                                            if (res.payload.status === 200) {
+                                                update()
+                                                localStorage.setItem("user", JSON.stringify(res.payload.result))
+                                                navigate('/')
+                                            }
+                                        })
+                                        setLoading(false)
+                                    }}
+                                >
+                                    {loading === true ?
+                                        <>
+                                            <div className="spinner-border spinner-border-sm" role="status">
+                                            </div> Please wait...
+                                        </> :
+                                        <span className="indicator-label"> Login</span>
+                                    }
+                                </button>
                             </div>
                             <div>Don’t have an account? <Link to="/Register"> Sign Up</Link></div>
                         </div>

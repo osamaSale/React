@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { LoginSocialGoogle } from 'reactjs-social-login'
-import { login } from "../../redux/api/users"
-export const Register = () => {
+import { createUser } from "../../redux/api/users"
+export const Register = ({ update }) => {
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
+    const [phone, setPhone] = useState("")
+    const [image, setImage] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const registerGoogle = async ({ provider, data }) => {
+        let data1 = {
+            name: data.name,
+            email: data.email,
+            image: data.picture,
+            password: "12345",
+            phone: "null",
+            authorization: "user"
+        }
+        dispatch(createUser(data1)).then((res) => {
+            if (res.payload.status === 200) {
+                update()
+                navigate('/login')
+            }
+        })
+    }
     return (
         <section className="my-lg-15 my-8">
             <div className="container-fluid">
@@ -22,7 +46,7 @@ export const Register = () => {
                             <div className="col-12">
                                 <LoginSocialGoogle
                                     client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                                    /* onResolve={loginGoogle} */
+                                    onResolve={registerGoogle}
                                     onReject={(err) => {
                                         console.log(err)
                                     }}>
@@ -35,14 +59,14 @@ export const Register = () => {
                                 </LoginSocialGoogle>
                             </div>
                             <div className="col-12">
-                                <input type="text" className="form-control border" placeholder="Enter Name" />
+                                <input type="text" className="form-control border" name='name' placeholder="Enter Name" onChange={(e) => setName(e.target.value)} />
                             </div>
                             <div className="col-12">
-                                <input type="email" className="form-control border" placeholder="Enter Email" />
+                                <input type="email" className="form-control border" name='email' placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="col-12">
                                 <div className="password-field position-relative">
-                                    <input type={passwordShown ? "text" : "password"} placeholder="Enter Password" className="form-control border" />
+                                    <input type={passwordShown ? "text" : "password"} name='password' placeholder="Enter Password" className="form-control border" onChange={(e) => setPassword(e.target.value)} />
 
                                     <span onClick={() => { passwordShown === true ? setPasswordShown(false) : setPasswordShown(true) }}>
                                         {
@@ -54,14 +78,43 @@ export const Register = () => {
 
                             </div>
                             <div className="col-12">
-                                <input type="tel" className="form-control border" placeholder="Enter Phone" />
+                                <input type="tel" className="form-control border" name='phone' placeholder="Enter Phone" onChange={(e) => setPhone(e.target.value)} />
                             </div>
                             <div className="col-12">
-                                <input type="file" className="form-control border" />
+                                <input type="file" className="form-control border" name='image' onChange={(e) => setImage(e.target.files[0])} />
                             </div>
-                            <div className="col-12 d-grid"> <button type="submit" className="btn btn-primary">
-                                Register
-                            </button>
+                            <div className="col-12 d-grid">
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                        setLoading(true)
+                                        const fromData = new FormData();
+                                        fromData.append("name", name);
+                                        fromData.append("email", email);
+                                        fromData.append("password", password);
+                                        fromData.append("phone", phone);
+                                        if (image !== null) {
+                                            fromData.append("image", image, image?.name);
+                                        } else {
+                                            fromData.append("image", image);
+                                        }
+                                        dispatch(createUser(fromData)).then((res) => {
+
+                                            if (res.payload.status === 200) {
+                                                update()
+                                                navigate('/login')
+                                            }
+                                        })
+                                        setLoading(false)
+                                    }}>
+                                    {loading === true ?
+                                        <>
+                                            <div className="spinner-border spinner-border-sm" role="status">
+                                            </div> Please wait...
+                                        </> :
+                                        <span className="indicator-label"> Register</span>
+                                    }
+                                </button>
                             </div>
                             <span>
                                 Already have an account? <Link to="/login">Sign in</Link>

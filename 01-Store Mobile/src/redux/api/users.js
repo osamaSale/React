@@ -9,12 +9,7 @@ export const getAllUsers = createAsyncThunk("getAllUsers", async (arg, { rejectW
 })
 
 
-// Single User
-export const singleUser = createAsyncThunk("singleUser", async (arg, { rejectWithValue, }) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const res = await axios.get(`/users/single/${user.id}`)
-    return res.data
-})
+
 
 // Create User
 export const createUser = createAsyncThunk("createUser", async (user, { rejectWithValue }) => {

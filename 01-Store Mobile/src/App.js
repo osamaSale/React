@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { Navbar } from "./components/Navbar"
 import { Dashboard } from "./components/Dashboard/Dashboard"
-import { getAllUsers, singleUser } from './redux/api/users';
+import { getAllUsers } from './redux/api/users';
 import { getAllBrands } from './redux/api/brands';
 import { getAllDevices } from './redux/api/devices';
 import { getAllProducts } from './redux/api/products';
@@ -39,7 +39,6 @@ function App() {
     dispatch(getAllWishlist())
     dispatch(getAllCarts())
     dispatch(getAllOrders())
-    dispatch(singleUser())
   }
   return (
     <div className="app" >
