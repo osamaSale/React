@@ -9,41 +9,42 @@ import { createNews, deleteNews, editNews, getAllNews, searchNews } from "../api
 import { createWishlist, deleteWishlist, editWishlist, getAllWishlist, searchWishlist } from "../api/wishlist";
 import { createCart, deleteCart, editCart, getAllCarts, searchCarts } from "../api/carts";
 import { createOrder, editOrder, getAllOrders, deleteOrder } from "../api/orders";
+
+const initialState = {
+    loading: false,
+    users: [],
+    brands: [],
+    devices: [],
+    products: [],
+    contact: [],
+    news: [],
+    wishlist: [],
+    carts: [],
+    orders: [],
+    user: null,
+}
+
 export const dataSlice = createSlice({
     name: 'data',
-    initialState: {
-        loading: false,
-        users: [],
-        brands: [],
-        devices: [],
-        products: [],
-        contact: [],
-        news: [],
-        wishlist: [],
-        carts: [],
-        orders: [],
-        user: null,
-    },
-    reducers :{
+    initialState,
+    reducers: {
         logout: (state, action) => {
-           localStorage.removeItem("user")
-           state.user  = null
+            localStorage.removeItem("user")
+            state.user = null
         }
     },
 
-    extraReducers: {
-        /* 
-          ---------------------------------------------
-          Start Users
-          --------------------------------------------- 
-          */
+    extraReducers: builder => {
 
-        /* ============================== All  Users   =============================== */
+        /* ===================== Users ======================== */
 
-        [getAllUsers.pending]: (state) => {
+        // Get All Users
+
+        builder.addCase(getAllUsers.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllUsers.fulfilled]: (state, action) => {
+            state.users = []
+        })
+        builder.addCase(getAllUsers.fulfilled, (state, action) => {
             let user = JSON.parse(localStorage.getItem('user'));
             if (user) {
                 state.user = state.users?.find((u) => u.id === user.id)
@@ -51,37 +52,18 @@ export const dataSlice = createSlice({
                 state.user = null
             }
             state.users = action.payload.result
-        },
-        [getAllUsers.rejected]: (state) => {
+        })
+        builder.addCase(getAllUsers.rejected, (state, action) => {
+            state.users = action.payload.result
             state.loading = false
-        },
+        })
 
+        // Create User
 
-        /* ============================== Create User   =============================== */
-
-        [createUser.pending]: (state) => {
+        builder.addCase(createUser.pending, (state, action) => {
             state.loading = true
-        },
-        [createUser.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [createUser.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit User   =============================== */
-
-        [editUser.pending]: (state) => {
-            state.loading = true
-        },
-        [editUser.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createUser.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -89,16 +71,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editUser.rejected]: (state) => {
+        })
+        builder.addCase(createUser.rejected, (state, action) => {
             state.loading = false
-        },
-        // =======================  Delete User   =========================== //
+        })
 
-        [deleteUser.pending]: (state) => {
+        // Edit User 
+
+        builder.addCase(editUser.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteUser.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editUser.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -106,16 +89,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteUser.rejected]: (state) => {
+        })
+        builder.addCase(editUser.rejected, (state, action) => {
             state.loading = false
-        },
-        // =======================  Login   =========================== //
+        })
 
-        [login.pending]: (state) => {
+        // Delete User
+
+        builder.addCase(deleteUser.pending, (state, action) => {
             state.loading = true
-        },
-        [login.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteUser.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -123,76 +107,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [login.rejected]: (state) => {
+        })
+        builder.addCase(deleteUser.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Search user  =============================== */
+        // Search User
 
-        [searchUser.pending]: (state) => {
-            state.loading = false
-        },
-        [searchUser.fulfilled]: (state, action) => {
+        builder.addCase(searchUser.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchUser.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.users = action.payload.result
             } else {
                 state.users = [...state.users]
             }
-        },
-        [searchUser.rejected]: (state) => {
             state.loading = false
-        },
+        })
+        builder.addCase(searchUser.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* 
-        ---------------------------------------------
-        End Users
-        --------------------------------------------- 
-       */
+        // Login 
 
-        /* 
-        ---------------------------------------------
-        Start Brand
-        --------------------------------------------- 
-        */
-
-        /* ============================== Get All Brand   =============================== */
-
-        [getAllBrands.pending]: (state) => {
+        builder.addCase(login.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllBrands.fulfilled]: (state, action) => {
+        })
+        builder.addCase(login.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(login.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        /* ===================== Brands ======================== */
+
+        // Get All Brands
+
+        builder.addCase(getAllBrands.pending, (state, action) => {
+            state.loading = true
+            state.brands = []
+        })
+        builder.addCase(getAllBrands.fulfilled, (state, action) => {
+            state.loading = false
             state.brands = action.payload.result
-        },
-        [getAllBrands.rejected]: (state) => {
+        })
+        builder.addCase(getAllBrands.rejected, (state, action) => {
+            state.brands = action.payload.result
             state.loading = false
-        },
-        /* ============================== Create Brand   =============================== */
+        })
 
-        [createBrand.pending]: (state) => {
-            state.loading = true
-        },
-        [createBrand.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [createBrand.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Brand   =============================== */
+        // Create Brand
 
-        [editBrand.pending]: (state) => {
+        builder.addCase(createBrand.pending, (state, action) => {
             state.loading = true
-        },
-        [editBrand.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createBrand.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -200,16 +178,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editBrand.rejected]: (state) => {
+        })
+        builder.addCase(createBrand.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Delete Brand   =============================== */
-        [deleteBrand.pending]: (state) => {
+        // Edit Brand 
+
+        builder.addCase(editBrand.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteBrand.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editBrand.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -217,74 +196,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteBrand.rejected]: (state) => {
+        })
+        builder.addCase(editBrand.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search brands  =============================== */
+        })
 
-        [searchBrand.pending]: (state) => {
+        // Delete brand
+
+        builder.addCase(deleteBrand.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteBrand.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchBrand.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteBrand.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search brand
+
+        builder.addCase(searchBrand.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchBrand.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.brands = action.payload.result
             } else {
                 state.brands = [...state.brands]
             }
-        },
-        [searchBrand.rejected]: (state) => {
             state.loading = false
-        },
-        /* 
-        ---------------------------------------------
-        End Brands
-        --------------------------------------------- 
-        */
-        /* 
-      ---------------------------------------------
-      Start Devices
-      --------------------------------------------- 
-      */
+        })
+        builder.addCase(searchBrand.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* ============================== Get All Devices   =============================== */
+        /* ===================== Devices ======================== */
 
-        [getAllDevices.pending]: (state) => {
+        // Get All Devices
+
+        builder.addCase(getAllDevices.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllDevices.fulfilled]: (state, action) => {
+            state.devices = []
+        })
+        builder.addCase(getAllDevices.fulfilled, (state, action) => {
+            state.loading = false
             state.devices = action.payload.result
-        },
-        [getAllDevices.rejected]: (state) => {
+        })
+        builder.addCase(getAllDevices.rejected, (state, action) => {
+            state.devices = action.payload.result
             state.loading = false
-        },
-        /* ============================== Create Devices   =============================== */
+        })
 
-        [createDevices.pending]: (state) => {
+        // Create Devices
+
+        builder.addCase(createDevices.pending, (state, action) => {
             state.loading = true
-        },
-        [createDevices.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [createDevices.rejected]: (state) => {
-            state.loading = false
-        },
-
-        /* ============================== Edit Devices   =============================== */
-
-        [editDevices.pending]: (state) => {
-            state.loading = true
-        },
-        [editDevices.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createDevices.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -292,17 +267,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editDevices.rejected]: (state) => {
+        })
+        builder.addCase(createDevices.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Delete Devices   =============================== */
+        // Edit Devices 
 
-        [deleteDevices.pending]: (state) => {
+        builder.addCase(editDevices.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteDevices.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editDevices.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -310,72 +285,69 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteDevices.rejected]: (state) => {
+        })
+        builder.addCase(editDevices.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search Devices  =============================== */
+        })
 
-        [searchDevices.pending]: (state) => {
+        // Delete Devices
+
+        builder.addCase(deleteDevices.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteDevices.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchDevices.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteDevices.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search Devices
+
+        builder.addCase(searchDevices.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchDevices.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.devices = action.payload.result
             } else {
                 state.devices = [...state.devices]
             }
-        },
-        [searchDevices.rejected]: (state) => {
             state.loading = false
-        },
-        /* 
-        ---------------------------------------------
-        End Devices
-       --------------------------------------------- 
-       */
-        /* 
-         ---------------------------------------------
-         Start Products
-         --------------------------------------------- 
-         */
-        /* ============================== Get All Products   =============================== */
+        })
+        builder.addCase(searchDevices.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        [getAllProducts.pending]: (state) => {
+        /* ===================== Products ======================== */
+
+        // Get All Products
+
+        builder.addCase(getAllProducts.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllProducts.fulfilled]: (state, action) => {
+            state.products = []
+        })
+        builder.addCase(getAllProducts.fulfilled, (state, action) => {
+            state.loading = false
             state.products = action.payload.result
-        },
-        [getAllProducts.rejected]: (state) => {
+        })
+        builder.addCase(getAllProducts.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Create Products   =============================== */
+        })
 
-        [createProducts.pending]: (state) => {
-            state.loading = true
-        },
-        [createProducts.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        },
-        [createProducts.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Products   =============================== */
+        // Create Products
 
-        [editProducts.pending]: (state) => {
+        builder.addCase(createProducts.pending, (state, action) => {
             state.loading = true
-        },
-        [editProducts.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createProducts.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -383,16 +355,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editProducts.rejected]: (state) => {
+        })
+        builder.addCase(createProducts.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Delete Products   =============================== */
+        })
 
-        [deleteProducts.pending]: (state) => {
+        // Edit Products 
+
+        builder.addCase(editProducts.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteProducts.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editProducts.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -400,74 +373,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteProducts.rejected]: (state) => {
+        })
+        builder.addCase(editProducts.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search Product  =============================== */
+        })
 
-        [searchProducts.pending]: (state) => {
+        // Delete Products
+
+        builder.addCase(deleteProducts.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteProducts.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchProducts.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteProducts.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search Products
+
+        builder.addCase(searchProducts.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchProducts.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.products = action.payload.result
             } else {
                 state.products = [...state.products]
             }
-        },
-        [searchProducts.rejected]: (state) => {
             state.loading = false
-        },
-        /* 
-        ---------------------------------------------
-        End Products
-        --------------------------------------------- 
-        */
+        })
+        builder.addCase(searchProducts.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* 
-         ---------------------------------------------
-         Start Contact
-         --------------------------------------------- 
-         */
+        /* ===================== Contact Us ======================== */
 
-        /* ============================== Get All Contact   =============================== */
+        // Get All Contact
 
-        [getAllContact.pending]: (state) => {
+        builder.addCase(getAllContact.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllContact.fulfilled]: (state, action) => {
+            state.contact = []
+        })
+        builder.addCase(getAllContact.fulfilled, (state, action) => {
+            state.loading = false
             state.contact = action.payload.result
-        },
-        [getAllContact.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Create Contact   =============================== */
+        })
+        builder.addCase(getAllContact.rejected, (state, action) => {
 
-        [createContact.pending]: (state) => {
-            state.loading = true
-        },
-        [createContact.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
             state.loading = false
-        },
-        [createContact.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Contact   =============================== */
+        })
 
-        [editContact.pending]: (state) => {
+        // Create Contact
+
+        builder.addCase(createContact.pending, (state, action) => {
             state.loading = true
-        },
-        [editContact.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createContact.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -475,16 +444,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editContact.rejected]: (state) => {
+        })
+        builder.addCase(createContact.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Delete Contact   =============================== */
+        })
 
-        [deleteContact.pending]: (state) => {
+        // Edit Contact 
+
+        builder.addCase(editContact.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteContact.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editContact.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -492,75 +462,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteContact.rejected]: (state) => {
+        })
+        builder.addCase(editContact.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Search Contact  =============================== */
+        // Delete Contact
 
-        [searchContact.pending]: (state) => {
+        builder.addCase(deleteContact.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteContact.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchContact.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteContact.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search Contact
+
+        builder.addCase(searchContact.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchContact.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.contact = action.payload.result
             } else {
                 state.contact = [...state.contact]
             }
-        },
-        [searchContact.rejected]: (state) => {
             state.loading = false
-        },
+        })
+        builder.addCase(searchContact.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* 
-        ---------------------------------------------
-        End Contact
-       --------------------------------------------- 
-        */
-        /* 
-         ---------------------------------------------
-         Start News
-         --------------------------------------------- 
-         */
+        /* ===================== News ======================== */
 
-        /* ============================== Get All News   =============================== */
+        // Get All News
 
-        [getAllNews.pending]: (state) => {
+        builder.addCase(getAllNews.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllNews.fulfilled]: (state, action) => {
+            state.news = []
+        })
+        builder.addCase(getAllNews.fulfilled, (state, action) => {
+            state.loading = false
             state.news = action.payload.result
-        },
-        [getAllNews.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Create News   =============================== */
+        })
+        builder.addCase(getAllNews.rejected, (state, action) => {
 
-        [createNews.pending]: (state) => {
-            state.loading = true
-        },
-        [createNews.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
             state.loading = false
-        },
-        [createNews.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit news   =============================== */
+        })
 
-        [editNews.pending]: (state) => {
+        // Create News
+
+        builder.addCase(createNews.pending, (state, action) => {
             state.loading = true
-        },
-        [editNews.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createNews.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -568,16 +533,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editNews.rejected]: (state) => {
+        })
+        builder.addCase(createNews.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Delete news   =============================== */
+        })
 
-        [deleteNews.pending]: (state) => {
+        // Edit News 
+
+        builder.addCase(editNews.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteNews.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editNews.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -585,74 +551,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteNews.rejected]: (state) => {
+        })
+        builder.addCase(editNews.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search news  =============================== */
+        })
 
-        [searchNews.pending]: (state) => {
+        // Delete News
+
+        builder.addCase(deleteNews.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteNews.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchNews.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteNews.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search News
+
+        builder.addCase(searchNews.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchNews.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.news = action.payload.result
             } else {
                 state.news = [...state.news]
             }
-        },
-        [searchNews.rejected]: (state) => {
             state.loading = false
-        },
+        })
+        builder.addCase(searchNews.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* 
-        ---------------------------------------------
-        End Contact
-        --------------------------------------------- 
-        */
-        /* 
-         ---------------------------------------------
-         Start wishlist
-         --------------------------------------------- 
-         */
+        /* ===================== Wishlist ======================== */
 
-        /* ============================== Get All wishlist   =============================== */
+        // Get All Wishlist
 
-        [getAllWishlist.pending]: (state) => {
+        builder.addCase(getAllWishlist.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllWishlist.fulfilled]: (state, action) => {
+            state.wishlist = []
+        })
+        builder.addCase(getAllWishlist.fulfilled, (state, action) => {
+            state.loading = false
             state.wishlist = action.payload.result
-        },
-        [getAllWishlist.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Create Wishlist   =============================== */
+        })
+        builder.addCase(getAllWishlist.rejected, (state, action) => {
 
-        [createWishlist.pending]: (state) => {
-            state.loading = true
-        },
-        [createWishlist.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
             state.loading = false
-        },
-        [createWishlist.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Wishlist   =============================== */
+        })
 
-        [editWishlist.pending]: (state) => {
+        // Create Wishlist
+
+        builder.addCase(createWishlist.pending, (state, action) => {
             state.loading = true
-        },
-        [editWishlist.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createWishlist.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -660,17 +622,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editWishlist.rejected]: (state) => {
+        })
+        builder.addCase(createWishlist.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Delete Wishlist   =============================== */
+        // Edit Wishlist 
 
-        [deleteWishlist.pending]: (state) => {
+        builder.addCase(editWishlist.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteWishlist.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editWishlist.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -678,73 +640,70 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteWishlist.rejected]: (state) => {
+        })
+        builder.addCase(editWishlist.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search wishlist  =============================== */
+        })
 
-        [searchWishlist.pending]: (state) => {
+        // Delete Wishlist
+
+        builder.addCase(deleteWishlist.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteWishlist.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchWishlist.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteWishlist.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search Wishlist
+
+        builder.addCase(searchWishlist.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchWishlist.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
                 state.wishlist = action.payload.result
             } else {
                 state.wishlist = [...state.wishlist]
             }
-        },
-        [searchWishlist.rejected]: (state) => {
             state.loading = false
-        },
-        /* 
-       ---------------------------------------------
-       End wishlist
-       --------------------------------------------- 
-       */
-        /* 
-         ---------------------------------------------
-         Start Carts
-         --------------------------------------------- 
-         */
+        })
+        builder.addCase(searchWishlist.rejected, (state, action) => {
+            state.loading = false
+        })
 
-        /* ============================== Get All Carts   =============================== */
+        /* ===================== Carts ======================== */
 
-        [getAllCarts.pending]: (state) => {
+        // Get All Carts
+
+        builder.addCase(getAllCarts.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllCarts.fulfilled]: (state, action) => {
+            state.carts = []
+        })
+        builder.addCase(getAllCarts.fulfilled, (state, action) => {
+            state.loading = false
             state.carts = action.payload.result
-        },
-        [getAllCarts.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Create Cart   =============================== */
+        })
+        builder.addCase(getAllCarts.rejected, (state, action) => {
 
-        [createCart.pending]: (state) => {
-            state.loading = true
-        },
-        [createCart.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
             state.loading = false
-        },
-        [createCart.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Cart   =============================== */
+        })
 
-        [editCart.pending]: (state) => {
+        // Create Carts
+
+        builder.addCase(createCart.pending, (state, action) => {
             state.loading = true
-        },
-        [editCart.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createCart.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -752,17 +711,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editCart.rejected]: (state) => {
+        })
+        builder.addCase(createCart.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Delete Cart   =============================== */
+        // Edit Carts 
 
-        [deleteCart.pending]: (state) => {
+        builder.addCase(editCart.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteCart.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editCart.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -770,73 +729,69 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteCart.rejected]: (state) => {
+        })
+        builder.addCase(editCart.rejected, (state, action) => {
             state.loading = false
-        },
-        /* ============================== Search Cart  =============================== */
+        })
 
-        [searchCarts.pending]: (state) => {
+        // Delete Carts
+
+        builder.addCase(deleteCart.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteCart.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
             state.loading = false
-        },
-        [searchCarts.fulfilled]: (state, action) => {
+        })
+        builder.addCase(deleteCart.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search Carts
+
+        builder.addCase(searchCarts.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchCarts.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
-                state.carts = action.payload.result
+                state.wishlist = action.payload.result
             } else {
-                state.carts = [...state.carts]
+                state.wishlist = [...state.wishlist]
             }
-        },
-        [searchCarts.rejected]: (state) => {
             state.loading = false
-        },
-        /* 
-        ---------------------------------------------
-        End Carts
-        --------------------------------------------- 
-        */
-        /* 
-         ---------------------------------------------
-         Start Orders
-         --------------------------------------------- 
-        */
+        })
+        builder.addCase(searchCarts.rejected, (state, action) => {
+            state.loading = false
+        })
+        /* ===================== Orders ======================== */
 
-        /* ============================== Get All Orders   =============================== */
+        // Get All Orders
 
-        [getAllOrders.pending]: (state) => {
+        builder.addCase(getAllOrders.pending, (state, action) => {
             state.loading = true
-        },
-        [getAllOrders.fulfilled]: (state, action) => {
+            state.orders = []
+        })
+        builder.addCase(getAllOrders.fulfilled, (state, action) => {
+            state.loading = false
             state.orders = action.payload.result
-        },
-        [getAllOrders.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Create Order   =============================== */
+        })
+        builder.addCase(getAllOrders.rejected, (state, action) => {
 
-        [createOrder.pending]: (state) => {
-            state.loading = true
-        },
-        [createOrder.fulfilled]: (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 422) {
-                toast.error(massage)
-            } else if (status === 201) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
             state.loading = false
-        },
-        [createOrder.rejected]: (state) => {
-            state.loading = false
-        },
-        /* ============================== Edit Order   =============================== */
+        })
 
-        [editOrder.pending]: (state) => {
+        // Create Orders
+
+        builder.addCase(createOrder.pending, (state, action) => {
             state.loading = true
-        },
-        [editOrder.fulfilled]: (state, action) => {
+        })
+        builder.addCase(createOrder.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -844,17 +799,17 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [editOrder.rejected]: (state) => {
+        })
+        builder.addCase(createOrder.rejected, (state, action) => {
             state.loading = false
-        },
+        })
 
-        /* ============================== Delete Wishlist   =============================== */
+        // Edit Orders 
 
-        [deleteOrder.pending]: (state) => {
+        builder.addCase(editOrder.pending, (state, action) => {
             state.loading = true
-        },
-        [deleteOrder.fulfilled]: (state, action) => {
+        })
+        builder.addCase(editOrder.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
                 toast.error(massage)
@@ -862,12 +817,29 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        },
-        [deleteOrder.rejected]: (state) => {
+        })
+        builder.addCase(editOrder.rejected, (state, action) => {
             state.loading = false
-        },
+        })
+
+        // Delete Carts
+
+        builder.addCase(deleteOrder.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteOrder.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(deleteOrder.rejected, (state, action) => {
+            state.loading = false
+        })
     }
-
 })
 
 export const { logout } = dataSlice.actions;

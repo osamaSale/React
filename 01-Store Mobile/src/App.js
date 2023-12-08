@@ -1,34 +1,28 @@
 import React, { useEffect } from 'react';
-import './App.css';
 import { ToastContainer } from 'react-toastify';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { Navbar } from "./components/Navbar"
-import { Dashboard } from "./components/Dashboard/Dashboard"
+import { useDispatch } from 'react-redux';
 import { getAllUsers } from './redux/api/users';
 import { getAllBrands } from './redux/api/brands';
 import { getAllDevices } from './redux/api/devices';
 import { getAllProducts } from './redux/api/products';
-import { Home } from './components/Home';
-import { Footer } from './components/Footer';
-import { About } from './components/About';
-import { Contact } from './components/Contact';
-import { Login } from './components/Account/Login';
-import { Register } from './components/Account/Register';
+import { getAllOrders } from './redux/api/orders';
+import { getAllCarts } from './redux/api/carts';
 import { getAllContact } from './redux/api/contact';
-import { Shop } from './components/Shop/Shop';
-import { ShopSingle } from './components/Shop/ShopSingle';
 import { getAllNews } from './redux/api/news';
 import { getAllWishlist } from './redux/api/wishlist';
-import { getAllCarts } from './redux/api/carts';
-import { getAllOrders } from './redux/api/orders';
-import { BackTop } from './components/BackTop';
-function App() {
+import { Navbar } from './components/Navbar';
+import { Login } from './components/Login';
+import { Admin } from './components/Admin/Admin';
+import { Home } from './components/Home';
+import { Footer } from './components/Footer';
+import { Register } from './components/Register';
+import { Contact } from './components/Contact';
+import { About } from './components/About';
 
+function App() {
   const dispatch = useDispatch()
-  useEffect(() => {
-    update()
-  }, [])
+
   const update = () => {
     dispatch(getAllUsers())
     dispatch(getAllBrands())
@@ -40,8 +34,11 @@ function App() {
     dispatch(getAllCarts())
     dispatch(getAllOrders())
   }
+  useEffect(() => {
+    update()
+  }, [])
   return (
-    <div className="app" >
+    <div>
       <ToastContainer />
       <Navbar update={update} />
       <main>
@@ -51,15 +48,13 @@ function App() {
           <Route path='/contact' element={<Contact update={update} />} />
           <Route path='/login' element={<Login update={update} />} />
           <Route path='/register' element={<Register update={update} />} />
-          <Route path='/shop' element={<Shop update={update} />} />
-          <Route path='/shop/single/:id' element={<ShopSingle update={update} />} />
-          <Route path='/dashboard' element={<Dashboard update={update} />} />
+          <Route path='/admin' element={<Admin update={update} />} />
         </Routes>
       </main>
-      <Footer />
-      <BackTop />
+      <Footer update={update} />
     </div>
   );
 }
 
 export default App;
+

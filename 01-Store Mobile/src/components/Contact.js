@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { useDispatch } from "react-redux"
 import { createContact } from "../redux/api/contact";
 export const Contact = ({ update }) => {
@@ -37,13 +36,7 @@ export const Contact = ({ update }) => {
                                     onClick={() => {
                                         setLoading(true)
                                         let data = { name: name, email: email, message: message }
-                                        let data1 = { user_name: name, user_email: email, user_massage: message }
-                                        emailjs.send('service_pyguoec', 'template_airpmzr', data1, 'DUOrlJz1ktRqkBB2k')
-                                            .then(function (response) {
-                                                dispatch(createContact(data)).then((res) => { update() })
-                                            }, function (err) {
-                                                console.log('FAILED...', err);
-                                            });
+                                        dispatch(createContact(data)).then((res) => { update() })
                                         setLoading(false)
                                     }}
                                 >

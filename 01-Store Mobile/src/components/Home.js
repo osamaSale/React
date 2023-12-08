@@ -3,14 +3,13 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom"
 import Slider from "react-slick";
 import { useSelector } from 'react-redux';
-export const Home = () => {
+
+export const Home = ({ update }) => {
     const { products } = useSelector((store) => store.data)
     function SampleNextArrow1(props) {
         const { onClick } = props;
-
         return <span onClick={onClick} className="slick-prev border"><i className="fa fa-arrow-left"></i></span>
     }
-
     function SamplePrevArrow1(props) {
         const { onClick } = props;
         return <span className="slick-next border" onClick={onClick}><i className="fa fa-arrow-right"></i></span>
@@ -577,9 +576,9 @@ export const Home = () => {
                                                                     viewBox="0 0 24 24"
                                                                     fill="none"
                                                                     stroke="currentColor"
-                                                                    stroke-width="2"
-                                                                    stroke-linecap="round"
-                                                                    stroke-linejoin="round"
+                                                                    strokeWidth="2"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
                                                                     className="feather feather-plus">
                                                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                                                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -592,224 +591,7 @@ export const Home = () => {
                                             </div>
                                         </div>
                                     })}
-                                    {/*   <div className="item">
 
-                                        <div className="card card-product mb-lg-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img
-                                                    src="./assets/images/category/category-dairy-bread-eggs.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" />
-                                                </Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-12%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Blueberry Greek
-                                                Yogurt</Link></h2>
-                                            <div><span className=" fs-5 fw-bold">$15</span> <span
-                                                className="text-decoration-line-through text-muted">$20</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i></small> <span
-                                                        className="text-muted small">5.0</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img src="./assets/images/category/category-snack-munchies.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Kellogg s Original
-                                                Cereals
-                                            </Link></h2>
-                                            <div><span className=" fs-5 fw-bold">$18</span> <span
-                                                className="text-decoration-line-through text-muted">$24</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">3.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img
-                                                    src="./assets/images/category/category-tea-coffee-drinks.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Tea Coffee & Drinks</Link>
-                                            </h2>
-                                            <div><span className=" fs-5 fw-bold">$18</span> <span
-                                                className="text-decoration-line-through text-muted">$24</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">4.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img
-                                                    src="./assets/images/category/category-bakery-biscuits.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Slurrp Millet
-                                                Chocolate</Link></h2>
-                                            <div><span className=" fs-5 fw-bold">$120</span> <span
-                                                className="text-decoration-line-through text-muted">$165</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">4.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img src="./assets/images/category/category-atta-rice-dal.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-55%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Atta, Rice & Dal
-                                            </Link></h2>
-                                            <div><span className=" fs-5 fw-bold">$18</span> <span
-                                                className="text-decoration-line-through text-muted">$24</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">3.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img
-                                                    src="./assets/images/category/category-chicken-meat-fish.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-45%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Chicken, Meat & Fish</Link>
-                                            </h2>
-                                            <div><span className=" fs-5 fw-bold">$18</span> <span
-                                                className="text-decoration-line-through text-muted">$24</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">4.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div className="item">
-
-                                        <div className="card card-product mb-4">
-                                            <div className="card-body text-center py-8">
-
-                                                <Link to="#"><img
-                                                    src="./assets/images/category/category-cleaning-essentials.jpg"
-                                                    alt="Grocery Ecommerce Template" className="rounded mx-auto d-block mb-3" /></Link>
-
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="badge bg-danger rounded-pill">-25%</span>
-                                            <h2 className="mt-3 fs-6"> <Link to="#" className="text-inherit">Cleaning Essentials</Link>
-                                            </h2>
-                                            <div><span className=" fs-5 fw-bold">$120</span> <span
-                                                className="text-decoration-line-through text-muted">$165</span>
-                                            </div>
-                                            <div className="text-warning">
-
-                                                <small> <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-fill"></i>
-                                                    <i className="bi bi-star-half"></i></small> <span
-                                                        className="text-muted small">4.5</span>
-                                            </div>
-
-                                        </div>
-                                    </div> */}
                                 </Slider>
 
                             </div>
@@ -856,7 +638,6 @@ export const Home = () => {
                     </div>
                 </div>
             </section>
-
             <section className="mt-lg-12 mb-lg-14 mb-8 mt-8">
                 <div className="container-fluid ">
                     <div className="row align-items-center mb-6">
@@ -889,7 +670,7 @@ export const Home = () => {
                             <div className="product-slider-second " id="slider-third">
                                 <Slider  {...bestSellingProducts}>
                                     {products && products.map((row) => {
-                                        return <div className="item ">
+                                        return <div className="item " key={row.id}>
                                             <div className="card card-product h-100 mb-4">
                                                 <div className="card-body position-relative">
 
@@ -995,6 +776,8 @@ export const Home = () => {
                     </div>
                 </div>
             </section>
-        </div >
-    )
+        </div>
+    );
 }
+
+

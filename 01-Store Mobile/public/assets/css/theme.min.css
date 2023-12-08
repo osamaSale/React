@@ -25780,7 +25780,7 @@ span.flatpickr-weekday {
 
  .table__body {
   width: 100%;
-  max-height: calc(20% - -2.4rem);
+  max-height: calc(90% - -2.4rem);
   margin: 0.8rem auto;
   overflow: auto;
   overflow: overlay;
