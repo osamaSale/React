@@ -42,19 +42,19 @@ export const dataSlice = createSlice({
 
         builder.addCase(getAllUsers.pending, (state, action) => {
             state.loading = true
-            state.users = []
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
             let user = JSON.parse(localStorage.getItem('user'));
+            
             if (user) {
                 state.user = state.users?.find((u) => u.id === user.id)
             } else {
                 state.user = null
             }
+            
             state.users = action.payload.result
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
-            state.users = action.payload.result
             state.loading = false
         })
 
@@ -161,7 +161,7 @@ export const dataSlice = createSlice({
             state.brands = action.payload.result
         })
         builder.addCase(getAllBrands.rejected, (state, action) => {
-            state.brands = action.payload.result
+            
             state.loading = false
         })
 
@@ -250,7 +250,7 @@ export const dataSlice = createSlice({
             state.devices = action.payload.result
         })
         builder.addCase(getAllDevices.rejected, (state, action) => {
-            state.devices = action.payload.result
+           
             state.loading = false
         })
 
@@ -724,7 +724,7 @@ export const dataSlice = createSlice({
         builder.addCase(editCart.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
-                toast.error(massage)
+               /*  toast.error(massage) */
             } else {
                 toast.error(massage)
             }

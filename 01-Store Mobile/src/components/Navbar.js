@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { logout } from "../redux/slice/slice"
 import { Modals } from './Modals';
 export const Navbar = ({ update }) => {
     const { user } = useSelector((store) => store.data)
+    const [loginShow, setLoginShow] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation();
@@ -24,101 +25,106 @@ export const Navbar = ({ update }) => {
                     </div>
                     <div className="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                         <div className="d-flex align-items-center justify-content-between ms-4">
-                            <div className="ms-6 text-center">
+                            <div className="text-center ">
                                 <Link className="text-reset" /* onClick={switchTheme} */>
                                     <div className="lh-1">
                                         <div className="mb-2">
-                                            <i className="bi bi-moon fs-3"></i>
+                                            <i className="bi bi-moon fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">Dark</p>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="ms-6 text-center">
+                            <div className="text-center ms-5">
                                 <Link className="text-reset">
-
                                     <div className="lh-1">
                                         <div className="mb-2">
-                                            <i className="bi bi-archive fs-3"></i>
+                                            <i className="bi bi-archive fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">My Orders</p>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="text-center ms-6">
+                            <div className="text-center ms-5">
                                 <Link data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" to="#offcanvasExample"
                                     role="button" aria-controls="offcanvasRight" className="text-reset">
 
                                     <div className="lh-1">
                                         <div className="mb-2">
-                                            <i className="bi bi-cart2 fs-3"></i>
+                                            <i className="bi bi-cart2 fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">Shopping Cart</p>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="text-center ms-6">
-                                <Link role="button" className="text-reset">
+                            <div className="text-center ms-5">
+                                <Link role="button" className="text-reset" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" to="#offcanvasExample1"
+                                   aria-controls="offcanvasRight" >
                                     <div className="lh-1">
-                                        <div className="mb-3">
+                                        <div className="mb-2">
                                             <i className="bi bi-bookmark-heart fs-4"></i>
                                         </div>
                                         <p className="mb-0 d-none d-xl-block small">Wishlist</p>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="ms-6 text-center">
-
-                                {user ?
-                                    <Link className="text-reset " role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div className="lh-1">
-                                            <div className="mb-2">
-                                                <img src={user && user.image} alt='' className="rounded-circle" width={30} height={25} />
-                                            </div>
-                                            <p className="mb-0 d-none d-xl-block small">{user.name}</p>
-                                            <div className="dropdown-menu dropdown-menu-end p-0">
-                                                <div className="lh-1 px-5 py-4 border-bottom">
-                                                    <h5 className="mb-1 h6">Store Mobile</h5>
-                                                    <small>{user && user.email}</small>
+                            <div className="text-center ">
+                                {user &&
+                                    <>
+                                        <button  className="btn text-reset " data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div className="lh-1">
+                                                <div className="mb-2">
+                                                    <img src={user && user.image} alt='' className="rounded-circle" width={30} height={25} />
                                                 </div>
-                                                <ul className="list-unstyled  px-2 py-3" >
-                                                    <li>
-                                                        <Link className="dropdown-item" to="#!">
-                                                            <i class="bi bi-house me-2"></i>  Home
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="#!">
-                                                            <i className="bi bi-person-circle me-2"></i>  Profile
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item" to="#!">
-                                                            <i className="bi bi-gear me-2"></i> Settings
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                                <div className="border-top px-5 py-3">
+                                                <p className="mb-0 d-none d-xl-block small">{user.name}</p>
+                                                <div className="dropdown-menu dropdown-menu-end p-0">
+                                                    <div className="lh-1 px-5 py-4 border-bottom">
+                                                        <h5 className="mb-1 h6">Store Mobile</h5>
+                                                        <small>{user && user.email}</small>
+                                                    </div>
+                                                    <ul className="list-unstyled  px-2 py-3" >
+                                                        <li>
+                                                            <Link className="dropdown-item" to="#!">
+                                                                <i className="bi bi-house me-2"></i>  Home
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link className="dropdown-item" to="#!">
+                                                                <i className="bi bi-person-circle me-2"></i>  Profile
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link className="dropdown-item" to="#!">
+                                                                <i className="bi bi-gear me-2"></i> Settings
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                    <div className="border-top px-5 py-3">
 
-                                                    <Link onClick={() => {
-                                                        if (window.confirm("Do you want to Exit")) {
-                                                            dispatch(logout())
-                                                            navigate('/')
-                                                        }
-                                                    }}>
-                                                        <i className="bi bi-box-arrow-right me-2"></i>Log Out</Link>
+                                                        <Link onClick={() => {
+                                                            if (window.confirm("Do you want to Exit")) {
+                                                                dispatch(logout())
+                                                                navigate('/')
+                                                            }
+                                                        }}>
+                                                            <i className="bi bi-box-arrow-right me-2"></i>Log Out</Link>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Link> :
-                                    <Link className="text-reset" /* onClick={() => modal.show()} */>
-                                        <div className="lh-1">
-                                            <div className="mb-2">
-                                                <i className="bi bi-person-circle fs-3"></i>
+                                        </button>
+                                    </>
+                                }
+                                {!user &&
+                                    <>
+                                        <button  className="btn text-reset" onClick={() => setLoginShow(true)} >
+                                            <div className="lh-1">
+                                                <div className="mb-2">
+                                                    <i className="bi bi-person-circle fs-4"></i>
+                                                </div>
+                                                <p className="mb-0 d-none d-xl-block small">Sign up</p>
                                             </div>
-                                            <p className="mb-0 d-none d-xl-block small">Sign up</p>
-                                        </div>
-                                    </Link>
+                                        </button>
+                                    </>
                                 }
                             </div>
                         </div>
@@ -275,7 +281,7 @@ export const Navbar = ({ update }) => {
                     </div>
                 </div>
             </nav>
-            <Modals />
+            <Modals loginShow={loginShow} setLoginShow={setLoginShow} update={update} />
         </header>
     );
 }

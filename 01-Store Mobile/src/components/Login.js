@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginSocialGoogle } from 'reactjs-social-login'
-import { login } from "../redux/api/users"
+import { getAllUsers, login } from "../redux/api/users"
 import { useDispatch } from 'react-redux';
 
 export const Login = ({ update }) => {
@@ -21,12 +21,12 @@ export const Login = ({ update }) => {
             authorization: "user"
         }
         dispatch(login({ email: data1.email, password: data1.password })).then((res) => {
-
             if (res.payload.status === 200) {
-                update()
                 localStorage.setItem("user", JSON.stringify(res.payload.result))
+                dispatch(getAllUsers())
                 navigate('/')
             }
+          update()
         })
     }
     return (
@@ -79,10 +79,11 @@ export const Login = ({ update }) => {
                                         dispatch(login({ email: email, password: password })).then((res) => {
                                             if (res.payload.status === 200) {
                                                 localStorage.setItem("user", JSON.stringify(res.payload.result))
+                                                dispatch(getAllUsers())
                                                 navigate('/')
-                                                update()
                                             }
                                         })
+                                        update()
                                         setLoading(false)
                                     }}
                                 >

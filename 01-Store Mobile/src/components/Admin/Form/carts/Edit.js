@@ -5,6 +5,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { editCart } from '../../../../redux/api/carts';
+import { getAllUsers } from '../../../../redux/api/users';
 export const Edit = ({ openEditCart, setEditOpenCart, cart, update }) => {
     const { users, products } = useSelector((store) => store.data)
     const [userId, setUserId] = useState(cart ? cart.userId : null)
@@ -84,6 +85,7 @@ export const Edit = ({ openEditCart, setEditOpenCart, cart, update }) => {
                                     const { status } = res.payload
                                     if (status === 200) {
                                         setEditOpenCart(false);
+                                        dispatch(getAllUsers())
                                         update()
                                     }
                                     setLoading(false)

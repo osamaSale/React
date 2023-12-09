@@ -22,7 +22,9 @@ import { About } from './components/About';
 
 function App() {
   const dispatch = useDispatch()
-
+  useEffect(() => {
+    update()
+  }, [])
   const update = () => {
     dispatch(getAllUsers())
     dispatch(getAllBrands())
@@ -34,9 +36,7 @@ function App() {
     dispatch(getAllCarts())
     dispatch(getAllOrders())
   }
-  useEffect(() => {
-    update()
-  }, [])
+
   return (
     <div>
       <ToastContainer />
