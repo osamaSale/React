@@ -332,7 +332,6 @@ export const dataSlice = createSlice({
 
         builder.addCase(getAllProducts.pending, (state, action) => {
             state.loading = true
-            state.products = []
         })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
             state.loading = false

@@ -21,6 +21,7 @@ import { Contact } from './components/Contact';
 import { About } from './components/About';
 import { CartsShop } from './components/Shop/CartsShop';
 import { WishlistShop } from './components/Shop/WishlistShop';
+import { ShopWide } from './components/Shop/ShopWide';
 
 function App() {
   const dispatch = useDispatch()
@@ -52,6 +53,7 @@ function App() {
           <Route path='/register' element={<Register update={update} />} />
           <Route path='/carts' element={<CartsShop update={update} />} />
           <Route path='/wishlist' element={<WishlistShop update={update} />} />
+          <Route path='/shop-wide' element={<ShopWide update={update} />} />
           <Route path='/admin' element={<Admin update={update} />} />
         </Routes>
       </main>

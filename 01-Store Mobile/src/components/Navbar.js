@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { logout } from "../redux/slice/slice"
 import { Modals } from './Modals';
+import { searchProducts } from '../redux/api/products';
 export const Navbar = ({ update }) => {
     const { user } = useSelector((store) => store.data)
+    const [search, setSearch] = useState("")
     const [loginShow, setLoginShow] = useState(false)
     const [mode, setMode] = useState('light')
     const dispatch = useDispatch()
@@ -26,7 +28,15 @@ export const Navbar = ({ update }) => {
                     </div>
                     <div className="col-xxl-6 col-xl-5 col-lg-6 col-md-9">
                         <div className="input-group">
-                            <input className="form-control border" type="search" placeholder="Search for products" />
+                            <input className="form-control border" type="search" placeholder="Search for products"
+                                onChange={(e) => setSearch(e.target.value)}
+                                onKeyUp={() => {
+                                    if (search === "") {
+                                        update();
+                                    } else {
+                                        dispatch(searchProducts(search))
+                                    }
+                                }} />
                             <button className="btn btn-primary" type="button">Search</button>
                         </div>
                     </div>
@@ -266,6 +276,7 @@ export const Navbar = ({ update }) => {
                                     </Link>
                                     <ul className="dropdown-menu">
                                         <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
+                                        <li><Link className="dropdown-item" to="/shop-wide">Shop Wide</Link></li>
                                         <li><Link className="dropdown-item" to="/shop/single">Shop Single</Link></li>
                                         <li><Link className="dropdown-item" to="/wishlist">Shop Wishlist</Link> </li>
                                         <li><Link className="dropdown-item" to="/carts">Shop Cart</Link></li>
