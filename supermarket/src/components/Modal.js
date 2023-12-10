@@ -301,7 +301,6 @@ export const Modal = () => {
                     <div className="modal-content p-4">
                         <div className="modal-header border-0">
                             <h5 className="modal-title fs-3 fw-bold" id="userModalLabel">Sign Up</h5>
-
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">

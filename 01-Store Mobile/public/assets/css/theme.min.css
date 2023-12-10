@@ -3763,7 +3763,7 @@ fieldset:disabled .btn {
 }
 .btn-dark {
   --fc-btn-color: #fff;
-  --fc-btn-bg: #001e2b;
+  --fc-btn-bg: #000000;
   --fc-btn-border-color: #001e2b;
   --fc-btn-hover-color: #fff;
   --fc-btn-hover-bg: #26404b;

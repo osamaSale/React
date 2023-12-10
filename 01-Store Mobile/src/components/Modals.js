@@ -196,7 +196,7 @@ export const Modals = ({ loginShow, setLoginShow, update }) => {
                 <div className="offcanvas-header border-bottom">
                     <div className="text-start">
                         <h5 id="offcanvasRightLabel" className="mb-1 fs-4">Shop Cart</h5>
-                        <small>Result : $ {getTotalPrice()}</small>
+                        <small>Products : {user && user.carts && user.carts.length > 0 ? user && user.carts && user.carts.length : 0}</small>
                     </div>
                     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -208,8 +208,8 @@ export const Modals = ({ loginShow, setLoginShow, update }) => {
                             </div>}
 
                             <div className="d-flex justify-content-between mb-4">
-                                <Link to="#!" className="btn btn-dark btn-sm"> Make Purchase </Link>
-                                <Link to="#!" className="btn btn-primary  btn-sm" >Continue Shopping</Link>
+                                <Link to="#!" className="btn btn-primary btn-sm"> Make Purchase </Link>
+                                <span className='pt-1'>Result : $ {getTotalPrice()}</span>
                             </div>
                             <ul className="list-group list-group-flush">
                                 {user && user.carts.map((row) => {
@@ -371,15 +371,15 @@ export const Modals = ({ loginShow, setLoginShow, update }) => {
                                                                 quantity: 1
                                                             }
                                                             dispatch(createCart(data)).then((res) => {
-                                                                console.log(res)
+                    
                                                                 dispatch(getAllUsers())
                                                                 update()
                                                             })
                                                         }}
                                                     >
-                                                        {carts && carts.find(c => c.productid === row.productid) ? 
-                                                        <><i className="bi bi-cart-check"></i> In Cart</>
-                                                        :<><i className="bi bi-plus-lg"></i> Add Cart </>}   
+                                                        {carts && carts.find(c => c.productid === row.productid) ?
+                                                            <><i className="bi bi-cart-check"></i> In Cart</>
+                                                            : <><i className="bi bi-plus-lg"></i> Add Cart </>}
                                                     </button>
                                                     <Link className="text-decoration-none text-danger" onClick={() => {
                                                         dispatch(deleteWishlist(row.id)).then(() => {

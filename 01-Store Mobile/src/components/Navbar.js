@@ -6,9 +6,16 @@ import { Modals } from './Modals';
 export const Navbar = ({ update }) => {
     const { user } = useSelector((store) => store.data)
     const [loginShow, setLoginShow] = useState(false)
+    const [mode, setMode] = useState('light')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation();
+
+    const checkMode = () => {
+        let element = document.body
+        element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
+        setMode(element.dataset.bsTheme)
+    }
     if (location.pathname === "/admin") { return }
     return (
         <header className="border-bottom">
@@ -26,12 +33,19 @@ export const Navbar = ({ update }) => {
                     <div className="col-xxl-4 col-xl-5 col-lg-3 d-none d-lg-block">
                         <div className="d-flex align-items-center justify-content-between ms-4">
                             <div className="text-center ">
-                                <Link className="text-reset" /* onClick={switchTheme} */>
+                                <Link className="text-reset" onClick={checkMode} >
                                     <div className="lh-1">
                                         <div className="mb-2">
-                                            <i className="bi bi-moon fs-4"></i>
+                                            {mode === 'dark' ?
+                                                <div>
+                                                    <i className="bi bi-brightness-high fs-4"></i>
+                                                </div> :
+                                                <div>
+                                                    <i className="bi bi-moon fs-4"></i>
+                                                </div>
+                                            }
                                         </div>
-                                        <p className="mb-0 d-none d-xl-block small">Dark</p>
+                                        <p className="mb-0 d-none d-xl-block small">{mode === "light" ? "Dark" : "Light"}</p>
                                     </div>
                                 </Link>
                             </div>
@@ -59,7 +73,7 @@ export const Navbar = ({ update }) => {
                             </div>
                             <div className="text-center ms-5">
                                 <Link role="button" className="text-reset" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" to="#offcanvasExample1"
-                                   aria-controls="offcanvasRight" >
+                                    aria-controls="offcanvasRight" >
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-bookmark-heart fs-4"></i>
@@ -71,7 +85,7 @@ export const Navbar = ({ update }) => {
                             <div className="text-center ">
                                 {user &&
                                     <>
-                                        <button  className="btn text-reset " data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button className="btn text-reset " data-bs-toggle="dropdown" aria-expanded="false">
                                             <div className="lh-1">
                                                 <div className="mb-2">
                                                     <img src={user && user.image} alt='' className="rounded-circle" width={30} height={25} />
@@ -116,7 +130,7 @@ export const Navbar = ({ update }) => {
                                 }
                                 {!user &&
                                     <>
-                                        <button  className="btn text-reset" onClick={() => setLoginShow(true)} >
+                                        <button className="btn text-reset" onClick={() => setLoginShow(true)} >
                                             <div className="lh-1">
                                                 <div className="mb-2">
                                                     <i className="bi bi-person-circle fs-4"></i>
@@ -254,7 +268,7 @@ export const Navbar = ({ update }) => {
                                         <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
                                         <li><Link className="dropdown-item" to="/shop/single">Shop Single</Link></li>
                                         <li><Link className="dropdown-item" to="/wishlist">Shop Wishlist</Link> </li>
-                                        <li><Link className="dropdown-item" to="/cart">Shop Cart</Link></li>
+                                        <li><Link className="dropdown-item" to="/carts">Shop Cart</Link></li>
                                         <li><Link className="dropdown-item" to="../pages/shop-checkout.html">Shop Checkout</Link>
                                         </li>
                                     </ul>
