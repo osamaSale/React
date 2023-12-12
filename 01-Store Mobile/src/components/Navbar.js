@@ -183,7 +183,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Apple")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Apple")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/apple.svg' alt='' />
                                                     <span className="ms-2">Apple</span>
@@ -196,7 +196,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -208,7 +208,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Samsung")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Samsung")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/samsung.svg' alt='' />
                                                     <span className="ms-2">Samsung</span>
@@ -221,7 +221,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -233,7 +233,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Huawei")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Huawei")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/huawei.svg' alt='' />
                                                     <span className="ms-2">Huawei</span>
@@ -246,7 +246,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -258,7 +258,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Infinix")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Infinix")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/infinix.svg' alt='' />
                                                     <span className="ms-2">Infinix</span>
@@ -271,7 +271,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -283,7 +283,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Vivo")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Vivo")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/vivo.svg' alt='' />
                                                     <span className="ms-2">Vivo</span>
@@ -296,7 +296,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -308,7 +308,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Honor")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Honor")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/honor.svg' alt='' />
                                                     <span className="ms-2">Honor</span>
@@ -321,7 +321,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 
@@ -333,7 +333,7 @@ export const Navbar = ({ update }) => {
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
                                             onMouseEnter={()=> setSelectedBrand("Nokia")}
-                                            onMouseLeave={()=> setSelectedBrand("")}>
+                                            onMouseLeave={()=> setSelectedBrand("Nokia")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/nokia.svg' alt='' />
                                                     <span className="ms-2">Nokia</span>
@@ -346,7 +346,7 @@ export const Navbar = ({ update }) => {
                                                     <ul className="list-unstyled">
                                                         {brand && brand.map((row) => {
                                                             return <li key={row.id}>
-                                                                <Link className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
+                                                                <Link to={`/shop-single/${row.id}`} className="dropdown-item" key={row.id}>{row.name} &amp; {row.device}</Link>
                                                             </li>
                                                         })}
 

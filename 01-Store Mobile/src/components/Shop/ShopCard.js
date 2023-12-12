@@ -75,10 +75,9 @@ const newArrivals = {
 export const BestSellingProducts = ({ update }) => {
     const { products } = useSelector((store) => store.data)
     return (
-        <div className="product-slider-second " id="slider-third">
-            <Slider  {...bestSellingProducts}>
+         <Slider  {...bestSellingProducts}>
                 {products && products.map((row) => {
-                    return <div className="item " key={row.id}>
+                    return <div className="col item" key={row.id}>
                         <div className="card card-product h-100 mb-4">
                             <div className="card-body position-relative">
 
@@ -135,7 +134,7 @@ export const BestSellingProducts = ({ update }) => {
                 })}
 
             </Slider>
-        </div>
+       
     );
 }
 
