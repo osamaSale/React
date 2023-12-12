@@ -1,12 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getAllUsers } from '../../redux/api/users';
+import { searchProducts } from '../../redux/api/products';
 import { createCart } from '../../redux/api/carts';
-
+import Slider from "react-slick";
+import { ViewProduct } from '../Modals';
 export const ShopWide = ({ update }) => {
-    const { products, carts, user } = useSelector((store) => store.data)
+    const { products, carts, user, brands, devices } = useSelector((store) => store.data)
+    const [selectedProduct, setSelectedProduct] = useState(null)
     const dispatch = useDispatch()
+    let navigate = useNavigate()
+    const bestSellingProducts = {
+        infinite: !0,
+        slidesToShow: 10,
+        slidesToScroll: 1,
+        dots: !1,
+        arrows: false,
+        speed: 1e3,
+        loop: !0,
+        adaptiveHeight: !0,
+        responsive: [{
+            breakpoint: 1400,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4
+            }
+        }, {
+            breakpoint: 990,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }],
+
+    }
     return (
 
         <section className="mt-8 mb-lg-14 mb-8">
@@ -30,6 +64,16 @@ export const ShopWide = ({ update }) => {
                                 <div className="d-flex mt-2 mt-lg-0">
                                     <div className="me-2 flex-grow-1">
 
+                                        <select className="form-select border" onClick={(e) => { dispatch(searchProducts(e.target.value)).then(res => console.log(res)) }}>
+                                            <option >Devices: 4</option>
+                                            {devices && devices.map((row) => {
+                                                return <option value={row.name} key={row.id}>{row.name}</option>
+                                            })}
+
+                                        </select>
+                                    </div>
+                                    <div className="me-2 flex-grow-1">
+
                                         <select className="form-select border">
                                             <option >Show: 50</option>
                                             <option value="10">10</option>
@@ -50,25 +94,45 @@ export const ShopWide = ({ update }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3 mt-2">
+
+
+                        <div className="row mt-8">
+                            <div className="col-12">
+                                <div className="product-slider-second " id="slider-third">
+                                    <Slider  {...bestSellingProducts}>
+                                        <button className="btn btn-primary btn-sm" onClick={() => { update() }}>All Products</button>
+                                        {brands && brands.map((row) => {
+                                            return <button key={row.id} className="btn btn-primary btn-sm"
+                                                onClick={() => { dispatch(searchProducts(row.name)) }}
+                                            >{row.name}</button>
+
+                                        })}
+
+                                    </Slider>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row g-4 row-cols-lg-5 row-cols-1 row-cols-md-3 mt-2">
 
                             {products && products.map((row) => {
-                                return <div className="col" key={row.id}>
+                                return <div className="col" key={row.id} onClick={()=>{
+                                    navigate(`/shop-single/${row.id}`)
+                                }}>
 
                                     <div className="card card-product">
                                         <div className="card-body">
-
                                             <div className="text-center position-relative">
                                                 <div className="position-absolute top-0 start-0">
                                                     <span className="badge bg-danger">{row.stock}</span>
                                                 </div>
                                                 <Link to="shop-single.html">
 
-                                                    <img src={row.image} alt="Grocery Ecommerce Template" className="mb-3 img-fluid" />
+                                                    <img src={row.image} alt="Grocery Ecommerce Template" className="mb-3 card-img-top" height={160} />
                                                 </Link>
 
                                                 <div className="card-product-action">
-                                                    <Link to="#!" className="btn-action me-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                                    <Link  className="btn-action me-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">
                                                         <i className="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
                                                     </Link>
                                                     <Link to="shop-wishlist.html" className="btn-action me-1" data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i className="bi bi-heart"></i></Link>
@@ -79,10 +143,10 @@ export const ShopWide = ({ update }) => {
                                             <div className="text-small mb-1">
                                                 <Link to="#!" className="text-decoration-none text-muted"><small>{row.device} &amp; {row.brand}</small></Link>
                                             </div>
-                                            <h2 className="fs-6"><Link to="shop-single.html" className="text-inherit text-decoration-none">{row.name}</Link></h2>
+                                            <h2 className="fs-6"><Link to="shop-single.html" className="text-inherit text-decoration-none">{`${row && row.name}`.slice(0, 15)}..</Link></h2>
                                             <div>
 
-                                                <small className="text-warning">
+                                                <small className="text-warning me-2">
                                                     <i className="bi bi-star-fill"></i>
                                                     <i className="bi bi-star-fill"></i>
                                                     <i className="bi bi-star-fill"></i>
@@ -115,7 +179,7 @@ export const ShopWide = ({ update }) => {
                                                     >
                                                         {carts && carts.find(c => c.productid === row.id) ?
                                                             <><i className="bi bi-cart-check"></i> In Cart</>
-                                                            : <><i className="bi bi-plus-lg"></i> Add Cart </>}
+                                                            : <><i className="bi bi-plus-lg"></i> Add </>}
 
                                                     </button>
                                                 </div>
@@ -154,6 +218,7 @@ export const ShopWide = ({ update }) => {
                     </div>
                 </div>
             </div>
+   {/*          <ViewProduct selectedProduct={selectedProduct} /> */}
         </section>
 
     );

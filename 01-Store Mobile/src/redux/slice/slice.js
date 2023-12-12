@@ -154,7 +154,6 @@ export const dataSlice = createSlice({
 
         builder.addCase(getAllBrands.pending, (state, action) => {
             state.loading = true
-            state.brands = []
         })
         builder.addCase(getAllBrands.fulfilled, (state, action) => {
             state.loading = false

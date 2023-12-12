@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Carousel } from 'react-responsive-carousel';
 import Modal from "@mui/joy/Modal";
 import Stack from "@mui/joy/Stack";
 import FormControl from '@mui/joy/FormControl';
@@ -14,8 +15,9 @@ import { LoginSocialGoogle } from 'reactjs-social-login'
 import { getAllUsers, login } from "../redux/api/users"
 import { createCart, deleteCart, editCart } from '../redux/api/carts';
 import { deleteWishlist } from '../redux/api/wishlist';
-export const Modals = ({ loginShow, setLoginShow, update }) => {
-    const { user, carts } = useSelector((store => store.data))
+export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => {
+    const { user, carts, products } = useSelector((store => store.data))
+    const viewProduct = products.find(p => p.id === selectedProduct && selectedProduct.id)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
@@ -371,7 +373,7 @@ export const Modals = ({ loginShow, setLoginShow, update }) => {
                                                                 quantity: 1
                                                             }
                                                             dispatch(createCart(data)).then((res) => {
-                    
+
                                                                 dispatch(getAllUsers())
                                                                 update()
                                                             })
@@ -408,7 +410,242 @@ export const Modals = ({ loginShow, setLoginShow, update }) => {
                         </div>}
                 </div>
             </div>
+
+            {/* View Product*/}
+            <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal-dialog modal-xl modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-body p-8">
+                            <div className="position-absolute top-0 end-0 me-3 mt-3">
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <Carousel showArrows={false} dynamicHeight={false} showIndicators={false}>
+                                        <div>
+                                            <img src={viewProduct && viewProduct.image} alt='' />
+                                        </div>
+                                        <div className="thumbnails-img" >
+                                            <img src={viewProduct && viewProduct.image} alt='' />
+                                        </div >
+                                        <div className="thumbnails-img">
+                                            <img src={viewProduct && viewProduct.image} alt='' />
+                                        </div>
+                                        <div className="thumbnails-img">
+                                            <img src={viewProduct && viewProduct.image} alt='' />
+                                        </div>
+
+
+                                    </Carousel>
+
+                                </div>
+                                <div className="col-lg-6">
+                                    <div className="ps-lg-8 mt-6 mt-lg-0">
+                                        <Link to="#!" className="mb-4 d-block">{viewProduct && viewProduct.name}</Link>
+                                        <h2 className="mb-1 h1">Napolitanke Ljesnjak</h2>
+                                        <div className="mb-4">
+                                            <small className="text-warning">
+                                                <i className="bi bi-star-fill"></i>
+                                                <i className="bi bi-star-fill"></i>
+                                                <i className="bi bi-star-fill"></i>
+                                                <i className="bi bi-star-fill"></i>
+                                                <i className="bi bi-star-half"></i></small><Link to="#" className="ms-2">(30 reviews)</Link>
+                                        </div>
+                                        <div className="fs-4">
+                                            <span className="fw-bold text-dark">$32</span>
+                                            <span className="text-decoration-line-through text-muted">$35</span><span><small
+                                                className="fs-6 ms-2 text-danger">26% Off</small></span>
+                                        </div>
+                                        <hr className="my-6" />
+                                        <div className="mb-4">
+                                            <button type="button" className="btn btn-outline-secondary">
+                                                250g
+                                            </button>
+                                            <button type="button" className="btn btn-outline-secondary">
+                                                500g
+                                            </button>
+                                            <button type="button" className="btn btn-outline-secondary">
+                                                1kg
+                                            </button>
+                                        </div>
+                                        <div>
+
+                                            <div className="input-group input-spinner  ">
+                                                <input type="button" value="-" className="button-minus  btn  btn-sm "
+                                                    data-field="quantity" />
+                                                <input type="number" step="1" max="10" value="1" name="quantity"
+                                                    className="quantity-field form-control-sm form-input   " />
+                                                <input type="button" value="+" className="button-plus btn btn-sm "
+                                                    data-field="quantity" />
+                                            </div>
+                                        </div>
+                                        <div className="mt-3 row justify-content-start g-2 align-items-center">
+
+                                            <div className="col-lg-4 col-md-5 col-6 d-grid">
+
+
+                                                <button type="button" className="btn btn-primary">
+                                                    <i className="feather-icon icon-shopping-bag me-2"></i>Add to
+                                                    cart
+                                                </button>
+                                            </div>
+                                            <div className="col-md-4 col-5">
+
+                                                <Link className="btn btn-light" to="#" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    aria-label="Compare"><i className="bi bi-arrow-left-right"></i></Link>
+                                                <Link className="btn btn-light" to="#!" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    aria-label="Wishlist"><i className="feather-icon icon-heart"></i></Link>
+                                            </div>
+                                        </div>
+                                        <hr className="my-6" />
+                                        <div>
+                                            <table className="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Product Code:</td>
+                                                        <td>FBB00255</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Availability:</td>
+                                                        <td>In Stock</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Type:</td>
+                                                        <td>Fruits</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Shipping:</td>
+                                                        <td>
+                                                            <small>01 day shipping.<span className="text-muted">( Free pickup
+                                                                today)</span></small>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 
+export const ViewProduct = ({ selectedProduct, update }) => {
+    return <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog modal-xl modal-dialog-centered">
+            <div className="modal-content">
+                <div className="modal-body p-8">
+                    <div className="position-absolute top-0 end-0 me-3 mt-3">
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <Carousel showArrows={false} dynamicHeight={false} showIndicators={false}>
+                                <div>
+                                    <img src={selectedProduct && selectedProduct.image} alt='' />
+                                </div>
+                                <div className="thumbnails-img" >
+                                    <img src={selectedProduct && selectedProduct.image} alt='' />
+                                </div >
+                                <div className="thumbnails-img">
+                                    <img src={selectedProduct && selectedProduct.image} alt='' />
+                                </div>
+                                <div className="thumbnails-img">
+                                    <img src={selectedProduct && selectedProduct.image} alt='' />
+                                </div>
+
+
+                            </Carousel>
+
+                        </div>
+                        <div className="col-lg-6">
+                            <div className="ps-lg-8 mt-6 mt-lg-0">
+                                <Link to="#!" className="mb-4 d-block">{selectedProduct && selectedProduct.name}</Link>
+                                <h2 className="mb-1 h1">Napolitanke Ljesnjak</h2>
+                                <div className="mb-4">
+                                    <small className="text-warning">
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-fill"></i>
+                                        <i className="bi bi-star-half"></i></small><Link to="#" className="ms-2">(30 reviews)</Link>
+                                </div>
+                                <div className="fs-4">
+                                    <span className="fw-bold text-dark">$32</span>
+                                    <span className="text-decoration-line-through text-muted">$35</span><span><small
+                                        className="fs-6 ms-2 text-danger">26% Off</small></span>
+                                </div>
+                                <hr className="my-6" />
+                                <div className="mb-4">
+                                    <button type="button" className="btn btn-outline-secondary">
+                                        250g
+                                    </button>
+                                    <button type="button" className="btn btn-outline-secondary">
+                                        500g
+                                    </button>
+                                    <button type="button" className="btn btn-outline-secondary">
+                                        1kg
+                                    </button>
+                                </div>
+                                <div>
+
+                                    <div className="input-group input-spinner  ">
+                                   
+                                    </div>
+                                </div>
+                                <div className="mt-3 row justify-content-start g-2 align-items-center">
+
+                                    <div className="col-lg-4 col-md-5 col-6 d-grid">
+
+
+                                        <button type="button" className="btn btn-primary">
+                                            <i className="feather-icon icon-shopping-bag me-2"></i>Add to
+                                            cart
+                                        </button>
+                                    </div>
+                                    <div className="col-md-4 col-5">
+
+                                        <Link className="btn btn-light" to="#" data-bs-toggle="tooltip" data-bs-html="true"
+                                            aria-label="Compare"><i className="bi bi-arrow-left-right"></i></Link>
+                                        <Link className="btn btn-light" to="#!" data-bs-toggle="tooltip" data-bs-html="true"
+                                            aria-label="Wishlist"><i className="feather-icon icon-heart"></i></Link>
+                                    </div>
+                                </div>
+                                <hr className="my-6" />
+                                <div>
+                                    <table className="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <td>Product Code:</td>
+                                                <td>FBB00255</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Availability:</td>
+                                                <td>In Stock</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Type:</td>
+                                                <td>Fruits</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Shipping:</td>
+                                                <td>
+                                                    <small>01 day shipping.<span className="text-muted">( Free pickup
+                                                        today)</span></small>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -4,7 +4,7 @@ import { getAllUsers } from '../../redux/api/users';
 import { deleteCart, editCart } from '../../redux/api/carts';
 import { Link } from 'react-router-dom';
 
-export const CartsShop = ({ update }) => {
+export const ShopCarts = ({ update }) => {
     const { user } = useSelector((store => store.data))
     const getTotalPrice = () => {
         let totalPrice = 0;
