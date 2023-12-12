@@ -26,7 +26,7 @@ export const Navbar = ({ update }) => {
             <div className="container-fluid">
                 <div className="row align-items-center pt-6 pb-4 mt-4 mt-lg-0">
                     <div className="col-xl-2 col-md-3 mb-4 mb-md-0 col-12 text-center text-md-start">
-                        <img src="assets/images/logo/storemobilelogo.svg" alt="eCommerce HTML Template" />
+                        <img src="./assets/images/logo/storemobilelogo.svg" alt="eCommerce HTML Template" />
                     </div>
                     <div className="col-xxl-6 col-xl-5 col-lg-6 col-md-9">
                         <div className="input-group">
@@ -162,7 +162,7 @@ export const Navbar = ({ update }) => {
                     <div className="offcanvas offcanvas-start" tabIndex="-1" id="navbar-default" aria-labelledby="navbar-defaultLabel">
                         <div className="offcanvas-header pb-1">
                             <Link to="/">
-                                <img src="./assets/images/logo/freshcart-logo.svg" alt="eCommerce HTML Template" />
+                                <img src="./assets/images/logo/storemobilelogo.svg" alt="eCommerce HTML Template" />
                             </Link>
                             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>

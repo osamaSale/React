@@ -8,7 +8,6 @@ export const Home = ({ update }) => {
     const { products } = useSelector((store) => store.data)
     const [selectedBrand, setSelectedBrand] = useState("")
     const brand = (products || []).filter((b) => b.brand === selectedBrand)
-    console.log(selectedBrand)
     return (
         <div>
             <section className="mt-lg-12 mb-lg-14 mb-8 mt-8">

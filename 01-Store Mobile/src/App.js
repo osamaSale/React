@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './App.css'
 import { ToastContainer } from 'react-toastify';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -23,6 +24,7 @@ import { ShopCarts } from './components/Shop/ShopCarts'
 import { WishlistShop } from './components/Shop/WishlistShop';
 import { ShopWide } from './components/Shop/ShopWide';
 import { ShopSingle } from './components/Shop/ShopSingle';
+import { getAllComments } from './redux/api/comments';
 
 function App() {
   const dispatch = useDispatch()
@@ -39,10 +41,11 @@ function App() {
     dispatch(getAllWishlist())
     dispatch(getAllCarts())
     dispatch(getAllOrders())
+    dispatch(getAllComments())
   }
 
   return (
-    <div>
+    <div className=''>
       <ToastContainer />
       <Navbar update={update} />
       <main>

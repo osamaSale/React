@@ -11,18 +11,26 @@ export const WishlistShop = ({ update }) => {
     return (
         <section className="mt-8 mb-14">
             <div className="container-fluid">
-                <div className="d-flex justify-content-between mt-4">
+            <div className="row mt-8">
+                    <div className="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb mb-0">
+                                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                <li className="breadcrumb-item"><Link to="/shop-wide">Shop Wide</Link></li>
+
+                                <li className="breadcrumb-item active" aria-current="page">Shop Wishlist</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div className="d-flex justify-content-between mt-8">
                     <div className="card py-1 border-0 mb-8">
                         <div>
                             <h2 className="fw-bold">My Wishlist</h2>
                             <p className="mb-0">There are {user && user.wishlist && user.wishlist.length > 0 ? user && user.carts && user.carts.length : 0} in this wishlist.</p>
                         </div>
                     </div>
-                    <div className="card py-1 border-0 mb-8">
-                        <div>
-                            <Link to="#!" className="btn btn-primary">Continue Shopping</Link>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div className="row">
                     <div className="col-lg-12">
@@ -98,6 +106,12 @@ export const WishlistShop = ({ update }) => {
 
                                 </tbody>
                             </table>
+                            {!user && <div className="alert alert-danger text-center p-2" role="alert">
+                                You must register now. Start <Link className="alert-link text-info" to={'/login'}>checkout now !</Link>
+                            </div>}
+                            {user && user.wishlist && user.wishlist.length <= 0 && <div className="alert alert-primary text-center p-2" role="alert">
+                                Carts is Empty  : <Link className="alert-link text-info" to={'/shop'}>Continue Shopping</Link>
+                            </div>}
                         </div>
                     </div>
                 </div>

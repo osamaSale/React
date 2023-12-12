@@ -535,6 +535,7 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
 }
 
 export const ViewProduct = ({ selectedProduct, update }) => {
+    console.log(selectedProduct)
     return <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-xl modal-dialog-centered">
             <div className="modal-content">

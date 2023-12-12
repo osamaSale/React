@@ -17,16 +17,23 @@ export const ShopCarts = ({ update }) => {
     return (
         <section className="mb-lg-14 mb-8 mt-8">
             <div className="container-fluid">
-                <div className="d-flex justify-content-between mt-4">
+                <div className="row mt-8">
+                    <div className="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb mb-0">
+                                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                <li className="breadcrumb-item"><Link to="/shop-wide">Shop Wide</Link></li>
+
+                                <li className="breadcrumb-item active" aria-current="page">Shop Cart</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div className="d-flex justify-content-between mt-8">
                     <div className="card py-1 border-0 mb-8">
                         <div>
                             <h2 className="fw-bold">Shop Cart</h2>
                             <p className="mb-0">Products in {user && user.carts && user.carts.length > 0 ? user && user.carts && user.carts.length : 0}</p>
-                        </div>
-                    </div>
-                    <div className="card py-1 border-0 mb-8">
-                        <div>
-                            <Link to="#!" className="btn btn-primary">Continue Shopping</Link>
                         </div>
                     </div>
                 </div>
@@ -36,10 +43,10 @@ export const ShopCarts = ({ update }) => {
                     <div className="col-lg-8 col-md-7">
                         <div className="py-3">
                             {!user && <div className="alert alert-danger text-center p-2" role="alert">
-                                You must register now. Start <Link className="alert-link text-info" to={'/shop'}>checkout now !</Link>
+                                You must register now. Start <Link className="alert-link text-info" to={'/login'}>checkout now !</Link>
                             </div>}
                             {user && user.carts && user.carts.length <= 0 && <div className="alert alert-primary text-center p-2" role="alert">
-                                Carts is Empty  : <Link className="alert-link text-info" to={'/login'}>Continue Shopping</Link>
+                                Carts is Empty  : <Link className="alert-link text-info" to={'/shop'}>Continue Shopping</Link>
                             </div>}
                             <ul className="list-group list-group-flush">
                                 {user && user.carts.map((row) => {
@@ -194,23 +201,23 @@ export const ShopCarts = ({ update }) => {
 
                                 <div className="mt-8 p-0">
                                     <h2 className="h5 mb-3">
-                                    <i className="bi bi-cash me-2"></i>We Accept
+                                        <i className="bi bi-cash me-2"></i>We Accept
                                     </h2>
                                     <div className=" d-flex justify-content-between">
-                                        <img  
+                                        <img
                                             src="assets/images/payment/amazonpay.svg"
                                             alt="Visa" />
-                                        <img  
+                                        <img
                                             src="assets/images/payment/american-express.svg"
                                             alt="American Express" />
-                                        <img  
-                                          src="assets/images/payment/mastercard.svg"
+                                        <img
+                                            src="assets/images/payment/mastercard.svg"
                                             alt="Mastercard" />
-                                        <img 
-                                           src="assets/images/payment/paypal.svg"
+                                        <img
+                                            src="assets/images/payment/paypal.svg"
                                             alt="PayPal acceptance mark" />
-                                        <img 
-                                           src="assets/images/payment/visa.svg"
+                                        <img
+                                            src="assets/images/payment/visa.svg"
                                             alt="PayPal acceptance mark" />
                                     </div>
                                 </div>

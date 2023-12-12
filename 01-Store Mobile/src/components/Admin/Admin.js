@@ -11,6 +11,7 @@ import { News } from './Tables/News';
 import { Wishlist } from './Tables/Wishlist';
 import { Carts } from './Tables/Carts';
 import { Orders } from './Tables/Orders';
+import { Comments } from './Tables/Comments';
 
 export const Admin = ({ update }) => {
     const [toggleState, settoggleState] = useState(1)
@@ -30,7 +31,8 @@ export const Admin = ({ update }) => {
                                                 toggleState === 8 ? <Wishlist update={update} /> :
                                                     toggleState === 9 ? <Carts update={update} /> :
                                                         toggleState === 10 ? <Orders update={update} /> :
-                                                            ""}
+                                                            toggleState === 11 ? <Comments update={update} /> :
+                                                                ""}
                 </main>
             </div>
         </div>

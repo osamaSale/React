@@ -9,6 +9,7 @@ import { createNews, deleteNews, editNews, getAllNews, searchNews } from "../api
 import { createWishlist, deleteWishlist, editWishlist, getAllWishlist, searchWishlist } from "../api/wishlist";
 import { createCart, deleteCart, editCart, getAllCarts, searchCarts } from "../api/carts";
 import { createOrder, editOrder, getAllOrders, deleteOrder } from "../api/orders";
+import { createComments, deleteComments, editComments, getAllComments, searchComments } from "../api/comments";
 
 const initialState = {
     loading: false,
@@ -21,6 +22,7 @@ const initialState = {
     wishlist: [],
     carts: [],
     orders: [],
+    comments: [],
     user: null,
 }
 
@@ -45,13 +47,13 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
             let user = JSON.parse(localStorage.getItem('user'));
-            
+
             if (user) {
                 state.user = state.users?.find((u) => u.id === user.id)
             } else {
                 state.user = null
             }
-            
+
             state.users = action.payload.result
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
@@ -160,7 +162,7 @@ export const dataSlice = createSlice({
             state.brands = action.payload.result
         })
         builder.addCase(getAllBrands.rejected, (state, action) => {
-            
+
             state.loading = false
         })
 
@@ -249,7 +251,7 @@ export const dataSlice = createSlice({
             state.devices = action.payload.result
         })
         builder.addCase(getAllDevices.rejected, (state, action) => {
-           
+
             state.loading = false
         })
 
@@ -722,7 +724,7 @@ export const dataSlice = createSlice({
         builder.addCase(editCart.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
-               /*  toast.error(massage) */
+                /*  toast.error(massage) */
             } else {
                 toast.error(massage)
             }
@@ -758,9 +760,9 @@ export const dataSlice = createSlice({
         builder.addCase(searchCarts.fulfilled, (state, action) => {
             let { status } = action.payload
             if (status === 200) {
-                state.wishlist = action.payload.result
+                state.carts = action.payload.result
             } else {
-                state.wishlist = [...state.wishlist]
+                state.carts = [...state.carts]
             }
             state.loading = false
         })
@@ -820,7 +822,7 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-        // Delete Carts
+        // Delete Order
 
         builder.addCase(deleteOrder.pending, (state, action) => {
             state.loading = true
@@ -835,6 +837,94 @@ export const dataSlice = createSlice({
             state.loading = false
         })
         builder.addCase(deleteOrder.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        /* ===================== comments ======================== */
+
+         // Get All comments
+
+         builder.addCase(getAllComments.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(getAllComments.fulfilled, (state, action) => {
+            state.loading = false
+            state.comments = action.payload.result
+        })
+        builder.addCase(getAllComments.rejected, (state, action) => {
+
+            state.loading = false
+        })
+
+        // Create comments
+
+        builder.addCase(createComments.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(createComments.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(createComments.rejected, (state, action) => {
+            state.loading = false
+        })
+
+         // Edit comments 
+
+         builder.addCase(editComments.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(editComments.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(editComments.rejected, (state, action) => {
+            state.loading = false
+        })
+
+         // Delete comments
+
+         builder.addCase(deleteComments.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(deleteComments.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(deleteComments.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Search comments
+
+        builder.addCase(searchComments.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchComments.fulfilled, (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.comments = action.payload.result
+            } else {
+                state.comments = [...state.comments]
+            }
+            state.loading = false
+        })
+        builder.addCase(searchComments.rejected, (state, action) => {
             state.loading = false
         })
     }

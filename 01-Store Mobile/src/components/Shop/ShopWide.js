@@ -45,7 +45,17 @@ export const ShopWide = ({ update }) => {
 
         <section className="mt-8 mb-lg-14 mb-8">
             <div className="container-fluid">
-                <div className="row">
+                <div className="row mt-8">
+                    <div className="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb mb-0">
+                                <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                <li className="breadcrumb-item active" aria-current="page">Shop Wide</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div className="row mt-8">
                     <div className="col-lg-12">
                         <div className="d-lg-flex justify-content-between align-items-center">
                             <div>
@@ -116,9 +126,7 @@ export const ShopWide = ({ update }) => {
                         <div className="row g-4 row-cols-lg-5 row-cols-1 row-cols-md-3 mt-2">
 
                             {products && products.map((row) => {
-                                return <div className="col" key={row.id} onClick={()=>{
-                                    navigate(`/shop-single/${row.id}`)
-                                }}>
+                                return <div className="col" key={row.id} >
 
                                     <div className="card card-product">
                                         <div className="card-body">
@@ -126,13 +134,13 @@ export const ShopWide = ({ update }) => {
                                                 <div className="position-absolute top-0 start-0">
                                                     <span className="badge bg-danger">{row.stock}</span>
                                                 </div>
-                                                <Link to="shop-single.html">
+                                                <Link to={`/shop-single/${row.id}`}>
 
                                                     <img src={row.image} alt="Grocery Ecommerce Template" className="mb-3 card-img-top" height={160} />
                                                 </Link>
 
                                                 <div className="card-product-action">
-                                                    <Link  className="btn-action me-1" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                                                    <Link className="btn-action me-1" data-bs-toggle="modal" data-bs-target="#quickViewModal" onClick={() => { setSelectedProduct(row) }}>
                                                         <i className="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true" title="Quick View"></i>
                                                     </Link>
                                                     <Link to="shop-wishlist.html" className="btn-action me-1" data-bs-toggle="tooltip" data-bs-html="true" title="Wishlist"><i className="bi bi-heart"></i></Link>
@@ -164,20 +172,27 @@ export const ShopWide = ({ update }) => {
 
                                                 <div>
                                                     <button className="btn btn-primary btn-sm"
-                                                        disabled={carts && carts.find(up => (up.productid === row.id))}
+                                                        disabled={carts && carts.find(c => c.productid === row.id) && user && user.carts.find((c) => c.productid === row.id)}
                                                         onClick={() => {
-                                                            let data = {
-                                                                userId: user.id,
-                                                                productid: row.id,
-                                                                quantity: 1
+                                                            if (!user) {
+                                                                if (window.confirm("You Must login")) {
+                                                                    navigate('/login')
+                                                                }
+                                                            } else {
+                                                                let data = {
+                                                                    userId: user.id,
+                                                                    productid: row.id,
+                                                                    quantity: 1
+                                                                }
+                                                                dispatch(createCart(data)).then((res) => {
+                                                                    dispatch(getAllUsers())
+                                                                    update()
+                                                                })
+
                                                             }
-                                                            dispatch(createCart(data)).then((res) => {
-                                                                dispatch(getAllUsers())
-                                                                update()
-                                                            })
                                                         }}
                                                     >
-                                                        {carts && carts.find(c => c.productid === row.id) ?
+                                                        {carts && carts.find(c => c.productid === row.id) && user && user.carts.find((c) => c.productid === row.id) ?
                                                             <><i className="bi bi-cart-check"></i> In Cart</>
                                                             : <><i className="bi bi-plus-lg"></i> Add </>}
 
@@ -218,7 +233,6 @@ export const ShopWide = ({ update }) => {
                     </div>
                 </div>
             </div>
-   {/*          <ViewProduct selectedProduct={selectedProduct} /> */}
         </section>
 
     );
