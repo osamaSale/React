@@ -1,5 +1,6 @@
 import Modal from '@mui/joy/Modal';
 import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
 import React from 'react';
 
 export const Products = ({ openOrderProduct, setOpenOrderProduct, orders }) => {
@@ -60,10 +61,25 @@ export const Products = ({ openOrderProduct, setOpenOrderProduct, orders }) => {
                                 </tr>
                             })}
                         </tbody>
-                      
+
                         <caption className='text-end'>Result : ${getTotalPrice()}</caption>
                     </table>
                 </div>
+                <Stack
+                    direction="row-reverse"
+                    justifyContent="flex-start"
+                    alignItems="flex-end"
+                    spacing={2}
+                >
+                    <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                            setOpenOrderProduct(false);
+                        }}
+                    >
+                        Close
+                    </button>
+                </Stack>
             </Sheet>
         </Modal>
     );

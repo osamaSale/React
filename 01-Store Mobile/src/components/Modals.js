@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import Modal from "@mui/joy/Modal";
 import Stack from "@mui/joy/Stack";
@@ -14,16 +14,17 @@ import { useDispatch, useSelector } from "react-redux"
 import { LoginSocialGoogle } from 'reactjs-social-login'
 import { getAllUsers, login } from "../redux/api/users"
 import { createCart, deleteCart, editCart } from '../redux/api/carts';
-import { deleteWishlist } from '../redux/api/wishlist';
-export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => {
-    const { user, carts, products } = useSelector((store => store.data))
-    const viewProduct = products.find(p => p.id === selectedProduct && selectedProduct.id)
+import { createWishlist, deleteWishlist } from '../redux/api/wishlist';
+import { singleProduct } from '../redux/api/products';
+export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
+    const { user, carts } = useSelector((store => store.data))
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation();
     const loginGoogle = async ({ provider, data }) => {
         let data1 = {
             name: data.name,
@@ -70,7 +71,7 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
 
 
                     <div className=" w-25 ms-2 py-4  icon-hover">
-                        <Link to="#" className="text-inherit" /* onClick={checkMode} */>
+                        <Link to="#" className="text-inherit" onClick={checkMode} >
                             <div className="text-center">
                                 <div className="position-relative d-inline-block">
                                     <i className="bi bi-moon fs-4"></i>
@@ -205,9 +206,7 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
                 <div className="offcanvas-body">
                     {user &&
                         <div className="">
-                            {!user && <div className="alert alert-danger p-2" role="alert">
-                                You must register now. Start <Link className="alert-link" onClick={() => setLoginShow(true)}>checkout now !</Link>
-                            </div>}
+
 
                             <div className="d-flex justify-content-between mb-4">
                                 <Link to="#!" className="btn btn-primary btn-sm"> Make Purchase </Link>
@@ -313,6 +312,12 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
 
 
                         </div>}
+                    {!user && <div className="alert alert-danger text-center p-2" role="alert">
+                        You must register now. Start <Link className="alert-link text-info" to={'/login'}>checkout now !</Link>
+                    </div>}
+                    {user && user.carts && user.carts.length <= 0 && <div className="alert alert-primary text-center p-2" role="alert">
+                        Carts is Empty  : <Link className="alert-link text-info" to={'/shop'}>Continue Shopping</Link>
+                    </div>}
                 </div>
             </div>
             {/* Wishlist */}
@@ -327,11 +332,6 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
                 <div className="offcanvas-body">
                     {user &&
                         <div className="">
-                            {!user && <div className="alert alert-danger p-2" role="alert">
-                                You must register now. Start <Link className="alert-link" onClick={() => setLoginShow(true)}>checkout now !</Link>
-                            </div>}
-
-
                             <ul className="list-group list-group-flush">
                                 {user && user.wishlist.map((row) => {
                                     return <li className="list-group-item py-3 ps-0 border-top border-bottom" key={row.id}>
@@ -408,123 +408,171 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
 
 
                         </div>}
+                    {!user && <div className="alert alert-danger text-center p-2" role="alert">
+                        You must register now. Start <Link className="alert-link text-info" to={'/login'}>checkout now !</Link>
+                    </div>}
+                    {user && user.wishlist && user.wishlist.length <= 0 && <div className="alert alert-primary text-center p-2" role="alert">
+                        Carts is Empty  : <Link className="alert-link text-info" to={'/shop'}>Continue Shopping</Link>
+                    </div>}
                 </div>
             </div>
 
-            {/* View Product*/}
-            <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
-                <div className="modal-dialog modal-xl modal-dialog-centered">
+            {/* Navbar Account */}
+            <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasAccount" aria-labelledby="offcanvasAccountLabel">
+
+                <div className="offcanvas-header">
+                    <h5 className="offcanvas-title" id="offcanvasAccountLabel">Offcanvas</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body">
+                    <ul className="nav flex-column nav-pills nav-pills-dark">
+
+                        <li className="nav-item">
+                            <Link className={location.pathname === "/orders" ? "nav-link active" : "nav-link"} to="/orders">
+                                <i className="bi bi-bag-dash me-2"></i>
+                                Your Orders
+
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link className={location.pathname === "/setting" ? "nav-link active" : "nav-link"} to="/setting"
+                            >
+                                <i className="bi bi-gear me-2"></i>
+                                Settings
+
+                            </Link>
+                        </li>
+
+
+                        <li className="nav-item">
+                            <Link className={location.pathname === "/payment" ? "nav-link active" : "nav-link"} to="/payment"
+                                >
+                                <i className="bi bi-credit-card me-2"></i>
+                                Payment Method
+
+                            </Link>
+
+                        </li>
+
+
+                    </ul>
+                    <hr className="my-6 border" />
+                    <div>
+
+                        <ul className="nav flex-column nav-pills nav-pills-dark">
+
+                            <li className="nav-item">
+                                <Link className="nav-link" href="../index.html">
+                                    <i className="feather-icon icon-log-out me-2"></i>
+                                    Log out
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {/* Payment Account */}
+            <div className="modal fade" id="paymentModal" tabIndex="-1" aria-labelledby="paymentModalLabel" style={{ display: "none" }} aria-hidden="true">
+                <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div className="modal-content">
-                        <div className="modal-body p-8">
-                            <div className="position-absolute top-0 end-0 me-3 mt-3">
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <Carousel showArrows={false} dynamicHeight={false} showIndicators={false}>
-                                        <div>
-                                            <img src={viewProduct && viewProduct.image} alt='' />
-                                        </div>
-                                        <div className="thumbnails-img" >
-                                            <img src={viewProduct && viewProduct.image} alt='' />
-                                        </div >
-                                        <div className="thumbnails-img">
-                                            <img src={viewProduct && viewProduct.image} alt='' />
-                                        </div>
-                                        <div className="thumbnails-img">
-                                            <img src={viewProduct && viewProduct.image} alt='' />
-                                        </div>
 
+                        <div className="modal-header align-items-center d-flex">
+                            <h5 className="modal-title" id="paymentModalLabel">Add New Payment Method</h5>
 
-                                    </Carousel>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                                </div>
-                                <div className="col-lg-6">
-                                    <div className="ps-lg-8 mt-6 mt-lg-0">
-                                        <Link to="#!" className="mb-4 d-block">{viewProduct && viewProduct.name}</Link>
-                                        <h2 className="mb-1 h1">Napolitanke Ljesnjak</h2>
-                                        <div className="mb-4">
-                                            <small className="text-warning">
-                                                <i className="bi bi-star-fill"></i>
-                                                <i className="bi bi-star-fill"></i>
-                                                <i className="bi bi-star-fill"></i>
-                                                <i className="bi bi-star-fill"></i>
-                                                <i className="bi bi-star-half"></i></small><Link to="#" className="ms-2">(30 reviews)</Link>
-                                        </div>
-                                        <div className="fs-4">
-                                            <span className="fw-bold text-dark">$32</span>
-                                            <span className="text-decoration-line-through text-muted">$35</span><span><small
-                                                className="fs-6 ms-2 text-danger">26% Off</small></span>
-                                        </div>
-                                        <hr className="my-6" />
-                                        <div className="mb-4">
-                                            <button type="button" className="btn btn-outline-secondary">
-                                                250g
-                                            </button>
-                                            <button type="button" className="btn btn-outline-secondary">
-                                                500g
-                                            </button>
-                                            <button type="button" className="btn btn-outline-secondary">
-                                                1kg
-                                            </button>
-                                        </div>
-                                        <div>
+                        <div className="modal-body">
+                            <div>
 
-                                            <div className="input-group input-spinner  ">
-                                                <input type="button" value="-" className="button-minus  btn  btn-sm "
-                                                    data-field="quantity" />
-                                                <input type="number" step="1" max="10" value="1" name="quantity"
-                                                    className="quantity-field form-control-sm form-input   " />
-                                                <input type="button" value="+" className="button-plus btn btn-sm "
-                                                    data-field="quantity" />
+                                <form className="row mb-4 needs-validation" noValidate="">
+                                    <div className="mb-3 col-12 col-md-12 mb-4">
+                                        <h5 className="mb-3">Credit / Debit card</h5>
+
+                                        <div className="d-inline-flex">
+                                            <div className="form-check me-2">
+                                                <input type="radio" className="form-check-input" id="paymentRadioOne" name="paymentRadioOne" required="" />
+                                                <label className="form-check-label" htmlFor="paymentRadioOne"><img src="../assets/images/payment/american-express.svg" alt="" /></label>
                                             </div>
-                                        </div>
-                                        <div className="mt-3 row justify-content-start g-2 align-items-center">
 
-                                            <div className="col-lg-4 col-md-5 col-6 d-grid">
-
-
-                                                <button type="button" className="btn btn-primary">
-                                                    <i className="feather-icon icon-shopping-bag me-2"></i>Add to
-                                                    cart
-                                                </button>
+                                            <div className="form-check me-2">
+                                                <input type="radio" id="paymentRadioTwo" name="paymentRadioOne" className="form-check-input border" />
+                                                <label className="form-check-label" htmlFor="paymentRadioTwo"><img src="../assets/images/payment/mastercard.svg" alt="" /></label>
                                             </div>
-                                            <div className="col-md-4 col-5">
 
-                                                <Link className="btn btn-light" to="#" data-bs-toggle="tooltip" data-bs-html="true"
-                                                    aria-label="Compare"><i className="bi bi-arrow-left-right"></i></Link>
-                                                <Link className="btn btn-light" to="#!" data-bs-toggle="tooltip" data-bs-html="true"
-                                                    aria-label="Wishlist"><i className="feather-icon icon-heart"></i></Link>
+
+                                            <div className="form-check">
+                                                <input type="radio" id="paymentRadioFour" name="paymentRadioOne" className="form-check-input border" />
+                                                <label className="form-check-label" htmlFor="paymentRadioFour"><img src="../assets/images/payment/visa.svg" alt="" /></label>
                                             </div>
-                                        </div>
-                                        <hr className="my-6" />
-                                        <div>
-                                            <table className="table table-borderless">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Product Code:</td>
-                                                        <td>FBB00255</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Availability:</td>
-                                                        <td>In Stock</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Type:</td>
-                                                        <td>Fruits</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Shipping:</td>
-                                                        <td>
-                                                            <small>01 day shipping.<span className="text-muted">( Free pickup
-                                                                today)</span></small>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
-                                </div>
+                                    <div className="mb-3 col-12 col-md-4">
+                                        <label htmlFor="nameoncard" className="form-label">Name on card</label>
+                                        <input id="nameoncard" type="text" className="form-control border" name="nameoncard" placeholder="Name" required="" />
+                                        <div className="invalid-feedback">Please enter name.</div>
+                                    </div>
+
+                                    <div className="mb-3 col-12 col-md-4">
+                                        <label htmlFor="validationCustomMonth" className="form-label">Month</label>
+                                        <select className="form-select border" id="validationCustomMonth" required="">
+                                            <option value="">Month</option>
+                                            <option value="Jan">Jan</option>
+                                            <option value="Feb">Feb</option>
+                                            <option value="Mar">Mar</option>
+                                            <option value="Apr">Apr</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="Aug">Aug</option>
+                                            <option value="Sep">Sep</option>
+                                            <option value="Oct">Oct</option>
+                                            <option value="Nov">Nov</option>
+                                            <option value="Dec">Dec</option>
+                                        </select>
+                                        <div className="invalid-feedback">Please select month.</div>
+                                    </div>
+
+                                    <div className="mb-3 col-12 col-md-4">
+                                        <label htmlFor="validationCustomYear" className="form-label">Year</label>
+                                        <select className="form-select border" id="validationCustomYear" required="">
+                                            <option value="">Year</option>
+                                            <option value="June">2022</option>
+                                            <option value="July">2023</option>
+                                            <option value="August">2024</option>
+                                            <option value="Sep">2025</option>
+                                            <option value="Oct">2026</option>
+                                        </select>
+                                        <div className="invalid-feedback">Please select year.</div>
+                                    </div>
+
+                                    <div className="mb-3 col-md-8 col-12">
+                                        <label htmlFor="card-mask" className="form-label">Card Number</label>
+                                        <input type="text" className="form-control border" id="card-mask" placeholder="xxxx-xxxx-xxxx-xxxx" required="" />
+                                        <div className="invalid-feedback">Please enter card number.</div>
+                                    </div>
+
+                                    <div className="mb-3 col-md-4 col-12">
+                                        <div className="mb-3">
+                                            <label htmlFor="digit-mask" className="form-label">
+                                                CVV Code
+                                                <i className="fe fe-help-circle ms-1" data-bs-toggle="tooltip" data-placement="top" title="A 3 - digit number, typically printed on the back of a card."></i>
+                                            </label>
+                                            <input type="password" className="form-control border" name="cvv" id="digit-mask" placeholder="xxx" maxLength="3" required="" />
+                                            <div className="invalid-feedback">Please enter cvv.</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md-6 col-12">
+                                        <button className="btn btn-primary me-2" type="submit">Add New Card</button>
+                                        <button className="btn btn-danger" type="submit" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                                <span>
+                                    <strong>Note:</strong>
+                                    that you can later remove your card at the account setting page.
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -535,7 +583,23 @@ export const Modals = ({ loginShow, setLoginShow, update, selectedProduct }) => 
 }
 
 export const ViewProduct = ({ selectedProduct, update }) => {
-    console.log(selectedProduct)
+    const { products, carts, user, wishlist } = useSelector((store) => store.data)
+    const [selected, setSelected] = useState(null)
+    const [quantity, setQuantity] = useState(1)
+    const [color, setColor] = useState(selectedProduct ? selectedProduct.color : "");
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(singleProduct(selectedProduct && selectedProduct.id)).then((res) => {
+            setSelected(res.payload && res.payload.result && res.payload.result[0])
+        });
+    }, [dispatch, selectedProduct]);
+
+    const image = products.filter((e) =>
+        e.id !== selected?.id &&
+        e.brand === selected?.brand
+        && e.device === selected?.device
+    )
     return <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-xl modal-dialog-centered">
             <div className="modal-content">
@@ -544,103 +608,146 @@ export const ViewProduct = ({ selectedProduct, update }) => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="row">
-                        <div className="col-lg-6">
-                            <Carousel showArrows={false} dynamicHeight={false} showIndicators={false}>
-                                <div>
-                                    <img src={selectedProduct && selectedProduct.image} alt='' />
+                        <div className="col-md-6">
+                            <Carousel showArrows={false} dynamicHeight={false} showIndicators={false} className='product'>
+                                <div >
+                                    <img src={selected && selected.image} alt='' />
                                 </div>
-                                <div className="thumbnails-img" >
-                                    <img src={selectedProduct && selectedProduct.image} alt='' />
-                                </div >
-                                <div className="thumbnails-img">
-                                    <img src={selectedProduct && selectedProduct.image} alt='' />
-                                </div>
-                                <div className="thumbnails-img">
-                                    <img src={selectedProduct && selectedProduct.image} alt='' />
-                                </div>
-
+                                {image && image.map((row) => {
+                                    return <div className="thumbnails-img" key={row && row.id}>
+                                        <img src={row && row.image} alt='' />
+                                    </div >
+                                })}
 
                             </Carousel>
-
                         </div>
-                        <div className="col-lg-6">
-                            <div className="ps-lg-8 mt-6 mt-lg-0">
-                                <Link to="#!" className="mb-4 d-block">{selectedProduct && selectedProduct.name}</Link>
-                                <h2 className="mb-1 h1">Napolitanke Ljesnjak</h2>
+                        <div className="col-md-6">
+                            <div className="ps-lg-10 mt-6 mt-md-0">
+                                <h1 className="mb-4">{selected && selected.name}</h1>
+                                <Link to="#!" className="mb-4 d-block">{selected && selected.brand} && {selected && selected.device}</Link>
                                 <div className="mb-4">
-                                    <small className="text-warning">
+                                    <small className="text-warning me-2">
                                         <i className="bi bi-star-fill"></i>
                                         <i className="bi bi-star-fill"></i>
                                         <i className="bi bi-star-fill"></i>
                                         <i className="bi bi-star-fill"></i>
-                                        <i className="bi bi-star-half"></i></small><Link to="#" className="ms-2">(30 reviews)</Link>
+                                        <i className="bi bi-star-half"></i>
+                                    </small>
+                                    <span className="text-muted small">4.5(149)</span>
+                                    <Link to="#" className="ms-2">(30 reviews)</Link>
                                 </div>
-                                <div className="fs-4">
-                                    <span className="fw-bold text-dark">$32</span>
-                                    <span className="text-decoration-line-through text-muted">$35</span><span><small
-                                        className="fs-6 ms-2 text-danger">26% Off</small></span>
-                                </div>
-                                <hr className="my-6" />
-                                <div className="mb-4">
-                                    <button type="button" className="btn btn-outline-secondary">
-                                        250g
-                                    </button>
-                                    <button type="button" className="btn btn-outline-secondary">
-                                        500g
-                                    </button>
-                                    <button type="button" className="btn btn-outline-secondary">
-                                        1kg
-                                    </button>
-                                </div>
-                                <div>
 
-                                    <div className="input-group input-spinner  ">
-                                   
+                                <div className="fs-4 mb-4">
+                                    <span className="fw-bold me-2">${selected && selected.priceDiscount}</span>
+                                    <span className="text-decoration-line-through text-muted me-2">${selected && selected.price}</span>
+                                    <span><small className="fs-6 ms-2 text-danger">26% Off</small></span>
+                                </div>
+
+                                <p className="mb-1">{selected && selected.description}</p>
+
+                                <hr className="my-6 border" />
+                                <div>
+                                    <div className="row">
+                                        <dt className="col-3">Availability:</dt>
+                                        <dd className="col-9">{selected && selected.stock}</dd>
+
+                                        <dt className="col-3">Color</dt>
+                                        <dd className="col-9 text-capitalize">{selected && selected.color}</dd>
+
+                                        <dt className="col-3">Brand</dt>
+                                        <dd className="col-9">{selected && selected.brand}</dd>
+                                    </div>
+
+                                </div>
+                                <hr className="my-6 border" />
+                                <div className="row">
+                                    <div className="col-md-4 col-6">
+                                        <label className="mb-1">Color</label>
+                                        <select name='color' className="form-select border "
+                                            onChange={(e) => setColor(e.target.value)}
+                                            value={color}
+                                        >
+                                            <option >Select</option>
+                                            <option value={"black"}>Black</option>
+                                            <option value={"yellow"}>Yellow</option>
+                                            <option value={"red"}>Red</option>
+                                            <option value={"silver"}>Silver</option>
+                                            <option value={"blue"}>Blue</option>
+                                            <option value={"green"}>Green</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-md-4 col-6 mb-3">
+                                        <label className="mb-1 d-block">Quantity</label>
+                                        <div className="input-group mb-2" >
+                                            <button className="btn border" type="button"
+                                                disabled={quantity > 1 ? false : true}
+                                                onClick={() => setQuantity(quantity - 1)}>
+                                                <i className="fas fa-minus"></i>
+                                            </button>
+                                            <span className="form-control form-control-sm text-center border pt-2">{quantity} </span>
+                                            <button className="btn  border" type="button"
+                                                onClick={() => setQuantity(quantity + 1)}>
+                                                <i className="fas fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="mt-3 row justify-content-start g-2 align-items-center">
+                                    <div className="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+                                        <button type="button" className="btn btn-primary"
+                                            disabled={carts && carts.find(c => c.productid === selected?.id) && user && user.carts.find((c) => c.productid === selected?.id)}
+                                            onClick={() => {
+                                                if (!user) {
+                                                    if (window.confirm("You Must login")) {
+                                                        navigate('/login')
+                                                    }
+                                                } else {
+                                                    let data = {
+                                                        userId: user.id,
+                                                        productid: selected.id,
+                                                        quantity: 1
+                                                    }
+                                                    dispatch(createCart(data)).then((res) => {
+                                                        dispatch(getAllUsers())
+                                                        update()
+                                                    })
 
-                                    <div className="col-lg-4 col-md-5 col-6 d-grid">
-
-
-                                        <button type="button" className="btn btn-primary">
-                                            <i className="feather-icon icon-shopping-bag me-2"></i>Add to
-                                            cart
+                                                }
+                                            }}
+                                        >
+                                            {carts && carts.find(c => c.productid === selected?.id) && user && user.carts.find((c) => c.productid === selected?.id) ?
+                                                <><i className="bi bi-cart-check"></i> In Cart</>
+                                                : <><i className="bi bi-plus-lg"></i> Add To Cart </>
+                                            }
                                         </button>
                                     </div>
-                                    <div className="col-md-4 col-5">
+                                    <div className="col-md-4 col-4">
+                                        <button className="btn active border"
+                                            disabled={wishlist && wishlist.find(c => c.productid === selected?.id) && user && user.wishlist.find((c) => c.productid === selected?.id)}
+                                            onClick={() => {
+                                                if (!user) {
+                                                    if (window.confirm("You Must login")) {
+                                                        navigate('/login')
+                                                    }
+                                                } else {
+                                                    let data = {
+                                                        userId: user.id,
+                                                        productid: selected.id
+                                                    }
+                                                    dispatch(createWishlist(data)).then((res) => {
+                                                        dispatch(getAllUsers())
+                                                        update()
+                                                    })
+                                                }
+                                            }}>
+                                            {wishlist && wishlist.find(c => c.productid === selected?.id) && user && user.wishlist.find((c) => c.productid === selected?.id) ?
+                                                <><i className="bi bi-suit-heart-fill text-danger me-1"></i> Wishlist </>
+                                                : <> <i className="bi bi-suit-heart me-1"></i> Wishlist</>
+                                            }
 
-                                        <Link className="btn btn-light" to="#" data-bs-toggle="tooltip" data-bs-html="true"
-                                            aria-label="Compare"><i className="bi bi-arrow-left-right"></i></Link>
-                                        <Link className="btn btn-light" to="#!" data-bs-toggle="tooltip" data-bs-html="true"
-                                            aria-label="Wishlist"><i className="feather-icon icon-heart"></i></Link>
+
+                                        </button>
                                     </div>
-                                </div>
-                                <hr className="my-6" />
-                                <div>
-                                    <table className="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <td>Product Code:</td>
-                                                <td>FBB00255</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Availability:</td>
-                                                <td>In Stock</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Type:</td>
-                                                <td>Fruits</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping:</td>
-                                                <td>
-                                                    <small>01 day shipping.<span className="text-muted">( Free pickup
-                                                        today)</span></small>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
-import { createUser, deleteUser, editUser, getAllUsers, login, searchUser } from "../api/users"
+import { createUser, deleteUser, editUser, getAllUsers, login, searchUser, updatePassword } from "../api/users"
 import { createBrand, deleteBrand, editBrand, getAllBrands, searchBrand } from "../api/brands";
 import { createDevices, deleteDevices, editDevices, getAllDevices, searchDevices } from "../api/devices";
 import { createProducts, deleteProducts, editProducts, getAllProducts, searchProducts } from "../api/products";
@@ -10,6 +10,7 @@ import { createWishlist, deleteWishlist, editWishlist, getAllWishlist, searchWis
 import { createCart, deleteCart, editCart, getAllCarts, searchCarts } from "../api/carts";
 import { createOrder, editOrder, getAllOrders, deleteOrder } from "../api/orders";
 import { createComments, deleteComments, editComments, getAllComments, searchComments } from "../api/comments";
+
 
 const initialState = {
     loading: false,
@@ -23,6 +24,8 @@ const initialState = {
     carts: [],
     orders: [],
     comments: [],
+    findProductBrand: [],
+    findProduct: {},
     user: null,
 }
 
@@ -33,7 +36,24 @@ export const dataSlice = createSlice({
         logout: (state, action) => {
             localStorage.removeItem("user")
             state.user = null
-        }
+        },
+        descending: (state, action) => {
+            state.products = state.products.sort((a, b) =>
+                a.name < b.name ? 1 : -1,
+            );
+        },
+        ascending: (state, action) => {
+            state.products = state.products.sort((a, b) =>
+                a.name > b.name ? 1 : -1,
+            );
+        },
+        lowestPrice: (state, action) => {
+            state.products = state.products.sort((a, b) => (a.price > b.price) ? 1 : -1)
+        },
+        highestPrice: (state, action) => {
+
+            state.products = state.products.sort((a, b) => (a.price < b.price) ? 1 : -1)
+        },
     },
 
     extraReducers: builder => {
@@ -46,6 +66,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
+           
             let user = JSON.parse(localStorage.getItem('user'));
 
             if (user) {
@@ -53,7 +74,9 @@ export const dataSlice = createSlice({
             } else {
                 state.user = null
             }
-
+            state.users?.forEach((order) => {
+                order.order = state.orders ? state.orders.filter((u) => u.userId === parseInt(order.id)) : []
+            })
             state.users = action.payload.result
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
@@ -93,6 +116,23 @@ export const dataSlice = createSlice({
             state.loading = false
         })
         builder.addCase(editUser.rejected, (state, action) => {
+            state.loading = false
+        })
+        // update Password
+
+        builder.addCase(updatePassword.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(updatePassword.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(updatePassword.rejected, (state, action) => {
             state.loading = false
         })
 
@@ -244,7 +284,6 @@ export const dataSlice = createSlice({
 
         builder.addCase(getAllDevices.pending, (state, action) => {
             state.loading = true
-            state.devices = []
         })
         builder.addCase(getAllDevices.fulfilled, (state, action) => {
             state.loading = false
@@ -335,8 +374,10 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
+
             state.loading = false
             state.products = action.payload.result
+
         })
         builder.addCase(getAllProducts.rejected, (state, action) => {
             state.loading = false
@@ -842,9 +883,9 @@ export const dataSlice = createSlice({
 
         /* ===================== comments ======================== */
 
-         // Get All comments
+        // Get All comments
 
-         builder.addCase(getAllComments.pending, (state, action) => {
+        builder.addCase(getAllComments.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(getAllComments.fulfilled, (state, action) => {
@@ -874,9 +915,9 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-         // Edit comments 
+        // Edit comments 
 
-         builder.addCase(editComments.pending, (state, action) => {
+        builder.addCase(editComments.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(editComments.fulfilled, (state, action) => {
@@ -892,9 +933,9 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-         // Delete comments
+        // Delete comments
 
-         builder.addCase(deleteComments.pending, (state, action) => {
+        builder.addCase(deleteComments.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(deleteComments.fulfilled, (state, action) => {
@@ -930,5 +971,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout } = dataSlice.actions;
+export const { logout, descending, ascending, lowestPrice, highestPrice } = dataSlice.actions;
 export default dataSlice.reducer

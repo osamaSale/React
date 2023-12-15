@@ -325,6 +325,7 @@ body {
   line-height: var(--fc-body-line-height);
   margin: 0;
   text-align: var(--fc-body-text-align);
+  transition: all 0.5s;
 }
 hr {
   border: 0;
@@ -21650,7 +21651,7 @@ h3 {
 .nav-pills-dark .nav-item .nav-link {
   background-color: transparent;
   border-radius: 0.5rem;
-  color: var(--fc-gray-800);
+  color: var(--fc-body-color);
   font-weight: 500;
   margin-bottom: 0.25rem;
   padding: 0.5rem 0.75rem;
@@ -21660,7 +21661,7 @@ h3 {
   color: #001e2b;
 }
 .nav-pills-dark .nav-item .nav-link.active {
-  background-color: #001e2b;
+  background-color: #000000;
   color: var(--fc-white);
 }
 @media (max-width: 576px) {
@@ -21905,7 +21906,8 @@ h3 {
 }
 .dropdown-menu-list .dropdown-menu-list-submenu {
   grid-gap: 24px;
-  background: var(--fc-white);
+  background-color: var(--fc-body-bg);
+  color: var(--fc-body-color);
   border-radius: var(--fc-border-radius);
   box-shadow: var(--fc-box-shadow);
   display: grid;

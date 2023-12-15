@@ -16,6 +16,11 @@ export const createUser = createAsyncThunk("createUser", async (user, { rejectWi
     const res = await axios.post("users", user)
     return res.data
 })
+// update Password
+export const updatePassword = createAsyncThunk("updatePassword", async (user, { rejectWithValue }) => {
+    const res = await axios.put("users/updatePassword", user)
+    return res.data
+})
 
 // Login
 export const login = createAsyncThunk("login", async (user, { rejectWithValue }) => {

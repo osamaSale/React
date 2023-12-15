@@ -5,7 +5,7 @@ import { logout } from "../redux/slice/slice"
 import { Modals } from './Modals';
 import { searchProducts } from '../redux/api/products';
 export const Navbar = ({ update }) => {
-    const { user,  products } = useSelector((store) => store.data)
+    const { user, products } = useSelector((store) => store.data)
     const [selectedBrand, setSelectedBrand] = useState("")
     const brand = (products || []).filter((b) => b.brand === selectedBrand)
     const [search, setSearch] = useState("")
@@ -62,23 +62,30 @@ export const Navbar = ({ update }) => {
                                 </Link>
                             </div>
                             <div className="text-center ms-5">
-                                <Link className="text-reset">
+                                <Link className="text-reset" to={'/orders'}>
+
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-archive fs-4"></i>
                                         </div>
+
                                         <p className="mb-0 d-none d-xl-block small">My Orders</p>
                                     </div>
                                 </Link>
                             </div>
                             <div className="text-center ms-5">
+
                                 <Link data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" to="#offcanvasExample"
-                                    role="button" aria-controls="offcanvasRight" className="text-reset">
+                                    role="button" aria-controls="offcanvasRight" className=" position-relative text-reset">
 
                                     <div className="lh-1">
                                         <div className="mb-2">
                                             <i className="bi bi-cart2 fs-4"></i>
                                         </div>
+                                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {user && user.carts && user.carts.length > 0 ? user.carts.length : 0}
+
+                                        </span>
                                         <p className="mb-0 d-none d-xl-block small">Shopping Cart</p>
                                     </div>
                                 </Link>
@@ -108,20 +115,21 @@ export const Navbar = ({ update }) => {
                                                         <h5 className="mb-1 h6">Store Mobile</h5>
                                                         <small>{user && user.email}</small>
                                                     </div>
-                                                    <ul className="list-unstyled  px-2 py-3" >
+                                                    <ul className="list-unstyled px-2 py-3" >
                                                         <li>
-                                                            <Link className="dropdown-item" to="#!">
-                                                                <i className="bi bi-house me-2"></i>  Home
+                                                            <Link className="dropdown-item"  onClick={()=> navigate('/orders')}>
+                                                                <i className="bi bi-bag-dash me-2"></i>  Orders
                                                             </Link>
                                                         </li>
+
                                                         <li>
-                                                            <Link className="dropdown-item" to="#!">
-                                                                <i className="bi bi-person-circle me-2"></i>  Profile
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link className="dropdown-item" to="#!">
+                                                            <Link className="dropdown-item"  onClick={()=> navigate('/setting')}>
                                                                 <i className="bi bi-gear me-2"></i> Settings
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link className="dropdown-item"   onClick={()=> navigate('/payment')}>
+                                                                <i className="bi bi-credit-card me-2"></i>  Payment
                                                             </Link>
                                                         </li>
                                                     </ul>
@@ -182,8 +190,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Apple")}
-                                            onMouseLeave={()=> setSelectedBrand("Apple")}>
+                                                onMouseEnter={() => setSelectedBrand("Apple")}
+                                                onMouseLeave={() => setSelectedBrand("Apple")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/apple.svg' alt='' />
                                                     <span className="ms-2">Apple</span>
@@ -207,8 +215,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Samsung")}
-                                            onMouseLeave={()=> setSelectedBrand("Samsung")}>
+                                                onMouseEnter={() => setSelectedBrand("Samsung")}
+                                                onMouseLeave={() => setSelectedBrand("Samsung")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/samsung.svg' alt='' />
                                                     <span className="ms-2">Samsung</span>
@@ -232,8 +240,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Huawei")}
-                                            onMouseLeave={()=> setSelectedBrand("Huawei")}>
+                                                onMouseEnter={() => setSelectedBrand("Huawei")}
+                                                onMouseLeave={() => setSelectedBrand("Huawei")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/huawei.svg' alt='' />
                                                     <span className="ms-2">Huawei</span>
@@ -257,8 +265,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Infinix")}
-                                            onMouseLeave={()=> setSelectedBrand("Infinix")}>
+                                                onMouseEnter={() => setSelectedBrand("Infinix")}
+                                                onMouseLeave={() => setSelectedBrand("Infinix")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/infinix.svg' alt='' />
                                                     <span className="ms-2">Infinix</span>
@@ -282,8 +290,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Vivo")}
-                                            onMouseLeave={()=> setSelectedBrand("Vivo")}>
+                                                onMouseEnter={() => setSelectedBrand("Vivo")}
+                                                onMouseLeave={() => setSelectedBrand("Vivo")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/vivo.svg' alt='' />
                                                     <span className="ms-2">Vivo</span>
@@ -307,8 +315,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Honor")}
-                                            onMouseLeave={()=> setSelectedBrand("Honor")}>
+                                                onMouseEnter={() => setSelectedBrand("Honor")}
+                                                onMouseLeave={() => setSelectedBrand("Honor")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/honor.svg' alt='' />
                                                     <span className="ms-2">Honor</span>
@@ -332,8 +340,8 @@ export const Navbar = ({ update }) => {
                                         <li className="dropdown-menu-list">
 
                                             <Link className="dropdown-item d-flex justify-content-between mb-1 py-1"
-                                            onMouseEnter={()=> setSelectedBrand("Nokia")}
-                                            onMouseLeave={()=> setSelectedBrand("Nokia")}>
+                                                onMouseEnter={() => setSelectedBrand("Nokia")}
+                                                onMouseLeave={() => setSelectedBrand("Nokia")}>
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/nokia.svg' alt='' />
                                                     <span className="ms-2">Nokia</span>
@@ -359,50 +367,105 @@ export const Navbar = ({ update }) => {
                                 </li>
                                 <li className="nav-item">
 
-                                    <Link className="nav-link" to="/">
-                                        Home
+                                    <Link className="nav-link border-bottom-0 pb-3" to="/" >
+                                        <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            Home
+                                        </button>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/about">
-                                        About Us
+                                    <Link className="nav-link border-bottom-0 pb-3" to="/about" data-bs-dismiss="offcanvas" aria-label="Close">
+                                        <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            About Us
+                                        </button>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/contact">
-                                        Contact Us
+                                    <Link className="nav-link border-bottom-0 pb-3" to="/contact">
+                                        <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            Contact Us
+                                        </button>
                                     </Link>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
+                                    <Link className="nav-link dropdown-toggle border-bottom-0 pb-3" to="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         Shop
+
                                     </Link>
                                     <ul className="dropdown-menu">
-                                        <li><Link className="dropdown-item" to="/shop">Shop</Link></li>
-                                        <li><Link className="dropdown-item" to="/shop-wide">Shop Wide</Link></li>
-                                        <li><Link className="dropdown-item" to="/shop-single/2">Shop Single</Link></li>
-                                        <li><Link className="dropdown-item" to="/wishlist">Shop Wishlist</Link> </li>
-                                        <li><Link className="dropdown-item" to="/carts">Shop Cart</Link></li>
-                                        <li><Link className="dropdown-item" to="../pages/shop-checkout.html">Shop Checkout</Link>
+                                        <li>
+                                            <Link className="dropdown-item" to="/shop">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Shop
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li><Link className="dropdown-item" to="/shop-wide">
+                                            <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                Shop Wide
+                                            </button>
+                                        </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/shop-single/2">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Shop Single
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/wishlist">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Shop Wishlist
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/carts">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Shop Cart
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Shop Checkout
+                                                </button>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </li>
 
 
                                 <li className="nav-item dropdown w-100 w-lg-auto">
-                                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown"
+                                    <Link className="nav-link dropdown-toggle  border-bottom-0 pb-3" to="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         Account
                                     </Link>
                                     <ul className="dropdown-menu">
-                                        <li><Link className="dropdown-item" to="/login">Login</Link></li>
-                                        <li><Link className="dropdown-item" to="./register">Register</Link></li>
+                                        <li>
+                                            <Link className="dropdown-item" to="/login">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Login
+                                                </button>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="dropdown-item" to="./register">
+                                                <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                    Register
+                                                </button>
+                                            </Link>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/admin">
-                                        Dashboard
+                                    <Link className="nav-link  border-bottom-0" to="/admin">
+                                        <button className="nav-link border-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            Dashboard
+                                        </button>
                                     </Link>
                                 </li>
                             </ul>
@@ -410,8 +473,8 @@ export const Navbar = ({ update }) => {
                     </div>
                 </div>
             </nav>
-            <Modals loginShow={loginShow} setLoginShow={setLoginShow} update={update} />
-        </header>
+            <Modals checkMode={checkMode} loginShow={loginShow} setLoginShow={setLoginShow} update={update} />
+        </header >
     );
 }
 

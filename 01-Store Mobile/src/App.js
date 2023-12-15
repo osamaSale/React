@@ -25,6 +25,10 @@ import { WishlistShop } from './components/Shop/WishlistShop';
 import { ShopWide } from './components/Shop/ShopWide';
 import { ShopSingle } from './components/Shop/ShopSingle';
 import { getAllComments } from './redux/api/comments';
+import { Shop } from './components/Shop/Shop';
+import { Orders } from './components/Account/Orders';
+import { Setting } from './components/Account/Setting';
+import { Payment } from './components/Account/Payment';
 
 function App() {
   const dispatch = useDispatch()
@@ -55,8 +59,12 @@ function App() {
           <Route path='/contact' element={<Contact update={update} />} />
           <Route path='/login' element={<Login update={update} />} />
           <Route path='/register' element={<Register update={update} />} />
+          <Route path='/orders' element={<Orders update={update} />} />
+          <Route path='/setting' element={<Setting update={update} />} />
+          <Route path='/payment' element={<Payment update={update} />} />
           <Route path='/carts' element={<ShopCarts update={update} />} />
           <Route path='/wishlist' element={<WishlistShop update={update} />} />
+          <Route path='/shop' element={<Shop update={update} />} />
           <Route path='/shop-wide' element={<ShopWide update={update} />} />
           <Route path='/shop-single/:id' element={<ShopSingle update={update} />} />
           <Route path='/admin' element={<Admin update={update} />} />

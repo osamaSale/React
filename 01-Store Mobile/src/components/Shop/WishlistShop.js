@@ -58,7 +58,7 @@ export const WishlistShop = ({ update }) => {
                                             </td>
                                             <td className="align-middle">
                                                 <div>
-                                                    <h5 className="fs-6 mb-0"><Link to="#" className="text-inherit">{row.name}</Link></h5>
+                                                    <h5 className="fs-6 mb-0"><Link to={`/shop-single/${row.id}`} className="text-inherit">{row.name}</Link></h5>
                                                     <small className="text-muted me-1"> {row.device}</small>
                                                 </div>
                                             </td>

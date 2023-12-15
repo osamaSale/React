@@ -262,7 +262,7 @@ export const Home = ({ update }) => {
                             </div>
                         </aside>
                         <div className="col-xl-9 col-lg-8 col-md-12 mb-6 mb-md-0">
-                            <NewArrivals products={products} update={update} />
+                            <NewArrivals  update={update} />
                         </div>
                     </div>
                 </div>

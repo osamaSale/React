@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
@@ -7,7 +7,8 @@ import { createCart } from '../../redux/api/carts';
 import { createWishlist } from '../../redux/api/wishlist';
 import { BestSellingProducts } from './ShopCard';
 import { createComments } from '../../redux/api/comments';
-export const ShopSingle = ({ update }) => {
+import { singleProduct } from '../../redux/api/products';
+export const ShopSingle = ({update }) => {
     let { id } = useParams()
     const { products, carts, user, wishlist, comments } = useSelector((store) => store.data)
     const product = products.find((e) => parseInt(e.id) === parseInt(id))
@@ -16,11 +17,18 @@ export const ShopSingle = ({ update }) => {
     const [quantity, setQuantity] = useState(1)
     const [color, setColor] = useState(product ? product.color : "");
     const [comment, setComment] = useState("");
+    const [selected, setSelected] = useState({})
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(singleProduct(id)).then((res) => {
+            setSelected(res.payload.result)
+        });
+    }, [dispatch, id]);
+    console.log(selected)
+    if (!product) return null; // or fallback UI
     return (
         <section className="mt-8 mb-14">
-            
             <div className="container-fluid">
                 <div className="row mt-8">
                     <div className="col-12">
@@ -123,7 +131,7 @@ export const ShopSingle = ({ update }) => {
                             <div className="mt-3 row justify-content-start g-2 align-items-center">
                                 <div className="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
                                     <button type="button" className="btn btn-primary"
-                                        disabled={carts && carts.find(c => c.productid === product && parseInt(product.id)) && user && user.carts.find((c) => c.productid === product && parseInt(product.id))}
+                                        disabled={carts && carts.find(c => c.productid === product.id) && user && user.carts.find((c) => c.productid === product.id)}
                                         onClick={() => {
                                             if (!user) {
                                                 if (window.confirm("You Must login")) {
@@ -143,34 +151,36 @@ export const ShopSingle = ({ update }) => {
                                             }
                                         }}
                                     >
-                                        {carts && carts.find(c => c.productid === product && product.id) && user && user.carts.find((c) => c.productid === product&& product.id) ?
+                                        {carts && carts.find(c => c.productid === product.id) && user && user.carts.find((c) => c.productid === product.id) ?
                                             <><i className="bi bi-cart-check"></i> In Cart</>
-                                            : <><i className="bi bi-plus-lg"></i> Add To Cart </>}
+                                            : <><i className="bi bi-plus-lg"></i> Add To Cart</>}
+
                                     </button>
                                 </div>
                                 <div className="col-md-4 col-4">
                                     <button className="btn active border"
-                                        disabled={ wishlist && wishlist.find(c => c.productid === product && product.id) && user && user.wishlist.find((c) => c.productid === product&& product.id)}
+                                        disabled={wishlist && wishlist.find(c => c.productid === product.id) && user && user.wishlist.find((c) => c.productid === product.id)}
                                         onClick={() => {
                                             if (!user) {
                                                 if (window.confirm("You Must login")) {
                                                     navigate('/login')
                                                 }
-                                            } else{
-                                            let data = {
-                                                userId: user.id,
-                                                productid: product.id
+                                            } else {
+                                                let data = {
+                                                    userId: user.id,
+                                                    productid: product.id
+                                                }
+                                                dispatch(createWishlist(data)).then((res) => {
+                                                    dispatch(getAllUsers())
+                                                    update()
+                                                })
                                             }
-                                            dispatch(createWishlist(data)).then((res) => {
-                                                dispatch(getAllUsers())
-                                                update()
-
-                                            })
-                                        }
                                         }}>
-                                        { wishlist && wishlist.find(c => c.productid === product && product.id) && user && user.wishlist.find((c) => c.productid === product&& product.id)?
-                                            <><i className="bi bi-suit-heart-fill text-danger me-2"></i> Wishlist</>
-                                            : <><i class="bi bi-suit-heart me-2"></i> Wishlist </>}
+                                        {wishlist && wishlist.find(c => c.productid === product.id) && user && user.wishlist.find((c) => c.productid === product.id) ?
+                                            <><i className="bi bi-suit-heart-fill text-danger me-1"></i> Wishlist </>
+                                            : <> <i className="bi bi-suit-heart me-1"></i> Wishlist</>
+                                        }
+
 
                                     </button>
                                 </div>
@@ -195,7 +205,7 @@ export const ShopSingle = ({ update }) => {
                             </ul>
 
                             <div className="tab-content" id="myTabContent">
-                                <div className="tab-pane fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabindex="0">
+                                <div className="tab-pane fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab" tabIndex="0">
                                     <div className="my-8">
 
                                         <div className="row">
@@ -232,12 +242,14 @@ export const ShopSingle = ({ update }) => {
                                                                     } else {
                                                                         let data = { userId: user.id, productid: product.id, comment: comment }
                                                                         dispatch(createComments(data)).then((res) => {
+                                                                            console.log(res)
                                                                             const { status } = res.payload
                                                                             if (status === 200) {
                                                                                 update()
                                                                             }
 
                                                                         })
+                                                                        setComment("")
                                                                     }
                                                                 }}
                                                             >Submit Review</button>
@@ -255,7 +267,7 @@ export const ShopSingle = ({ update }) => {
                                                         <div>
                                                             <select className="form-select border">
                                                                 <option >Top Reviews</option>
-                                                                <option value="Most Recent">Most Recent</option>
+                                                                <option >Most Recent</option>
                                                             </select>
                                                         </div>
                                                     </div>
