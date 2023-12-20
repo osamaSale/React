@@ -284,7 +284,7 @@ export const NewArrivals = ({ update }) => {
                                 </div>
 
                                 <div>
-                                    <Link to="#!" className="btn btn-primary btn-sm"
+                                    <Link  className="btn btn-primary btn-sm"
                                     disabled={carts && carts.find(c => c.productid === row.id) && user && user.carts.find((c) => c.productid === row.id)}
                                         onClick={() => {
 
