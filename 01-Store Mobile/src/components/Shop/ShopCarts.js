@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../redux/api/users';
 import { deleteCart, editCart } from '../../redux/api/carts';
 import { Link } from 'react-router-dom';
+import { createOrder, getAllOrders } from '../../redux/api/orders';
+import { toast } from 'react-toastify';
 
 export const ShopCarts = ({ update }) => {
     const { user } = useSelector((store => store.data))
+    const [loading, setLoading] = useState(false);
     const getTotalPrice = () => {
         let totalPrice = 0;
         (user?.carts || []).forEach((e) => {
@@ -183,8 +186,30 @@ export const ShopCarts = ({ update }) => {
                                 </div>
                                 <div className="d-grid mb-1 mt-4">
 
-                                    <button className="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit">
-                                        Go to Checkout
+                                    <button className="btn btn-primary btn-lg d-flex justify-content-between align-items-center" type="submit"
+                                        onClick={() => {
+                                            setLoading(true)
+                                            const findCartsUser = (user.carts || []).filter((u) => parseInt(u.userId) === parseInt(user.id))
+                                            if (!user) {
+                                                if (window.confirm("You Must login")) { }
+                                            } else if (findCartsUser.length > 0) {
+                                                let data = {
+                                                    userId: user.id, checkout: "Success", total: getTotalPrice()
+                                                }
+                                                dispatch(createOrder(data)).then(() => {
+                                                    dispatch(getAllUsers())
+                                                    dispatch(getAllOrders())
+                                                    update()
+                                                })
+                                            } else {
+                                                toast.error("Cart Is Empty")
+                                            }
+                                            setLoading(false)
+                                        }}
+                                    >
+                                        {!loading && <span className="indicator-label"> Go to Checkout</span>}
+                                        {loading && <span className="indicator-progress">Please wait...
+                                            <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
                                         <span className="fw-bold">${getTotalPrice() - 3.00}</span>
                                     </button>
                                 </div>

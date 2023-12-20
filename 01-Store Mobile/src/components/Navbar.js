@@ -473,7 +473,7 @@ export const Navbar = ({ update }) => {
                     </div>
                 </div>
             </nav>
-            <Modals checkMode={checkMode} loginShow={loginShow} setLoginShow={setLoginShow} update={update} />
+            <Modals mode={mode} checkMode={checkMode} loginShow={loginShow} setLoginShow={setLoginShow} update={update} />
         </header >
     );
 }

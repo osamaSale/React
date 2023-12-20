@@ -98,7 +98,7 @@ export const Setting = ({ update }) => {
 
                         </div>
                      </div>
-                     <hr className="my-10" />
+                     <hr className="my-10 border" />
                      <div className="pe-lg-14">
 
                         <h5 className="mb-4">Password</h5>
@@ -143,7 +143,7 @@ export const Setting = ({ update }) => {
                            </div>
                         </form>
                      </div>
-                     <hr className="my-10" />
+                     <hr className="my-10 border" />
                      <div>
 
                         <h5 className="mb-4">Delete Account</h5>

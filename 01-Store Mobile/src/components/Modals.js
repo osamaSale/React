@@ -16,7 +16,9 @@ import { getAllUsers, login } from "../redux/api/users"
 import { createCart, deleteCart, editCart } from '../redux/api/carts';
 import { createWishlist, deleteWishlist } from '../redux/api/wishlist';
 import { singleProduct } from '../redux/api/products';
-export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
+import { toast } from 'react-toastify';
+import { createOrder, getAllOrders } from '../redux/api/orders';
+export const Modals = ({ mode, checkMode, loginShow, setLoginShow, update }) => {
     const { user, carts } = useSelector((store => store.data))
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -74,7 +76,14 @@ export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
                         <Link to="#" className="text-inherit" onClick={checkMode} >
                             <div className="text-center">
                                 <div className="position-relative d-inline-block">
-                                    <i className="bi bi-moon fs-4"></i>
+                                    {mode === 'dark' ?
+                                        <div>
+                                            <i className="bi bi-brightness-high fs-4"></i>
+                                        </div> :
+                                        <div>
+                                            <i className="bi bi-moon fs-4"></i>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </Link>
@@ -83,15 +92,20 @@ export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
                     <div className="w-25 ms-2 py-4  icon-hover">
                         <Link className="text-inherit" onClick={() => setLoginShow(true)}>
                             <div className="text-center">
-                                <div className="">
+                                {!user && <div className="">
                                     <i className="bi bi-person-circle fs-4"></i>
-                                </div>
+                                </div>}
+                                {user &&
+                                    <div className="">
+                                          <img src={user && user.image} alt='' className="rounded-circle" width={30} height={25} />
+                                    </div>
+                                }
 
                             </div>
                         </Link>
                     </div>
                     <div className="w-25 ms-2 py-4  icon-hover">
-                        <Link className="text-inherit">
+                        <Link className="text-inherit" to={'/orders'}>
                             <div className="text-center">
                                 <div className="">
                                     <i className="bi bi-archive fs-4"></i>
@@ -111,7 +125,8 @@ export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
                         </Link>
                     </div>
                     <div className="w-25 ms-2 py-4 icon-hover">
-                        <Link className="text-inherit" >
+                        <Link className="text-inherit" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" to="#offcanvasExample1"
+                            aria-controls="offcanvasRight">
                             <i className="bi bi-bookmark-heart fs-4"></i>
                         </Link>
 
@@ -209,7 +224,27 @@ export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
 
 
                             <div className="d-flex justify-content-between mb-4">
-                                <Link to="#!" className="btn btn-primary btn-sm"> Make Purchase </Link>
+                                <button  type="submit" className="btn btn-primary btn-sm"
+                                onClick={() => {
+                                    setLoading(true)
+                                    const findCartsUser = (user.carts || []).filter((u) => parseInt(u.userId) === parseInt(user.id))
+                                    if (!user) {
+                                        if (window.confirm("You Must login")) { }
+                                    } else if (findCartsUser.length > 0) {
+                                        let data = {
+                                            userId: user.id, checkout: "Success", total: getTotalPrice()
+                                        }
+                                        dispatch(createOrder(data)).then(() => {
+                                            dispatch(getAllUsers())
+                                            dispatch(getAllOrders())
+                                            update()
+                                        })
+                                    } else {
+                                        toast.error("Cart Is Empty")
+                                    }
+                                    setLoading(false)
+                                }}
+                                > Make Purchase </button>
                                 <span className='pt-1'>Result : $ {getTotalPrice()}</span>
                             </div>
                             <ul className="list-group list-group-flush">
@@ -447,7 +482,7 @@ export const Modals = ({ checkMode, loginShow, setLoginShow, update }) => {
 
                         <li className="nav-item">
                             <Link className={location.pathname === "/payment" ? "nav-link active" : "nav-link"} to="/payment"
-                                >
+                            >
                                 <i className="bi bi-credit-card me-2"></i>
                                 Payment Method
 
