@@ -284,7 +284,28 @@ export const NewArrivals = ({ update }) => {
                                 </div>
 
                                 <div>
-                                    <Link to="#!" className="btn btn-primary btn-sm">
+                                    <Link to="#!" className="btn btn-primary btn-sm"
+                                    disabled={carts && carts.find(c => c.productid === row.id) && user && user.carts.find((c) => c.productid === row.id)}
+                                        onClick={() => {
+
+                                            if (!user) {
+                                                if (window.confirm("You Must login")) {
+                                                    navigate('/login')
+                                                }
+                                            } else {
+                                                let data = {
+                                                    userId: user.id,
+                                                    productid: row.id,
+                                                    quantity: 1
+                                                }
+                                                dispatch(createCart(data)).then((res) => {
+                                                    dispatch(getAllUsers())
+                                                    update()
+                                                })
+
+                                            }
+                                        }}
+                                    >
                                         {carts && carts.find(c => c.productid === row.id) && user && user.carts.find((c) => c.productid === row.id) ?
                                             <><i className="bi bi-cart-check"></i> In Cart</>
                                             : <><i className="bi bi-plus-lg"></i> Add</>}
@@ -327,7 +348,7 @@ export const ShopCard1 = ({ currentPosts, update }) => {
                             <div className="col-md-7 col-12 flex-grow-1">
 
                                 <div className="text-small mb-1">
-                                    <Link 
+                                    <Link
                                         className="text-decoration-none text-muted">
                                         <small>{row && row.brand} && {row && row.device}</small>
                                     </Link>
