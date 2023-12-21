@@ -1,50 +1,50 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Signin = () => {
     return (
-        <div class="container">
-        <div class="row align-items-center justify-content-center min-vh-100 gx-0">
-
-            <div class="col-12 col-md-5 col-lg-4">
-                <div class="card card-shadow border-0">
-                    <div class="card-body">
-                        <div class="row g-6">
-                            <div class="col-12">
-                                <div class="text-center">
-                                    <h3 class="fw-bold mb-2">Sign In</h3>
-                                    <p>Login to your account</p>
+        <div className="container">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="col-12 col-md-5 col-lg-4">
+                    <div className="card card-shadow border-0">
+                        <div className="card-body">
+                            <div className="row g-6">
+                                <div className="col-12">
+                                    <div className="text-center">
+                                        <h3 className="fw-bold mb-2">Sign In</h3>
+                                        <p>Login to your account</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="signin-email" placeholder="Email" />
-                                    <label for="signin-email">Email</label>
+                                <div className="col-12">
+                                    <div className="form-floating">
+                                        <input type="email" className="form-control" id="signin-email" placeholder="Email" />
+                                        <label htmlFor="signin-email">Email</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="signin-password" placeholder="Password" />
-                                    <label for="signin-password">Password</label>
+                                <div className="col-12">
+                                    <div className="form-floating">
+                                        <input type="password" className="form-control" id="signin-password" placeholder="Password" />
+                                        <label htmlFor="signin-password">Password</label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-12">
-                                <button class="btn btn-block btn-lg btn-primary w-100" type="submit">Sign In</button>
+                                <div className="col-12">
+                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit">Sign In</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-              
-                <div class="text-center mt-8">
-                    <p>Don't have an account yet? <a href="./signup.html">Sign up</a></p>
-                    <p><a href="./password-reset.html">Forgot Password?</a></p>
+
+                    <div className="text-center mt-8">
+                        <p>Don't have an account yet? <Link to="/signup">Sign up</Link></p>
+                        <p><Link to="./password-reset.html">Forgot Password?</Link></p>
+                    </div>
                 </div>
             </div>
-        </div> 
-    </div>
+        </div>
     );
 }
 
