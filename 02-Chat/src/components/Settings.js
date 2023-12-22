@@ -1,16 +1,13 @@
 import React from 'react';
 import { NavbarVertical } from './NavbarVertical';
 import { Link } from 'react-router-dom';
-export const Home = () => {
+
+export const Settings = () => {
     return (
         <div className="layout overflow-hidden">
             <NavbarVertical />
             <aside className="sidebar bg-light">
-
-                <div className="tab-content h-100" role="tablist">
-                   
-
-                     <div className="tab-pane fade h-100" id="tab-content-settings" role="tabpanel">
+            <div className="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
                         <div className="d-flex flex-column h-100">
                             <div className="hide-scrollbar">
                                 <div className="container py-8">
@@ -424,24 +421,7 @@ export const Home = () => {
                             </div>
                         </div>
                     </div> 
-                </div>
             </aside>
-
-            <main className="main">
-                <div className="container h-100">
-
-                    <div className="d-flex flex-column h-100 justify-content-center text-center">
-                        <div className="mb-6">
-                            <span className="icon icon-xl text-muted">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                            </span>
-                        </div>
-
-                        <p className="text-muted">Pick a person from left menu, <br /> and start your conversation.</p>
-                    </div>
-
-                </div>
-            </main>
         </div>
     );
 }

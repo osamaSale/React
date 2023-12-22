@@ -9,6 +9,9 @@ import { CreateChat } from './components/CreateChat';
 import { Friends } from './components/Friends';
 import { Notifications } from './components/Notifications';
 import { Support } from './components/Support';
+import { PasswordReset } from './components/PasswordReset';
+import { Settings } from './components/Settings';
+import { Modals } from './components/Modals';
 function App() {
   const update = () => {
 
@@ -16,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
+      <Modals/>
         <Routes>
           <Route path='/chats' element={<Chats update={update} />} />
           <Route path='/support' element={<Support update={update} />} />
@@ -24,6 +28,9 @@ function App() {
           <Route path='/friends' element={<Friends update={update} />} />
           <Route path='/signin' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
+          <Route path='/passwordReset' element={<PasswordReset update={update} />} />
+          <Route path='/settings' element={<Settings update={update} />} />
+          
         </Routes>
     </div>
   );
