@@ -21,9 +21,9 @@ function App() {
   return (
     <div className="App">
       <ToastContainer />
-      <Modals/>
+      <Modals />
       <div className="layout overflow-hidden">
-            <NavbarVertical />
+        <NavbarVertical />
         <Routes>
           <Route path='/chats' element={<Chats update={update} />} />
           <Route path='/support' element={<Support update={update} />} />
@@ -35,9 +35,10 @@ function App() {
           <Route path='/passwordReset' element={<PasswordReset update={update} />} />
           <Route path='/settings' element={<Settings update={update} />} />
           <Route path='/chatGroup' element={<ChatGroup update={update} />} />
-          
+
         </Routes>
-        </div>
+        <Modals />
+      </div>
     </div>
   );
 }
