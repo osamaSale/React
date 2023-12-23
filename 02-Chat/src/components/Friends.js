@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { NavbarVertical } from './NavbarVertical';
 export const Friends = () => {
     return (
-        <div className="layout overflow-hidden">
-            <NavbarVertical />
+  
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active">
                     <div className="d-flex flex-column h-100">
@@ -482,7 +481,7 @@ export const Friends = () => {
                     </div>
                 </div>
             </aside>
-        </div>
+       
     );
 }
 

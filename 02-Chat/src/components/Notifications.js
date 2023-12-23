@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { NavbarVertical } from './NavbarVertical';
 export const Notifications = () => {
     return (
-        <div className="layout overflow-hidden">
-            <NavbarVertical />
+       
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" id="tab-content-notifications" role="tabpanel">
                     <div className="d-flex flex-column h-100">
@@ -347,6 +346,6 @@ export const Notifications = () => {
                     </div>
                 </div>
             </aside>
-        </div>
+      
     );
 }

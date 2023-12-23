@@ -12,6 +12,8 @@ import { Support } from './components/Support';
 import { PasswordReset } from './components/PasswordReset';
 import { Settings } from './components/Settings';
 import { Modals } from './components/Modals';
+import { ChatGroup } from './components/ChatGroup';
+import { NavbarVertical } from './components/NavbarVertical';
 function App() {
   const update = () => {
 
@@ -20,6 +22,8 @@ function App() {
     <div className="App">
       <ToastContainer />
       <Modals/>
+      <div className="layout overflow-hidden">
+            <NavbarVertical />
         <Routes>
           <Route path='/chats' element={<Chats update={update} />} />
           <Route path='/support' element={<Support update={update} />} />
@@ -30,8 +34,10 @@ function App() {
           <Route path='/signup' element={<Signup update={update} />} />
           <Route path='/passwordReset' element={<PasswordReset update={update} />} />
           <Route path='/settings' element={<Settings update={update} />} />
+          <Route path='/chatGroup' element={<ChatGroup update={update} />} />
           
         </Routes>
+        </div>
     </div>
   );
 }

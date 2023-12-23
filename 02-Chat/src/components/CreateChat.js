@@ -1,11 +1,9 @@
 import React from 'react';
-import { NavbarVertical } from './NavbarVertical';
 import { Link } from 'react-router-dom';
 
 export const CreateChat = () => {
     return (
-        <div className="layout overflow-hidden">
-            <NavbarVertical />
+       <div>
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" >
                     <div className="d-flex flex-column h-100">

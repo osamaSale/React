@@ -1,10 +1,8 @@
 import React from 'react';
-import { NavbarVertical } from './NavbarVertical';
 import { Link } from 'react-router-dom';
 export const Chats = () => {
     return (
-        <div className="layout overflow-hidden">
-            <NavbarVertical />
+    
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" id="tab-content-chats" role="tabpanel">
                     <div className="d-flex flex-column h-100 position-relative">
@@ -34,7 +32,7 @@ export const Chats = () => {
 
                                 <div className="card-list">
 
-                                    <Link to="chat-group.html" className="card border-0 text-reset">
+                                    <Link to="/chatGroup" className="card border-0 text-reset">
                                         <div className="card-body">
                                             <div className="row gx-5">
                                                 <div className="col-auto">
@@ -395,7 +393,7 @@ export const Chats = () => {
                     </div>
                 </div>
             </aside>
-        </div>
+
     );
 }
 

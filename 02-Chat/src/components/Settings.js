@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Settings = () => {
     return (
-        <div className="layout overflow-hidden">
-            <NavbarVertical />
+      
             <aside className="sidebar bg-light">
             <div className="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
                         <div className="d-flex flex-column h-100">
@@ -422,7 +421,7 @@ export const Settings = () => {
                         </div>
                     </div> 
             </aside>
-        </div>
+       
     );
 }
 
