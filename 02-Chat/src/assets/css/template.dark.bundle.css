@@ -336,7 +336,12 @@ select:disabled {
 [list]::-webkit-calendar-picker-indicator {
   display: none;
 }
-
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: button;
+}
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled),
@@ -384,7 +389,10 @@ legend + * {
 ::-webkit-inner-spin-button {
   height: auto;
 }
-
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: textfield;
+}
 ::-webkit-search-decoration {
   -webkit-appearance: none;
 }
@@ -2890,7 +2898,8 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
- 
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
   -webkit-transition: background-color 0.15s ease-in-out,
     background-position 0.15s ease-in-out, border-color 0.15s ease-in-out,
     -webkit-box-shadow 0.15s ease-in-out;

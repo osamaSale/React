@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import './assets/css/template.dark.bundle.css';
 import "react-toastify/dist/ReactToastify.css";
+import './assets/css/template.bundle.css';
 import store from "./redux/store"
 import { Provider } from "react-redux"
 import axios from 'axios';
+
 
 axios.defaults.baseURL = `http://localhost:5000/`
 const root = ReactDOM.createRoot(document.getElementById('root'));
