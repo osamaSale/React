@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { searchUser } from '../redux/api/users';
 
-export const CreateChat = () => {
+export const CreateChat = ({ update }) => {
+    const { users } = useSelector(store => store.data)
+    const [search, setSearch] = useState("")
+    const dispatch = useDispatch()
     return (
-       <div>
+        <div>
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" >
                     <div className="d-flex flex-column h-100">
@@ -22,23 +27,33 @@ export const CreateChat = () => {
                                                     </div>
                                                 </div>
 
-                                                <input type="text" className="form-control form-control-lg ps-0" placeholder="Search messages or users" aria-label="Search for messages or users..." />
+                                                <input type="text" className="form-control form-control-lg ps-0" placeholder="Search messages or users"
+                                                    onChange={(e) => setSearch(e.target.value)}
+                                                    onKeyUp={() => {
+                                                        if (search === "") {
+                                                            update();
+                                                        } else {
+                                                            dispatch(searchUser(search))
+                                                        }
+                                                    }}
+                                                />
                                             </div>
                                         </form>
                                     </div>
 
                                     <ul className="nav nav-pills nav-justified" role="tablist">
+                                    
                                         <li className="nav-item">
                                             <Link className="nav-link active" data-bs-toggle="pill" to="#create-chat-info" role="tab" aria-controls="create-chat-info" aria-selected="true">
                                                 Details
                                             </Link>
                                         </li>
-
                                         <li className="nav-item">
                                             <Link className="nav-link" data-bs-toggle="pill" to="#create-chat-members" role="tab" aria-controls="create-chat-members" aria-selected="true">
                                                 People
                                             </Link>
                                         </li>
+                                       
                                     </ul>
                                 </div>
 
@@ -122,272 +137,40 @@ export const CreateChat = () => {
 
                                     <div className="tab-pane fade" id="create-chat-members" role="tabpanel">
                                         <nav>
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">B</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar ">
-
-                                                                <img className="avatar-img" src="./assets/images/6.jpg" alt="" />
 
 
+                                            {users && users.map((row) => {
+                                               return <div className="card border-0 mt-5">
+                                                    <div className="card-body">
+
+                                                        <div className="row align-items-center gx-5">
+                                                            <div className="col-auto">
+                                                                <div className="avatar ">
+
+                                                                    <img className="avatar-img" src={row && row.image} alt="" />
+
+
+                                                                </div>
+                                                            </div>
+                                                            <div className="col">
+                                                                <h5>{row && row.name}</h5>
+                                                                <p>last seen 3 days ago</p>
+                                                            </div>
+                                                            <div className="col-auto">
+                                                                <div className="form-check">
+                                                                    <input className="form-check-input" type="checkbox" value="" id="id-member-1" />
+                                                                    <label className="form-check-label" htmlFor="id-member-1"></label>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div className="col">
-                                                            <h5>Bill Marrow</h5>
-                                                            <p>last seen 3 days ago</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-1" />
-                                                                <label className="form-check-label" htmlFor="id-member-1"></label>
-                                                            </div>
-                                                        </div>
+                                                        <label className="stretched-label" htmlFor="id-member-1"></label>
                                                     </div>
-                                                    <label className="stretched-label" htmlFor="id-member-1"></label>
                                                 </div>
-                                            </div>
-
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">D</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar ">
-
-                                                                <img className="avatar-img" src="./assets/images/5.jpg" alt="" />
+                                            })}
 
 
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Damian Binder</h5>
-                                                            <p>last seen within a week</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-2" />
-                                                                <label className="form-check-label" htmlFor="id-member-2"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-2"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar avatar-online">
 
 
-                                                                <span className="avatar-text">D</span>
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Don Knight</h5>
-                                                            <p>online</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-3" />
-                                                                <label className="form-check-label" htmlFor="id-member-3"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-3"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">E</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar avatar-online">
-
-                                                                <img className="avatar-img" src="./assets/images/8.jpg" alt="" />
-
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Elise Dennis</h5>
-                                                            <p>online</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-4" />
-                                                                <label className="form-check-label" htmlFor="id-member-4"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-4"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">M</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar ">
-
-
-                                                                <span className="avatar-text">M</span>
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Marshall Wallaker</h5>
-                                                            <p>last seen within a month</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-6" />
-                                                                <label className="form-check-label" htmlFor="id-member-6"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-6"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar ">
-
-                                                                <img className="avatar-img" src="./assets/images/11.jpg" alt="" />
-
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Mila White</h5>
-                                                            <p>last seen a long time ago</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-5" />
-                                                                <label className="form-check-label" htmlFor="id-member-5"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-5"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">O</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar avatar-online">
-
-
-                                                                <span className="avatar-text">O</span>
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Ollie Chandler</h5>
-                                                            <p>online</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-7" />
-                                                                <label className="form-check-label" htmlFor="id-member-7"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-7"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="my-5">
-                                                <small className="text-uppercase text-muted">W</small>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar ">
-
-                                                                <img className="avatar-img" src="./assets/images/4.jpg" alt="" />
-
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>Warren White</h5>
-                                                            <p>last seen recently</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-8" />
-                                                                <label className="form-check-label" htmlFor="id-member-8"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-8"></label>
-                                                </div>
-                                            </div>
-
-                                            <div className="card border-0 mt-5">
-                                                <div className="card-body">
-
-                                                    <div className="row align-items-center gx-5">
-                                                        <div className="col-auto">
-                                                            <div className="avatar avatar-online">
-
-                                                                <img className="avatar-img" src="./assets/images/7.jpg" alt="" />
-
-
-                                                            </div>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h5>William Wright</h5>
-                                                            <p>online</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check">
-                                                                <input className="form-check-input" type="checkbox" value="" id="id-member-9" />
-                                                                <label className="form-check-label" htmlFor="id-member-9"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <label className="stretched-label" htmlFor="id-member-9"></label>
-                                                </div>
-                                            </div>
                                         </nav>
                                     </div>
                                 </div>
@@ -410,7 +193,7 @@ export const CreateChat = () => {
 
             </aside>
 
-            <main className="main">
+            {/* <main className="main">
                 <div className="container h-100">
 
                     <div className="d-flex flex-column h-100 justify-content-center text-center">
@@ -424,7 +207,7 @@ export const CreateChat = () => {
                     </div>
 
                 </div>
-            </main>
+            </main> */}
         </div>
     );
 }

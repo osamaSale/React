@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NavbarVertical } from './NavbarVertical';
 export const Notifications = () => {
     return (
        

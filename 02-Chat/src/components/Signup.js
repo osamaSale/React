@@ -1,8 +1,35 @@
-import React from 'react';
-
-export const Signup = () => {
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createUser } from "../redux/api/users"
+import { LoginSocialGoogle } from 'reactjs-social-login'
+export const Signup = ({ update }) => {
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [phone, setPhone] = useState("")
+    const [image, setImage] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const registerGoogle = async ({ provider, data }) => {
+        let data1 = {
+            name: data.name,
+            email: data.email,
+            image: data.picture,
+            password: "12345",
+            phone: "null"
+        }
+        dispatch(createUser(data1)).then((res) => {
+            if (res.payload.status === 200) {
+                update()
+                navigate('/login')
+            }
+        })
+    }
     return (
-        <div className="container-fluid mt-8">
+        <div className="container-fluid ">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
                 <div className="col-12 col-md-5 col-lg-4">
                     <div className="card card-shadow border-0">
@@ -14,61 +41,93 @@ export const Signup = () => {
                                         <p>Follow the easy steps</p>
                                     </div>
                                 </div>
+                                <div className="col-12 ">
+                                    <LoginSocialGoogle
+                                        client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                        onResolve={registerGoogle}
+                                        onReject={(err) => {
+                                            console.log(err)
+                                        }}>
+                                        <div className="d-grid">
+                                            <Link className="btn btn-dark">
+                                                <img alt="Logo" src={'https://mobile-store1234.netlify.app/static/media/google.e12914ad8afda3f6f2e8.png'} className="h-15px me-3" width={20} height={20} />
+                                                Sign in Google
+                                            </Link>
+                                        </div>
+                                    </LoginSocialGoogle>
+                                </div>
+                                <div className="col-12">
+                                    <input type="text" className="form-control " name='name' placeholder="Enter Name" onChange={(e) => setName(e.target.value)} />
+                                </div>
+                                <div className="col-12">
+                                    <input type="email" className="form-control " name='email' placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)} />
+                                </div>
+                                <div className="col-12">
+                                    <div className="password-field position-relative">
+                                        <input type={passwordShown ? "text" : "password"} name='password' placeholder="Enter Password" className="form-control " onChange={(e) => setPassword(e.target.value)} />
 
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <input type="text" className="form-control" id="signup-name" placeholder="Name" />
-                                        <label >Name</label>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <input type="email" className="form-control" id="signup-email" placeholder="Email" />
-                                        <label >Email</label>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <input type="password" className="form-control" placeholder="Password" />
-                                        <label >Password</label>
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <input type="tel" className="form-control" placeholder="Phone" />
-                                        <label >Phone</label>
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <input type="file" className="form-control" placeholder="Image" />
-                                        <label >Image</label>
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-floating">
-                                        <select className="form-select form-select-sm" >
-                                            <option >Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <label for="floatingSelect">Works with selects</label>
+                                        <span onClick={() => { passwordShown === true ? setPasswordShown(false) : setPasswordShown(true) }}>
+                                            {
+                                                passwordShown === true ? <i id="passwordToggler" className="bi bi-eye"></i>
+                                                    : <i id="passwordToggler" className="bi bi-eye-slash"></i>
+                                            }
+                                        </span>
                                     </div>
 
                                 </div>
                                 <div className="col-12">
-                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit">Create Account</button>
+                                    <input type="tel" className="form-control border" name='phone' placeholder="Enter Phone" onChange={(e) => setPhone(e.target.value)} />
+                                </div>
+                                <div className="col-12">
+                                    <input type="file" className="form-control border" name='image' onChange={(e) => setImage(e.target.files[0])} />
+                                </div>
+                                <div className="col-12">
+                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit"
+                                        onClick={() => {
+                                            setLoading(true)
+                                            setTimeout(() => {
+                                                const fromData = new FormData();
+                                                fromData.append("name", name);
+                                                fromData.append("email", email);
+                                                fromData.append("password", password);
+                                                fromData.append("phone", phone);
+                                                if (image !== null) {
+                                                    fromData.append("image", image, image?.name);
+                                                } else {
+                                                    fromData.append("image", image);
+                                                }
+                                                dispatch(createUser(fromData)).then((res) => {
+
+                                                    if (res.payload.status === 200) {
+                                                        update()
+                                                        navigate('/')
+                                                    }
+                                                })
+                                                setLoading(false)
+                                            }, 2000);
+
+
+                                        }}
+
+                                    >
+                                        {loading &&
+                                            <>
+                                                <div className="spinner-border spinner-border-sm" role="status">
+                                                </div> Please wait...
+                                            </>
+                                        }
+                                        {!loading &&
+                                            <span className="indicator-label"> Create Account </span>
+                                        }</button>
+                                </div>
+                                <div className="text-center mt-8">
+                                    <p>Already have an account? <Link to="/">Sign in</Link></p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="text-center mt-8">
-                        <p>Already have an account? <a href="./signin.html">Sign in</a></p>
-                    </div>
+
 
                 </div>
             </div>

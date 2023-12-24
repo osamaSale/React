@@ -1,27 +1,37 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 export const NavbarVertical = () => {
+    const { user } = useSelector(store => store.data)
     const location = useLocation();
-    const [mode, setMode] = useState('light')
+    const [mode, setTheme] = useState('light' ? "dark" : "light")
     const checkMode = () => {
+        localStorage.setItem("color-scheme", mode)
         if (localStorage.getItem('color-scheme')) {
             let scheme = localStorage.getItem('color-scheme');
-      
+
             const LTCSS = document.querySelectorAll('link[class=css-lt]');
             const DKCSS = document.querySelectorAll('link[class=css-dk]');
-      
+
             [...LTCSS].forEach((link) => {
-              link.media = (scheme === 'light') ? 'all' : 'not all';
-              setMode("light")
+                link.media = (scheme === 'light') ? 'all' : 'not all';
+                setTheme(link.media)
             });
-      
+
             [...DKCSS].forEach((link) => {
-              link.media = (scheme === 'dark') ? 'all' : 'not all';
-              setMode("dark")
+                link.media = (scheme === 'dark') ? 'all' : 'not all';
+                setTheme(link.media)
             });
-          }
+        }
+        /*    const m =  window.matchMedia('(prefers-color-scheme: light)');
+           console.log(m)  
+           let element = document.body
+             element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
+             setTheme(element.dataset.bsTheme) */
     }
+
+    if (location.pathname === "/signup" || location.pathname === "/") { return }
     return (
         <nav className="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
 
@@ -35,13 +45,7 @@ export const NavbarVertical = () => {
 
             <ul className="d-flex nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center align-items-center w-100 py-4 py-lg-2 px-lg-3" role="tablist">
 
-              {/*   <li className="nav-item d-none d-xl-block invisible flex-xl-grow-1">
-                    <Link className="nav-link py-0 py-lg-8" to="/create" title="">
-                        <div className="icon icon-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                        </div>
-                    </Link>
-                </li> */}
+
 
 
                 <li className="nav-item">
@@ -105,20 +109,6 @@ export const NavbarVertical = () => {
                 </li>
 
 
-                {/*  <li className="nav-item d-none d-xl-block">
-                    <Link className="switcher-btn nav-link py-0 py-lg-8" to="#!" title="Themes">
-                        <div className="switcher-icon switcher-icon-dark icon icon-xl d-none" data-theme-mode="dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
-  <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-</svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        </div>
-                        <div className="switcher-icon switcher-icon-light icon icon-xl d-none" data-theme-mode="light">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        </div>
-                    </Link>
-                </li> */}
-
 
                 <li className="nav-item">
                     <Link className={location.pathname === "/settings" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/settings'}>
@@ -130,9 +120,9 @@ export const NavbarVertical = () => {
 
                 <li className="nav-item d-none d-xl-block">
                     <Link to="#" className="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-profile">
-                        <div className="avatar avatar-online mx-auto">
-                            <img className="avatar-img" src="./assets/images/1.jpg" alt="" />
-                        </div>
+                        {user && <div className="avatar avatar-online mx-auto">
+                            <img className="avatar-img" src={user && user.image} alt="" />
+                        </div>}
                     </Link>
                 </li>
             </ul>

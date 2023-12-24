@@ -1,7 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-export const Signin = () => {
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAllUsers, login } from '../redux/api/users';
+import { useDispatch } from 'react-redux';
+import { LoginSocialGoogle } from 'reactjs-social-login'
+export const Signin = ({ update }) => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const loginGoogle = async ({ provider, data }) => {
+        let data1 = { email: data.email, password: "12345" }
+        dispatch(login({ email: data1.email, password: data1.password })).then((res) => {
+            if (res.payload.status === 200) {
+                localStorage.setItem("user", JSON.stringify(res.payload.result))
+                dispatch(getAllUsers())
+                navigate('/chats')
+            }
+            update()
+        })
+    }
     return (
         <div className="container-fluid">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
@@ -15,32 +34,78 @@ export const Signin = () => {
                                         <p>Login to your account</p>
                                     </div>
                                 </div>
-
+                                <div className="col-12 ">
+                                    <div className="col-12">
+                                        <LoginSocialGoogle
+                                            client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                                            onResolve={loginGoogle}
+                                            onReject={(err) => {
+                                                console.log(err)
+                                            }}>
+                                            <div className="d-grid">
+                                                <Link className="btn btn-dark">
+                                                    <img alt="Logo" src={'https://mobile-store1234.netlify.app/static/media/google.e12914ad8afda3f6f2e8.png'} className="h-15px me-3" width={20} height={20} />
+                                                    Sign in Google
+                                                </Link>
+                                            </div>
+                                        </LoginSocialGoogle>
+                                    </div>
+                                </div>
                                 <div className="col-12">
                                     <div className="form-floating">
-                                        <input type="email" className="form-control" id="signin-email" placeholder="Email" />
+                                        <input type="email" name='email' className="form-control" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                                         <label htmlFor="signin-email">Email</label>
                                     </div>
                                 </div>
 
                                 <div className="col-12">
                                     <div className="form-floating">
-                                        <input type="password" className="form-control" id="signin-password" placeholder="Password" />
+                                        <input type={passwordShown ? "text" : "password"} name='password' className="form-control" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                        <span onClick={() => { passwordShown === true ? setPasswordShown(false) : setPasswordShown(true) }}>
+                                            {
+                                                passwordShown === true ? <i id="passwordToggler" className="bi bi-eye"></i>
+                                                    : <i id="passwordToggler" className="bi bi-eye-slash"></i>
+                                            }
+                                        </span>
                                         <label htmlFor="signin-password">Password</label>
                                     </div>
                                 </div>
 
                                 <div className="col-12">
-                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit">Sign In</button>
+                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit"
+                                        onClick={() => {
+                                            setLoading(true)
+                                            setTimeout(() => {
+                                                dispatch(login({ email: email, password: password })).then((res) => {
+                                                    if (res.payload.status === 200) {
+                                                        localStorage.setItem("user", JSON.stringify(res.payload.result))
+                                                        dispatch(getAllUsers())
+                                                        navigate('/chats')
+                                                    }
+                                                })
+                                                update()
+                                                setLoading(false)
+                                            }, 2000);
+                                        }}
+
+                                    >
+                                        {loading &&
+                                            <>
+                                                <div className="spinner-border spinner-border-sm" role="status">
+                                                </div> Please wait...
+                                            </>
+                                        }
+                                        {!loading &&
+                                            <span className="indicator-label"> Sign In </span>
+                                        }
+                                    </button>
+                                </div>
+                                <div className="text-center mt-8">
+                                    <p>Don't have an account yet? <Link to="/signup">Sign up</Link></p>
+                                    <p><Link to="/passwordReset">Forgot Password?</Link></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div className="text-center mt-8">
-                        <p>Don't have an account yet? <Link to="/signup">Sign up</Link></p>
-                        <p><Link to="/passwordReset">Forgot Password?</Link></p>
                     </div>
                 </div>
             </div>

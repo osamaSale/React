@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect ,useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Signin } from "./components/Signin"
@@ -14,10 +14,19 @@ import { Settings } from './components/Settings';
 import { Modals } from './components/Modals';
 import { ChatGroup } from './components/ChatGroup';
 import { NavbarVertical } from './components/NavbarVertical';
+import { useDispatch } from 'react-redux';
+import { getAllUsers } from './redux/api/users';
 function App() {
+  const [mode, setTheme] = useState('light')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    update()
+  
+  }, [])
   const update = () => {
-
+    dispatch(getAllUsers())
   }
+
   return (
     <div className="App">
       <ToastContainer />
@@ -30,12 +39,11 @@ function App() {
           <Route path='/notifications' element={<Notifications update={update} />} />
           <Route path='/createChat' element={<CreateChat update={update} />} />
           <Route path='/friends' element={<Friends update={update} />} />
-          <Route path='/signin' element={<Signin update={update} />} />
+          <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
           <Route path='/passwordReset' element={<PasswordReset update={update} />} />
           <Route path='/settings' element={<Settings update={update} />} />
           <Route path='/chatGroup' element={<ChatGroup update={update} />} />
-
         </Routes>
         <Modals />
       </div>

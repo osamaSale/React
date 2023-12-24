@@ -19031,3 +19031,12 @@ img.zoom-img {
   top: 0;
   left: 0;
 }
+
+#passwordToggler {
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const ChatGroup = () => {
     return (
         <>
-        <Chats/>
-        <main className="main is-visible" data-dropzone-area="">
+            <Chats />
+            <main className="main is-visible" data-dropzone-area="">
                 <div className="container h-100">
                     <div className="d-flex flex-column h-100 position-relative">
-                       
+
                         <div className="chat-header border-bottom py-4 py-lg-7">
                             <div className="row align-items-center">
 
@@ -18,10 +18,10 @@ export const ChatGroup = () => {
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                     </Link>
                                 </div>
-                            
+
                                 <div className="col-8 col-xl-12">
                                     <div className="row align-items-center text-center text-xl-start">
-                                       
+
                                         <div className="col-12 col-xl-6">
                                             <div className="row align-items-center gx-5">
                                                 <div className="col-auto">
@@ -36,7 +36,7 @@ export const ChatGroup = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
                                         <div className="col-xl-6 d-none d-xl-block">
                                             <div className="row align-items-center justify-content-end gx-6">
                                                 <div className="col-auto">
@@ -58,22 +58,22 @@ export const ChatGroup = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                                 <div className="col-2 d-xl-none text-end">
                                     <Link to="#" className="icon icon-lg text-muted" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-more" aria-controls="offcanvas-more">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                     </Link>
                                 </div>
-                           
+
 
                             </div>
                         </div>
-                       
+
                         <div className="chat-body hide-scrollbar flex-1 h-100">
-                            <div className="chat-body-inner" style={{paddingBottom: "87px"}}>
+                            <div className="chat-body-inner" style={{ paddingBottom: "87px" }}>
                                 <div className="py-6 py-lg-12">
 
                                     <div className="message">
@@ -302,7 +302,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message-divider">
                                         <small className="text-muted">Monday, Sep 16</small>
                                     </div>
@@ -387,7 +387,7 @@ export const ChatGroup = () => {
                                                         </div>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -434,7 +434,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/2.jpg" alt="" />
@@ -447,7 +447,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -494,12 +494,12 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message-divider">
                                         <small className="text-muted">Friday, Sep 20</small>
                                     </div>
 
-                                    
+
                                     <div className="message message-out">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="./assets/images/7.jpg" alt="" />
@@ -512,7 +512,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -559,7 +559,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/2.jpg" alt="" />
@@ -572,7 +572,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -616,7 +616,7 @@ export const ChatGroup = () => {
                                                         <p>Send me the files please</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -663,7 +663,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message message-out">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/1.jpg" alt="" />
@@ -676,7 +676,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -723,7 +723,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/2.jpg" alt="" />
@@ -736,7 +736,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -783,7 +783,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message message-out">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/1.jpg" alt="" />
@@ -796,7 +796,7 @@ export const ChatGroup = () => {
                                                         <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple? 😂</p>
                                                     </div>
 
-                                                    
+
                                                     <div className="message-action">
                                                         <div className="dropdown">
                                                             <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -843,7 +843,7 @@ export const ChatGroup = () => {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div className="message">
                                         <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                             <img className="avatar-img" src="assets/img/avatars/2.jpg" alt="" />
@@ -863,14 +863,14 @@ export const ChatGroup = () => {
                                 </div>
                             </div>
                         </div>
-      
+
                         <div className="chat-footer pb-3 pb-lg-7 position-absolute bottom-0 start-0">
-                          
+
                             <div className="dz-preview bg-dark" id="dz-preview-row" data-horizontal-scroll="">
                             </div>
-                          
 
-                           
+
+
                             <form className="chat-form rounded-pill bg-dark" data-emoji-form="">
                                 <div className="row align-items-center gx-0">
                                     <div className="col-auto">
@@ -881,7 +881,7 @@ export const ChatGroup = () => {
 
                                     <div className="col">
                                         <div className="input-group">
-                                            <textarea className="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style={{overflow: "hidden", overflowWrap: "break-word", resize: "none", height: "47.2px"}}></textarea>
+                                            <textarea className="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style={{ overflow: "hidden", overflowWrap: "break-word", resize: "none", height: "47.2px" }}></textarea>
 
                                             <Link to="#" className="input-group-text text-body pe-0" data-emoji-btn="">
                                                 <span className="icon icon-lg">
@@ -898,14 +898,14 @@ export const ChatGroup = () => {
                                     </div>
                                 </div>
                             </form>
-                         
+
                         </div>
-                        
+
                     </div>
 
                 </div>
             </main>
-            </>
+        </>
     );
 }
 
