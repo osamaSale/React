@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getAllUsers, findUserEmail } from '../redux/api/users';
-import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
-
-export const PasswordReset = ({ update, number }) => {
- 
-    const [email, setEmail] = useState("")
+import { getAllUsers, updatePassword } from '../redux/api/users';
+export const VerifyPassword = ({ update, number }) => {
+    const [password, setPassword] = useState("")
+    const [verifyPassword, setVerifyPassword] = useState(0)
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     return (
         <div className="container-fluid">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+
                 <div className="col-12 col-md-5 col-lg-4">
                     <div className="card card-shadow border-0">
                         <div className="card-body">
@@ -27,35 +26,35 @@ export const PasswordReset = ({ update, number }) => {
 
                                 <div className="col-12">
                                     <div className="form-floating">
-                                        <input type="email" className="form-control" name='email' placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-                                        <label htmlFor="resetpassword-email">Email</label>
+                                        <input type="password" className="form-control" placeholder="New password" onChange={(e) => setPassword(e.target.value)} />
+                                        <label htmlFor="profile-new-password">New password</label>
+                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <div className="form-floating">
+                                        <input type="password" className="form-control" placeholder="Verify Password" onChange={(e) => setVerifyPassword(e.target.value)} />
+                                        <label htmlFor="profile-verify-password">Verify Password</label>
                                     </div>
                                 </div>
 
                                 <div className="col-12">
-                                    <button className="btn btn-block btn-lg btn-primary w-100"
-                                        type="submit"
+                                    <button className="btn btn-block btn-lg btn-primary w-100" type="submit"
                                         onClick={() => {
                                             setLoading(true)
                                             setTimeout(() => {
-
-                                                dispatch(findUserEmail({ email })).then((res) => {
-                                                    if (res.payload.status === 200) {
-                                                        dispatch(getAllUsers())
-                                                        update()
-                                                        let data1 = { user_name: "Osama", user_email: email, message: `VerifyPassword : ${number}` }
-                                                        emailjs.send('service_pyguoec', 'template_airpmzr', data1, 'DUOrlJz1ktRqkBB2k')
-                                                            .then(function (response) {
-                                                                console.log(response)
-                                                                toast(`Send Email ${email}`)
-                                                                localStorage.setItem("email", email)
-                                                                navigate('/verifyPassword')
-
-                                                            }, function (err) {
-                                                                console.log('FAILED...', err);
-                                                            });
-                                                    }
-                                                })
+                                                if (verifyPassword === number || verifyPassword === 0) {
+                                                    toast('Error Verify Password')
+                                                } else {
+                                                    const email = localStorage.getItem("email")
+                                                    let data = { email: email, password: password }
+                                                    dispatch(updatePassword(data)).then((res) => {
+                                                        if (res.payload.status === 200) {
+                                                            dispatch(getAllUsers())
+                                                            update()
+                                                            navigate('/')
+                                                        }
+                                                    })
+                                                }
                                                 setLoading(false)
                                             }, 2000);
                                         }}
@@ -66,7 +65,7 @@ export const PasswordReset = ({ update, number }) => {
 
                                     </button>
                                     <div className="text-center mt-8">
-                                        <p>Already have an account? <Link to="/">Sign in</Link></p>
+                                        <p>Return verify Email ? <Link to="/passwordReset">Verify Email</Link></p>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +73,6 @@ export const PasswordReset = ({ update, number }) => {
                     </div>
 
                 </div>
-
             </div>
         </div>
     );

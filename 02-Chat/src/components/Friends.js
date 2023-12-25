@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { searchUser } from '../redux/api/users';
 export const Friends = ({ update }) => {
-    const { users } = useSelector(store => store.data)
+    const { users, user } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
-  
+
     return (
 
         <aside className="sidebar bg-light">
@@ -16,7 +16,7 @@ export const Friends = ({ update }) => {
                         <div className="container py-8">
                             <div className="mb-8">
                                 <h2 className="fw-bold m-0">Friends</h2>
-                             
+
                             </div>
                             <div className="mb-6">
 
@@ -55,54 +55,55 @@ export const Friends = ({ update }) => {
 
                             <div className="card-list">
 
-                              
-                                {users && users.map((row) => {
-                                    return   <div className="card border-0" key={row.id}>
-                                            <div className="card-body">
+                                {user && user.friends && user.friends.length <= 0 &&
+                                    <div className=" text-center" role="alert">
+                                        Friends is Empty
+                                    </div>}
+                                {user && user.friends.map((row) => {
+                                    return <div className="card border-0" key={row.id}>
+                                        <div className="card-body">
 
-                                                <div className="row align-items-center gx-5">
-                                                    <div className="col-auto">
-                                                        <Link to="#" className="avatar ">
+                                            <div className="row align-items-center gx-5">
+                                                <div className="col-auto">
+                                                    <Link to="#" className="avatar ">
 
-                                                            <img className="avatar-img" src={row && row.image} alt="" />
+                                                        <img className="avatar-img" src={row && row.image} alt="" />
+                                                    </Link>
+                                                </div>
 
+                                                <div className="col">
+                                                    <h5><Link to="#">{row && row.name}</Link></h5>
+                                                    <p>last seen 3 days ago</p>
+                                                </div>
 
+                                                <div className="col-auto">
+
+                                                    <div className="dropdown">
+                                                        <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                                         </Link>
+
+                                                        <ul className="dropdown-menu">
+                                                            <li><Link className="dropdown-item" to="#">New message</Link></li>
+                                                            <li><Link className="dropdown-item" to="#">Edit contact</Link>
+                                                            </li>
+                                                            <li>
+                                                                <hr className="dropdown-divider" />
+                                                            </li>
+                                                            <li>
+                                                                <Link className="dropdown-item text-danger" to="#">Block user</Link>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-
-                                                    <div className="col">
-                                                        <h5><Link to="#">{row && row.name}</Link></h5>
-                                                        <p>last seen 3 days ago</p>
-                                                    </div>
-
-                                                    <div className="col-auto">
-
-                                                        <div className="dropdown">
-                                                            <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                            </Link>
-
-                                                            <ul className="dropdown-menu">
-                                                                <li><Link className="dropdown-item" to="#">New message</Link></li>
-                                                                <li><Link className="dropdown-item" to="#">Edit contact</Link>
-                                                                </li>
-                                                                <li>
-                                                                    <hr className="dropdown-divider" />
-                                                                </li>
-                                                                <li>
-                                                                    <Link className="dropdown-item text-danger" to="#">Block user</Link>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
                                             </div>
+
                                         </div>
+                                    </div>
 
                                 })}
-                              
+
 
                             </div>
                         </div>

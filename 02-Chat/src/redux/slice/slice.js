@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
-import { createUser, deleteUser, editUser, getAllUsers, login, searchUser, updatePassword } from "../api/users"
+import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, searchUser, updatePassword } from "../api/users"
+import { createFriends, getAllFriends } from "../api/friends";
 
 const initialState = {
     loading: false,
     users: [],
+    friend: [],
     user: null,
 }
 
@@ -15,24 +17,8 @@ export const dataSlice = createSlice({
         logout: (state, action) => {
             localStorage.removeItem("user")
             state.user = null
-        },
-        descending: (state, action) => {
-            state.products = state.products.sort((a, b) =>
-                a.name < b.name ? 1 : -1,
-            );
-        },
-        ascending: (state, action) => {
-            state.products = state.products.sort((a, b) =>
-                a.name > b.name ? 1 : -1,
-            );
-        },
-        lowestPrice: (state, action) => {
-            state.products = state.products.sort((a, b) => (a.price > b.price) ? 1 : -1)
-        },
-        highestPrice: (state, action) => {
+        }
 
-            state.products = state.products.sort((a, b) => (a.price < b.price) ? 1 : -1)
-        },
     },
 
     extraReducers: builder => {
@@ -45,7 +31,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
-           
+
             let user = JSON.parse(localStorage.getItem('user'));
 
             if (user) {
@@ -53,8 +39,8 @@ export const dataSlice = createSlice({
             } else {
                 state.user = null
             }
-           
             state.users = action.payload.result
+            state.loading = false
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
@@ -167,12 +153,61 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-       
+        // Find User Email
 
+        builder.addCase(findUserEmail.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(findUserEmail.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                console.log(status, "esgseges")
+                toast.error(massage)
+            } else {
+                console.log(status, "fsefsef")
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(findUserEmail.rejected, (state, action) => {
+            state.loading = false
+        })
 
-       
+        /* ===================== Friends ======================== */
+
+        // Get All Friends
+
+        builder.addCase(getAllFriends.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(getAllFriends.fulfilled, (state, action) => {
+            state.friend = action.payload.result
+            state.loading = false
+        })
+        builder.addCase(getAllFriends.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // Create friends
+
+        builder.addCase(createFriends.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(createFriends.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(createFriends.rejected, (state, action) => {
+            state.loading = false
+        })
+
     }
 })
 
-export const { logout, descending, ascending, lowestPrice, highestPrice } = dataSlice.actions;
+export const { logout } = dataSlice.actions;
 export default dataSlice.reducer

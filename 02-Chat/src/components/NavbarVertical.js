@@ -1,23 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 export const NavbarVertical = () => {
     const { user } = useSelector(store => store.data)
     const location = useLocation();
-    const [mode, setTheme] = useState('light' ? "dark" : "light")
-    const checkMode = () => {
-        localStorage.setItem("color-scheme", "dark")
-        setTheme("dark")
-      
-        /*    const m =  window.matchMedia('(prefers-color-scheme: light)');
-           console.log(m)  
-           let element = document.body
-             element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
-             setTheme(element.dataset.bsTheme) */
-    }
+   
 
-    if (location.pathname === "/signup" || location.pathname === "/") { return }
+    if (location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/passwordReset" || location.pathname === "/verifyPassword") { return }
     return (
         <nav className="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
 
@@ -30,9 +20,6 @@ export const NavbarVertical = () => {
 
 
             <ul className="d-flex nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center align-items-center w-100 py-4 py-lg-2 px-lg-3" role="tablist">
-
-
-
 
                 <li className="nav-item">
                     <Link to={"/createChat"} className={location.pathname === "/createChat" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} >
@@ -72,27 +59,14 @@ export const NavbarVertical = () => {
                 </li>
 
 
-                <li className="nav-item d-none d-xl-block flex-xl-grow-1">
+                <li className="nav-item ">
                     <Link className={location.pathname === "/support" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/support'} >
                         <div className="icon icon-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-layout"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
                         </div>
                     </Link>
                 </li>
-                <li className="nav-item d-none d-xl-block flex-xl-grow-1">
-                    <Link className={location.pathname === "/support" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/support'} onClick={checkMode}>
-                        <div className="icon icon-xl">
-                            {mode === 'dark' ?
-                                <div>
-                                    <i className="bi bi-brightness-high fs-4"></i>
-                                </div> :
-                                <div>
-                                    <i className="bi bi-moon fs-4"></i>
-                                </div>
-                            }
-                        </div>
-                    </Link>
-                </li>
+               
 
 
 
@@ -104,8 +78,8 @@ export const NavbarVertical = () => {
                     </Link>
                 </li>
 
-                <li className="nav-item d-none d-xl-block">
-                    <Link to="#" className="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-profile">
+                <li className="nav-item">
+                    <Link to="#" className="nav-link active py-0 py-lg-8" data-bs-toggle="modal" data-bs-target="#modal-profile">
                         {user && <div className="avatar avatar-online mx-auto">
                             <img className="avatar-img" src={user && user.image} alt="" />
                         </div>}

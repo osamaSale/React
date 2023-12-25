@@ -45,3 +45,9 @@ export const searchUser = createAsyncThunk("searchUser", async (name, { rejectWi
     const res = await axios.get(`users/search/${name}`)
     return res.data
 })
+
+// Find Email User
+export const findUserEmail = createAsyncThunk("findUserEmail", async (email, { rejectWithValue }) => {
+    const res = await axios.post(`users/findEmail` , email)
+    return res.data
+})

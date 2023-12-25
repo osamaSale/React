@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Signin } from "./components/Signin"
@@ -16,15 +16,18 @@ import { ChatGroup } from './components/ChatGroup';
 import { NavbarVertical } from './components/NavbarVertical';
 import { useDispatch } from 'react-redux';
 import { getAllUsers } from './redux/api/users';
+import { VerifyPassword } from './components/PasswordVerify';
+import { getAllFriends } from './redux/api/friends';
 function App() {
-  const [mode, setTheme] = useState('light')
+  const number = 12345
   const dispatch = useDispatch()
   useEffect(() => {
     update()
-  
+
   }, [])
   const update = () => {
     dispatch(getAllUsers())
+    dispatch(getAllFriends())
   }
 
   return (
@@ -41,7 +44,8 @@ function App() {
           <Route path='/friends' element={<Friends update={update} />} />
           <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
-          <Route path='/passwordReset' element={<PasswordReset update={update} />} />
+          <Route path='/passwordReset' element={<PasswordReset update={update} number={number} />} />
+          <Route path='/verifyPassword' element={<VerifyPassword update={update} number={number} />} />
           <Route path='/settings' element={<Settings update={update} />} />
           <Route path='/chatGroup' element={<ChatGroup update={update} />} />
         </Routes>

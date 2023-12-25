@@ -24,7 +24,7 @@ export const Signup = ({ update }) => {
         dispatch(createUser(data1)).then((res) => {
             if (res.payload.status === 200) {
                 update()
-                navigate('/login')
+                navigate('/')
             }
         })
     }
