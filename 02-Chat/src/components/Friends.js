@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { searchUser } from '../redux/api/users';
 export const Friends = ({ update }) => {
-    const { users, user } = useSelector(store => store.data)
+    const {  user } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { searchUser } from '../redux/api/users';
 
 export const CreateChat = ({ update }) => {
-    const { users } = useSelector(store => store.data)
+    const { people } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
     return (
@@ -139,7 +139,7 @@ export const CreateChat = ({ update }) => {
                                         <nav>
 
 
-                                            {users && users.map((row) => {
+                                            {people && people.map((row) => {
                                                return <div className="card border-0 mt-5">
                                                     <div className="card-body">
 

@@ -7,6 +7,7 @@ const initialState = {
     loading: false,
     users: [],
     friend: [],
+    people: [],
     user: null,
 }
 
@@ -40,6 +41,7 @@ export const dataSlice = createSlice({
                 state.user = null
             }
             state.users = action.payload.result
+            state.people = action.payload.result.filter((f) => f.id !== user.id)
             state.loading = false
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
