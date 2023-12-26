@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchUser } from '../redux/api/users';
+import { getAllUsers, searchUser } from '../redux/api/users';
+import { createFriends } from '../redux/api/friends';
 
 export const CreateChat = ({ update }) => {
-    const { people } = useSelector(store => store.data)
+    const { people, user, friends } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
     return (
@@ -41,8 +42,8 @@ export const CreateChat = ({ update }) => {
                                         </form>
                                     </div>
 
-                                    <ul className="nav nav-pills nav-justified" role="tablist">
-                                    
+                                    {/*   <ul className="nav nav-pills nav-justified" role="tablist">
+
                                         <li className="nav-item">
                                             <Link className="nav-link active" data-bs-toggle="pill" to="#create-chat-info" role="tab" aria-controls="create-chat-info" aria-selected="true">
                                                 Details
@@ -53,12 +54,12 @@ export const CreateChat = ({ update }) => {
                                                 People
                                             </Link>
                                         </li>
-                                       
-                                    </ul>
+
+                                    </ul> */}
                                 </div>
 
-                                <div className="tab-content" role="tablist">
-                                    <div className="tab-pane fade show active" id="create-chat-info" role="tabpanel">
+                                <div >
+                                    {/*  <div className="tab-pane fade show active" id="create-chat-info" role="tabpanel">
 
                                         <div className="card border-0">
                                             <div className="profile">
@@ -133,20 +134,20 @@ export const CreateChat = ({ update }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
-                                    <div className="tab-pane fade" id="create-chat-members" role="tabpanel">
+                                    <div className=" " >
                                         <nav>
 
 
                                             {people && people.map((row) => {
-                                               return <div className="card border-0 mt-5">
+                                                return <div className="card border-0 mt-5" key={row.id}>
                                                     <div className="card-body">
 
                                                         <div className="row align-items-center gx-5">
                                                             <div className="col-auto">
                                                                 <div className="avatar ">
-
+                                                                 
                                                                     <img className="avatar-img" src={row && row.image} alt="" />
 
 
@@ -157,37 +158,34 @@ export const CreateChat = ({ update }) => {
                                                                 <p>last seen 3 days ago</p>
                                                             </div>
                                                             <div className="col-auto">
-                                                                <div className="form-check">
-                                                                    <input className="form-check-input" type="checkbox" value="" id="id-member-1" />
-                                                                    <label className="form-check-label" htmlFor="id-member-1"></label>
-                                                                </div>
+                                                                <button className='btn btn-dark btn-sm'
+                                                                type='submit'
+                                                                  disabled={friends && friends.find((f) => f.friendId === row.id) && user && user.friends.find((c) => c.friendId === row.id)} 
+                                                                    onClick={() => {
+
+                                                                        let data = { userId: user.id, friendId: row.id }
+                                                                        dispatch(createFriends(data)).then(() => {
+                                                                            dispatch(getAllUsers())
+                                                                            update()
+                                                                        })
+                                                                    }}>
+                                                                    {friends && friends.find((f) => f.friendId === row.id)   && user && user.friends.find((c) => c.friendId === row.id) ?
+                                                                        <span> Friends </span> : <span>Add Friend</span>
+                                                                    }
+
+                                                                </button>
                                                             </div>
                                                         </div>
-                                                        <label className="stretched-label" htmlFor="id-member-1"></label>
+
                                                     </div>
                                                 </div>
                                             })}
-
-
-
-
                                         </nav>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
-
-                        <div className="container mt-n4 mb-8 position-relative">
-                            <button className="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button">
-                                Start chat
-                                <span className="icon ms-auto">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </span>
-                            </button>
-                        </div>
-
                     </div>
                 </div>
 

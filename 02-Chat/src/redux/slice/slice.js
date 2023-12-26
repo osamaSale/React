@@ -6,7 +6,7 @@ import { createFriends, getAllFriends } from "../api/friends";
 const initialState = {
     loading: false,
     users: [],
-    friend: [],
+    friends: [],
     people: [],
     user: null,
 }
@@ -37,11 +37,11 @@ export const dataSlice = createSlice({
 
             if (user) {
                 state.user = state.users?.find((u) => u.id === user.id)
+                state.people = action.payload.result.filter((f) => f.id !== user.id)
             } else {
                 state.user = null
             }
             state.users = action.payload.result
-            state.people = action.payload.result.filter((f) => f.id !== user.id)
             state.loading = false
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
@@ -183,7 +183,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllFriends.fulfilled, (state, action) => {
-            state.friend = action.payload.result
+            state.friends = action.payload.result
             state.loading = false
         })
         builder.addCase(getAllFriends.rejected, (state, action) => {

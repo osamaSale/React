@@ -17,8 +17,8 @@ export const Signin = ({ update }) => {
                 localStorage.setItem("user", JSON.stringify(res.payload.result))
                 dispatch(getAllUsers())
                 navigate('/chats')
+                update()
             }
-            update()
         })
     }
     return (
@@ -81,9 +81,10 @@ export const Signin = ({ update }) => {
                                                         localStorage.setItem("user", JSON.stringify(res.payload.result))
                                                         dispatch(getAllUsers())
                                                         navigate('/chats')
+                                                        update()
                                                     }
                                                 })
-                                                update()
+                                             
                                                 setLoading(false)
                                             }, 2000);
                                         }}
