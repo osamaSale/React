@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
 import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, searchUser, updatePassword } from "../api/users"
 import { createFriends, getAllFriends } from "../api/friends";
+import { createChat } from "../api/chat";
 
 const initialState = {
     loading: false,
@@ -128,6 +129,7 @@ export const dataSlice = createSlice({
             let { status } = action.payload
             if (status === 200) {
                 state.users = action.payload.result
+
             } else {
                 state.users = [...state.users]
             }
@@ -207,7 +209,25 @@ export const dataSlice = createSlice({
         builder.addCase(createFriends.rejected, (state, action) => {
             state.loading = false
         })
+        // =======================    chats   ============================ //
 
+        // Create Chat
+        builder.addCase(createChat.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(createChat.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(createChat.rejected, (state, action) => {
+            state.loading = false
+        })
+      
     }
 })
 

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createUser } from "../redux/api/users"
 import { LoginSocialGoogle } from 'reactjs-social-login'
+
 export const Signup = ({ update }) => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -97,10 +98,8 @@ export const Signup = ({ update }) => {
                                                     fromData.append("image", image);
                                                 }
                                                 dispatch(createUser(fromData)).then((res) => {
-
                                                     if (res.payload.status === 200) {
-                                                        update()
-                                                        
+                                                        update()                            
                                                         navigate('/')
                                                     }
                                                 })

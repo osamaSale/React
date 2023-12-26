@@ -12,11 +12,11 @@ import { Support } from './components/Support';
 import { PasswordReset } from './components/PasswordReset';
 import { Settings } from './components/Settings';
 import { Modals } from './components/Modals';
-import { ChatGroup } from './components/ChatGroup';
+import { ChatBox } from './components/ChatBox';
 import { NavbarVertical } from './components/NavbarVertical';
 import { useDispatch } from 'react-redux';
 import { getAllUsers } from './redux/api/users';
-import { VerifyPassword } from './components/PasswordVerify';
+import { PasswordVerify } from './components/PasswordVerify';
 import { getAllFriends } from './redux/api/friends';
 function App() {
   const number = 12345
@@ -45,9 +45,9 @@ function App() {
           <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
           <Route path='/passwordReset' element={<PasswordReset update={update} number={number} />} />
-          <Route path='/verifyPassword' element={<VerifyPassword update={update} number={number} />} />
+          <Route path='/verifyPassword' element={<PasswordVerify update={update} number={number} />} />
           <Route path='/settings' element={<Settings update={update} />} />
-          <Route path='/chatGroup' element={<ChatGroup update={update} />} />
+         {/*  <Route path='/chatBox/:id' element={<ChatBox update={update} />} /> */}
         </Routes>
         <Modals />
       </div>

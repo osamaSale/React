@@ -1,11 +1,10 @@
 import React from 'react';
-import { Chats } from './Chats';
 import { Link } from 'react-router-dom';
 
-export const ChatGroup = () => {
+export const ChatBox = ({ currentChat, update }) => {
     return (
         <>
-            <Chats />
+         {currentChat && currentChat ? 
             <main className="main is-visible" data-dropzone-area="">
                 <div className="container h-100">
                     <div className="d-flex flex-column h-100 position-relative">
@@ -26,12 +25,12 @@ export const ChatGroup = () => {
                                             <div className="row align-items-center gx-5">
                                                 <div className="col-auto">
                                                     <div className="avatar avatar-online d-none d-xl-inline-block">
-                                                        <img className="avatar-img" src="./assets/images/7.jpg" alt="" />
+                                                        <img className="avatar-img" src={currentChat && currentChat.image} alt="" />
                                                     </div>
                                                 </div>
 
                                                 <div className="col overflow-hidden">
-                                                    <h5 className="text-truncate">Ollie Chandler</h5>
+                                                    <h5 className="text-truncate">{currentChat && currentChat.name}</h5>
                                                     <p className="text-truncate">is typing<span className="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>
                                                 </div>
                                             </div>
@@ -904,7 +903,24 @@ export const ChatGroup = () => {
                     </div>
 
                 </div>
-            </main>
+            </main>:
+            <main className="main">
+            <div className="container h-100">
+
+                <div className="d-flex flex-column h-100 justify-content-center text-center">
+                    <div className="mb-6">
+                        <span className="icon icon-xl text-muted">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </span>
+                    </div>
+
+                    <p className="text-muted">Pick a person from left menu, <br /> and start your conversation.</p>
+                </div>
+
+            </div>
+        </main>
+            
+            }
         </>
     );
 }

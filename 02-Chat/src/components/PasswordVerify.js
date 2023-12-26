@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAllUsers, updatePassword } from '../redux/api/users';
-export const VerifyPassword = ({ update, number }) => {
+export const PasswordVerify = ({ update, number }) => {
     const [password, setPassword] = useState("")
     const [verifyPassword, setVerifyPassword] = useState(0)
     const [loading, setLoading] = useState(false)
