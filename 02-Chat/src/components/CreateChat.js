@@ -155,14 +155,13 @@ export const CreateChat = ({ update }) => {
                                                             </div>
                                                             <div className="col">
                                                                 <h5>{row && row.name}</h5>
-                                                                <p>last seen 3 days ago</p>
+                                                                <p>{row && row.email}</p>
                                                             </div>
                                                             <div className="col-auto">
                                                                 <button className='btn btn-dark btn-sm'
                                                                 type='submit'
                                                                   disabled={friends && friends.find((f) => f.friendId === row.id) && user && user.friends.find((c) => c.friendId === row.id)} 
                                                                     onClick={() => {
-
                                                                         let data = { userId: user.id, friendId: row.id }
                                                                         dispatch(createFriends(data)).then(() => {
                                                                             dispatch(getAllUsers())

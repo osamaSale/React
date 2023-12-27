@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchUser } from '../redux/api/users';
+import { getAllUsers, searchUser } from '../redux/api/users';
+import { createChat } from '../redux/api/chat';
 export const Friends = ({ update }) => {
-    const {  user } = useSelector(store => store.data)
+    const { user } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 
@@ -84,7 +85,20 @@ export const Friends = ({ update }) => {
                                                         </Link>
 
                                                         <ul className="dropdown-menu">
-                                                            <li><Link className="dropdown-item" to="#">New message</Link></li>
+                                                            <li>
+                                                                <button className="dropdown-item" 
+                                                                 disabled ={user && user.chat.find((c) => c.receiverId === row.friendId)}  
+                                                                onClick={() => {
+                                                               
+                                                                    console.log(user && user.chat.find((c) => c.receiverId === row.friendId))
+                                                                     let data = { senderId: user.id, receiverId: row.friendId }
+                                                                    dispatch(createChat(data)).then((res) => {
+                                                                        console.log(res)
+                                                                        dispatch(getAllUsers())
+                                                                        update()
+                                                                    }) 
+                                                                }}
+                                                            >New message</button></li>
                                                             <li><Link className="dropdown-item" to="#">Edit contact</Link>
                                                             </li>
                                                             <li>

@@ -165,10 +165,9 @@ export const dataSlice = createSlice({
         builder.addCase(findUserEmail.fulfilled, (state, action) => {
             const { status, massage } = action.payload
             if (status === 200) {
-                console.log(status, "esgseges")
+
                 toast.error(massage)
             } else {
-                console.log(status, "fsefsef")
                 toast.error(massage)
             }
             state.loading = false
@@ -227,7 +226,7 @@ export const dataSlice = createSlice({
         builder.addCase(createChat.rejected, (state, action) => {
             state.loading = false
         })
-      
+
     }
 })
 
