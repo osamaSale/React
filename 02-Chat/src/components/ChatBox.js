@@ -1,26 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMessages } from '../redux/api/message';
-import axios from 'axios';
-export const ChatBox = ({ currentChat, update }) => {
+import { createMessage } from "../redux/api/message"
+import { getAllUsers } from "../redux/api/users"
+export const ChatBox = ({ currentChat, update, messages }) => {
     const { user } = useSelector(store => store.data)
     const [userData, setUserData] = useState(null);
-    const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const dispatch = useDispatch()
     const handleChange = (newMessage) => {
         setNewMessage(newMessage)
     }
-    useEffect(() => {
-        axios.get(`massage/${currentChat && currentChat.id}`).then((res) => {
-            console.log(res.data)
-            setMessages(res.data.result)
-        })
-
-    }, [user])
-    console.log(messages)
-    console.log(currentChat && currentChat.id)
     const scroll = useRef();
     return (
         <>
@@ -64,17 +54,7 @@ export const ChatBox = ({ currentChat, update }) => {
                                                         </Link>
                                                     </div>
 
-                                                    <div className="col-auto">
-                                                        <div className="avatar-group">
-                                                            <Link to="#" className="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-user-profile">
-                                                                <img className="avatar-img" src="./assets/images/1.jpg" alt="#" />
-                                                            </Link>
 
-                                                            <Link to="#" className="avatar avatar-sm" data-bs-toggle="modal" data-bs-target="#modal-profile">
-                                                                <img className="avatar-img" src="./assets/images/7.jpg" alt="#" />
-                                                            </Link>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -91,15 +71,15 @@ export const ChatBox = ({ currentChat, update }) => {
                                 </div>
                             </div>
 
-                            <div className="chat-body hide-scrollbar flex-1 h-100" ref={scroll}>
+                            <div className="chat-body hide-scrollbar flex-1 h-100" >
                                 {messages && messages?.map((row) => {
                                     return <div key={row.id}
                                         className="chat-body-inner" style={{ paddingBottom: "87px" }}>
                                         <div className="py-6 py-lg-12">
 
-                                            <div className="message">
+                                            <div className={row.senderId === user.id ? "message" : "message message-out"} >
                                                 <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
-                                                    <img className="avatar-img" src="assets/img/avatars/2.jpg" alt="" />
+                                                    <img className="avatar-img" src={row.receiverImage} alt="" />
                                                 </Link>
 
                                                 <div className="message-inner">
@@ -148,49 +128,7 @@ export const ChatBox = ({ currentChat, update }) => {
                                                             </div>
                                                         </div>
 
-                                                        <div className="message-content">
-                                                            <div className="message-text">
-                                                                <p>Send me the files please.</p>
-                                                            </div>
 
-                                                            <div className="message-action">
-                                                                <div className="dropdown">
-                                                                    <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                                    </Link>
-
-                                                                    <ul className="dropdown-menu">
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Edit</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Reply</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-corner-up-left"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <hr className="dropdown-divider" />
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                                                <span className="me-auto">Delete</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <div className="message-footer">
@@ -199,129 +137,6 @@ export const ChatBox = ({ currentChat, update }) => {
                                                 </div>
                                             </div>
 
-                                            <div className="message message-out">
-                                                <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-profile" className="avatar avatar-responsive">
-                                                    <img className="avatar-img" src="assets/img/avatars/1.jpg" alt="" />
-                                                </Link>
-
-                                                <div className="message-inner">
-                                                    <div className="message-body">
-                                                        <div className="message-content">
-                                                            <div className="message-text">
-                                                                <blockquote className="blockquote overflow-hidden">
-                                                                    <h6 className="text-reset text-truncate">William Wright</h6>
-                                                                    <p className="small text-truncate">Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                                                </blockquote>
-                                                                <p>Hey, Marshall! How are you? Can you please change the color theme of the website to pink and purple?</p>
-                                                            </div>
-
-                                                            <div className="message-action">
-                                                                <div className="dropdown">
-                                                                    <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                                    </Link>
-
-                                                                    <ul className="dropdown-menu">
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Edit</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Reply</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-corner-up-left"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <hr className="dropdown-divider" />
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                                                <span className="me-auto">Delete</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="message-content">
-                                                            <div className="message-text">
-
-                                                                <div className="row align-items-center gx-4">
-                                                                    <div className="col-auto">
-                                                                        <Link to="#" className="avatar avatar-sm">
-                                                                            <div className="avatar-text bg-white text-primary">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-arrow-down"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-                                                                            </div>
-                                                                        </Link>
-                                                                    </div>
-                                                                    <div className="col overflow-hidden">
-                                                                        <h6 className="text-truncate text-reset">
-                                                                            <Link to="#" className="text-reset">filename.json</Link>
-                                                                        </h6>
-                                                                        <ul className="list-inline text-uppercase extra-small opacity-75 mb-0">
-                                                                            <li className="list-inline-item">79.2 KB</li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div className="message-action">
-                                                                <div className="dropdown">
-                                                                    <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                                    </Link>
-
-                                                                    <ul className="dropdown-menu">
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Edit</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                                                <span className="me-auto">Reply</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-corner-up-left"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                        <li>
-                                                                            <hr className="dropdown-divider" />
-                                                                        </li>
-                                                                        <li>
-                                                                            <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                                                <span className="me-auto">Delete</span>
-                                                                                <div className="icon">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="message-footer">
-                                                        <span className="extra-small text-muted">08:45 PM</span>
-                                                    </div>
-                                                </div>
-                                            </div>
 
 
                                             <div className="message-divider">
@@ -343,7 +158,7 @@ export const ChatBox = ({ currentChat, update }) => {
 
 
 
-                                <form className="chat-form rounded-pill bg-dark" data-emoji-form="">
+                                <div className="chat-form rounded-pill bg-dark" data-emoji-form="">
                                     <div className="row align-items-center gx-0">
                                         <div className="col-auto">
                                             <Link to="#" className="btn btn-icon btn-link text-body rounded-circle dz-clickable" id="dz-btn">
@@ -353,9 +168,13 @@ export const ChatBox = ({ currentChat, update }) => {
 
                                         <div className="col">
                                             <div className="input-group">
-                                                <textarea className="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style={{ overflow: "hidden", overflowWrap: "break-word", resize: "none", height: "47.2px" }}></textarea>
+                                                <textarea className="form-control px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style={{ overflow: "hidden", overflowWrap: "break-word", resize: "none", height: "47.2px" }}
+                                                    onChange={(e) => setNewMessage(e.target.value)}
+                                                ></textarea>
 
-                                                <Link to="#" className="input-group-text text-body pe-0" data-emoji-btn="">
+                                                <Link className="input-group-text text-body pe-0" data-emoji-btn=""
+
+                                                >
                                                     <span className="icon icon-lg">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-smile"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                                                     </span>
@@ -364,12 +183,25 @@ export const ChatBox = ({ currentChat, update }) => {
                                         </div>
 
                                         <div className="col-auto">
-                                            <button className="btn btn-icon btn-primary rounded-circle ms-5">
+                                            <button className="btn btn-icon btn-primary rounded-circle ms-5"
+                                                onClick={() => {
+                                                    const fromData = new FormData();
+                                                    fromData.append("chatId", currentChat.id);
+                                                    fromData.append("senderId", currentChat.senderId);
+                                                    fromData.append("receiverId", currentChat.receiverId);
+                                                    fromData.append("text", newMessage);
+                                                   
+                                                    dispatch(createMessage(fromData)).then((res) => {
+                                                        dispatch(getAllUsers())
+                                                        update()
+                                                    })
+                                                }}
+                                            >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
 
                             </div>
 

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, searchUser, updatePassword } from "../api/users"
 import { createFriends, getAllFriends } from "../api/friends";
 import { createChat } from "../api/chat";
+import { createMessage } from "../api/message";
 
 const initialState = {
     loading: false,
@@ -224,6 +225,25 @@ export const dataSlice = createSlice({
             state.loading = false
         })
         builder.addCase(createChat.rejected, (state, action) => {
+            state.loading = false
+        })
+
+        // =======================    Message   ============================ //
+
+        // Create Message
+        builder.addCase(createMessage.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(createMessage.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+        })
+        builder.addCase(createMessage.rejected, (state, action) => {
             state.loading = false
         })
 

@@ -5,7 +5,7 @@ import { ChatBox } from './ChatBox';
 export const Chats = ({ update }) => {
     const { user } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
-  
+    const [messages, setMessages] = useState([]);
     return (
         <>
             <aside className="sidebar bg-light">
@@ -37,7 +37,10 @@ export const Chats = ({ update }) => {
 
                                     {user && user.chat && user.chat.map((row) => {
                                         return <Link className="card border-0 text-reset" key={row.id}
-                                            onClick={() => setCurrentChat(row)}>
+                                            onClick={() => {
+                                                setCurrentChat(row)
+                                                setMessages(row && row.message)
+                                            }}>
                                             <div className="card-body">
                                                 <div className="row gx-5">
                                                     <div className="col-auto">
@@ -73,7 +76,7 @@ export const Chats = ({ update }) => {
                     </div>
                 </div>
             </aside>
-            <ChatBox currentChat={currentChat}/>
+            <ChatBox currentChat={currentChat} messages={messages} update={update}/>
 
         </>
     );
