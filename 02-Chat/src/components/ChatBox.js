@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMessage } from "../redux/api/message"
+import { createMessage, getMessages } from "../redux/api/message"
 import { getAllUsers } from "../redux/api/users"
-export const ChatBox = ({ currentChat, update, messages }) => {
+export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
     const { user } = useSelector(store => store.data)
     const [userData, setUserData] = useState(null);
     const [newMessage, setNewMessage] = useState("");
@@ -77,9 +77,9 @@ export const ChatBox = ({ currentChat, update, messages }) => {
                                         className="chat-body-inner" style={{ paddingBottom: "87px" }}>
                                         <div className="py-6 py-lg-12">
 
-                                            <div className={row.senderId === user.id ? "message" : "message message-out"} >
+                                            <div className={row.senderId === user.id ? "message message-out" : "message"} >
                                                 <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
-                                                    <img className="avatar-img" src={row.receiverImage} alt="" />
+                                                    <img className="avatar-img" src={row.senderImage} alt="" />
                                                 </Link>
 
                                                 <div className="message-inner">
@@ -140,7 +140,7 @@ export const ChatBox = ({ currentChat, update, messages }) => {
 
 
                                             <div className="message-divider">
-                                                <small className="text-muted">Monday, Sep 16</small>
+                                                <small className="text-muted">{row.date}</small>
                                             </div>
 
 
@@ -187,13 +187,14 @@ export const ChatBox = ({ currentChat, update, messages }) => {
                                                 onClick={() => {
                                                     const fromData = new FormData();
                                                     fromData.append("chatId", currentChat.id);
-                                                    fromData.append("senderId", currentChat.senderId);
-                                                    fromData.append("receiverId", currentChat.receiverId);
+                                                    fromData.append("senderId", user.id);
                                                     fromData.append("text", newMessage);
                                                    
                                                     dispatch(createMessage(fromData)).then((res) => {
                                                         dispatch(getAllUsers())
+                                                        setMessages([ ...messages, res.payload.result ])
                                                         update()
+                                                        setNewMessage("");
                                                     })
                                                 }}
                                             >

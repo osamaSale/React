@@ -76,7 +76,7 @@ export const Chats = ({ update }) => {
                     </div>
                 </div>
             </aside>
-            <ChatBox currentChat={currentChat} messages={messages} update={update}/>
+            <ChatBox currentChat={currentChat} messages={messages} update={update} setMessages={setMessages}/>
 
         </>
     );
