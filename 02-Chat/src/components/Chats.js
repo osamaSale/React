@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ChatBox } from './ChatBox';
+import { getIdChat } from "../redux/slice/slice"
+import { getMessages } from '../redux/api/message';
 export const Chats = ({ update }) => {
-    const { user } = useSelector((store) => store.data)
+    const { chat, user } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
-    const [messages, setMessages] = useState([]);
+    const dispatch = useDispatch()
+    console.log(chat.find((e) => e.receiverId === user?.id))
     return (
         <>
             <aside className="sidebar bg-light">
@@ -35,25 +38,40 @@ export const Chats = ({ update }) => {
 
                                 <div className="card-list">
 
-                                    {user && user.chat && user.chat.map((row) => {
+                                    {chat && chat.map((row) => {
                                         return <Link className="card border-0 text-reset" key={row.id}
                                             onClick={() => {
+                                                let chatId = row.id
                                                 setCurrentChat(row)
-                                                setMessages(row && row.message)
+                                                dispatch(getIdChat({ chatId }))
+                                                dispatch(getMessages())
                                             }}>
                                             <div className="card-body">
                                                 <div className="row gx-5">
                                                     <div className="col-auto">
-                                                        <div className="avatar avatar-online">
-                                                            <img src={row && row.receiverImage} alt="#" className="avatar-img" />
-                                                        </div>
+                                                        {row && row.receiverId === user?.id ?
+                                                            <div className="avatar avatar-online">
+                                                                <img src={row && row.senderImage} alt="#" className="avatar-img" />
+                                                            </div> :
+                                                            <div className="avatar avatar-online">
+                                                                <img src={row && row.receiverImage} alt="#" className="avatar-img" />
+                                                            </div>
+
+                                                        }
+
                                                     </div>
 
                                                     <div className="col">
-                                                        <div className="d-flex align-items-center mb-3">
-                                                            <h5 className="me-auto mb-0">{row && row.receiverName}</h5>
-                                                            <span className="text-muted extra-small ms-2">12:45 PM</span>
-                                                        </div>
+                                                        {row && row.receiverId === user?.id ?
+                                                            <div className="d-flex align-items-center mb-3">
+                                                                <h5 className="me-auto mb-0">{row && row.senderName}</h5>
+                                                                <span className="text-muted extra-small ms-2">12:45 PM</span>
+                                                            </div> :
+                                                            <div className="d-flex align-items-center mb-3">
+                                                                <h5 className="me-auto mb-0">{row && row.receiverName}</h5>
+                                                                <span className="text-muted extra-small ms-2">12:45 PM</span>
+                                                            </div>
+                                                        }
 
                                                         <div className="d-flex align-items-center">
                                                             <div className="line-clamp me-auto">
@@ -76,7 +94,7 @@ export const Chats = ({ update }) => {
                     </div>
                 </div>
             </aside>
-            <ChatBox currentChat={currentChat} messages={messages} update={update} setMessages={setMessages}/>
+            <ChatBox currentChat={currentChat} update={update} />
 
         </>
     );

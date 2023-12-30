@@ -7,3 +7,8 @@ export const createChat = createAsyncThunk("createChat", async (chat, { rejectWi
     const res = await axios.post("chat", chat)
     return res.data
 })
+// get All Chat
+export const getAllChat = createAsyncThunk("getAllChat", async (chat, { rejectWithValue, }) => {
+    const res = await axios.get("chat")
+    return res.data
+})

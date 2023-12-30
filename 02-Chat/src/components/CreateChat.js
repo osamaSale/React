@@ -155,7 +155,7 @@ export const CreateChat = ({ update }) => {
                                                             </div>
                                                             <div className="col">
                                                                 <h5>{row && row.name}</h5>
-                                                                <p>{row && row.email}</p>
+                                                                <p>{`${row && row.email}`.slice(0, 14)}..</p>
                                                             </div>
                                                             <div className="col-auto">
                                                                 <button className='btn btn-dark btn-sm'

@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createMessage, getMessages } from "../redux/api/message"
 import { getAllUsers } from "../redux/api/users"
-export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
-    const { user } = useSelector(store => store.data)
+export const ChatBox = ({ currentChat, update }) => {
+    const { user, massage } = useSelector(store => store.data)
     const [userData, setUserData] = useState(null);
     const [newMessage, setNewMessage] = useState("");
+    const [image, setImage] = useState(null);
     const dispatch = useDispatch()
     const handleChange = (newMessage) => {
         setNewMessage(newMessage)
@@ -72,12 +73,13 @@ export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
                             </div>
 
                             <div className="chat-body hide-scrollbar flex-1 h-100" >
-                                {messages && messages?.map((row) => {
+                                {massage && massage?.map((row) => {
                                     return <div key={row.id}
-                                        className="chat-body-inner" style={{ paddingBottom: "87px" }}>
+                                        className="chat-body-inner" >
                                         <div className="py-6 py-lg-12">
 
-                                            <div className={row.senderId === user.id ? "message message-out" : "message"} >
+
+                                            <div className={row.senderId === user.id ? "message message-out" : "message "} >
                                                 <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                                     <img className="avatar-img" src={row.senderImage} alt="" />
                                                 </Link>
@@ -132,10 +134,12 @@ export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
                                                     </div>
 
                                                     <div className="message-footer">
-                                                        <span className="extra-small text-muted">08:45 PM</span>
+                                                        <span className="extra-small text-muted">{row.time}</span>
                                                     </div>
                                                 </div>
                                             </div>
+
+
 
 
 
@@ -161,7 +165,8 @@ export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
                                 <div className="chat-form rounded-pill bg-dark" data-emoji-form="">
                                     <div className="row align-items-center gx-0">
                                         <div className="col-auto">
-                                            <Link to="#" className="btn btn-icon btn-link text-body rounded-circle dz-clickable" id="dz-btn">
+                                            <Link to="#" className="btn btn-icon btn-link text-body rounded-circle dz-clickable" >
+                                            <input type='file' className="btn btn-icon btn-link text-body rounded-circle dz-clickable" id="file-input"/>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-paperclip"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
                                             </Link>
                                         </div>
@@ -184,17 +189,26 @@ export const ChatBox = ({ currentChat, update, messages ,setMessages }) => {
 
                                         <div className="col-auto">
                                             <button className="btn btn-icon btn-primary rounded-circle ms-5"
+
                                                 onClick={() => {
+
+
                                                     const fromData = new FormData();
                                                     fromData.append("chatId", currentChat.id);
                                                     fromData.append("senderId", user.id);
+                                                    fromData.append("senderName", user.name);
+                                                    fromData.append("senderImage", user.image);
                                                     fromData.append("text", newMessage);
-                                                   
+                                                    if (image !== null) {
+                                                        fromData.append("image", image, image?.name);
+                                                    } else {
+                                                        fromData.append("text", newMessage);
+                                                    }
                                                     dispatch(createMessage(fromData)).then((res) => {
                                                         dispatch(getAllUsers())
-                                                        setMessages([ ...messages, res.payload.result ])
-                                                        update()
+                                                        dispatch(getMessages())
                                                         setNewMessage("");
+                                                        update()
                                                     })
                                                 }}
                                             >

@@ -9,6 +9,6 @@ export const createMessage = createAsyncThunk("createMessage", async (chat, { re
 })
 // getMessages
 export const getMessages = createAsyncThunk("getMessages", async (chatId, { rejectWithValue, }) => {
-    const res = await axios.post(`/massage/${chatId}`)
+    const res = await axios.get(`massage`)
     return res.data
 })

@@ -18,6 +18,7 @@ import { getAllUsers } from './redux/api/users';
 import { PasswordVerify } from './components/PasswordVerify';
 import { getAllFriends } from './redux/api/friends';
 import { getMessages } from './redux/api/message';
+import { getAllChat } from './redux/api/chat';
 function App() {
   const number = 12345
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ function App() {
   }, [])
   const update = () => {
     dispatch(getAllUsers())
+    dispatch(getAllChat())
     dispatch(getAllFriends())
     dispatch(getMessages())
   }

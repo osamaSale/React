@@ -2,15 +2,17 @@ import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
 import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, searchUser, updatePassword } from "../api/users"
 import { createFriends, getAllFriends } from "../api/friends";
-import { createChat } from "../api/chat";
+import { createChat, getAllChat } from "../api/chat";
 import { createMessage, getMessages } from "../api/message";
 
 const initialState = {
     loading: false,
     users: [],
     friends: [],
+    chat: [],
     people: [],
     massage: [],
+    chatId: null,
     user: null,
 }
 
@@ -21,8 +23,12 @@ export const dataSlice = createSlice({
         logout: (state, action) => {
             localStorage.removeItem("user")
             state.user = null
+        },
+        getIdChat: (state, action) => {
+            const { chatId } = action.payload
+            state.chatId = chatId
+            console.log(state.chatId)
         }
-
     },
 
     extraReducers: builder => {
@@ -40,10 +46,11 @@ export const dataSlice = createSlice({
 
             if (user) {
                 state.user = state.users?.find((u) => u.id === user.id)
-                state.people = action.payload.result.filter((f) => f.id !== user.id)
+                state.people = action.payload.result ? action.payload.result.filter((f) => f.id !== user.id) : []
             } else {
                 state.user = null
             }
+
             state.users = action.payload.result
             state.loading = false
         })
@@ -212,6 +219,18 @@ export const dataSlice = createSlice({
         })
         // =======================    chats   ============================ //
 
+        // get Chat
+        builder.addCase(getAllChat.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(getAllChat.fulfilled, (state, action) => {
+            state.chat = action.payload.result ? action.payload.result.filter((c) => c.senderId === state.user?.id || c.receiverId === state.user?.id) : []
+            state.loading = false
+        })
+        builder.addCase(getAllChat.rejected, (state, action) => {
+            state.loading = false
+        })
+
         // Create Chat
         builder.addCase(createChat.pending, (state, action) => {
             state.loading = true
@@ -252,12 +271,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getMessages.fulfilled, (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 200) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
+            state.massage = action.payload.result ? action.payload.result.filter((m) => m.chatId === parseInt(state.chatId)) : []
             state.loading = false
         })
         builder.addCase(getMessages.rejected, (state, action) => {
@@ -267,5 +281,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout } = dataSlice.actions;
+export const { logout, getIdChat } = dataSlice.actions;
 export default dataSlice.reducer
