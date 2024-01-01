@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ChatBox } from './ChatBox';
 import { getIdChat } from "../redux/slice/slice"
 import { getMessages } from '../redux/api/message';
+import { io } from "socket.io-client"
 export const Chats = ({ update }) => {
-    const { chat, user } = useSelector((store) => store.data)
+    const { chat, user, massage } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
+    const [onlineUsers, setOnlineUsers] = useState([]);
+    /*   const lastmassage = massage && massage.filter((c) => c.senderId === 1)
+      let lastElement = lastmassage[lastmassage.length - 1];
+      console.log(lastmassage) */
+
     const dispatch = useDispatch()
-    console.log(chat.find((e) => e.receiverId === user?.id))
+    /* const socket = useRef()
+    useEffect(() => {
+        socket.current = io('https://socket-ciuh.onrender.com/')
+        socket.current.on("get-users", (users) => {
+            setOnlineUsers(users);
+        });
+    }, [user])
+    const checkOnlineStatus = (chat) => {
+        const chatMember = chat.find((c) => c.senderId === user?.id || c.receiverId === user?.id);
+        const online = onlineUsers.find((user) => user.userId === chatMember)
+        return online ? true : false
+    } */
     return (
         <>
             <aside className="sidebar bg-light">
@@ -74,9 +91,22 @@ export const Chats = ({ update }) => {
                                                         }
 
                                                         <div className="d-flex align-items-center">
-                                                            <div className="line-clamp me-auto">
-                                                                Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.
-                                                            </div>
+                                                            {massage && massage.find((c) => c.chatId === row.id) ?
+                                                                <div className="line-clamp me-auto">
+                                                                    {massage[massage - 1]?.map((row) => {
+                                                                        return <div>
+                                                                            {row.text !== "null" ?  row.text : 
+                                                                            <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
+                                                                            }
+                                                                        </div>
+                                                                    })}
+                                                                    
+                                                                </div> :
+                                                                <div className="line-clamp me-auto">
+                                                                    Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.
+                                                                </div>
+                                                            }
+
 
                                                             <div className="badge badge-circle bg-primary ms-5">
                                                                 <span>3</span>

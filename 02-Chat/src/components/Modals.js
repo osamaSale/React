@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../redux/slice/slice"
 
 export const Modals = ({ update }) => {
-    const { user } = useSelector(store => store.data)
+
+    const { user, mediaId, media } = useSelector(store => store.data)
+    const findMedia = media ? media.find((m) => m.id === mediaId) : []
     const dispatch = useDispatch()
     const navigate = useNavigate()
     return (
@@ -43,12 +45,12 @@ export const Modals = ({ update }) => {
                                 <form className="row gy-6">
                                     <div className="col-12">
                                         <label htmlFor="invite-email" className="form-label text-muted">E-mail</label>
-                                        <input type="email" className="form-control form-control-lg"  placeholder="name@example.com" />
+                                        <input type="email" className="form-control form-control-lg" placeholder="name@example.com" />
                                     </div>
 
                                     <div className="col-12">
                                         <label htmlFor="invite-message" className="form-label text-muted">Message</label>
-                                        <textarea className="form-control form-control-lg"  rows="3" placeholder="Custom message" ></textarea>
+                                        <textarea className="form-control form-control-lg" rows="3" placeholder="Custom message" ></textarea>
                                     </div>
                                 </form>
                             </div>
@@ -314,7 +316,7 @@ export const Modals = ({ update }) => {
                 </div>
             </div>
 
-            {/*   <!-- Modal: Media Preview --> */}
+            {/*   <!-- Modal: Media Preview Image--> */}
             <div className="modal fade" id="modal-media-preview" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-xl modal-dialog-centered modal-fullscreen-xl-down">
                     <div className="modal-content">
@@ -366,7 +368,7 @@ export const Modals = ({ update }) => {
 
                         <div className="modal-body p-0">
                             <div className="d-flex align-items-center justify-content-center h-100">
-                                <img className="img-fluid modal-preview-url" src="#" alt="#" />
+                                <img className="img-fluid modal-preview-url" src={findMedia?.image} alt="#" />
                             </div>
                         </div>
 
@@ -374,15 +376,14 @@ export const Modals = ({ update }) => {
 
                         <div className="modal-footer">
                             <div className="w-100 text-center">
-                                <h6><Link to="#">Marshall Wallaker</Link></h6>
-                                <p className="small">Today at 14:43</p>
+                                <h6><Link to="#">{findMedia?.senderName}</Link></h6>
+                                <p className="small">{findMedia?.date} at {findMedia?.time}</p>
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-
 
 
 

@@ -12,8 +12,11 @@ const initialState = {
     chat: [],
     people: [],
     massage: [],
+    media: null,
+    mediaId: null,
     chatId: null,
     user: null,
+    lastmassage : null
 }
 
 export const dataSlice = createSlice({
@@ -27,7 +30,11 @@ export const dataSlice = createSlice({
         getIdChat: (state, action) => {
             const { chatId } = action.payload
             state.chatId = chatId
-            console.log(state.chatId)
+        },
+        findMedia: (state, action) => {
+            const { mediaId } = action.payload
+            state.mediaId = mediaId
+            console.log(mediaId)
         }
     },
 
@@ -224,6 +231,10 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllChat.fulfilled, (state, action) => {
+          /*   state.list = action.payload.result ? action.payload.result.forEach((ch) => {
+                ch.massage =  state.massage.filter((m) => m.chatId === ch.id) 
+            }) : [] */
+
             state.chat = action.payload.result ? action.payload.result.filter((c) => c.senderId === state.user?.id || c.receiverId === state.user?.id) : []
             state.loading = false
         })
@@ -272,7 +283,9 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getMessages.fulfilled, (state, action) => {
             state.massage = action.payload.result ? action.payload.result.filter((m) => m.chatId === parseInt(state.chatId)) : []
+            state.media = action.payload.result ? action.payload.result.filter((m) => m.text === "undefined") : []
             state.loading = false
+            state.lastmassage = action.payload.result[action.payload.result.length - 1]
         })
         builder.addCase(getMessages.rejected, (state, action) => {
             state.loading = false
@@ -281,5 +294,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout, getIdChat } = dataSlice.actions;
+export const { logout, getIdChat, findMedia } = dataSlice.actions;
 export default dataSlice.reducer

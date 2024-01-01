@@ -71,6 +71,7 @@ export const ChatBox = ({ chat, user, setSendMessage, receivedMessage }) => {
                         value={newMessage ? newMessage : ""}
                         onChange={handleChange}
                         placeholder="Type a message"
+                        cleanOnEnter
 
                     />
                     <button type="button" className="btn btn-primary" onClick={async (e) => {
