@@ -16,3 +16,8 @@ export const createFriends = createAsyncThunk("createFriends", async (friend, { 
     const res = await axios.post("friends", friend)
     return res.data
 })
+// Create friends
+export const searchFriends = createAsyncThunk("searchFriends", async (name, { rejectWithValue }) => {
+    const res = await axios.get(`/friends/search/${name}`)
+    return res.data
+})

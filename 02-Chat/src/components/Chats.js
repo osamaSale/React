@@ -4,28 +4,26 @@ import { Link } from 'react-router-dom';
 import { ChatBox } from './ChatBox';
 import { getIdChat } from "../redux/slice/slice"
 import { getMessages } from '../redux/api/message';
-import { io } from "socket.io-client"
+import { io } from "socket.io-client";
 export const Chats = ({ update }) => {
-    const { chat, user, massage } = useSelector((store) => store.data)
+    const { user, chat } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
+    const [isvisible, setIsVisible] = useState("is-visible");
     const [onlineUsers, setOnlineUsers] = useState([]);
-    /*   const lastmassage = massage && massage.filter((c) => c.senderId === 1)
-      let lastElement = lastmassage[lastmassage.length - 1];
-      console.log(lastmassage) */
-
     const dispatch = useDispatch()
-    /* const socket = useRef()
+    //  socket server
+    const socket = useRef()
     useEffect(() => {
-        socket.current = io('https://socket-ciuh.onrender.com/')
-        socket.current.on("get-users", (users) => {
-            setOnlineUsers(users);
-        });
+        socket.current = io('http://localhost:5000')
+        if (user) {
+            socket.current.emit("online", user.id)
+            socket.current.on("get-users", (user) => {
+                setOnlineUsers(user);
+            });
+        }
     }, [user])
-    const checkOnlineStatus = (chat) => {
-        const chatMember = chat.find((c) => c.senderId === user?.id || c.receiverId === user?.id);
-        const online = onlineUsers.find((user) => user.userId === chatMember)
-        return online ? true : false
-    } */
+
+
     return (
         <>
             <aside className="sidebar bg-light">
@@ -62,18 +60,19 @@ export const Chats = ({ update }) => {
                                                 setCurrentChat(row)
                                                 dispatch(getIdChat({ chatId }))
                                                 dispatch(getMessages())
+                                                setIsVisible("is-visible")
+
                                             }}>
                                             <div className="card-body">
                                                 <div className="row gx-5">
                                                     <div className="col-auto">
-                                                        {row && row.receiverId === user?.id ?
-                                                            <div className="avatar avatar-online">
+                                                        {row.receiverId === user?.id ?
+                                                            <div className={onlineUsers ? onlineUsers.find((u) => u.userId === row.senderId) ? "avatar avatar-online" : "avatar avatar-offline" : []} >
                                                                 <img src={row && row.senderImage} alt="#" className="avatar-img" />
                                                             </div> :
-                                                            <div className="avatar avatar-online">
+                                                            <div className={onlineUsers ? onlineUsers.find((u) => u.userId === row.receiverId) ? "avatar avatar-online" : "avatar avatar-offline" : []}  >
                                                                 <img src={row && row.receiverImage} alt="#" className="avatar-img" />
                                                             </div>
-
                                                         }
 
                                                     </div>
@@ -91,25 +90,21 @@ export const Chats = ({ update }) => {
                                                         }
 
                                                         <div className="d-flex align-items-center">
-                                                            {massage && massage.find((c) => c.chatId === row.id) ?
+
+
+                                                            {row?.mass ?
                                                                 <div className="line-clamp me-auto">
-                                                                    {massage[massage - 1]?.map((row) => {
-                                                                        return <div>
-                                                                            {row.text !== "null" ?  row.text : 
-                                                                            <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
-                                                                            }
-                                                                        </div>
-                                                                    })}
-                                                                    
+                                                                    <p>{row.mass.text === "undefined" ? <span>is Image</span> : row.mass.text}</p>
                                                                 </div> :
+
                                                                 <div className="line-clamp me-auto">
-                                                                    Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.
+
+                                                                    <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
                                                                 </div>
                                                             }
-
-
+                                                            
                                                             <div className="badge badge-circle bg-primary ms-5">
-                                                                <span>3</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -124,8 +119,12 @@ export const Chats = ({ update }) => {
                     </div>
                 </div>
             </aside>
-            <ChatBox currentChat={currentChat} update={update} />
-
+            <ChatBox
+                currentChat={currentChat}
+                isvisible={isvisible}
+                setIsVisible={setIsVisible}
+                onlineUsers={onlineUsers}
+            />
         </>
     );
 }

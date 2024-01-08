@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Signin } from "./components/Signin"
@@ -7,31 +7,46 @@ import { Signup } from './components/Signup';
 import './App.css';
 import { CreateChat } from './components/CreateChat';
 import { Friends } from './components/Friends';
-import { Notifications } from './components/Notifications';
 import { Support } from './components/Support';
 import { PasswordReset } from './components/PasswordReset';
 import { Settings } from './components/Settings';
 import { Modals } from './components/Modals';
 import { NavbarVertical } from './components/NavbarVertical';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from './redux/api/users';
 import { PasswordVerify } from './components/PasswordVerify';
 import { getAllFriends } from './redux/api/friends';
 import { getMessages } from './redux/api/message';
 import { getAllChat } from './redux/api/chat';
+import { io } from "socket.io-client";
+import { getChatGroup, getChatGroupMessage, getChatGroupUsers } from './redux/api/chatGroup';
 function App() {
+  const { user } = useSelector((store) => store.data)
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const number = 12345
   const dispatch = useDispatch()
   useEffect(() => {
     update()
-
   }, [])
   const update = () => {
     dispatch(getAllUsers())
     dispatch(getAllChat())
     dispatch(getAllFriends())
     dispatch(getMessages())
+    dispatch(getChatGroup())
+    dispatch(getChatGroupUsers())
+    dispatch(getChatGroupMessage())
   }
+  const socket = useRef()
+  useEffect(() => {
+    socket.current = io('http://localhost:5000')
+    if (user) {
+      socket.current.emit("online", user.id)
+      socket.current.on("get-users", (user) => {
+        setOnlineUsers(user);
+      });
+    }
+  }, [user])
 
   return (
     <div className="App">
@@ -40,17 +55,15 @@ function App() {
       <div className="layout overflow-hidden">
         <NavbarVertical />
         <Routes>
-          <Route path='/chats' element={<Chats update={update} />} />
+          <Route path='/chat' element={<Chats update={update} />} />
           <Route path='/support' element={<Support update={update} />} />
-          <Route path='/notifications' element={<Notifications update={update} />} />
           <Route path='/createChat' element={<CreateChat update={update} />} />
-          <Route path='/friends' element={<Friends update={update} />} />
+          <Route path='/friends' element={<Friends update={update} onlineUsers={onlineUsers} />} />
           <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
           <Route path='/passwordReset' element={<PasswordReset update={update} number={number} />} />
           <Route path='/verifyPassword' element={<PasswordVerify update={update} number={number} />} />
           <Route path='/settings' element={<Settings update={update} />} />
-          {/*  <Route path='/chatBox/:id' element={<ChatBox update={update} />} /> */}
         </Routes>
         <Modals />
       </div>

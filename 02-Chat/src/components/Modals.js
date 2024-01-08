@@ -1,10 +1,9 @@
-import React from 'react';
+import React  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../redux/slice/slice"
 
 export const Modals = ({ update }) => {
-
     const { user, mediaId, media } = useSelector(store => store.data)
     const findMedia = media ? media.find((m) => m.id === mediaId) : []
     const dispatch = useDispatch()
@@ -185,6 +184,7 @@ export const Modals = ({ update }) => {
                                         if (window.confirm("Do you want to Exit")) {
                                             dispatch(logout())
                                             navigate('/')
+                                            
                                         }
                                     }}>Logout</Link>
                                 </li>

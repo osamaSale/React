@@ -18419,7 +18419,7 @@ html {
   right: 5%;
 }
 .avatar-online::before {
-  background: #ffc107;
+  background: green;
 }
 .avatar-offline::before {
   background: #a7a6a8;
@@ -19050,16 +19050,4 @@ img.zoom-img {
   display: none;
 }
 
-.react-input-emoji--input {
-  display: block;
-  padding: 0.59375rem 1.125rem;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #a7a6a8;
-  background-color: #1e2126;
-  background-clip: padding-box;
-  border: 1px solid #1e2126;
-  appearance: none;
-  border-radius: 0.6rem;
-}
+

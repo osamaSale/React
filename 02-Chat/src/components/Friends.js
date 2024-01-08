@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllUsers, searchUser } from '../redux/api/users';
+import { getAllUsers } from '../redux/api/users';
 import { createChat } from '../redux/api/chat';
-export const Friends = ({ update }) => {
-    const { user  ,chat} = useSelector(store => store.data)
+import { searchFriends } from '../redux/api/friends';
+export const Friends = ({ update, onlineUsers }) => {
+    const { user, chat, friends } = useSelector(store => store.data)
+    console.log(onlineUsers)
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
 
@@ -17,7 +19,6 @@ export const Friends = ({ update }) => {
                         <div className="container py-8">
                             <div className="mb-8">
                                 <h2 className="fw-bold m-0">Friends</h2>
-
                             </div>
                             <div className="mb-6">
 
@@ -34,33 +35,22 @@ export const Friends = ({ update }) => {
                                             if (search === "") {
                                                 update();
                                             } else {
-                                                dispatch(searchUser(search))
+                                                dispatch(searchFriends(search))
                                             }
                                         }}
                                     />
                                 </div>
 
 
-
-                                <div className="mt-5">
-                                    <Link to="#" className="btn btn-lg btn-primary w-100 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modal-invite">
-                                        Find Friends
-
-                                        <span className="icon ms-auto">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line>
-                                            </svg>
-                                        </span>
-                                    </Link>
-                                </div>
                             </div>
 
                             <div className="card-list">
 
-                                {user && user.friends && user.friends.length <= 0 &&
+                                {friends && friends.length <= 0 &&
                                     <div className=" text-center" role="alert">
                                         Friends is Empty
                                     </div>}
-                                {user && user.friends.map((row) => {
+                                {friends && friends.map((row) => {
                                     return <div className="card border-0" key={row.id}>
                                         <div className="card-body">
 
@@ -74,41 +64,29 @@ export const Friends = ({ update }) => {
 
                                                 <div className="col">
                                                     <h5><Link to="#">{row && row.name}</Link></h5>
-                                                    <p>last seen 3 days ago</p>
+                                                    {onlineUsers ? onlineUsers.find((u) => u.userId === parseInt(row.friendId)) ?
+                                                        < p > Online</p> :
+                                                        < p > Offline</p>
+                                                        : []}
                                                 </div>
 
                                                 <div className="col-auto">
+                                                    <button className='btn btn-dark btn-sm'
+                                                        type='submit'
+                                                        disabled={chat.find((c) => c.receiverId === row.friendId || c.senderId === row.friendId)}
+                                                        onClick={() => {
+                                                            let data = { senderId: user.id, receiverId: row.friendId }
+                                                            dispatch(createChat(data)).then((res) => {
 
-                                                    <div className="dropdown">
-                                                        <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                        </Link>
+                                                                dispatch(getAllUsers())
+                                                                update()
+                                                            })
+                                                        }}
+                                                    >
+                                                        New message
 
-                                                        <ul className="dropdown-menu">
-                                                            <li>
-                                                                <button className="dropdown-item" 
-                                                                 disabled ={chat.find((c) => c.receiverId === row.friendId)}  
-                                                                onClick={() => {
-                                                               
-                                                                    console.log(chat.find((c) => c.receiverId === row.friendId))
-                                                                     let data = { senderId: user.id, receiverId: row.friendId }
-                                                                    dispatch(createChat(data)).then((res) => {
-                                                                        console.log(res)
-                                                                        dispatch(getAllUsers())
-                                                                        update()
-                                                                    }) 
-                                                                }}
-                                                            >New message</button></li>
-                                                            <li><Link className="dropdown-item" to="#">Edit contact</Link>
-                                                            </li>
-                                                            <li>
-                                                                <hr className="dropdown-divider" />
-                                                            </li>
-                                                            <li>
-                                                                <Link className="dropdown-item text-danger" to="#">Block user</Link>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    </button>
+
                                                 </div>
 
                                             </div>

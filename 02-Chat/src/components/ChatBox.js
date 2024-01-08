@@ -2,25 +2,27 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createMessage, getMessages } from "../redux/api/message"
-import InputEmoji from 'react-input-emoji'
 import { findMedia } from "../redux/slice/slice"
-export const ChatBox = ({ currentChat, update }) => {
-    const { user, massage, media } = useSelector(store => store.data)
-    const [newMessage, setNewMessage] = useState("");
+import { getAllChat } from '../redux/api/chat';
+import Picker from 'emoji-picker-react';
+export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) => {
+    const { user, media, massage } = useSelector(store => store.data)
+    const [text, setText] = useState("");
     const [image, setImage] = useState(null);
+    const [showEmoji, setShowEmoji] = useState(false);
     const dispatch = useDispatch()
-    const handleChange = (newMessage) => {
-        setNewMessage(newMessage)
-    }
-
     useEffect(() => {
         scroll.current?.scrollIntoView({ behavior: "smooth" });
     }, [massage])
+
     const scroll = useRef();
+
+
+
     return (
         <>
             {currentChat && currentChat ?
-                <main className="main is-visible" >
+                <main className={`main ${isvisible}`} >
                     <div className="container h-100">
                         <div className="d-flex flex-column h-100 position-relative">
 
@@ -28,7 +30,7 @@ export const ChatBox = ({ currentChat, update }) => {
                                 <div className="row align-items-center">
 
                                     <div className="col-2 d-xl-none">
-                                        <Link className="icon icon-lg text-muted" to="/chats"  >
+                                        <Link className="icon icon-lg text-muted" onClick={() => { setIsVisible("") }}  >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                         </Link>
                                     </div>
@@ -47,7 +49,14 @@ export const ChatBox = ({ currentChat, update }) => {
 
                                                     <div className="col overflow-hidden">
                                                         <h5 className="text-truncate">{currentChat.receiverId === user?.id ? currentChat.senderName : currentChat.receiverName}</h5>
-                                                        <p className="text-truncate">is typing<span className="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                                                        {currentChat.receiverId === user?.id ?
+                                                            <p className="text-truncate">
+                                                                {onlineUsers ? onlineUsers.find((u) => u.userId === currentChat.senderId) ? "Online" : "Offline" : []}
+                                                            </p> :
+                                                            <p className="text-truncate">
+                                                                {onlineUsers ? onlineUsers.find((u) => u.userId === currentChat.receiverId) ? "Online" : "Offline" : []}
+                                                            </p>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,11 +89,11 @@ export const ChatBox = ({ currentChat, update }) => {
                             <div className="chat-body hide-scrollbar flex-1 h-100" >
                                 {massage && massage?.map((row) => {
                                     return <div key={row.id}
-                                        className="chat-body-inner" >
-                                        <div className="py-6 py-lg-4">
+                                        className="chat-body-inner" style={{ paddingBottom: "70px" }}>
+                                        <div className="py-6 py-lg-12" ref={scroll}>
 
 
-                                            <div className={row.senderId === user.id ? "message message-out" : "message "} ref={scroll}>
+                                            <div className={row.senderId === user.id ? "message message-out" : "message "} >
                                                 <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-user-profile" className="avatar avatar-responsive">
                                                     <img className="avatar-img" src={row.senderImage} alt="" />
                                                 </Link>
@@ -193,16 +202,6 @@ export const ChatBox = ({ currentChat, update }) => {
                                             </div>
 
 
-
-
-
-                                            <div className="message-divider">
-                                                <small className="text-muted">{row.date}</small>
-                                            </div>
-
-
-
-
                                         </div>
                                     </div>
                                 })}
@@ -210,12 +209,20 @@ export const ChatBox = ({ currentChat, update }) => {
 
                             <div className="chat-footer pb-3 pb-lg-7 position-absolute bottom-0 start-0">
 
-                                <div className="dz-preview bg-dark" id="dz-preview-row" data-horizontal-scroll="">
-                                </div>
 
-
-
-                                <div className="chat-form rounded-pill bg-dark" data-emoji-form="">
+                                {showEmoji &&
+                                    <div className="container">
+                                        <div className="row justify-content-end">
+                                            <div class="col-md-4 .offset-md-4">
+                                                <Picker
+                                                    theme="dark"
+                                                    width={300}
+                                                    onEmojiClick={(e) => setText((prev) => prev + e.emoji)}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>}
+                                <div className="chat-form rounded-pill bg-dark" >
                                     <div className="row align-items-center gx-0">
                                         <div className='col-auto'>
                                             <div className="btn btn-icon btn-link text-body rounded-circle dz-clickable" >
@@ -229,21 +236,24 @@ export const ChatBox = ({ currentChat, update }) => {
 
                                         <div className="col">
                                             <div className="input-group">
-                                                <InputEmoji className="react-input-emoji--input px-0" placeholder="Type your message..." rows="1" data-emoji-input="" data-autosize="true" style={{ overflow: "hidden", overflowWrap: "break-word", resize: "none", height: "47.2px" }}
-                                                    theme="dark" onChange={handleChange}
-                                                    borderColor='#1e2126'
-                                                    value={newMessage}
-                                                />
+                                                <input type='text' onChange={(e) => setText(e.target.value)} className="form-control px-0" placeholder="Type your message..." value={text} />
+                                                <Link to="#" className="input-group-text text-body pe-0"
+                                                    onClick={() => setShowEmoji((prev) => !prev)}
+                                                >
+                                                    <span className="icon icon-lg">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-smile"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                                    </span>
 
+                                                </Link>
                                             </div>
+
                                         </div>
 
                                         <div className="col-auto">
                                             <button className="btn btn-icon btn-primary rounded-circle ms-5"
 
-                                                onClick={() => {
-
-
+                                                onClick={(e) => {
+                                                    e.preventDefault()
                                                     const fromData = new FormData();
                                                     fromData.append("chatId", currentChat.id);
                                                     fromData.append("senderId", user.id);
@@ -252,13 +262,16 @@ export const ChatBox = ({ currentChat, update }) => {
                                                     if (image !== null) {
                                                         fromData.append("image", image, image?.name);
                                                     } else {
-                                                        fromData.append("text", newMessage);
+                                                        fromData.append("text", text);
                                                     }
                                                     dispatch(createMessage(fromData)).then((res) => {
                                                         dispatch(getMessages())
-                                                        update()
-                                                        setNewMessage("");
+                                                        dispatch(getAllChat())
+
+                                                        setText("");
+
                                                     })
+
                                                 }}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>

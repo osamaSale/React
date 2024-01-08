@@ -58,7 +58,7 @@ export const ChatBox = ({ chat, user, setSendMessage, receivedMessage }) => {
                     </li>
                     <hr style={{ border: "0.1px solid #ececec" }} />
                 </div>
-                <div className="chat-body" >
+                <div className="chat-body mb-10" >
                     {messages && messages.map((message) => {
                         return <div key={message._id} className={message.senderId === user._id ? "message own" : "message"} ref={scroll}>
                             <span>{message.text}</span>
@@ -84,8 +84,6 @@ export const ChatBox = ({ chat, user, setSendMessage, receivedMessage }) => {
                         const receiverId = chat.members.find((id) => id !== user._id);
 
                         setSendMessage({ ...message, receiverId })
-
-
                          dispatch(addMessages(message)).then((res) => {
                             setMessages([...messages, res.payload?.result]);
                             setNewMessage("");

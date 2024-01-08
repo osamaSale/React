@@ -12,16 +12,16 @@ export const Settings = ({ update }) => {
     const [image, setImage] = useState(null)
     const formatAMPM = (date) => {
         let hours = date.getHours();
-        let minutes = date.getMinutes();    
+        let minutes = date.getMinutes();
         const ampm = hours >= 12 ? 'pm' : 'am';
         hours %= 12;
-        hours = hours || 12;    
+        hours = hours || 12;
         minutes = minutes < 10 ? `0${minutes}` : minutes;
-      
+
         const strTime = `${hours}:${minutes} ${ampm}`;
-      
+
         return strTime;
-      };
+    };
     function getBrowser() {
         if (navigator.userAgent.indexOf("Chrome") !== -1) {
             return "Chrome";
@@ -83,7 +83,7 @@ export const Settings = ({ update }) => {
                                         </div>
                                         <div className="col">
                                             <h5>{user && user.name}</h5>
-                                            <p>{user && user.email}</p>
+                                            <p>{`${user && user.email}`.slice(0, 14)}..</p>
                                         </div>
                                         <div className="col-auto">
                                             <Link className="text-muted" onClick={handleSubmit}>
@@ -134,7 +134,7 @@ export const Settings = ({ update }) => {
 
                                                         <div className="form-floating mb-6">
                                                             <textarea className="form-control" placeholder="Bio" name="profile-bio" data-autosize="true" style={{ minHeight: "120px" }}
-                                                                onChange={(e) => setBio(e.target.value)} value={bio}></textarea>
+                                                                onChange={(e) => setBio(e.target.value)} value={user ?  bio : ""}></textarea>
                                                             <label htmlFor="profile-bio">Bio</label>
                                                         </div>
 
@@ -222,36 +222,6 @@ export const Settings = ({ update }) => {
 
 
 
-                            <div className="mt-8">
-                                <div className="d-flex align-items-center my-4 px-6">
-                                    <small className="text-muted me-auto">Notifications</small>
-                                </div>
-
-
-                                <div className="card border-0">
-                                    <div className="card-body py-2">
-                                        <div className="accordion accordion-flush" id="accordion-notifications">
-                                            
-                                            <div className="accordion-item">
-                                                <div className="accordion-header">
-                                                    <div className="row align-items-center">
-                                                        <div className="col">
-                                                            <h5>Browser notifications</h5>
-                                                            <p>Enable browser notifications</p>
-                                                        </div>
-                                                        <div className="col-auto">
-                                                            <div className="form-check form-switch">
-                                                                <input className="form-check-input" type="checkbox" id="accordion-notifications-check-2" />
-                                                                <label className="form-check-label" htmlFor="accordion-notifications-check-2"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div className="mt-8">
                                 <div className="d-flex align-items-center my-4 px-6">
