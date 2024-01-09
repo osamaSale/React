@@ -5,9 +5,9 @@ import { Link, useLocation } from 'react-router-dom';
 export const NavbarVertical = () => {
     const { user } = useSelector(store => store.data)
     const location = useLocation();
-   
 
-    if (location.pathname === "/signup"  || location.pathname === "/passwordReset" || location.pathname === "/verifyPassword" || !user) { return }
+
+    if (location.pathname === "/signup" || location.pathname === "/passwordReset" || location.pathname === "/verifyPassword" || !user) { return }
     return (
         <nav className="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
 
@@ -29,8 +29,20 @@ export const NavbarVertical = () => {
                     </Link>
                 </li>
 
+
+
                 <li className="nav-item">
                     <Link className={location.pathname === "/friends" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/friends'}>
+                        <div className="icon icon-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                        </div>
+                    </Link>
+                </li>
+
+                <li className="nav-item">
+                    <Link className={location.pathname === "/chatGroup" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/chatGroup'}>
                         <div className="icon icon-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         </div>
@@ -58,7 +70,7 @@ export const NavbarVertical = () => {
                         </div>
                     </Link>
                 </li>
-               
+
 
 
 

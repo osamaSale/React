@@ -20,6 +20,7 @@ import { getMessages } from './redux/api/message';
 import { getAllChat } from './redux/api/chat';
 import { io } from "socket.io-client";
 import { getChatGroup, getChatGroupMessage, getChatGroupUsers } from './redux/api/chatGroup';
+import { ChatGroup } from './components/ChatGroup';
 function App() {
   const { user } = useSelector((store) => store.data)
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -56,6 +57,7 @@ function App() {
         <NavbarVertical />
         <Routes>
           <Route path='/chat' element={<Chats update={update} />} />
+          <Route path='/chatGroup' element={<ChatGroup update={update} />} />
           <Route path='/support' element={<Support update={update} />} />
           <Route path='/createChat' element={<CreateChat update={update} />} />
           <Route path='/friends' element={<Friends update={update} onlineUsers={onlineUsers} />} />

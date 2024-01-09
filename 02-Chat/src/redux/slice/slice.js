@@ -18,10 +18,11 @@ const initialState = {
     media: null,
     mediaId: null,
     chatId: null,
+    chatGroupId: null,
     user: null,
     chatGroup: [],
-    ChatGroupUsers: [],
-    ChatGroupMessage: []
+    chatGroupUsers: [],
+    chatGroupMessage: []
 }
 
 export const dataSlice = createSlice({
@@ -35,6 +36,10 @@ export const dataSlice = createSlice({
         getIdChat: (state, action) => {
             const { chatId } = action.payload
             state.chatId = chatId
+        },
+        getIdGroupChat: (state, action) => {
+            const { chatGroupId } = action.payload
+            state.chatId = chatGroupId
         },
         findMedia: (state, action) => {
             const { mediaId } = action.payload
@@ -362,7 +367,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupUsers.fulfilled, (state, action) => {
-            state.ChatGroupUsers = action.payload.result
+            state.chatGroupUsers = action.payload.result
 
         })
         builder.addCase(getChatGroupUsers.rejected, (state, action) => {
@@ -395,7 +400,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupMessage.fulfilled, (state, action) => {
-            state.ChatGroupMessage = action.payload.result
+            state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g)=>g.groupId === parseInt(state.chatId)):[]
 
         })
         builder.addCase(getChatGroupMessage.rejected, (state, action) => {
@@ -423,5 +428,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout, getIdChat, findMedia } = dataSlice.actions;
+export const { logout, getIdChat, findMedia , getIdGroupChat} = dataSlice.actions;
 export default dataSlice.reducer

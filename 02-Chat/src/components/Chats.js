@@ -102,7 +102,7 @@ export const Chats = ({ update }) => {
                                                                     <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
                                                                 </div>
                                                             }
-                                                            
+
                                                             <div className="badge badge-circle bg-primary ms-5">
 
                                                             </div>
