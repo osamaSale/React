@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ChatBoxGroup } from './ChatBoxGroup';
 import { getIdGroupChat } from "../redux/slice/slice"
-import { getChatGroupMessage } from '../redux/api/chatGroup';
+import { getChatGroupMessage, getChatGroupUsers } from '../redux/api/chatGroup';
 export const ChatGroup = () => {
     const { user, chatGroup } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
@@ -39,6 +39,7 @@ export const ChatGroup = () => {
                                                  let chatGroupId = row.id
                                                 setCurrentChat(row)
                                                 dispatch(getIdGroupChat({ chatGroupId }))
+                                                dispatch(getChatGroupUsers())
                                                 dispatch(getChatGroupMessage())
                                                 setIsVisible("is-visible") 
 

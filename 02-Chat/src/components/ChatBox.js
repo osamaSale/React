@@ -41,7 +41,7 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                             <div className="col-12 col-xl-6">
                                                 <div className="row align-items-center gx-5">
                                                     <div className="col-auto">
-                                                        <div className="avatar avatar-online  d-xl-inline-block">
+                                                        <div className="avatar avatar-online ">
                                                             <img className="avatar-img"
                                                                 src={currentChat.receiverId === user?.id ? currentChat.senderImage : currentChat.receiverImage} alt="" />
                                                         </div>
@@ -213,7 +213,7 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                 {showEmoji &&
                                     <div className="container">
                                         <div className="row justify-content-end">
-                                            <div class="col-md-4 .offset-md-4">
+                                            <div className="col-md-4 .offset-md-4">
                                                 <Picker
                                                     theme="dark"
                                                     width={300}

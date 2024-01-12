@@ -39,12 +39,11 @@ export const dataSlice = createSlice({
         },
         getIdGroupChat: (state, action) => {
             const { chatGroupId } = action.payload
-            state.chatId = chatGroupId
+            state.chatGroupId = chatGroupId
         },
         findMedia: (state, action) => {
             const { mediaId } = action.payload
             state.mediaId = mediaId
-            console.log(mediaId)
         },
 
     },
@@ -367,8 +366,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupUsers.fulfilled, (state, action) => {
-            state.chatGroupUsers = action.payload.result
-
+            state.chatGroupUsers = action.payload.result ?  action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
         })
         builder.addCase(getChatGroupUsers.rejected, (state, action) => {
             state.loading = false
@@ -400,16 +398,16 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupMessage.fulfilled, (state, action) => {
-            state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g)=>g.groupId === parseInt(state.chatId)):[]
+            state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
 
         })
         builder.addCase(getChatGroupMessage.rejected, (state, action) => {
             state.loading = false
         })
 
-         // Create Chat Group Message
+        // Create Chat Group Message
 
-         builder.addCase(createChatGroupMessage.pending, (state, action) => {
+        builder.addCase(createChatGroupMessage.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(createChatGroupMessage.fulfilled, (state, action) => {
@@ -428,5 +426,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout, getIdChat, findMedia , getIdGroupChat} = dataSlice.actions;
+export const { logout, getIdChat, findMedia, getIdGroupChat } = dataSlice.actions;
 export default dataSlice.reducer

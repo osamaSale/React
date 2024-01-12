@@ -7630,7 +7630,7 @@ fieldset:disabled .btn {
   content: "";
 }
 .text-truncate {
-  overflow: hidden;
+ /*   overflow: hidden;  */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -15264,7 +15264,7 @@ fieldset:disabled .btn {
     visibility: visible !important;
   }
   .visibility-xl-invisible {
-    visibility: hidden !important;
+    visibility: visible !important;
   }
 }
 @media (min-width: 1440px) {

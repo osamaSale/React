@@ -83,7 +83,10 @@ export const Friends = ({ update, onlineUsers }) => {
                                                             })
                                                         }}
                                                     >
-                                                        New message
+                                                        {chat.find((c) => c.receiverId === row.friendId || c.senderId === row.friendId) ?
+                                                        <span>In message</span> : <span>New message</span>
+                                                    
+                                                    }
 
                                                     </button>
 
