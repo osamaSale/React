@@ -32,62 +32,97 @@ export const ChatGroup = () => {
                                     </div>
                                 </div>
                                 <div className="card-list">
-
                                     {chatGroup && chatGroup.map((row) => {
-                                        return <Link className="card border-0 text-reset" key={row.id}
-                                            onClick={() => {
-                                                 let chatGroupId = row.id
-                                                setCurrentChat(row)
-                                                dispatch(getIdGroupChat({ chatGroupId }))
-                                                dispatch(getChatGroupUsers())
-                                                dispatch(getChatGroupMessage())
-                                                setIsVisible("is-visible") 
+                                        return <div key={row.id}>
+                                            {row.chatUsers.find((c) => c.userId === user?.id) &&
+                                                <Link className="card border-0 text-reset" 
+                                                    onClick={() => {
+                                                        let chatGroupId = row.id
+                                                        setCurrentChat(row)
+                                                        dispatch(getIdGroupChat({ chatGroupId }))
+                                                        dispatch(getChatGroupUsers())
+                                                        dispatch(getChatGroupMessage())
+                                                        setIsVisible("is-visible")
 
-                                            }}>
-                                            <div className="card-body">
-                                                <div className="row gx-5">
-                                                    <div className="col-auto">
-
-                                                        <div className={"avatar avatar-online"} >
-                                                            <img src={row && row.image} alt="#" className="avatar-img" />
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div className="col">
-                                                        <div className="d-flex align-items-center mb-3">
-                                                            <h5 className="me-auto mb-0">{row && row.name}</h5>
-                                                            <span className="text-muted extra-small ms-2">12:45 PM</span>
-                                                        </div>
-
-
-                                                        <div className="d-flex align-items-center">
-                                                            <div className="line-clamp me-auto">
-                                                                <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
+                                                    }}>
+                                                    <div className="card-footer">
+                                                        <div className="row align-items-center gx-4">
+                                                            <div className="col-auto">
+                                                                <div className="avatar avatar-xs">
+                                                                    <img className="avatar-img" src={row && row.image} alt="Bootstrap Community" />
+                                                                </div>
                                                             </div>
 
-                                                            <div className="badge badge-circle bg-primary ms-5">
+                                                            <div className="col">
+                                                                <h6 className="mb-0">{row && row.name}</h6>
+                                                            </div>
 
+                                                            <div className="col-auto">
+                                                                <div className="avatar-group">
+                                                                    {row && row.chatUsers.map((row) => {
+                                                                        return <div className="avatar avatar-xs" key={row.id}>
+                                                                            <img src={row && row.image} alt="#" className="avatar-img" />
+                                                                        </div>
+                                                                    })}
+
+                                                                    <div className="avatar avatar-xs">
+                                                                        <span className="avatar-text">+{row.chatUsers && row.chatUsers.length > 0 ? row.chatUsers.length : 0}</span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                        </Link>
+                                                    <div className="card-body">
+                                                        <div className="row gx-5">
+                                                            <div className="col-auto">
+                                                                {row?.chatMessage ?
+                                                                    <div className="avatar">
+                                                                        <img src={row && row.chatMessage && row.chatMessage.userImage} alt="#" className="avatar-img" />
+                                                                    </div> :
+                                                                    <div className="avatar">
+                                                                        <img src={row && row.imageAdmin} alt="#" className="avatar-img" />
+                                                                    </div>
+                                                                }
+                                                            </div>
+
+                                                            <div className="col">
+                                                                <div className="d-flex align-items-center mb-3">
+                                                                    <h5 className="me-auto mb-0">{row && row.chatMessage && row.chatMessage.userName}</h5>
+                                                                    <span className="text-muted extra-small ms-2">{row && row.chatMessage && row.chatMessage.time}</span>
+                                                                </div>
+
+                                                                <div className="d-flex align-items-center">
+                                                                    {row?.chatMessage ?
+                                                                        <div className="line-clamp me-auto">
+                                                                            {row.chatMessage.text === "undefined" ? <span>is Image</span> : row.chatMessage.text}
+                                                                        </div> :
+                                                                        <div className="line-clamp me-auto">
+                                                                            IS Empty
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </Link>
+                                            }
+                                        </div>
                                     })}
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </aside>
-            <ChatBoxGroup 
-             currentChat={currentChat }
-             isvisible={isvisible}
-             setIsVisible={setIsVisible}
-            
+            <ChatBoxGroup
+                currentChat={currentChat}
+                isvisible={isvisible}
+                setIsVisible={setIsVisible}
             />
         </>
     );

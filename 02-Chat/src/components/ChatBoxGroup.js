@@ -46,7 +46,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
                                                     <div className="col overflow-hidden">
                                                         <h5 className="text-truncate">{currentChat.name}</h5>
-                                                        <p className="text-truncate">{chatGroupUsers && chatGroupUsers.length > 0 ? chatGroupUsers.length : 0} members, 3 online</p>
+                                                        <p className="text-truncate">{chatGroupUsers && chatGroupUsers.length > 0 ? chatGroupUsers.length : 0} members</p>
 
                                                     </div>
                                                 </div>
@@ -1201,7 +1201,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                     <ul className="list-group list-group-flush">
 
 
-                        {people && people.map((row) => {
+                        {people.map((row) => {
                             return <li className="list-group-item" key={row.id}>
                                 <div className="row align-items-center gx-5">
                                     <div className="col-auto">
@@ -1215,28 +1215,27 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                                         <p>{`${row && row.email}`.slice(0, 14)}..</p>
                                     </div>
                                     <div className="col-auto">
-                                       
-                                        <button
-                                            className='btn btn-dark btn-sm'
-                                            type='submit'
-                                            /*   disabled={chatGroupUsers.find((c) => c.userId === row.id) ? true : false} */
 
+                                        <Link
+                                            className='btn btn-dark btn-sm'
+                                            disabled={chatGroupUsers.find((c) => c.userId === row.id) ? true : false}
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 console.log("skamxklsx")
-                                                /*   let data = { groupId: currentChat.id, userId: row.id }
-                                                dispatch(createChatGroupUsers(data)).then(() => {
+                                                let data = { groupId: currentChat.id, userId: row.id }
+                                                dispatch(createChatGroupUsers(data)).then((res) => {
                                                     dispatch(getChatGroupUsers())
-                                                }) */
+                                                    dispatch(getChatGroup())
+                                                })
                                             }}
                                         >
                                             {chatGroupUsers.find((c) => c.userId === row.id) ?
                                                 <span>In members</span> : <span> Add members</span>
                                             }
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
-                                <label className="stretched-label" htmlFor="id-add-user-user-1"></label>
+
                             </li>
                         })}
 

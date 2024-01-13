@@ -99,7 +99,7 @@ export const Chats = ({ update }) => {
 
                                                                 <div className="line-clamp me-auto">
 
-                                                                    <p>Hello! Yeah, I'm going to meet my friend of mine at the departments stores now.</p>
+                                                                    <p> Is Empty</p>
                                                                 </div>
                                                             }
 

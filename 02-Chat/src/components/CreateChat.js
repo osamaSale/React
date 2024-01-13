@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, searchUser } from '../redux/api/users';
 import { createFriends } from '../redux/api/friends';
+import { useNavigate } from 'react-router-dom';
+import { createChatGroup, getChatGroup, getChatGroupUsers } from '../redux/api/chatGroup';
 
 export const CreateChat = ({ update }) => {
     const { people, user, friends } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
+    const [name, setName] = useState("")
+    const [image, setImage] = useState(null)
+    const [purpose, setPurpose] = useState("")
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     return (
         <div>
@@ -50,12 +57,12 @@ export const CreateChat = ({ update }) => {
 
                                             <li className="nav-item">
                                                 <a className="nav-link active" data-bs-toggle="pill" href="#create-chat-members" role="tab" aria-controls="create-chat-members" aria-selected="true">
-                                                <i className="bi bi-person-add me-2"></i>  Find Friend
+                                                    <i className="bi bi-person-add me-2"></i>  Find Friend
                                                 </a>
                                             </li>
                                             <li className="nav-item">
                                                 <a className="nav-link " data-bs-toggle="pill" href="#create-chat-info" role="tab" aria-controls="create-chat-info" aria-selected="true">
-                                                <i className="bi bi-people me-2"></i>  Group Chat
+                                                    <i className="bi bi-people me-2"></i>  Group Chat
                                                 </a>
                                             </li>
                                         </ul>
@@ -63,7 +70,7 @@ export const CreateChat = ({ update }) => {
 
 
                                     <div className="tab-content" role="tablist">
-                                        <div className="tab-pane  fade show active " id="create-chat-members" role="tabpanel">
+                                        <div className="tab-pane fade show active " id="create-chat-members" role="tabpanel">
                                             <nav>
                                                 {people && people.map((row) => {
                                                     return <div className="card border-0 mt-5" key={row.id}>
@@ -106,7 +113,7 @@ export const CreateChat = ({ update }) => {
                                                 })}
                                             </nav>
                                         </div>
-                                        <div className="tab-pane fade  " id="create-chat-info" role="tabpanel">
+                                        <div className="tab-pane fade" id="create-chat-info" role="tabpanel">
 
                                             <div className="card border-0">
                                                 <div className="profile">
@@ -124,7 +131,7 @@ export const CreateChat = ({ update }) => {
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                                             </div>
 
-                                                            <input id="upload-chat-img" className="d-none" type="file" />
+                                                            <input id="upload-chat-img" className="d-none" type="file" onChange={(e) => setImage(e.target.files[0])} />
                                                             <label className="stretched-label mb-0" htmlFor="upload-chat-img"></label>
                                                         </div>
                                                     </div>
@@ -135,19 +142,54 @@ export const CreateChat = ({ update }) => {
                                                     <div className="row gy-6">
                                                         <div className="col-12">
                                                             <div className="form-floating">
-                                                                <input type="text" className="form-control" id="floatingInput" placeholder="Enter a chat name" />
+                                                                <input type="text" className="form-control" id="floatingInput" placeholder="Enter a chat name"
+                                                                    onChange={(e) => setName(e.target.value)}
+                                                                />
                                                                 <label htmlFor="floatingInput">Enter group name</label>
                                                             </div>
                                                         </div>
                                                         <div className="col-12">
                                                             <div className="form-floating">
-                                                                <textarea className="form-control" placeholder="Description" id="floatingTextarea" rows="8" data-autosize="true" style={{ minHeight: "100px" }}></textarea>
+                                                                <textarea className="form-control" placeholder="Description" id="floatingTextarea" rows="8" data-autosize="true" style={{ minHeight: "100px" }}
+                                                                    onClick={(e) => setPurpose(e.target.value)}
+                                                                ></textarea>
                                                                 <label htmlFor="floatingTextarea">What's your purpose?</label>
                                                             </div>
                                                         </div>
                                                         <div className="col-12">
-                                                            <button className="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button">
-                                                                Start chat
+                                                            <button className="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button"
+                                                                onClick={() => {
+                                                                    setLoading(true)
+                                                                    setTimeout(() => {
+                                                                        const fromData = new FormData();
+                                                                        fromData.append("userId", user.id);
+                                                                        fromData.append("purpose", purpose);
+                                                                        fromData.append("name", name);
+                                                                        if (image !== null) {
+                                                                            fromData.append("image", image, image?.name);
+                                                                        } else {
+                                                                            fromData.append("image", image);
+                                                                        }
+                                                                        dispatch(createChatGroup(fromData)).then(()=>{
+                                                                            dispatch(getChatGroupUsers())
+                                                                            dispatch(getChatGroup())
+                                                                            navigate('/chatGroup')
+                                                                        })
+                                                                        setLoading(false)
+                                                                    }, 2000);
+                                                                }}
+
+                                                            >
+                                                                {loading &&
+                                                                    <>
+                                                                        <div className="spinner-border spinner-border-sm" role="status">
+                                                                        </div> Please wait...
+                                                                    </>
+                                                                }
+                                                                {!loading &&
+                                                                    <span className="indicator-label"> Start Chat </span>
+                                                                }
+
                                                                 <span className="icon ms-auto">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                                                 </span>
@@ -176,9 +218,9 @@ export const CreateChat = ({ update }) => {
 
                 </div>
             </aside>
-      
 
-           
+
+
         </div>
     );
 }

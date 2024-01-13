@@ -13,7 +13,10 @@ const initialState = {
     friends: [],
     chat: [],
     people: [],
+    getGroupUsers: [],
     getMassages: [],
+    getMassagesGroup: [],
+    checkChatGroupUser: [],
     massage: [],
     media: null,
     mediaId: null,
@@ -335,7 +338,12 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroup.fulfilled, (state, action) => {
-            state.chatGroup = action.payload.result
+            state.chatGroup = action.payload.result 
+            state.chatGroup.forEach((ch) => {
+                ch.chatUsers = state.getGroupUsers ? state.getGroupUsers.filter((m) => m.groupId === parseInt(ch.id)) : []
+                ch.chatMessage = state.getMassagesGroup ? state.getMassagesGroup.findLast((m) => m.groupId === parseInt(ch.id)) : []
+            })
+           
 
         })
         builder.addCase(getChatGroup.rejected, (state, action) => {
@@ -366,7 +374,9 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupUsers.fulfilled, (state, action) => {
-            state.chatGroupUsers = action.payload.result ?  action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
+            state.getGroupUsers = action.payload.result
+            console.log(state.chatGroupId)
+            state.chatGroupUsers = action.payload.result ? action.payload.result.filter((g) => g.groupId === state.chatGroupId) : []
         })
         builder.addCase(getChatGroupUsers.rejected, (state, action) => {
             state.loading = false
@@ -398,6 +408,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroupMessage.fulfilled, (state, action) => {
+            state.getMassagesGroup = action.payload.result
             state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
 
         })

@@ -56,10 +56,10 @@ function App() {
       <div className="layout overflow-hidden">
         <NavbarVertical />
         <Routes>
-          <Route path='/chat' element={<Chats update={update} />} />
-          <Route path='/chatGroup' element={<ChatGroup update={update} />} />
-          <Route path='/support' element={<Support update={update} />} />
-          <Route path='/createChat' element={<CreateChat update={update} />} />
+          <Route path='/chat' element={<Chats update={update} onlineUsers={onlineUsers}/>} />
+          <Route path='/chatGroup' element={<ChatGroup update={update} onlineUsers={onlineUsers} />} />
+          <Route path='/support' element={<Support update={update} onlineUsers={onlineUsers}/>} />
+          <Route path='/createChat' element={<CreateChat update={update} onlineUsers={onlineUsers}/>} />
           <Route path='/friends' element={<Friends update={update} onlineUsers={onlineUsers} />} />
           <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
