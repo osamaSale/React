@@ -10,7 +10,7 @@ export const CreateChat = ({ update }) => {
     const [search, setSearch] = useState("")
     const [name, setName] = useState("")
     const [image, setImage] = useState(null)
-    const [purpose, setPurpose] = useState("")
+    const [description, setDescription] = useState("")
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -95,9 +95,13 @@ export const CreateChat = ({ update }) => {
                                                                         disabled={friends && friends?.find((f) => f.friendId === row.id)}
                                                                         onClick={() => {
                                                                             let data = { userId: user.id, friendId: row.id }
-                                                                            dispatch(createFriends(data)).then(() => {
-                                                                                dispatch(getAllUsers())
-                                                                                update()
+                                                                            dispatch(createFriends(data)).then((res) => {
+                                                                                const { status } = res?.payload
+                                                                                if (status === 200) {
+                                                                                    dispatch(getAllUsers())
+                                                                                    update()
+                                                                                }
+
                                                                             })
                                                                         }}>
                                                                         {friends && friends.find((f) => f.friendId === row.id) ?
@@ -150,8 +154,8 @@ export const CreateChat = ({ update }) => {
                                                         </div>
                                                         <div className="col-12">
                                                             <div className="form-floating">
-                                                                <textarea className="form-control" placeholder="Description" id="floatingTextarea" rows="8" data-autosize="true" style={{ minHeight: "100px" }}
-                                                                    onClick={(e) => setPurpose(e.target.value)}
+                                                                <textarea className="form-control" name='description' placeholder="Description"  style={{ minHeight: "100px" }}
+                                                                   onChange={(e) => setDescription(e.target.value)}
                                                                 ></textarea>
                                                                 <label htmlFor="floatingTextarea">What's your purpose?</label>
                                                             </div>
@@ -163,18 +167,24 @@ export const CreateChat = ({ update }) => {
                                                                     setTimeout(() => {
                                                                         const fromData = new FormData();
                                                                         fromData.append("userId", user.id);
-                                                                        fromData.append("purpose", purpose);
                                                                         fromData.append("name", name);
+                                                                        fromData.append("description", description);
+                                                               
+                                                                      
                                                                         if (image !== null) {
                                                                             fromData.append("image", image, image?.name);
                                                                         } else {
                                                                             fromData.append("image", image);
                                                                         }
-                                                                        dispatch(createChatGroup(fromData)).then(()=>{
-                                                                            dispatch(getChatGroupUsers())
-                                                                            dispatch(getChatGroup())
-                                                                            navigate('/chatGroup')
+                                                                        dispatch(createChatGroup(fromData)).then((res) => {
+                                                                            const { status } = res?.payload
+                                                                            if (status === 200) {
+                                                                                dispatch(getChatGroupUsers())
+                                                                                dispatch(getChatGroup())
+                                                                                navigate('/chatGroup')
+                                                                            }
                                                                         })
+
                                                                         setLoading(false)
                                                                     }, 2000);
                                                                 }}
@@ -182,7 +192,7 @@ export const CreateChat = ({ update }) => {
                                                             >
                                                                 {loading &&
                                                                     <>
-                                                                        <div className="spinner-border spinner-border-sm" role="status">
+                                                                        <div className="spinner-border spinner-border-sm me-2" role="status">
                                                                         </div> Please wait...
                                                                     </>
                                                                 }
@@ -217,11 +227,11 @@ export const CreateChat = ({ update }) => {
                     </div>
 
                 </div>
-            </aside>
+            </aside >
 
 
 
-        </div>
+        </div >
     );
 }
 

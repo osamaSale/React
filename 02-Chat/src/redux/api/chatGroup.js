@@ -37,3 +37,8 @@ export const createChatGroupMessage = createAsyncThunk("createChatGroupMessage",
     const res = await axios.post("chatGroupMessage", chat)
     return res.data
 })
+// Search Chat Group User
+export const searchChatGroupUser = createAsyncThunk("searchChatGroupUser", async (chat, { rejectWithValue, }) => {
+    const res = await axios.get(`chatGroup/search/${chat}`)
+    return res.data
+})

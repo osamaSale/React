@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import Picker from 'emoji-picker-react';
 import { createChatGroupMessage, createChatGroupUsers, getChatGroup, getChatGroupMessage, getChatGroupUsers } from "../redux/api/chatGroup"
 import { getAllUsers, searchUser } from '../redux/api/users';
+import { findMedia } from "../redux/slice/slice"
 export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
-    const { user, chatGroupMessage, chatGroupUsers, people } = useSelector(store => store.data)
+    const { user, chatGroupMessage, chatGroupUsers, people, media } = useSelector(store => store.data)
     const [text, setText] = useState("");
     const [image, setImage] = useState(null);
     const [showEmoji, setShowEmoji] = useState(false);
@@ -314,8 +315,8 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                     </Link>
 
                     <div className="visibility-xl-invisible overflow-hidden text-center">
-                        <h5 >Bootstrap Community</h5>
-                        <p className="text-truncate">45 members, 9 online</p>
+                        <h5 >{currentChat && currentChat.name}</h5>
+                        <p className="text-truncate">{chatGroupUsers && chatGroupUsers.length > 0 ? chatGroupUsers.length : 0} members</p>
                     </div>
 
 
@@ -333,14 +334,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                                     </div>
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="#" className="dropdown-item d-flex align-items-center">
-                                    Mute
-                                    <div className="icon ms-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                    </div>
-                                </Link>
-                            </li>
+
                             <li>
                                 <hr className="dropdown-divider" />
                             </li>
@@ -364,13 +358,13 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                         <div className="row gy-6">
                             <div className="col-12">
                                 <div className="avatar avatar-xl mx-auto">
-                                    <img src="assets/img/avatars/bootstrap.svg" alt="#" className="avatar-img" />
+                                    <img src={currentChat && currentChat.image} alt="#" className="avatar-img" />
                                 </div>
                             </div>
 
                             <div className="col-12">
-                                <h4>Bootstrap Community</h4>
-                                <p>Bootstrap is an open source <br /> toolkit for developing web with <br /> HTML, CSS, and JS.</p>
+                                <h4>{currentChat && currentChat.name}</h4>
+                                <p>{currentChat && currentChat.description}</p>
                             </div>
                         </div>
                     </div>
@@ -390,11 +384,6 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                             </Link>
                         </li>
 
-                        <li className="nav-item">
-                            <Link className="nav-link" data-bs-toggle="pill" to="#offcanvas-group-tab-files" role="tab" aria-controls="offcanvas-group-tab-files" aria-selected="false">
-                                Files
-                            </Link>
-                        </li>
                     </ul>
 
 
@@ -403,296 +392,55 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
                         <div className="tab-pane fade show active" id="offcanvas-group-tab-members" role="tabpanel">
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-5">
+                                {chatGroupUsers.map((row) => {
+                                    return <li className="list-group-item" key={row.id}>
+                                        <div className="row align-items-center gx-5">
 
-                                        <div className="col-auto">
-                                            <Link to="#" className="avatar avatar-online">
-                                                <img className="avatar-img" src="assets/img/avatars/1.jpg" alt="" />
-                                            </Link>
-                                        </div>
-
-
-
-                                        <div className="col">
-                                            <h5><Link to="#">Michael Fuller</Link></h5>
-                                            <p>online</p>
-                                        </div>
-
-
-
-                                        <div className="col-auto">
-                                            <span className="extra-small text-primary">owner</span>
-                                        </div>
-
-
-
-                                        <div className="col-auto">
-                                            <div className="dropdown">
-                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                            <div className="col-auto">
+                                                <Link to="#" className="avatar">
+                                                    <img className="avatar-img" src={row && row.image} alt="" />
                                                 </Link>
-
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Promote
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Restrict
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-down"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                            Delete
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-5">
-
-                                        <div className="col-auto">
-                                            <Link to="#" className="avatar avatar-online">
-                                                <img className="avatar-img" src="assets/img/avatars/11.jpg" alt="" />
-                                            </Link>
-                                        </div>
 
 
 
-                                        <div className="col">
-                                            <h5><Link to="#">Mila White</Link></h5>
-                                            <p>online</p>
-                                        </div>
-
-
-
-                                        <div className="col-auto">
-                                            <div className="dropdown">
-                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                </Link>
-
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Promote
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Restrict
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-down"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                            Delete
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
+                                            <div className="col">
+                                                <h5><Link to="#">{row && row.name}</Link></h5>
+                                                <p>{`${row && row.email}`.slice(0, 14)}..</p>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-5">
-
-                                        <div className="col-auto">
-                                            <Link to="#" className="avatar">
-                                                <img className="avatar-img" src="assets/img/avatars/6.jpg" alt="" />
-                                            </Link>
-                                        </div>
 
 
 
-                                        <div className="col">
-                                            <h5><Link to="#">Don Knight</Link></h5>
-                                            <p>last seen recently</p>
-                                        </div>
-
-
-
-                                        <div className="col-auto">
-                                            <div className="dropdown">
-                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                </Link>
-
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Promote
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Restrict
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-down"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                            Delete
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
+                                            <div className="col-auto">
+                                                <span className="extra-small text-primary">
+                                                    {row && row.isAdmin}
+                                                </span>
                                             </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-5">
-
-                                        <div className="col-auto">
-                                            <Link to="#" className="avatar">
-                                                <img className="avatar-img" src="assets/img/avatars/8.jpg" alt="" />
-                                            </Link>
-                                        </div>
 
 
 
-                                        <div className="col">
-                                            <h5><Link to="#">Elise Dennis</Link></h5>
-                                            <p>last seen 3 days ago</p>
-                                        </div>
+                                            <div className="col-auto">
+                                                <div className="dropdown">
+                                                    <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                    </Link>
 
-
-
-                                        <div className="col-auto">
-                                            <div className="dropdown">
-                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                </Link>
-
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Promote
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Restrict
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-down"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                            Delete
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
+                                                    <ul className="dropdown-menu">
+                                                        <li>
+                                                            <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
+                                                                Delete
+                                                                <div className="icon ms-auto">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                                </div>
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
+
                                         </div>
-
-                                    </div>
-                                </li>
-
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-5">
-
-                                        <div className="col-auto">
-                                            <Link to="#" className="avatar">
-                                                <span className="avatar-text">O</span>
-                                            </Link>
-                                        </div>
-
-
-
-                                        <div className="col">
-                                            <h5><Link to="#">Ollie Chandler</Link></h5>
-                                            <p>last seen within a week</p>
-                                        </div>
-
-
-
-                                        <div className="col-auto">
-                                            <div className="dropdown">
-                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                </Link>
-
-                                                <ul className="dropdown-menu">
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Promote
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center" to="#">
-                                                            Restrict
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trending-down"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                    <li><hr className="dropdown-divider" /></li>
-                                                    <li>
-                                                        <Link className="dropdown-item d-flex align-items-center text-danger" to="#">
-                                                            Delete
-                                                            <div className="icon ms-auto">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                            </div>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
+                                    </li>
+                                })}
                             </ul>
                         </div>
 
@@ -700,59 +448,20 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
                         <div className="tab-pane fade" id="offcanvas-group-tab-media" role="tabpanel">
                             <div className="row row-cols-3 g-3 py-6">
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-1.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/1.jpg" alt="" />
-                                    </Link>
-                                </div>
+                                {media && media.map((row) => {
+                                   return <div className="col" key={row.id} onClick={() => {
+                                        let mediaId = row.id
+                                        dispatch(findMedia({ mediaId }))
+                                    }}>
+                                        <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-1.jpg">
+                                            <img className="img-fluid rounded" src={row && row.image} alt="" />
+                                        </Link>
+                                    </div>
+                                })}
 
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-2.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/2.jpg" alt="" />
-                                    </Link>
-                                </div>
 
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-3.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/3.jpg" alt="" />
-                                    </Link>
-                                </div>
 
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-1.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/4.jpg" alt="" />
-                                    </Link>
-                                </div>
 
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-2.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/5.jpg" alt="" />
-                                    </Link>
-                                </div>
-
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-3.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/6.jpg" alt="" />
-                                    </Link>
-                                </div>
-
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-1.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/7.jpg" alt="" />
-                                    </Link>
-                                </div>
-
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-2.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/8.jpg" alt="" />
-                                    </Link>
-                                </div>
-
-                                <div className="col">
-                                    <Link to="#" data-bs-toggle="modal" data-bs-target="#modal-media-preview" data-theme-img-url="assets/img/chat/media-3.jpg">
-                                        <img className="img-fluid rounded" src="assets/img/chat/9.jpg" alt="" />
-                                    </Link>
-                                </div>
                             </div>
                         </div>
 

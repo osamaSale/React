@@ -20,17 +20,7 @@ export const ChatGroup = () => {
                                     <h2 className="fw-bold m-0">Group Chat</h2>
                                 </div>
 
-                                <div className="mb-6">
-                                    <div className="input-group">
-                                        <div className="input-group-text">
-                                            <div className="icon icon-lg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                            </div>
-                                        </div>
-
-                                        <input type="text" className="form-control form-control-lg ps-0" placeholder="Search messages or users" aria-label="Search for messages or users..." />
-                                    </div>
-                                </div>
+                               
                                 <div className="card-list">
                                     {chatGroup && chatGroup.map((row) => {
                                         return <div key={row.id}>
@@ -45,33 +35,7 @@ export const ChatGroup = () => {
                                                         setIsVisible("is-visible")
 
                                                     }}>
-                                                    <div className="card-footer">
-                                                        <div className="row align-items-center gx-4">
-                                                            <div className="col-auto">
-                                                                <div className="avatar avatar-xs">
-                                                                    <img className="avatar-img" src={row && row.image} alt="Bootstrap Community" />
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="col">
-                                                                <h6 className="mb-0">{row && row.name}</h6>
-                                                            </div>
-
-                                                            <div className="col-auto">
-                                                                <div className="avatar-group">
-                                                                    {row && row.chatUsers.map((row) => {
-                                                                        return <div className="avatar avatar-xs" key={row.id}>
-                                                                            <img src={row && row.image} alt="#" className="avatar-img" />
-                                                                        </div>
-                                                                    })}
-
-                                                                    <div className="avatar avatar-xs">
-                                                                        <span className="avatar-text">+{row.chatUsers && row.chatUsers.length > 0 ? row.chatUsers.length : 0}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                
 
                                                     <div className="card-body">
                                                         <div className="row gx-5">
@@ -106,7 +70,33 @@ export const ChatGroup = () => {
                                                         </div>
                                                     </div>
 
+                                                    <div className="card-footer">
+                                                        <div className="row align-items-center gx-4">
+                                                            <div className="col-auto">
+                                                                <div className="avatar avatar-xs">
+                                                                    <img className="avatar-img" src={row && row.image} alt="Bootstrap Community" />
+                                                                </div>
+                                                            </div>
 
+                                                            <div className="col">
+                                                                <h6 className="mb-0">{row && row.name}</h6>
+                                                            </div>
+
+                                                            <div className="col-auto">
+                                                                <div className="avatar-group">
+                                                                    {row && row.chatUsers.map((row) => {
+                                                                        return <div className="avatar avatar-xs" key={row.id}>
+                                                                            <img src={row && row.image} alt="#" className="avatar-img" />
+                                                                        </div>
+                                                                    })}
+
+                                                                    <div className="avatar avatar-xs">
+                                                                        <span className="avatar-text">+{row.chatUsers && row.chatUsers.length > 0 ? row.chatUsers.length : 0}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                 </Link>
                                             }

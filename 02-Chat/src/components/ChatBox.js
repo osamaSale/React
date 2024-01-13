@@ -313,8 +313,17 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                     </Link>
 
                     <div className="visibility-xl-invisible overflow-hidden text-center">
-                        <h5 className="text-truncate">Ollie Chandler</h5>
-                        <p className="text-truncate">last seen 5 minutes ago</p>
+                        <h5 className="text-truncate">
+                        {currentChat?.receiverId === user?.id ? currentChat?.senderName : currentChat?.receiverName}
+                        </h5>
+                        {currentChat?.receiverId === user?.id ?
+                            <p className="text-truncate">
+                                {onlineUsers ? onlineUsers.find((u) => u.userId === currentChat?.senderId) ? "Online" : "Offline" : []}
+                            </p> :
+                            <p className="text-truncate">
+                                {onlineUsers ? onlineUsers.find((u) => u.userId === currentChat?.receiverId) ? "Online" : "Offline" : []}
+                            </p>
+                        }
                     </div>
 
 
@@ -324,25 +333,7 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                         </Link>
 
                         <ul className="dropdown-menu" >
-                            <li>
-                                <Link to="#" className="dropdown-item d-flex align-items-center">
-                                    Edit
-                                    <div className="icon ms-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="#" className="dropdown-item d-flex align-items-center">
-                                    Mute
-                                    <div className="icon ms-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li>
-                                <hr className="dropdown-divider" />
-                            </li>
+                          
                             <li>
                                 <Link to="#" className="dropdown-item d-flex align-items-center text-danger">
                                     Leave
@@ -447,23 +438,6 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                 </li>
                             </ul>
 
-                            <ul className="list-group list-group-flush border-top mt-8">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-6">
-                                        <div className="col">
-                                            <h5>Notifications</h5>
-                                            <p>Enable sound notifications</p>
-                                        </div>
-
-                                        <div className="col-auto">
-                                            <div className="form-check form-switch">
-                                                <input className="form-check-input" type="checkbox" id="accordion-security-check-5" />
-                                                <label className="form-check-label" htmlFor="accordion-security-check-5"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
 
                             <ul className="list-group list-group-flush border-top mt-8">
                                 <li className="list-group-item">

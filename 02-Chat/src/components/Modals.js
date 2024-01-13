@@ -156,23 +156,7 @@ export const Modals = ({ update }) => {
 
                             <hr className="hr-bold modal-gx-n my-0" />
 
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-6">
-                                        <div className="col">
-                                            <h5>Active status</h5>
-                                            <p>Show when you're active.</p>
-                                        </div>
-
-                                        <div className="col-auto">
-                                            <div className="form-check form-switch">
-                                                <input className="form-check-input" type="checkbox" id="profile-status" />
-                                                <label className="form-check-label" htmlFor="profile-status"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                           
 
 
                             <hr className="hr-bold modal-gx-n my-0" />

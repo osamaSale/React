@@ -4,7 +4,7 @@ import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, se
 import { createFriends, getAllFriends, searchFriends } from "../api/friends";
 import { createChat, getAllChat } from "../api/chat";
 import { createMessage, getMessages } from "../api/message";
-import { createChatGroup, createChatGroupMessage, createChatGroupUsers, getChatGroup, getChatGroupMessage, getChatGroupUsers } from "../api/chatGroup";
+import { createChatGroup, createChatGroupMessage, createChatGroupUsers, getChatGroup, getChatGroupMessage, getChatGroupUsers, searchChatGroupUser } from "../api/chatGroup";
 
 
 const initialState = {
@@ -243,8 +243,7 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(searchFriends.fulfilled, (state, action) => {
-            let { status, name } = action.payload
-            console.log(name)
+            let { status } = action.payload
             if (status === 200) {
                 state.friends = action.payload.result
 
@@ -270,9 +269,8 @@ export const dataSlice = createSlice({
 
             state.chat.forEach((ch) => {
                 ch.mass = state.getMassages ? state.getMassages.findLast((m) => m.chatId === parseInt(ch.id)) : []
-
             })
-
+            state.chat.sort((a, b) => a.mass.id > b.mass.id ? -1 : 1);
 
 
             state.loading = false
@@ -338,13 +336,13 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getChatGroup.fulfilled, (state, action) => {
-            state.chatGroup = action.payload.result 
+            state.chatGroup = action.payload.result
             state.chatGroup.forEach((ch) => {
                 ch.chatUsers = state.getGroupUsers ? state.getGroupUsers.filter((m) => m.groupId === parseInt(ch.id)) : []
                 ch.chatMessage = state.getMassagesGroup ? state.getMassagesGroup.findLast((m) => m.groupId === parseInt(ch.id)) : []
             })
            
-
+            state.chatGroup.sort((a, b) => a.chatMessage?.id > b.chatMessage?.id ? -1 : 1);
         })
         builder.addCase(getChatGroup.rejected, (state, action) => {
             state.loading = false
@@ -366,6 +364,25 @@ export const dataSlice = createSlice({
         builder.addCase(createChatGroup.rejected, (state, action) => {
             state.loading = false
         })
+      // Search Chat Group User
+        builder.addCase(searchChatGroupUser.pending, (state, action) => {
+            state.loading = true
+        })
+        builder.addCase(searchChatGroupUser.fulfilled, (state, action) => {
+            let { status } = action.payload
+            if (status === 200) {
+                state.chatGroup = action.payload.result
+
+            } else {
+                state.chatGroup = [...state.chatGroup]
+            }
+            state.loading = false
+        
+
+        })
+        builder.addCase(searchChatGroupUser.rejected, (state, action) => {
+            state.loading = false
+        })
 
         // =======================   Chat Group Users  ============================ //
         // get Chat Group Users
@@ -375,8 +392,8 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getChatGroupUsers.fulfilled, (state, action) => {
             state.getGroupUsers = action.payload.result
-            console.log(state.chatGroupId)
             state.chatGroupUsers = action.payload.result ? action.payload.result.filter((g) => g.groupId === state.chatGroupId) : []
+            
         })
         builder.addCase(getChatGroupUsers.rejected, (state, action) => {
             state.loading = false
@@ -410,7 +427,7 @@ export const dataSlice = createSlice({
         builder.addCase(getChatGroupMessage.fulfilled, (state, action) => {
             state.getMassagesGroup = action.payload.result
             state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
-
+            state.media = action.payload.result ? action.payload.result.filter((m) => m.text === "undefined") : []
         })
         builder.addCase(getChatGroupMessage.rejected, (state, action) => {
             state.loading = false
