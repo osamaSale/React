@@ -12,3 +12,8 @@ export const getMessages = createAsyncThunk("getMessages", async (chatId, { reje
     const res = await axios.get(`massage`)
     return res.data
 })
+// Delete Chat  Message
+export const deleteChatMessage = createAsyncThunk("deleteChatMessage", async (id, { rejectWithValue, }) => {
+    const res = await axios.delete(`massage/${id}`)
+    return res.data
+})

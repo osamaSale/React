@@ -4,75 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { logout } from "../redux/slice/slice"
 
 export const Modals = ({ update }) => {
-    const { user, mediaId, media } = useSelector(store => store.data)
+    const { user, mediaId, media, findChatGroupUser, ChatGroupUserId } = useSelector(store => store.data)
     const findMedia = media ? media.find((m) => m.id === mediaId) : []
+    const findUserChat = findChatGroupUser ? findChatGroupUser.find((m) => m.userId === ChatGroupUserId) : []
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     return (
         <>
-            {/*    <!-- Modal: Invite --> */}
-            <div className="modal fade" id="modal-invite" tabIndex="-1" aria-labelledby="modal-invite" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered modal-fullscreen-xl-down">
-                    <div className="modal-content">
-                        <div className="modal-body py-0">
 
-                            <div className="profile modal-gx-n">
-                                <div className="profile-img text-primary rounded-top-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 400 140.74"><defs></defs><g><g><path d="M400,125A1278.49,1278.49,0,0,1,0,125V0H400Z" /><path className="cls-2" d="M361.13,128c.07.83.15,1.65.27,2.46h0Q380.73,128,400,125V87l-1,0a38,38,0,0,0-38,38c0,.86,0,1.71.09,2.55C361.11,127.72,361.12,127.88,361.13,128Z" /><path className="cls-2" d="M12.14,119.53c.07.79.15,1.57.26,2.34v0c.13.84.28,1.66.46,2.48l.07.3c.18.8.39,1.59.62,2.37h0q33.09,4.88,66.36,8,.58-1,1.09-2l.09-.18a36.35,36.35,0,0,0,1.81-4.24l.08-.24q.33-.94.6-1.9l.12-.41a36.26,36.26,0,0,0,.91-4.42c0-.19,0-.37.07-.56q.11-.86.18-1.73c0-.21,0-.42,0-.63,0-.75.08-1.51.08-2.28a36.5,36.5,0,0,0-73,0c0,.83,0,1.64.09,2.45C12.1,119.15,12.12,119.34,12.14,119.53Z" /><circle className="cls-2" cx="94.5" cy="57.5" r="22.5" /><path className="cls-2" d="M276,0a43,43,0,0,0,43,43A43,43,0,0,0,362,0Z" /></g></g></svg>
-
-                                    <div className="position-absolute top-0 start-0 p-5">
-                                        <button type="button" className="btn-close btn-close-white btn-close-arrow opacity-100" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                </div>
-
-                                <div className="profile-body">
-                                    <div className="avatar avatar-lg">
-                                        <span className="avatar-text bg-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                                        </span>
-                                    </div>
-
-                                    <h4 className="fw-bold mb-1">Invite your friends</h4>
-                                    <p style={{ fontSize: "16px" }}>Send invitation links to your friends</p>
-                                </div>
-                            </div>
-
-
-                            <hr className="hr-bold modal-gx-n my-0" />
-
-                            <div className="modal-py">
-                                <form className="row gy-6">
-                                    <div className="col-12">
-                                        <label htmlFor="invite-email" className="form-label text-muted">E-mail</label>
-                                        <input type="email" className="form-control form-control-lg" placeholder="name@example.com" />
-                                    </div>
-
-                                    <div className="col-12">
-                                        <label htmlFor="invite-message" className="form-label text-muted">Message</label>
-                                        <textarea className="form-control form-control-lg" rows="3" placeholder="Custom message" ></textarea>
-                                    </div>
-                                </form>
-                            </div>
-
-
-                            <hr className="hr-bold modal-gx-n my-0" />
-
-                            <div className="modal-py">
-                                <Link to="#" className="btn btn-lg btn-primary w-100 d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#invite-modal">
-                                    Send
-
-                                    <span className="icon ms-auto">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                    </span>
-                                </Link>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
 
             {/*  <!-- Modal: Profile --> */}
             <div className="modal fade" id="modal-profile" tabIndex="-1" aria-labelledby="modal-profile" aria-hidden="true">
@@ -96,7 +36,7 @@ export const Modals = ({ update }) => {
                                     </div>
 
                                     <h4 className="mb-1">{user && user.name}</h4>
-                                    <p>last seen 5 minutes ago</p>
+                                    <p>{user && user.email}</p>
                                 </div>
                             </div>
 
@@ -155,24 +95,15 @@ export const Modals = ({ update }) => {
 
 
                             <hr className="hr-bold modal-gx-n my-0" />
+                            <button className="btn btn-dark w-100 text-danger mt-4 mb-4" data-bs-dismiss="modal" aria-label="Close" onClick={() => {
+                                if (window.confirm("Do you want to Exit")) {
+                                    dispatch(logout())
+                                    navigate('/')
 
-                           
+                                }
+                            }}>Logout</button>
 
 
-                            <hr className="hr-bold modal-gx-n my-0" />
-
-
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <Link className="text-danger" data-bs-dismiss="modal" aria-label="Close" onClick={() => {
-                                        if (window.confirm("Do you want to Exit")) {
-                                            dispatch(logout())
-                                            navigate('/')
-
-                                        }
-                                    }}>Logout</Link>
-                                </li>
-                            </ul>
 
                         </div>
 
@@ -198,41 +129,44 @@ export const Modals = ({ update }) => {
 
                                 <div className="profile-body">
                                     <div className="avatar avatar-xl">
-                                        <img className="avatar-img" src={"./assets/images/9.jpg"} alt="#" />
+                                        <img className="avatar-img" src={findUserChat && findUserChat.image} alt="#" />
 
                                         <Link to="#" className="badge badge-lg badge-circle bg-primary text-white border-outline position-absolute bottom-0 end-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                         </Link>
                                     </div>
 
-                                    <h4 className="mb-1">William Wright</h4>
-                                    <p>last seen 5 minutes ago</p>
+                                    <h4 className="mb-1">{findUserChat && findUserChat.name}</h4>
+                                    <p>{findUserChat && findUserChat.email}</p>
                                 </div>
                             </div>
 
                             <hr className="hr-bold modal-gx-n my-0" />
 
                             <ul className="list-group list-group-flush">
+
+
                                 <li className="list-group-item">
                                     <div className="row align-items-center gx-6">
                                         <div className="col">
-                                            <h5>Location</h5>
-                                            <p>USA, Houston</p>
+                                            <h5>Name</h5>
+                                            <p>{findUserChat && findUserChat.name}</p>
                                         </div>
 
                                         <div className="col-auto">
                                             <div className="btn btn-sm btn-icon btn-dark">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
+                                                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-
                                 <li className="list-group-item">
                                     <div className="row align-items-center gx-6">
                                         <div className="col">
                                             <h5>E-mail</h5>
-                                            <p>{user && user.email}</p>
+                                            <p>{findUserChat && findUserChat.email}</p>
                                         </div>
 
                                         <div className="col-auto">
@@ -247,7 +181,7 @@ export const Modals = ({ update }) => {
                                     <div className="row align-items-center gx-6">
                                         <div className="col">
                                             <h5>Phone</h5>
-                                            <p>1-800-275-2273</p>
+                                            <p>{findUserChat && findUserChat.phone}</p>
                                         </div>
 
                                         <div className="col-auto">
@@ -259,41 +193,6 @@ export const Modals = ({ update }) => {
                                 </li>
                             </ul>
 
-
-                            <hr className="hr-bold modal-gx-n my-0" />
-
-
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <div className="row align-items-center gx-6">
-                                        <div className="col">
-                                            <h5>Notifications</h5>
-                                            <p>Enable sound notifications</p>
-                                        </div>
-
-                                        <div className="col-auto">
-                                            <div className="form-check form-switch">
-                                                <input className="form-check-input" type="checkbox" id="user-notification-check" />
-                                                <label className="form-check-label" htmlFor="user-notification-check"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-
-
-                            <hr className="hr-bold modal-gx-n my-0" />
-
-
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <Link to="#" className="text-reset">Send Message</Link>
-                                </li>
-
-                                <li className="list-group-item">
-                                    <Link to="#" className="text-danger">Block User</Link>
-                                </li>
-                            </ul>
 
                         </div>
                     </div>
@@ -368,7 +267,7 @@ export const Modals = ({ update }) => {
                     </div>
                 </div>
             </div>
-          
+
 
         </>
     );

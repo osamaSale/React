@@ -52,11 +52,9 @@ export const NavbarVertical = () => {
 
                 <li className="nav-item">
                     <Link className={location.pathname === "/" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/'}>
-                        <div className="icon icon-xl icon-badged">
+                        <div className="icon icon-xl i">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                            <div className="badge badge-circle bg-primary">
-                                <span>4</span>
-                            </div>
+                            
                         </div>
                     </Link>
                 </li>

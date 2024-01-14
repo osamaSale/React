@@ -23,7 +23,7 @@ export const ChatGroup = () => {
                                
                                 <div className="card-list">
                                     {chatGroup && chatGroup.map((row) => {
-                                        return <div key={row.id}>
+                                        return <div key={row.id} className='mb-4'>
                                             {row.chatUsers.find((c) => c.userId === user?.id) &&
                                                 <Link className="card border-0 text-reset" 
                                                     onClick={() => {

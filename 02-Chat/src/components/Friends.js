@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getAllUsers } from '../redux/api/users';
 import { createChat } from '../redux/api/chat';
 import { searchFriends } from '../redux/api/friends';
+
 export const Friends = ({ update, onlineUsers }) => {
     const { user, chat, friends } = useSelector(store => store.data)
     console.log(onlineUsers)
@@ -51,7 +52,9 @@ export const Friends = ({ update, onlineUsers }) => {
                                         Friends is Empty
                                     </div>}
                                 {friends && friends.map((row) => {
-                                    return <div className="card border-0" key={row.id}>
+                                    return <div className="card border-0" key={row.id}  
+                                   
+                                    >
                                         <div className="card-body">
 
                                             <div className="row align-items-center gx-5">

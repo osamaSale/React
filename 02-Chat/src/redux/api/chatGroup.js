@@ -37,8 +37,13 @@ export const createChatGroupMessage = createAsyncThunk("createChatGroupMessage",
     const res = await axios.post("chatGroupMessage", chat)
     return res.data
 })
-// Search Chat Group User
-export const searchChatGroupUser = createAsyncThunk("searchChatGroupUser", async (chat, { rejectWithValue, }) => {
-    const res = await axios.get(`chatGroup/search/${chat}`)
+// Delete Chat Group User
+export const deleteChatGroupUser = createAsyncThunk("deleteChatGroupUser", async (id, { rejectWithValue, }) => {
+    const res = await axios.delete(`chatGroupUsers/${id}`)
+    return res.data
+})
+// Delete Chat Group Message
+export const deleteChatGroupMessage = createAsyncThunk("deleteChatGroupMessage", async (id, { rejectWithValue, }) => {
+    const res = await axios.delete(`chatGroupMessage/${id}`)
     return res.data
 })
