@@ -10,6 +10,7 @@ export const Signin = ({ update }) => {
     const [password, setPassword] = useState("")
     const [passwordShown, setPasswordShown] = useState(false);
     const [loading1, setLoading] = useState(false)
+    const [loading2, setLoading2] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const loginGoogle = async ({ provider, data }) => {
@@ -23,6 +24,7 @@ export const Signin = ({ update }) => {
             }
         })
     }
+
     if (loading) {
         return <div className="container-fluid">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
@@ -86,7 +88,7 @@ export const Signin = ({ update }) => {
                                     </div>
 
                                     <div className="col-12">
-                                        <button className="btn btn-block btn-lg btn-primary w-100" type="submit"
+                                        <button className="btn btn-block btn-lg btn-primary w-100 mb-4" type="submit"
                                             onClick={() => {
                                                 setLoading(true)
                                                 setTimeout(() => {
@@ -112,6 +114,35 @@ export const Signin = ({ update }) => {
                                             }
                                             {!loading1 &&
                                                 <span className="indicator-label"> Sign In </span>
+                                            }
+                                        </button>
+                                        <button className="btn btn-block btn-lg btn-primary w-100" type="submit"
+                                            onClick={() => {
+                                                setLoading2(true)
+                                                setTimeout(() => {
+                                                    
+                                                    dispatch(login({ email: "osama@gmail.com", password: "12345" })).then((res) => {
+                                                        if (res.payload?.status === 200) {
+                                                            localStorage.setItem("user", JSON.stringify(res.payload.result))
+                                                            dispatch(getAllUsers())
+                                                            navigate('/chat')
+                                                            update()
+                                                        }
+                                                    })
+
+                                                    setLoading2(false)
+                                                }, 2000);
+                                            }}
+
+                                        >
+                                            {loading2 &&
+                                                <>
+                                                    <div className="spinner-border spinner-border-sm" role="status">
+                                                    </div> Please wait...
+                                                </>
+                                            }
+                                            {!loading2 &&
+                                                <span className="indicator-label"> Continue</span>
                                             }
                                         </button>
                                     </div>

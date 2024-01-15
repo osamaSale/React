@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ChatBoxGroup } from './ChatBoxGroup';
 import { getIdGroupChat } from "../redux/slice/slice"
 import { getChatGroupMessage, getChatGroupUsers } from '../redux/api/chatGroup';
+import { Error } from './Error';
 export const ChatGroup = () => {
     const { user, chatGroup , loading } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
@@ -19,6 +20,8 @@ export const ChatGroup = () => {
     }
     return (
         <>
+        {user &&
+                <>
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" id="tab-content-chats" role="tabpanel">
                     <div className="d-flex flex-column h-100 position-relative">
@@ -122,6 +125,9 @@ export const ChatGroup = () => {
                 isvisible={isvisible}
                 setIsVisible={setIsVisible}
             />
+            </>}
+
+            {!user && <Error />}
         </>
     );
 }

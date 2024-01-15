@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { editUser, getAllUsers } from '../redux/api/users';
+import { Error } from './Error';
 
 export const Settings = ({ update }) => {
     const { user , loading } = useSelector(store => store.data)
@@ -66,6 +67,8 @@ export const Settings = ({ update }) => {
     }
     return (
         <>
+            {user &&
+                <>
             <aside className="sidebar bg-light">
                 <div className="tab-pane fade h-100 show active" id="tab-content-settings" role="tabpanel">
                     <div className="d-flex flex-column h-100">
@@ -265,6 +268,8 @@ export const Settings = ({ update }) => {
 
                 </div>
             </main>
+            </>}
+            {!user && <Error />}
         </>
     );
 }
