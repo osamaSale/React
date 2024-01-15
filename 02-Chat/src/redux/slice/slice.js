@@ -66,18 +66,20 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
+            state.loading = true
+    
+                let user = JSON.parse(localStorage.getItem('user'));
 
-            let user = JSON.parse(localStorage.getItem('user'));
+                if (user) {
+                    state.user = state.users?.find((u) => u.id === user.id)
+                    state.people = action.payload.result ? action.payload.result.filter((f) => f.id !== user.id) : []
+                } else {
+                    state.user = null
+                }
 
-            if (user) {
-                state.user = state.users?.find((u) => u.id === user.id)
-                state.people = action.payload.result ? action.payload.result.filter((f) => f.id !== user.id) : []
-            } else {
-                state.user = null
-            }
-
-            state.users = action.payload.result
-            state.loading = false
+                state.users = action.payload.result
+                state.loading = false
+          
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
@@ -219,7 +221,7 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getAllFriends.fulfilled, (state, action) => {
             state.friends = action.payload.result ? action.payload.result.filter((f) => f.userId === state.user?.id) : []
-           state.loading = false
+            state.loading = false
         })
         builder.addCase(getAllFriends.rejected, (state, action) => {
             state.loading = false
@@ -275,7 +277,7 @@ export const dataSlice = createSlice({
             state.chat.forEach((ch) => {
                 ch.mass = state.getMassages ? state.getMassages.findLast((m) => m.chatId === parseInt(ch.id)) : []
             })
-            state.chat.sort((a, b) => a.mass.id > b.mass.id ? -1 : 1);
+            state.chat.sort((a, b) => a.mass?.id > b.mass?.id ? -1 : 1);
 
 
             state.loading = false
@@ -333,8 +335,8 @@ export const dataSlice = createSlice({
         builder.addCase(getMessages.rejected, (state, action) => {
             state.loading = false
         })
-         // Delete Chat  Message
-         builder.addCase(deleteChatMessage.pending, (state, action) => {
+        // Delete Chat  Message
+        builder.addCase(deleteChatMessage.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(deleteChatMessage.fulfilled, (state, action) => {
@@ -345,13 +347,13 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        
+
 
         })
         builder.addCase(deleteChatMessage.rejected, (state, action) => {
             state.loading = false
         })
-    
+
 
 
         // =======================   Chat Group   ============================ //
@@ -365,7 +367,7 @@ export const dataSlice = createSlice({
                 ch.chatUsers = state.getGroupUsers ? state.getGroupUsers.filter((m) => m.groupId === parseInt(ch.id)) : []
                 ch.chatMessage = state.getMassagesGroup ? state.getMassagesGroup.findLast((m) => m.groupId === parseInt(ch.id)) : []
             })
-           
+
             state.chatGroup.sort((a, b) => a.chatMessage?.id > b.chatMessage?.id ? -1 : 1);
         })
         builder.addCase(getChatGroup.rejected, (state, action) => {
@@ -388,7 +390,7 @@ export const dataSlice = createSlice({
         builder.addCase(createChatGroup.rejected, (state, action) => {
             state.loading = false
         })
-      // Delete Chat Group User
+        // Delete Chat Group User
         builder.addCase(deleteChatGroupUser.pending, (state, action) => {
             state.loading = true
         })
@@ -400,7 +402,7 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        
+
 
         })
         builder.addCase(deleteChatGroupUser.rejected, (state, action) => {
@@ -475,8 +477,8 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-         // Delete Chat Group Message
-         builder.addCase(deleteChatGroupMessage.pending, (state, action) => {
+        // Delete Chat Group Message
+        builder.addCase(deleteChatGroupMessage.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(deleteChatGroupMessage.fulfilled, (state, action) => {
@@ -487,7 +489,7 @@ export const dataSlice = createSlice({
                 toast.error(massage)
             }
             state.loading = false
-        
+
 
         })
         builder.addCase(deleteChatGroupMessage.rejected, (state, action) => {
@@ -496,5 +498,5 @@ export const dataSlice = createSlice({
     }
 })
 
-export const { logout, getIdChat, findMedia, getIdGroupChat  , findChatGroupUser} = dataSlice.actions;
+export const { logout, getIdChat, findMedia, getIdGroupChat, findChatGroupUser } = dataSlice.actions;
 export default dataSlice.reducer

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllUsers, findUserEmail } from '../redux/api/users';
 import emailjs from '@emailjs/browser';
@@ -8,9 +8,18 @@ import { toast } from 'react-toastify';
 export const PasswordReset = ({ update, number }) => {
  
     const [email, setEmail] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [loading1, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { loading } = useSelector((store) => store.data)
+    if (loading) {
+        return <div className="container-fluid">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="spinner-border spinner-border me-5" role="status" >
+                </div> Please wait...
+            </div>
+        </div>
+    }
     return (
         <div className="container-fluid">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
@@ -60,8 +69,8 @@ export const PasswordReset = ({ update, number }) => {
                                             }, 2000);
                                         }}
                                     >
-                                        {!loading && <span className="indicator-label"> Send Reset Link</span>}
-                                        {loading && <span className="indicator-progress">Please wait...
+                                        {!loading1 && <span className="indicator-label"> Send Reset Link</span>}
+                                        {loading1 && <span className="indicator-progress">Please wait...
                                             <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
 
                                     </button>

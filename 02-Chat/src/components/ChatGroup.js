@@ -5,10 +5,18 @@ import { ChatBoxGroup } from './ChatBoxGroup';
 import { getIdGroupChat } from "../redux/slice/slice"
 import { getChatGroupMessage, getChatGroupUsers } from '../redux/api/chatGroup';
 export const ChatGroup = () => {
-    const { user, chatGroup } = useSelector((store) => store.data)
+    const { user, chatGroup , loading } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
     const [isvisible, setIsVisible] = useState("is-visible");
     const dispatch = useDispatch()
+    if (loading) {
+        return <div className="container-fluid">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="spinner-border spinner-border me-5" role="status" >
+                </div> Please wait...
+            </div>
+        </div>
+    }
     return (
         <>
             <aside className="sidebar bg-light">

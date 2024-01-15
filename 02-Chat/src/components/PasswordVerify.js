@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAllUsers, updatePassword } from '../redux/api/users';
 export const PasswordVerify = ({ update, number }) => {
     const [password, setPassword] = useState("")
     const [verifyPassword, setVerifyPassword] = useState(0)
-    const [loading, setLoading] = useState(false)
+    const [loading1, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { loading } = useSelector((store) => store.data)
+    if (loading) {
+        return <div className="container-fluid">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="spinner-border spinner-border me-5" role="status" >
+                </div> Please wait...
+            </div>
+        </div>
+    }
     return (
         <div className="container-fluid">
             <div className="row align-items-center justify-content-center min-vh-100 gx-0">
@@ -59,8 +68,8 @@ export const PasswordVerify = ({ update, number }) => {
                                             }, 2000);
                                         }}
                                     >
-                                        {!loading && <span className="indicator-label"> Send Reset Link</span>}
-                                        {loading && <span className="indicator-progress">Please wait...
+                                        {!loading1&& <span className="indicator-label"> Send Reset Link</span>}
+                                        {loading1 && <span className="indicator-progress">Please wait...
                                             <span className="spinner-border spinner-border-sm align-middle ms-2"></span></span>}
 
                                     </button>

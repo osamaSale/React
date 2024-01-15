@@ -1,33 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ChatBox } from './ChatBox';
 import { getIdChat } from "../redux/slice/slice"
 import { getMessages } from '../redux/api/message';
-import { io } from "socket.io-client";
-export const Chats = ({ update }) => {
+export const Chats = ({ update , onlineUsers}) => {
     const { user, chat } = useSelector((store) => store.data)
     const [currentChat, setCurrentChat] = useState(null);
     const [isvisible, setIsVisible] = useState("is-visible");
-    const [onlineUsers, setOnlineUsers] = useState([]);
     const dispatch = useDispatch()
-    //  socket server
-    const socket = useRef()
-    useEffect(() => {
-        socket.current = io('http://localhost:5000')
-        if (user) {
-            socket.current.emit("online", user.id)
-            socket.current.on("get-users", (user) => {
-                setOnlineUsers(user);
-            });
-        }
-    }, [user])
+ console.log(onlineUsers)
 
 
     return (
         <>
             <aside className="sidebar bg-light">
-                <div className="tab-pane fade h-100 show active" id="tab-content-chats" role="tabpanel">
+                <div className="tab-pane fade h-100 show active">
                     <div className="d-flex flex-column h-100 position-relative">
                         <div className="hide-scrollbar">
 
@@ -69,11 +57,11 @@ export const Chats = ({ update }) => {
                                                         {row && row.receiverId === user?.id ?
                                                             <div className="d-flex align-items-center mb-3">
                                                                 <h5 className="me-auto mb-0">{row && row.senderName}</h5>
-                                                                <span className="text-muted extra-small ms-2">12:45 PM</span>
+                                                                <span className="text-muted extra-small ms-2">{row && row.mass && row.mass.time}</span>
                                                             </div> :
                                                             <div className="d-flex align-items-center mb-3">
                                                                 <h5 className="me-auto mb-0">{row && row.receiverName}</h5>
-                                                                <span className="text-muted extra-small ms-2">12:45 PM</span>
+                                                                <span className="text-muted extra-small ms-2">{row && row.mass && row.mass.time}</span>
                                                             </div>
                                                         }
 

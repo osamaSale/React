@@ -6,16 +6,25 @@ import { useNavigate } from 'react-router-dom';
 import { createChatGroup, getChatGroup, getChatGroupUsers } from '../redux/api/chatGroup';
 
 export const CreateChat = ({ update }) => {
-    const { people, user, friends } = useSelector(store => store.data)
+    const { people, user, friends, loading } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const [name, setName] = useState("")
     const [image, setImage] = useState(null)
     const [description, setDescription] = useState("")
-    const [loading, setLoading] = useState(false);
+    const [loading1, setLoading] = useState(false);
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    if (loading) {
+        return <div className="container-fluid">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="spinner-border spinner-border me-5" role="status" >
+                </div> Please wait...
+            </div>
+        </div>
+    }
     return (
-        <div>
+
+        <>
             <aside className="sidebar bg-light">
                 <div className="tab-content h-100 show active" role="tablist">
                     <div className="tab-pane fade h-100 show active" id="tab-content-create-chat" role="tabpanel">
@@ -154,8 +163,8 @@ export const CreateChat = ({ update }) => {
                                                         </div>
                                                         <div className="col-12">
                                                             <div className="form-floating">
-                                                                <textarea className="form-control" name='description' placeholder="Description"  style={{ minHeight: "100px" }}
-                                                                   onChange={(e) => setDescription(e.target.value)}
+                                                                <textarea className="form-control" name='description' placeholder="Description" style={{ minHeight: "100px" }}
+                                                                    onChange={(e) => setDescription(e.target.value)}
                                                                 ></textarea>
                                                                 <label htmlFor="floatingTextarea">What's your purpose?</label>
                                                             </div>
@@ -169,8 +178,8 @@ export const CreateChat = ({ update }) => {
                                                                         fromData.append("userId", user.id);
                                                                         fromData.append("name", name);
                                                                         fromData.append("description", description);
-                                                               
-                                                                      
+
+
                                                                         if (image !== null) {
                                                                             fromData.append("image", image, image?.name);
                                                                         } else {
@@ -190,13 +199,13 @@ export const CreateChat = ({ update }) => {
                                                                 }}
 
                                                             >
-                                                                {loading &&
+                                                                {loading1 &&
                                                                     <>
                                                                         <div className="spinner-border spinner-border-sm me-2" role="status">
                                                                         </div> Please wait...
                                                                     </>
                                                                 }
-                                                                {!loading &&
+                                                                {!loading1 &&
                                                                     <span className="indicator-label"> Start Chat </span>
                                                                 }
 
@@ -229,9 +238,22 @@ export const CreateChat = ({ update }) => {
                 </div>
             </aside >
 
+            <main className="main">
+                <div className="container h-100">
+                    <div className="d-flex flex-column h-100 justify-content-center text-center">
+                        <div className="mb-6">
+                            <span className="icon icon-xl text-muted">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </span>
+                        </div>
 
+                        <p className="text-muted">Pick a person from left menu, <br /> and start your conversation.</p>
+                    </div>
 
-        </div >
+                </div>
+            </main>
+        </>
+
     );
 }
 
