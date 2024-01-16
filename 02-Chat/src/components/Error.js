@@ -1,11 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Error = () => {
+    const { loading } = useSelector(store => store.data)
     const location = useLocation();
+    if (loading) {
+        return <div className="container-fluid">
+            <div className="row align-items-center justify-content-center min-vh-100 gx-0">
+                <div className="spinner-border spinner-border me-5" role="status" >
+                </div> Please wait...
+            </div>
+        </div>
+    }
     return (
         <section>
-            <div className="container ">
+            <div className="container">
                 <div className="row align-items-center justify-content-center min-vh-100 gx-0">
                     <div className="col-12 col-md-5 col-lg-4">
 

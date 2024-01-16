@@ -10,7 +10,6 @@ export const Chats = ({ update, onlineUsers }) => {
     const [currentChat, setCurrentChat] = useState(null);
     const [isvisible, setIsVisible] = useState("is-visible");
     const dispatch = useDispatch()
-    console.log(onlineUsers)
 
 
     return (
@@ -32,7 +31,7 @@ export const Chats = ({ update, onlineUsers }) => {
 
                                         <div className="card-list">
 
-                                            {chat && chat.map((row) => {
+                                            {chat.map((row) => {
                                                 return <Link className="card border-0 text-reset" key={row.id}
                                                     onClick={() => {
                                                         let chatId = row.id

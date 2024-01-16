@@ -57,11 +57,11 @@ export const Friends = ({ update, onlineUsers }) => {
 
                                         <div className="card-list">
 
-                                            {friends && friends.length <= 0 &&
+                                            {friends.length <= 0 &&
                                                 <div className=" text-center" role="alert">
                                                     Friends is Empty
                                                 </div>}
-                                            {friends && friends.map((row) => {
+                                            {friends.map((row) => {
                                                 return <div className="card border-0" key={row.id}
 
                                                 >
@@ -94,7 +94,7 @@ export const Friends = ({ update, onlineUsers }) => {
                                                                             if (status === 200) {
                                                                                 dispatch(getAllUsers())
                                                                                 update()
-                                                                                navigate('/chatGroup')
+                                                                                navigate('/chat')
                                                                             }
                                                                         })
                                                                     }}
