@@ -30,7 +30,10 @@ export const Chats = ({ update, onlineUsers }) => {
 
 
                                         <div className="card-list">
-
+                                            {chat.length <= 0 &&
+                                                <div className=" text-center" role="alert">
+                                                    Chat Group is Empty
+                                                </div>}
                                             {chat.map((row) => {
                                                 return <Link className="card border-0 text-reset" key={row.id}
                                                     onClick={() => {
@@ -56,7 +59,7 @@ export const Chats = ({ update, onlineUsers }) => {
                                                             </div>
 
                                                             <div className="col">
-                                                                {row && row.receiverId === user?.id ?
+                                                                {row.receiverId === user?.id ?
                                                                     <div className="d-flex align-items-center mb-3">
                                                                         <h5 className="me-auto mb-0">{row && row.senderName}</h5>
                                                                         <span className="text-muted extra-small ms-2">{row && row.mass && row.mass.time}</span>
@@ -74,10 +77,9 @@ export const Chats = ({ update, onlineUsers }) => {
                                                                         <div className="line-clamp me-auto">
                                                                             <p>{row.mass.text === "undefined" ? <span>is Image</span> : row.mass.text}</p>
                                                                         </div> :
-
                                                                         <div className="line-clamp me-auto">
-
-                                                                            <p> Is Empty</p>
+                                                                            <p className="text-truncate">is Empty<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                                                                            
                                                                         </div>
                                                                     }
 

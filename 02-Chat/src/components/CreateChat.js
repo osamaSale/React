@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, searchUser } from '../redux/api/users';
-import { createFriends } from '../redux/api/friends';
 import { useNavigate } from 'react-router-dom';
 import { createChatGroup, getChatGroup, getChatGroupUsers } from '../redux/api/chatGroup';
 import { Error } from './Error';
+import { createChat } from '../redux/api/chat';
 
-export const CreateChat = ({ update }) => {
-    const { people, user, friends, loading } = useSelector(store => store.data)
+export const CreateChat = ({ update , onlineUsers}) => {
+    const { people, user, loading, chat } = useSelector(store => store.data)
     const [search, setSearch] = useState("")
     const [name, setName] = useState("")
     const [image, setImage] = useState(null)
@@ -54,7 +54,7 @@ export const CreateChat = ({ update }) => {
                                                             onChange={(e) => setSearch(e.target.value)}
                                                             onKeyUp={() => {
                                                                 if (search === "") {
-                                                                    update();
+                                                                    dispatch(getAllUsers())
                                                                 } else {
                                                                     dispatch(searchUser(search))
                                                                 }
@@ -84,17 +84,14 @@ export const CreateChat = ({ update }) => {
                                             <div className="tab-content" role="tablist">
                                                 <div className="tab-pane fade show active " id="create-chat-members" role="tabpanel">
                                                     <nav>
-                                                        {people && people.map((row) => {
+                                                        {people.map((row) => {
                                                             return <div className="card border-0 mt-5" key={row.id}>
                                                                 <div className="card-body">
 
                                                                     <div className="row align-items-center gx-5">
                                                                         <div className="col-auto">
-                                                                            <div className="avatar ">
-
+                                                                            <div className={onlineUsers ? onlineUsers.find((u) => u.userId === row.senderId) ? "avatar avatar-online" : "avatar avatar-offline" : []}>
                                                                                 <img className="avatar-img" src={row && row.image} alt="" />
-
-
                                                                             </div>
                                                                         </div>
                                                                         <div className="col">
@@ -104,20 +101,22 @@ export const CreateChat = ({ update }) => {
                                                                         <div className="col-auto">
                                                                             <button className='btn btn-dark btn-sm'
                                                                                 type='submit'
-                                                                                disabled={friends && friends?.find((f) => f.friendId === row.id)}
+                                                                                disabled={chat.find((c) => c.receiverId === row.id || c.senderId === row.id)}
                                                                                 onClick={() => {
-                                                                                    let data = { userId: user.id, friendId: row.id }
-                                                                                    dispatch(createFriends(data)).then((res) => {
+                                                                                    let data = { senderId: user.id, receiverId: row.id }
+                                                                                    dispatch(createChat(data)).then((res) => {
                                                                                         const { status } = res?.payload
                                                                                         if (status === 200) {
                                                                                             dispatch(getAllUsers())
                                                                                             update()
+                                                                                            navigate('/chat')
                                                                                         }
-
                                                                                     })
-                                                                                }}>
-                                                                                {friends && friends.find((f) => f.friendId === row.id) ?
-                                                                                    <span> Friends </span> : <span>Add Friend</span>
+                                                                                }}
+                                                                            >
+                                                                                {chat.find((c) => c.receiverId === row.id || c.senderId === row.id) ?
+                                                                                    <span>In Chat</span> : <span>New Message</span>
+
                                                                                 }
 
                                                                             </button>

@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify";
 import { createUser, deleteUser, editUser, findUserEmail, getAllUsers, login, searchUser, updatePassword } from "../api/users"
-import { createFriends, getAllFriends, searchFriends } from "../api/friends";
 import { createChat, getAllChat } from "../api/chat";
 import { createMessage, deleteChatMessage, getMessages } from "../api/message";
-import { createChatGroup, createChatGroupMessage, createChatGroupUsers, getChatGroup, getChatGroupMessage, getChatGroupUsers, deleteChatGroupUser, deleteChatGroupMessage } from "../api/chatGroup";
+import { createChatGroup, createChatGroupMessage, createChatGroupUsers, getChatGroup, getChatGroupMessage, getChatGroupUsers, deleteChatGroupUser, deleteChatGroupMessage, leaveChatGroupUser } from "../api/chatGroup";
 
 
 const initialState = {
     loading: false,
     users: [],
-    friends: [],
     chat: [],
     people: [],
     getGroupUsers: [],
@@ -66,20 +64,18 @@ export const dataSlice = createSlice({
             state.loading = true
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
-            state.loading = true
-    
-                let user = JSON.parse(localStorage.getItem('user'));
-
-                if (user) {
-                    state.user = state.users?.find((u) => u.id === user.id)
-                    state.people = action.payload.result ? action.payload.result.filter((f) => f.id !== user.id) : []
-                } else {
-                    state.user = null
-                }
-
-                state.users = action.payload.result
-                state.loading = false
+            let user = JSON.parse(localStorage.getItem('user'));
+            state.users = action.payload.result
+            if (user) {
+                state.user = state.users?.find((u) => u.id === user.id)
+                state.people = state.users ? state.users.filter((f) => f.id !== user.id) : []
+              
+            } else {
+                state.user = null
+            }
+            state.loading = false
           
+
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
@@ -123,7 +119,7 @@ export const dataSlice = createSlice({
         // update Password
 
         builder.addCase(updatePassword.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(updatePassword.fulfilled, (state, action) => {
             const { status, massage } = action.payload
@@ -159,7 +155,7 @@ export const dataSlice = createSlice({
         // Search User
 
         builder.addCase(searchUser.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(searchUser.fulfilled, (state, action) => {
             let { status } = action.payload
@@ -167,7 +163,7 @@ export const dataSlice = createSlice({
                 state.people = action.payload.result
 
             } else {
-                state.people = [...state.people]
+                state.people =  state.users ? state.users.filter((f) => f.id !== state.user?.id) : []
             }
             state.loading = false
         })
@@ -212,56 +208,7 @@ export const dataSlice = createSlice({
             state.loading = false
         })
 
-        /* ===================== Friends ======================== */
-
-        // Get All Friends
-
-        builder.addCase(getAllFriends.pending, (state, action) => {
-            state.loading = true
-        })
-        builder.addCase(getAllFriends.fulfilled, (state, action) => {
-            state.friends = action.payload.result ? action.payload.result.filter((f) => f.userId === state.user?.id) : []
-            state.loading = false
-        })
-        builder.addCase(getAllFriends.rejected, (state, action) => {
-            state.loading = false
-        })
-
-        // Create friends
-
-        builder.addCase(createFriends.pending, (state, action) => {
-            state.loading = true
-        })
-        builder.addCase(createFriends.fulfilled, (state, action) => {
-            const { status, massage } = action.payload
-            if (status === 200) {
-                toast.error(massage)
-            } else {
-                toast.error(massage)
-            }
-            state.loading = false
-        })
-        builder.addCase(createFriends.rejected, (state, action) => {
-            state.loading = false
-        })
-        // Search User
-
-        builder.addCase(searchFriends.pending, (state, action) => {
-            state.loading = true
-        })
-        builder.addCase(searchFriends.fulfilled, (state, action) => {
-            let { status } = action.payload
-            if (status === 200) {
-                state.friends = action.payload.result
-
-            } else {
-                state.friends = action.payload.result ? action.payload.result.filter((f) => f.userId === state.user?.id) : []
-            }
-            state.loading = false
-        })
-        builder.addCase(searchFriends.rejected, (state, action) => {
-            state.loading = false
-        })
+  
 
         // =======================    chats   ============================ //
 
@@ -271,8 +218,8 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getAllChat.fulfilled, (state, action) => {
 
-
-            state.chat = action.payload.result ? action.payload.result.filter((c) => c.senderId === state.user?.id || c.receiverId === state.user?.id) : []
+            state.chat = action.payload.result
+            state.chat = state.chat ? state.chat.filter((c) => c.senderId === state.user?.id || c.receiverId === state.user?.id) : []
 
             state.chat.forEach((ch) => {
                 ch.mass = state.getMassages ? state.getMassages.findLast((m) => m.chatId === parseInt(ch.id)) : []
@@ -307,7 +254,7 @@ export const dataSlice = createSlice({
 
         // Create Message
         builder.addCase(createMessage.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(createMessage.fulfilled, (state, action) => {
             const { status, massage } = action.payload
@@ -327,8 +274,8 @@ export const dataSlice = createSlice({
         })
         builder.addCase(getMessages.fulfilled, (state, action) => {
             state.getMassages = action.payload.result
-            state.massage = action.payload.result ? action.payload.result.filter((m) => m.chatId === parseInt(state.chatId)) : []
-            state.media = action.payload.result ? action.payload.result.filter((m) => m.text === "undefined") : []
+            state.massage =  state.getMassages ?  state.getMassages.filter((m) => m.chatId === parseInt(state.chatId)) : []
+            state.media =  state.getMassages ?  state.getMassages.filter((m) => m.text === "undefined") : []
             state.loading = false
 
         })
@@ -359,17 +306,19 @@ export const dataSlice = createSlice({
         // =======================   Chat Group   ============================ //
         // get Chat Group
         builder.addCase(getChatGroup.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(getChatGroup.fulfilled, (state, action) => {
             state.chatGroup = action.payload.result
-            state.chatGroup.forEach((ch) => {
+            state.chatGroup?.forEach((ch) => {
                 ch.chatUsers = state.getGroupUsers ? state.getGroupUsers.filter((m) => m.groupId === parseInt(ch.id)) : []
                 ch.chatMessage = state.getMassagesGroup ? state.getMassagesGroup.findLast((m) => m.groupId === parseInt(ch.id)) : []
             })
 
-            state.chatGroup.sort((a, b) => a.chatMessage?.id > b.chatMessage?.id ? -1 : 1);
+            state.chatGroup?.sort((a, b) => a.chatMessage?.id > b.chatMessage?.id ? -1 : 1);
+            state.loading = false
         })
+       
         builder.addCase(getChatGroup.rejected, (state, action) => {
             state.loading = false
         })
@@ -392,7 +341,7 @@ export const dataSlice = createSlice({
         })
         // Delete Chat Group User
         builder.addCase(deleteChatGroupUser.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(deleteChatGroupUser.fulfilled, (state, action) => {
             const { status, massage } = action.payload
@@ -413,12 +362,13 @@ export const dataSlice = createSlice({
         // get Chat Group Users
 
         builder.addCase(getChatGroupUsers.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(getChatGroupUsers.fulfilled, (state, action) => {
             state.getGroupUsers = action.payload.result
-            state.chatGroupUsers = action.payload.result ? action.payload.result.filter((g) => g.groupId === state.chatGroupId) : []
-            state.findChatGroupUser = action.payload.result ? action.payload.result.filter((m) => m.userId === state.ChatGroupUserId) : []
+            state.chatGroupUsers = state.getGroupUsers ? state.getGroupUsers.filter((g) => g.groupId === state.chatGroupId) : []
+            state.findChatGroupUser = state.getGroupUsers ? state.getGroupUsers.filter((m) => m.userId === state.ChatGroupUserId) : []
+            state.loading = false
         })
         builder.addCase(getChatGroupUsers.rejected, (state, action) => {
             state.loading = false
@@ -427,7 +377,7 @@ export const dataSlice = createSlice({
         // Create Chat Group Users
 
         builder.addCase(createChatGroupUsers.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(createChatGroupUsers.fulfilled, (state, action) => {
             const { status, massage } = action.payload
@@ -442,17 +392,36 @@ export const dataSlice = createSlice({
         builder.addCase(createChatGroupUsers.rejected, (state, action) => {
             state.loading = false
         })
+        // leave Chat Group User
+
+        builder.addCase(leaveChatGroupUser.pending, (state, action) => {
+            state.loading = false
+        })
+        builder.addCase(leaveChatGroupUser.fulfilled, (state, action) => {
+            const { status, massage } = action.payload
+            if (status === 200) {
+                toast.error(massage)
+            } else {
+                toast.error(massage)
+            }
+            state.loading = false
+
+        })
+        builder.addCase(leaveChatGroupUser.rejected, (state, action) => {
+            state.loading = false
+        })
 
         // =======================   Chat Group Message  ============================ //
         // get Chat Group Message
 
         builder.addCase(getChatGroupMessage.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(getChatGroupMessage.fulfilled, (state, action) => {
             state.getMassagesGroup = action.payload.result
-            state.chatGroupMessage = action.payload.result ? action.payload.result.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
-            state.media = action.payload.result ? action.payload.result.filter((m) => m.text === "undefined") : []
+            state.chatGroupMessage = state.getMassagesGroup ? state.getMassagesGroup.filter((g) => g.groupId === parseInt(state.chatGroupId)) : []
+            state.media =    state.getMassagesGroup ?    state.getMassagesGroup.filter((m) => m.text === "undefined") : []
+            state.loading = false
         })
         builder.addCase(getChatGroupMessage.rejected, (state, action) => {
             state.loading = false
@@ -461,7 +430,7 @@ export const dataSlice = createSlice({
         // Create Chat Group Message
 
         builder.addCase(createChatGroupMessage.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(createChatGroupMessage.fulfilled, (state, action) => {
             const { status, massage } = action.payload

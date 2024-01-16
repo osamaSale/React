@@ -47,3 +47,9 @@ export const deleteChatGroupMessage = createAsyncThunk("deleteChatGroupMessage",
     const res = await axios.delete(`chatGroupMessage/${id}`)
     return res.data
 })
+// leave Chat Group User
+export const leaveChatGroupUser = createAsyncThunk("leaveChatGroupUser", async (chat, { rejectWithValue, }) => {
+    console.log("data" , chat)
+    const res = await axios.post(`chatGroupUserleave` ,chat)
+    return res.data
+})

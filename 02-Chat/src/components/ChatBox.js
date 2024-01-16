@@ -44,10 +44,16 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                                     <div className="col-12 col-xl-6">
                                                         <div className="row align-items-center gx-5">
                                                             <div className="col-auto">
-                                                                <div className="avatar avatar-online ">
-                                                                    <img className="avatar-img"
-                                                                        src={currentChat.receiverId === user?.id ? currentChat.senderImage : currentChat.receiverImage} alt="" />
-                                                                </div>
+                                                                {currentChat.receiverId === user?.id ?
+                                                                    <div className={onlineUsers ? onlineUsers.find((u) => u.userId === currentChat.senderId) ? "avatar avatar-online" : "avatar avatar-offline" : []}>
+                                                                        <img className="avatar-img"
+                                                                            src={currentChat.receiverId === user?.id ? currentChat.senderImage : currentChat.receiverImage} alt="" />
+                                                                    </div> :
+                                                                    <div className={onlineUsers ? onlineUsers.find((u) => u.userId === currentChat.receiverId) ? "avatar avatar-online" : "avatar avatar-offline" : []}>
+                                                                        <img className="avatar-img"
+                                                                            src={currentChat.receiverId === user?.id ? currentChat.senderImage : currentChat.receiverImage} alt="" />
+                                                                    </div>
+                                                                }
                                                             </div>
 
                                                             <div className="col overflow-hidden">
@@ -90,6 +96,20 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                     </div>
 
                                     <div className="chat-body hide-scrollbar flex-1 h-100" >
+                                        {massage.length <= 0 &&
+                                            <div className="py-6 py-lg-12" ref={scroll}>
+
+                                                <div class="d-flex flex-column h-100 justify-content-center">
+                                                    <div class="text-center mb-6">
+
+                                                        <span class="icon icon-xl text-muted">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                                        </span>
+                                                    </div>
+
+                                                    <p class="text-center text-muted">No messages yet, <br /> start the conversation!</p>
+                                                </div>
+                                            </div>}
                                         {massage && massage?.map((row) => {
                                             return <div key={row.id}
                                                 className="chat-body-inner" style={{ paddingBottom: "70px" }}>
@@ -150,7 +170,7 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
 
 
                                                                         <div className="message-action">
-                                                                            {row.senderId === parseInt(user.id) &&
+                                                                            {row.userId === parseInt(user.id) &&
                                                                                 <div className="dropdown">
                                                                                     <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>

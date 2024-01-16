@@ -6,7 +6,6 @@ import { Chats } from './components/Chats';
 import { Signup } from './components/Signup';
 import './App.css';
 import { CreateChat } from './components/CreateChat';
-import { Friends } from './components/Friends';
 import { Support } from './components/Support';
 import { PasswordReset } from './components/PasswordReset';
 import { Settings } from './components/Settings';
@@ -15,7 +14,6 @@ import { NavbarVertical } from './components/NavbarVertical';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from './redux/api/users';
 import { PasswordVerify } from './components/PasswordVerify';
-import { getAllFriends } from './redux/api/friends';
 import { getMessages } from './redux/api/message';
 import { getAllChat } from './redux/api/chat';
 import { io } from "socket.io-client";
@@ -32,7 +30,6 @@ function App() {
   const update = () => {
     dispatch(getAllUsers())
     dispatch(getAllChat())
-    dispatch(getAllFriends())
     dispatch(getMessages())
     dispatch(getChatGroup())
     dispatch(getChatGroupUsers())
@@ -61,7 +58,6 @@ function App() {
           <Route path='/chatGroup' element={<ChatGroup update={update} onlineUsers={onlineUsers} />} />
           <Route path='/support' element={<Support update={update} onlineUsers={onlineUsers}/>} />
           <Route path='/createChat' element={<CreateChat update={update} onlineUsers={onlineUsers}/>} />
-          <Route path='/friends' element={<Friends update={update} onlineUsers={onlineUsers} />} />
           <Route path='/' element={<Signin update={update} />} />
           <Route path='/signup' element={<Signup update={update} />} />
           <Route path='/passwordReset' element={<PasswordReset update={update} number={number} />} />

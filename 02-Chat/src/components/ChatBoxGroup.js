@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Picker from 'emoji-picker-react';
-import { createChatGroupMessage, createChatGroupUsers, deleteChatGroupMessage, deleteChatGroupUser, getChatGroup, getChatGroupMessage, getChatGroupUsers } from "../redux/api/chatGroup"
+import { createChatGroupMessage, createChatGroupUsers, deleteChatGroupMessage, deleteChatGroupUser, getChatGroup, getChatGroupMessage, getChatGroupUsers, leaveChatGroupUser } from "../redux/api/chatGroup"
 import { getAllUsers, searchUser } from '../redux/api/users';
 import { findChatGroupUser, findMedia } from "../redux/slice/slice"
 import { Error } from './Error';
@@ -15,6 +15,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
     const [showEmoji, setShowEmoji] = useState(false);
     const [search, setSearch] = useState("")
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     useEffect(() => {
         scroll.current?.scrollIntoView({ behavior: "smooth" });
     }, [chatGroupMessage])
@@ -173,31 +174,33 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
 
                                                                         <div className="message-action">
-                                                                            <div className="dropdown">
-                                                                                <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                                                </Link>
+                                                                            {row.senderId === parseInt(user.id) &&
+                                                                                <div className="dropdown">
+                                                                                    <Link className="icon text-muted" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                                                    </Link>
 
-                                                                                <ul className="dropdown-menu">
+                                                                                    <ul className="dropdown-menu">
 
-                                                                                    <li>
-                                                                                        <Link className="dropdown-item d-flex align-items-center text-danger"
-                                                                                            disabled={row.userId === user.id}
-                                                                                            onClick={() => {
-                                                                                                dispatch(deleteChatGroupMessage(row.id)).then(() => {
-                                                                                                    dispatch(getChatGroup())
-                                                                                                    dispatch(getChatGroupMessage())
-                                                                                                })
-                                                                                            }}
-                                                                                        >
-                                                                                            <span className="me-auto">Delete</span>
-                                                                                            <div className="icon">
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                                                                                            </div>
-                                                                                        </Link>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
+                                                                                        <li>
+                                                                                            <Link className="dropdown-item d-flex align-items-center text-danger"
+                                                                                                disabled={row.userId === user.id}
+                                                                                                onClick={() => {
+                                                                                                    dispatch(deleteChatGroupMessage(row.id)).then(() => {
+                                                                                                        dispatch(getChatGroup())
+                                                                                                        dispatch(getChatGroupMessage())
+                                                                                                    })
+                                                                                                }}
+                                                                                            >
+                                                                                                <span className="me-auto">Delete</span>
+                                                                                                <div className="icon">
+                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                                                                </div>
+                                                                                            </Link>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            }
                                                                         </div>
                                                                     </div>}
 
@@ -323,10 +326,32 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
 
                             <div className="dropdown">
-                                <Link className="icon icon-lg text-muted" to="#" role="button">
+                                <Link className="icon icon-lg text-muted" to="#" role="button" aria-expanded="true" data-bs-toggle="dropdown">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                 </Link>
+                                <ul className="dropdown-menu" style={{ position: "absolute", inset: "0px 0px auto auto", margin: "0px", transform: "translate3d(-17.6px, 24px, 0px)" }} data-popper-placement="bottom-end" data-popper-reference-hidden="">
 
+
+                                    <li>
+                                        <button className="dropdown-item d-flex align-items-center text-danger"
+                                            onClick={() => {
+                                                let data = { groupId: currentChat.id, userId: user.id }
+                                                console.log(data)
+                                                dispatch(leaveChatGroupUser(data)).then((res) => {
+                                                    dispatch(getChatGroupUsers())
+                                                    dispatch(getChatGroup())
+                                                    dispatch(getChatGroupMessage())
+                                                    navigate("/chatGroup")
+                                                })
+                                            }}
+                                        >
+                                            Leave
+                                            <div className="icon ms-auto">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                                            </div>
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -400,21 +425,22 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
 
 
-                                                    <div className="col-auto">
-                                                        <button className="btn btn-dark  text-danger btn-sm"
-                                                            disabled={row.isAdmin === "Admin"}
-                                                            onClick={() => {
+                                                    {chatGroupUsers.find((f) => f.isAdmin !== null) &&
+                                                        <div className="col-auto">
+                                                            <button className="btn btn-dark  text-danger btn-sm"
+                                                                disabled={row.isAdmin === "Admin"}
+                                                                onClick={() => {
 
-                                                                dispatch(deleteChatGroupUser(row.id)).then((res) => {
-                                                                    dispatch(getChatGroupUsers())
-                                                                    dispatch(getChatGroup())
-                                                                })
-                                                            }}>
-                                                            Delete
+                                                                    dispatch(deleteChatGroupUser(row.id)).then((res) => {
+                                                                        dispatch(getChatGroupUsers())
+                                                                        dispatch(getChatGroup())
+                                                                    })
+                                                                }}>
+                                                                Delete
 
-                                                        </button>
+                                                            </button>
 
-                                                    </div>
+                                                        </div>}
 
 
                                                 </div>
@@ -516,9 +542,10 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                                             </div>
                                             <div className="col-auto">
 
-                                                <Link
+                                                <button
+
                                                     className='btn btn-dark btn-sm'
-                                                    disabled={chatGroupUsers.find((c) => c.userId === row.id) ? true : false}
+                                                    disabled={chatGroupUsers.find((c) => c.userId === row.id)}
                                                     onClick={(e) => {
                                                         e.preventDefault()
 
@@ -532,7 +559,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
                                                     {chatGroupUsers.find((c) => c.userId === row.id) ?
                                                         <span>In members</span> : <span> Add members</span>
                                                     }
-                                                </Link>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -548,7 +575,7 @@ export const ChatBoxGroup = ({ currentChat, isvisible, setIsVisible }) => {
 
                     </div >
                 </>}
-                {!user && <Error />}
+            {!user && <Error />}
         </>
     );
 }
