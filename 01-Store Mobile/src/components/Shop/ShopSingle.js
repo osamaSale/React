@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from "react-router-dom"
 import { Carousel } from 'react-responsive-carousel';
@@ -7,7 +7,6 @@ import { createCart } from '../../redux/api/carts';
 import { createWishlist } from '../../redux/api/wishlist';
 import { BestSellingProducts } from './ShopCard';
 import { createComments } from '../../redux/api/comments';
-import { singleProduct } from '../../redux/api/products';
 export const ShopSingle = ({update }) => {
     let { id } = useParams()
     const { products, carts, user, wishlist, comments } = useSelector((store) => store.data)
@@ -17,15 +16,10 @@ export const ShopSingle = ({update }) => {
     const [quantity, setQuantity] = useState(1)
     const [color, setColor] = useState(product ? product.color : "");
     const [comment, setComment] = useState("");
-    const [selected, setSelected] = useState({})
+ 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    useEffect(() => {
-        dispatch(singleProduct(id)).then((res) => {
-            setSelected(res.payload.result)
-        });
-    }, [dispatch, id]);
-    console.log(selected)
+   
     if (!product) return null; // or fallback UI
     return (
         <section className="mt-8 mb-14">
@@ -242,7 +236,7 @@ export const ShopSingle = ({update }) => {
                                                                     } else {
                                                                         let data = { userId: user.id, productid: product.id, comment: comment }
                                                                         dispatch(createComments(data)).then((res) => {
-                                                                            console.log(res)
+                                                                           
                                                                             const { status } = res.payload
                                                                             if (status === 200) {
                                                                                 update()

@@ -7,9 +7,10 @@ import { ascending, descending, highestPrice, lowestPrice } from '../../redux/sl
 
 
 export const Shop = ({ update }) => {
-    const { products, findProductBrand, devices } = useSelector((store => store.data))
+    const { products, devices ,findProductBrand } = useSelector((store => store.data))
     const [selectedBrand, setSelectedBrand] = useState("")
     const brand = (findProductBrand || []).filter((b) => b.brand === selectedBrand)
+    console.log(brand)
     const [selected, setSelected] = useState(false)
     const [search, setSearch] = useState("")
     const [toggleState, settoggleState] = useState(1)
@@ -84,9 +85,12 @@ export const Shop = ({ update }) => {
 
 
                                         </li>
+                                       
                                         <li className="nav-item border-bottom w-100 " >
                                             <Link to="#" className="nav-link collapsed" data-bs-toggle="collapse"
-                                                data-bs-target="#categoryFlushOne" aria-expanded="false" aria-controls="categoryFlushOne" onClick={() => setSelectedBrand("Apple")}>
+                                                data-bs-target="#categoryFlushOne" aria-expanded="false" aria-controls="categoryFlushOne" onClick={() => {setSelectedBrand("Apple")
+                                              }
+                                                }>
 
                                                 <span className="d-flex align-items-center">
                                                     <img src='assets/images/brands/apple.svg' alt='' />
@@ -94,15 +98,21 @@ export const Shop = ({ update }) => {
                                                 </span><i className="fa fa-arrow-right"></i>
                                             </Link>
 
-                                            <div id="categoryFlushOne" className="accordion-collapse collapse"
-                                                data-bs-parent="#categoryCollapseMenu">
+                                            <div id="categoryFlushOne" className="accordion-collapse collapse" data-bs-parent="#categoryCollapseMenu">
                                                 <div>
                                                     <ul className="nav flex-column ms-3">
 
                                                         {brand && brand.map((row) => {
-                                                            return <li key={row.id} className="nav-item"><Link className="nav-link"
-                                                                onClick={() => { dispatch(searchProducts(row.name)) }}
-                                                            >{row.name}</Link>
+                                                            return <li key={row.id} className="nav-item">
+                                                                <button className="nav-link"
+                                                                    onClick={() => {
+                                                                        console.log("dcvmznv")
+                                                                        dispatch(
+                                                                            searchProducts(row.name)).then((res) => {
+                                                                                console.log(res)
+                                                                            })
+                                                                    }}
+                                                                >{row.name}</button>
                                                             </li>
                                                         })}
                                                     </ul>
@@ -340,7 +350,7 @@ export const Shop = ({ update }) => {
                                                     dispatch(ascending())
                                                 } else if (e.target.value === "4") {
                                                     dispatch(descending())
-                                                }else{
+                                                } else {
                                                     update()
                                                 }
 
@@ -370,12 +380,12 @@ export const Shop = ({ update }) => {
                                     <ul className="pagination">
                                         <li className="page-item disabled">
                                             <Link className="page-link border  mx-1" to="#" aria-label="Previous"
-                                            onClick={() => {
-                                                if (currentPage !== 1) {
-                                                    setCurrentPage(currentPage - 1)
-                                                }
-    
-                                            }}
+                                                onClick={() => {
+                                                    if (currentPage !== 1) {
+                                                        setCurrentPage(currentPage - 1)
+                                                    }
+
+                                                }}
                                             >
                                                 <i className="bi bi-arrow-left"></i>
                                             </Link>
@@ -386,16 +396,16 @@ export const Shop = ({ update }) => {
                                             </li>
 
                                         ))}
-                    
+
                                         <li className="page-item">
                                             <Link className="page-link mx-1" to="#" aria-label="Next"
-                                            onClick={() => {
+                                                onClick={() => {
 
-                                                if (indexOfLastPost === 9) {
-                                                    setCurrentPage(currentPage + 1)
-                                                }
+                                                    if (indexOfLastPost === 9) {
+                                                        setCurrentPage(currentPage + 1)
+                                                    }
 
-                                            }}
+                                                }}
                                             >
                                                 <i className="bi bi-arrow-right"></i>
                                             </Link>

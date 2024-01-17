@@ -25,7 +25,6 @@ const initialState = {
     orders: [],
     comments: [],
     findProductBrand: [],
-    findProduct: {},
     user: null,
 }
 
@@ -376,6 +375,7 @@ export const dataSlice = createSlice({
 
             state.loading = false
             state.products = action.payload.result
+            state.findProductBrand =action.payload.result
 
         })
         builder.addCase(getAllProducts.rejected, (state, action) => {

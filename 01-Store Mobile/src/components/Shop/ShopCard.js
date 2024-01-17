@@ -353,7 +353,7 @@ export const ShopCard1 = ({ currentPosts, update }) => {
                                         <small>{row && row.brand} && {row && row.device}</small>
                                     </Link>
                                 </div>
-                                <h2 className="fs-6"><Link to="shop-single.html"
+                                <h2 className="fs-6"><Link to={`/shop-single/${row.id}`}
                                     className="text-inherit text-decoration-none">
                                     {row && row.name}
                                 </Link></h2>
@@ -738,7 +738,7 @@ export const ShopCard4 = ({ currentPosts, update }) => {
                                         <small>{row && row.brand} && {row && row.device}</small>
                                     </Link>
                                 </div>
-                                <h2 className="fs-6"><Link to="shop-single.html"
+                                <h2 className="fs-6"><Link to={`/shop-single/${row.id}`}
                                     className="text-inherit text-decoration-none">
                                     {row && row.name}
                                 </Link></h2>
