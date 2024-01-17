@@ -94,7 +94,7 @@ export const Devices = ({ update }) => {
                                         <thead className="bg-primary text-white">
                                             <tr>
                                                 <th scope="col">Id</th>
-                                                <th scope="col">Image</th>
+                                            
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Actions</th>
                                                 <th scope="col">Remove</th>
@@ -105,9 +105,7 @@ export const Devices = ({ update }) => {
                                             {devices && devices.map((row, index) => {
                                                 return <tr key={index} className='border'>
                                                     <td >{row && row.id}</td>
-                                                    <td className='pt-2'>
-                                                        <img src={row && row.image} className="rounded-circle" alt="" height={25} />
-                                                    </td>
+                                                    
                                                     <td >{row && row.name}</td>
                                                     <td >
                                                         <button type='submit' className="btn" onClick={() => {

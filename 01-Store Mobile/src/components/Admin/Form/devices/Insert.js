@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { createDevices } from "../../../../redux/api/devices";
 export const Insert = ({ openDevice, setOpenDevice, update }) => {
     const [name, setName] = useState("")
-    const [image, setImage] = useState(null)
+  
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     return (
@@ -35,9 +35,7 @@ export const Insert = ({ openDevice, setOpenDevice, update }) => {
                         <input type="text" className="form-control bg-transparent" placeholder="Enter Your Name"
                             onChange={(e) => setName(e.target.value)} />
                     </div>
-                    <div className="mb-1">
-                        <input type="file" className="form-control bg-transparent" onChange={(e) => setImage(e.target.files[0])} />
-                    </div>
+                    
                     <Stack
                         direction="row-reverse"
                         justifyContent="flex-start"
@@ -48,14 +46,9 @@ export const Insert = ({ openDevice, setOpenDevice, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                const fromData = new FormData();
-                                fromData.append("name", name);
-                                if (image !== null) {
-                                    fromData.append("image", image, image?.name);
-                                } else {
-                                    fromData.append("image", image);
-                                }
-                                dispatch(createDevices(fromData)).then((res) => {
+                                let data = { name: name }
+                                
+                                dispatch(createDevices(data)).then((res) => {
                                     const { status } = res.payload
                                     if (status === 200) {
                                         setOpenDevice(false);

@@ -630,11 +630,10 @@ export const ViewProduct = ({ selectedProduct, update }) => {
         });
     }, [dispatch, selectedProduct]);
 
-    const image = products.filter((e) =>
-        e.id !== selected?.id &&
+    const image = products ? products.filter((e) => e.id !== selected?.id &&
         e.brand === selected?.brand
         && e.device === selected?.device
-    )
+    ) : []
     return <div className="modal fade" id="quickViewModal" tabIndex="-1" aria-hidden="true">
         <div className="modal-dialog modal-xl modal-dialog-centered">
             <div className="modal-content">

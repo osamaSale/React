@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { editDevices } from '../../../../redux/api/devices';
 export const Edit = ({ openEditDevice, setEditOpenDevice, device, update }) => {
     const [name, setName] = useState(device ? device.name : "")
-    const [image, setImage] = useState(null)
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     return (
@@ -35,9 +34,7 @@ export const Edit = ({ openEditDevice, setEditOpenDevice, device, update }) => {
                         <input type="text" className="form-control bg-transparent" placeholder="Enter Your Name"
                             onChange={(e) => setName(e.target.value)} value={name}/>
                     </div>
-                    <div className="mb-1">
-                        <input type="file" className="form-control bg-transparent" onChange={(e) => setImage(e.target.files[0])} />
-                    </div>
+                    
                     <Stack
                         direction="row-reverse"
                         justifyContent="flex-start"
@@ -48,15 +45,8 @@ export const Edit = ({ openEditDevice, setEditOpenDevice, device, update }) => {
                             className="btn btn-primary"
                             onClick={() => {
                                 setLoading(true)
-                                const fromData = new FormData();
-                                fromData.append("id", device.id);
-                                fromData.append("name", name);
-                                if (image !== null) {
-                                    fromData.append("image", image, image?.name);
-                                } else {
-                                    fromData.append("image", image);
-                                }
-                                dispatch(editDevices(fromData)).then((res) => {
+                                let data = {id : device.id, name: name }
+                                dispatch(editDevices(data)).then((res) => {
                                     const { status } = res.payload
                                     if (status === 200) {
                                         setEditOpenDevice(false);

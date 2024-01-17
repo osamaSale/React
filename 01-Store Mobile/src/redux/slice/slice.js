@@ -61,12 +61,12 @@ export const dataSlice = createSlice({
         /* ===================== Users ======================== */
 
         // Get All Users
-
+       
         builder.addCase(getAllUsers.pending, (state, action) => {
             state.loading = true
         })
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
-           
+            state.users = action.payload.result
             let user = JSON.parse(localStorage.getItem('user'));
 
             if (user) {
@@ -77,7 +77,6 @@ export const dataSlice = createSlice({
             state.users?.forEach((order) => {
                 order.order = state.orders ? state.orders.filter((u) => u.userId === parseInt(order.id)) : []
             })
-            state.users = action.payload.result
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
