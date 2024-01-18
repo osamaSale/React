@@ -10,8 +10,6 @@ export const Chats = ({ update, onlineUsers }) => {
     const [currentChat, setCurrentChat] = useState(null);
     const [isvisible, setIsVisible] = useState("is-visible");
     const dispatch = useDispatch()
-
-
     return (
         <>
             {user &&
@@ -78,7 +76,7 @@ export const Chats = ({ update, onlineUsers }) => {
                                                                             <p>{row.mass.text === "undefined" ? <span>is Image</span> : row.mass.text}</p>
                                                                         </div> :
                                                                         <div className="line-clamp me-auto">
-                                                                            <p className="text-truncate">is Empty<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                                                                            <p className="text-truncate">is Empty<span className="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>
                                                                             
                                                                         </div>
                                                                     }

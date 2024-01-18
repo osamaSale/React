@@ -99,15 +99,15 @@ export const ChatBox = ({ currentChat, isvisible, setIsVisible, onlineUsers }) =
                                         {massage.length <= 0 &&
                                             <div className="py-6 py-lg-12" ref={scroll}>
 
-                                                <div class="d-flex flex-column h-100 justify-content-center">
-                                                    <div class="text-center mb-6">
+                                                <div className="d-flex flex-column h-100 justify-content-center">
+                                                    <div className="text-center mb-6">
 
-                                                        <span class="icon icon-xl text-muted">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                                        <span className="icon icon-xl text-muted">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                                                         </span>
                                                     </div>
 
-                                                    <p class="text-center text-muted">No messages yet, <br /> start the conversation!</p>
+                                                    <p className="text-center text-muted">No messages yet, <br /> start the conversation!</p>
                                                 </div>
                                             </div>}
                                         {massage && massage?.map((row) => {

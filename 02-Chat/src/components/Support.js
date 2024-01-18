@@ -24,10 +24,6 @@ export const Support = () => {
                                         <div className="mb-8">
                                             <h2 className="fw-bold m-0">Support</h2>
                                         </div>
-
-
-
-
                                         <div className="card-list mt-8">
                                             <div className="d-flex align-items-center mb-4 px-6">
                                                 <small className="text-muted me-auto">Pages</small>

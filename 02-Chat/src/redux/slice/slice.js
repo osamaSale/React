@@ -66,16 +66,18 @@ export const dataSlice = createSlice({
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
             let user = JSON.parse(localStorage.getItem('user'));
             state.users = action.payload.result
-            if (user) {
-                state.user = state.users?.find((u) => u.id === user.id)
-                state.people = state.users ? state.users.filter((f) => f.id !== user.id) : []
-              
-            } else {
-                state.user = null
+            if(state.users.length < 0){
+                state.loading = true
+            }else{
+                if (user) {
+                    state.user = state.users?.find((u) => u.id === user.id)
+                    state.people = state.users ? state.users.filter((f) => f.id !== user.id) : []
+                  
+                } else {
+                    state.user = null
+                }
+                state.loading = false
             }
-            state.loading = false
-          
-
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
@@ -119,7 +121,7 @@ export const dataSlice = createSlice({
         // update Password
 
         builder.addCase(updatePassword.pending, (state, action) => {
-            state.loading = false
+            state.loading = true
         })
         builder.addCase(updatePassword.fulfilled, (state, action) => {
             const { status, massage } = action.payload
@@ -226,7 +228,7 @@ export const dataSlice = createSlice({
             })
             state.chat.sort((a, b) => a.mass?.id > b.mass?.id ? -1 : 1);
 
-
+          
             state.loading = false
         })
         builder.addCase(getAllChat.rejected, (state, action) => {
@@ -284,7 +286,7 @@ export const dataSlice = createSlice({
         })
         // Delete Chat  Message
         builder.addCase(deleteChatMessage.pending, (state, action) => {
-            state.loading = true
+            state.loading = false
         })
         builder.addCase(deleteChatMessage.fulfilled, (state, action) => {
             const { status, massage } = action.payload
