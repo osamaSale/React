@@ -66,9 +66,7 @@ export const dataSlice = createSlice({
         builder.addCase(getAllUsers.fulfilled, (state, action) => {
             let user = JSON.parse(localStorage.getItem('user'));
             state.users = action.payload.result
-            if(state.users.length < 0){
-                state.loading = true
-            }else{
+            
                 if (user) {
                     state.user = state.users?.find((u) => u.id === user.id)
                     state.people = state.users ? state.users.filter((f) => f.id !== user.id) : []
@@ -77,7 +75,7 @@ export const dataSlice = createSlice({
                     state.user = null
                 }
                 state.loading = false
-            }
+            
         })
         builder.addCase(getAllUsers.rejected, (state, action) => {
             state.loading = false
