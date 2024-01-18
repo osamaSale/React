@@ -30,7 +30,7 @@ export const Chats = ({ update, onlineUsers }) => {
                                         <div className="card-list">
                                             {chat.length <= 0 &&
                                                 <div className=" text-center" role="alert">
-                                                    Chat Group is Empty
+                                                    Chat is Empty
                                                 </div>}
                                             {chat.map((row) => {
                                                 return <Link className="card border-0 text-reset" key={row.id}

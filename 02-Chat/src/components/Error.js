@@ -28,7 +28,7 @@ export const Error = () => {
                                     Check out our help center or head back to home.
                                 </p>
 
-                                <Link to="/" className="btn btn-primary ms-2">Back to Signin</Link>
+                                <Link to="/chat" className="btn btn-primary ms-2">Back to Chat</Link>
 
 
                             </div>
