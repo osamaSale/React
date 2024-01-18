@@ -38,12 +38,7 @@ function App() {
   const socket = useRef()
   useEffect(() => {
    /*  socket.current = io('http://localhost:5000') */
-    socket.current = io('https://chat-server-bz17.onrender.com', {
-      withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd"
-      }
-    })
+    socket.current = io('https://chat-server-bz17.onrender.com')
     if (user) {
       socket.current.emit("online", user.id)
       socket.current.on("get-users", (user) => {
