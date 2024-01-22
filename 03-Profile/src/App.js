@@ -1,110 +1,16 @@
 
 import './App.css';
+import { About } from './components/About';
 import { Navbar } from './components/Navbar';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Projects } from './components/Projects';
 function App() {
   return (
     <div className="App">
-        <Navbar />
-  
-      <section className="section__container about__container" id="about">
-        <div className="about__image">
-          <img src="assets/about.jpg" alt="about" />
-        </div>
-        <div className="about__content">
-          <h2 className="section__header">Hi There I Am Andarson</h2>
-          <p>
-            A passionate web developer with a creative flair and a knack for
-            turning visions into reality. My journey in web development began with
-            a fascination for coding and design, and it has evolved into a career
-            where I blend aesthetics with functionality.
-          </p>
-          <h4>
-            With a focus on user experience and a commitment to staying updated
-            with the latest industry trends, I'm dedicated to creating web
-            solutions that not only meet but exceed expectations.
-          </h4>
-          <div className="about__btns">
-            <Link to="assets/Andarson_CV.pdf" download className="download__btn">
-              Download CV
-            </Link>
-            <Link   to={`mailto:${"osama.moh.salem@gmail.com"}?subject=${""}&body=${""}`}><i className="ri-mail-fill"></i></Link>
-            <Link  to={"https://github.com/osamaSale"} onClick={()=>console.log("jnkj")}><i className="ri-github-fill"></i></Link>
-            <Link to="#"><i className="ri-linkedin-fill"></i></Link>
-          </div>
-        </div>
-      </section>
-      <section className="section__container banner__container">
-        <div className="banner__card">
-          <span><i className="ri-pen-nib-line"></i></span>
-          <div>
-            <h4>Design</h4>
-            <p>
-              Our designers and content creators are committed to delivering
-              engaging digital content.
-            </p>
-          </div>
-        </div>
-        <div className="banner__card">
-          <span><i className="ri-layout-masonry-line"></i></span>
-          <div>
-            <h4>Development</h4>
-            <p>
-              We stay at forefront of technological advancements, ensuring your
-              digital presence performant.
-            </p>
-          </div>
-        </div>
-        <div className="banner__card">
-          <span><i className="ri-checkbox-line"></i></span>
-          <div>
-            <h4>Testing & QA</h4>
-            <p>
-              We understand that your digital presence should not just look good,
-              it should deliver traffic & engagement.
-            </p>
-          </div>
-        </div>
-      </section>
+      <Navbar />
+      <About />
+<Projects/>
 
-      <section className="section__container project__container" id="project">
-        <div className="project__header">
-          <h2 className="section__header">Our Projects</h2>
-          <div className="project__nav">
-            <button
-              className="btn project__btn mixitup-control-active"
-              data-filter="all"
-            >
-              All
-            </button>
-            <button className="btn project__btn" data-filter=".web">Web Apps</button>
-            <button className="btn project__btn" data-filter=".game">Games</button>
-            <button className="btn project__btn" data-filter=".design">
-              Designs
-            </button>
-          </div>
-        </div>
-        <div className="project__grid">
-          <div className="project__card mix web">
-            <img src="assets/project-1.jpg" alt="project" />
-          </div>
-          <div className="project__card mix game">
-            <img src="assets/project-2.jpg" alt="project" />
-          </div>
-          <div className="project__card mix design">
-            <img src="assets/project-3.jpg" alt="project" />
-          </div>
-          <div className="project__card mix web">
-            <img src="assets/project-4.jpg" alt="project" />
-          </div>
-          <div className="project__card mix game">
-            <img src="assets/project-5.jpg" alt="project" />
-          </div>
-          <div className="project__card mix design">
-            <img src="assets/project-6.jpg" alt="project" />
-          </div>
-        </div>
-      </section>
       <section className="section__container service__container" id="service">
         <p className="section__subheader">Our Services</p>
         <h2 className="section__header">What We Do?</h2>

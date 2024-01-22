@@ -185,7 +185,8 @@ nav {
 }
 
 .header__image img {
-  max-width: 400px;
+  max-width: 500px;
+  height: 400px;
   margin: auto;
 }
 
@@ -212,12 +213,13 @@ nav {
 }
 
 .about__container {
+  padding: 1rem;
   display: grid;
   gap: 4rem;
 }
 
 .about__image img {
-  max-width: 450px;
+  height: 400px;
   margin: auto;
 }
 
@@ -263,13 +265,13 @@ nav {
 }
 
 .banner__container {
-  padding-block: 2rem;
+  padding-block: 5rem;
   display: grid;
   gap: 1rem;
 }
 
 .banner__card {
-  padding: 2rem 1rem;
+  padding: 20px;
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -304,6 +306,8 @@ nav {
 
 .banner__card p {
   color: var(--text-light);
+  padding-top: 10px;
+  font-size: 15px;
 }
 
 .project__header {
@@ -646,6 +650,8 @@ nav {
   }
 
   .about__container {
+    padding-top: 8%;
+    padding-bottom: 5%;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 2rem;
