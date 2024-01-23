@@ -1,3 +1,4 @@
+window.onload = function(){
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn?.querySelector("i");
@@ -94,3 +95,4 @@ ScrollReveal().reveal(".blog__card", {
   ...scrollRevealOption,
   interval: 500,
 });
+}
