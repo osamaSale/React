@@ -31,7 +31,7 @@ export const Projects = () => {
           </Link>
         </div>
         <div className="project__card mix web">
-          <img src="assets/image/chat.png" alt="project" />
+          <img src="assets/image/chat.webp" alt="project" />
         </div>
         <div className="project__card mix game">
           <img src="assets/image/project-2.jpg" alt="project" />

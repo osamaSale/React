@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { Loading } from './Loading';
 export const Footer = () => {
     const { loading } = useSelector((store) => store.data)
     const location = useLocation();
