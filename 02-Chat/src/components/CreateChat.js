@@ -173,6 +173,7 @@ export const CreateChat = ({ update , onlineUsers}) => {
                                                                 </div>
                                                                 <div className="col-12">
                                                                     <button className="btn btn-lg btn-primary w-100 d-flex align-items-center" type="button"
+                                                                        
                                                                         onClick={() => {
                                                                             setLoading(true)
                                                                             setTimeout(() => {

@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 export const NavbarVertical = () => {
     const { user } = useSelector(store => store.data)
     const location = useLocation();
-
+    const [mode, setMode] = useState('dark')
+    const checkMode = () => {
+        let element = document.body
+        element.dataset.bsTheme = element.dataset.bsTheme === "light" ? "dark" : "light"
+        setMode(element.dataset.bsTheme)
+    }
 
     if (location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/passwordReset" || location.pathname === "/verifyPassword" || !user) { return }
     return (
@@ -24,7 +29,7 @@ export const NavbarVertical = () => {
                 <li className="nav-item">
                     <Link to={"/createChat"} className={location.pathname === "/createChat" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} >
                         <div className="icon icon-xl">
-                            
+
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit-3">
                                 <path d="M12 20h9"></path>
                                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -35,7 +40,7 @@ export const NavbarVertical = () => {
 
 
 
-              
+
 
                 <li className="nav-item">
                     <Link className={location.pathname === "/chatGroup" ? "nav-link active py-0 py-lg-8" : "nav-link py-0 py-lg-8"} to={'/chatGroup'}>
@@ -75,8 +80,23 @@ export const NavbarVertical = () => {
                     </Link>
                 </li>
 
+
                 <li className="nav-item">
-                    <Link to="#" className="nav-link active py-0 py-lg-8" data-bs-toggle="modal" data-bs-target="#modal-profile">
+                    <Link className="switcher-btn nav-link py-0 py-lg-8" href="#!" title="Themes" onClick={()=>{
+                       checkMode()
+                    }}>
+                        {mode === "dark" ?
+                        <div className="switcher-icon switcher-icon-dark icon icon-xl " data-theme-mode="dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </div>:
+                        <div className="switcher-icon switcher-icon-light icon icon-xl" data-theme-mode="light">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        </div>}
+                    </Link>
+                </li>
+
+                <li className="nav-item">
+                    <Link  className="nav-link active py-0 py-lg-8" data-bs-toggle="modal" data-bs-target="#modal-profile">
                         {user && <div className="avatar avatar-online mx-auto">
                             <img className="avatar-img" src={user && user.image} alt="" />
                         </div>}

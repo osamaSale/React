@@ -95,7 +95,7 @@ export const Modals = ({ update }) => {
 
 
                             <hr className="hr-bold modal-gx-n my-0" />
-                            <button className="btn btn-dark w-100 text-danger mt-4 mb-4" data-bs-dismiss="modal" aria-label="Close" onClick={() => {
+                            <button className="btn btn-dark w-100  mt-4 mb-4" data-bs-dismiss="modal" aria-label="Close" onClick={() => {
                                 if (window.confirm("Do you want to Exit")) {
                                     dispatch(logout())
                                     navigate('/')
