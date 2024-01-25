@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link    } from "react-router-dom"
+import { Link } from "react-router-dom"
+import Typewriter from "typewriter-effect";
 export const Navbar = () => {
     const [isOpen, setisOpen] = useState(true)
     return (
@@ -24,9 +25,9 @@ export const Navbar = () => {
                         </div>}
                     </div>
                     <ul className={isOpen ? "nav__links" : "nav__links open"} id="nav-links">
-                        <li className="link"><Link to="#home">Home</Link></li>
-                        <li className="link"><Link to="#about">About</Link></li>
-                        <li className="link"><Link to="#project">Projects</Link></li>
+                        <li className="link"><a href={"#Home"}>Home</a></li>
+                        <li className="link"><a href={"#About"}>About</a></li>
+                        <li className="link"><a href={"#Projects"}>Projects</a></li>
                         <li className="link"><Link to="#service">Services</Link></li>
                         <li className="link"><Link to="#client">Clients</Link></li>
                         <li className="link"><Link to="#blog">Blog</Link></li>
@@ -36,13 +37,28 @@ export const Navbar = () => {
             </nav>
             <div className="section__container header__container" id="home">
                 <div className="header__image">
-                    <img src="assets/image/header.png" alt="header" 
-                   
+                    <img src="assets/image/header.png" alt="header"
+
                     />
                 </div>
                 <div className="header__content">
-                    <h4>Full-Stack Developer</h4>
-                    <h1>Hi, I Am Osama Salem. <br />
+                    <h4>
+                        <Typewriter
+
+                            options={{
+                                strings: [
+                                    "Full Stack Developer",
+                                    "Front-end Development",
+                                    "Back-end Development",
+                                    "Website Design",
+                                ],
+                                autoStart: true,
+                                loop: true,
+                            }}
+                        />
+                    </h4>
+
+                    <h1 style={{ color: "orange" }}>Hi, I Am Osama Salem. <br />
                         This Is My Favotite Work!</h1>
                     <p>
                         I am a full stack developer, analytical and hardworking who enjoys  solving problems and coming up with interesting insights about what I  do. Being a fast-learner is one of my core skills that I'm proud of.

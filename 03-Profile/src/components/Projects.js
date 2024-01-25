@@ -26,12 +26,14 @@ export const Projects = () => {
 
 
         <div className="project__card mix web">
-          <Link to={"https://store-mobile12.netlify.app/"}>
+          <Link to={"https://store-mobile12.netlify.app/"} target="_blank" rel="noreferrer">
             <img src="assets/image/mobile.webp" alt="project" />
           </Link>
         </div>
         <div className="project__card mix web">
-          <img src="assets/image/chat.webp" alt="project" />
+          <Link to={"https://chatsapplication.netlify.app"} target="_blank" rel="noreferrer">
+            <img src="assets/image/chat.webp" alt="project" />
+          </Link>
         </div>
         <div className="project__card mix game">
           <img src="assets/image/project-2.jpg" alt="project" />

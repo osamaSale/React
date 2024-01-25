@@ -1,74 +1,23 @@
 
-import './App.css';
 import { About } from './components/About';
 import { Navbar } from './components/Navbar';
 import { Link } from 'react-router-dom';
 import { Projects } from './components/Projects';
+import { Services } from './components/Services';
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <About />
-<Projects/>
+      <div id={"Home"}>
+        <Navbar />
+      </div>
+      <div id={"About"}>
+        <About />
+      </div>
+      <div id={"Projects"}>
+        <Projects />
+      </div>
+      <Services />
 
-      <section className="section__container service__container" id="service">
-        <p className="section__subheader">Our Services</p>
-        <h2 className="section__header">What We Do?</h2>
-        <p className="section__description">
-          We specialize in a wide range of web development services designed to
-          transform your vision into reality.
-        </p>
-        <div className="service__grid">
-          <div className="service__card">
-            <span><i className="ri-window-fill"></i></span>
-            <h4>Website Design</h4>
-            <p>
-              We craft user-friendly interfaces that engage visitors and help you
-              achieve your online goals with minimum efforts.
-            </p>
-          </div>
-          <div className="service__card">
-            <span><i className="ri-store-line"></i></span>
-            <h4>E-commerce Solutions</h4>
-            <p>
-              We build secure, scalable, and user-centric online stores that
-              enhance the shopping experience and drive conversions.
-            </p>
-          </div>
-          <div className="service__card">
-            <span><i className="ri-smartphone-line"></i></span>
-            <h4>Mobile Development</h4>
-            <p>
-              From iOS to Android, we create apps that deliver seamless
-              performance and keep users coming back for more.
-            </p>
-          </div>
-          <div className="service__card">
-            <span><i className="ri-share-fill"></i></span>
-            <h4>Content Marketing</h4>
-            <p>
-              Our services include creating blog posts, videos, and social media
-              content that drives traffic and engagement.
-            </p>
-          </div>
-          <div className="service__card">
-            <span><i className="ri-seo-line"></i></span>
-            <h4>SEO</h4>
-            <p>
-              Our SEO strategies are tailored to your specific goals, helping you
-              reach your target audience and grow your online presence.
-            </p>
-          </div>
-          <div className="service__card">
-            <span><i className="ri-share-circle-line"></i></span>
-            <h4>Digital Marketing</h4>
-            <p>
-              From pay-per-click (PPC) advertising to social media marketing, we
-              ensure your brand stands out in the crowded digital landscape.
-            </p>
-          </div>
-        </div>
-      </section>
       <section className="section__container client__container" id="client">
         <p className="section__subheader">Testimonials</p>
         <h2 className="section__header">What Our Clients Say About Us</h2>
@@ -78,7 +27,7 @@ function App() {
 
             <div className="swiper-slide">
               <div className="client__card">
-                <img src="assets/client-1.jpg" alt="client" />
+                <img src="assets/image/client-1.jpg" alt="client" />
                 <div>
                   <p>
                     They transformed our online presence with their SEO and
@@ -100,7 +49,7 @@ function App() {
             </div>
             <div className="swiper-slide">
               <div className="client__card">
-                <img src="assets/client-2.jpg" alt="client" />
+                <img src="assets/image/client-2.jpg" alt="client" />
                 <div>
                   <p>
                     Working with them has been a game-changer for our business.
@@ -122,7 +71,7 @@ function App() {
             </div>
             <div className="swiper-slide">
               <div className="client__card">
-                <img src="assets/client-3.jpg" alt="client" />
+                <img src="./assets/image/client-3.jpg" alt="client" />
                 <div>
                   <p>
                     Our digital marketing strategy needed a revamp, and they
@@ -143,7 +92,7 @@ function App() {
             </div>
             <div className="swiper-slide">
               <div className="client__card">
-                <img src="assets/client-4.jpg" alt="client" />
+                <img src="assets/image/client-4.jpg" alt="client" />
                 <div>
                   <p>
                     The mobile app they developed for our company exceeded our
@@ -173,19 +122,19 @@ function App() {
         <h2 className="section__header">I Love To Write Articles</h2>
         <div className="blog__grid">
           <div className="blog__card">
-            <img src="assets/blog-1.jpg" alt="blog" />
+            <img src="assets/image/blog-1.jpg" alt="blog" />
             <p>Case Study</p>
             <h4>Turning Clicks into Conversions with PPC</h4>
             <Link to="#">Read More</Link>
           </div>
           <div className="blog__card">
-            <img src="assets/blog-2.jpg" alt="blog" />
+            <img src="assets/image/blog-2.jpg" alt="blog" />
             <p>Educational/How-To</p>
             <h4>The Ultimate Guide to Website Accessibility</h4>
             <Link to="#">Read More</Link>
           </div>
           <div className="blog__card">
-            <img src="assets/blog-3.jpg" alt="blog" />
+            <img src="assets/image/blog-3.jpg" alt="blog" />
             <p>Trend Analysis</p>
             <h4>2023 Web Design Trends: What's In and What's Out</h4>
             <Link to="#">Read More</Link>
