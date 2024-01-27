@@ -27,14 +27,25 @@ export const Projects = () => {
 
         <div className="project__card mix web">
           <Link to={"https://store-mobile12.netlify.app/"} target="_blank" rel="noreferrer">
-            <img src="assets/image/mobile.webp" alt="project" />
+            <div className="blog__card">
+              <img src="assets/image/mobile.webp" alt="project" />
+              <p style={{textAlign:"left"}}>Store Mobile</p>
+            <h4>Has 2 types of users (Admin, Customer)</h4>
+            <Link to="#">Technologies ( HTML, CSS, React.js, Node.js, MySQL )</Link>
+            </div>
           </Link>
         </div>
         <div className="project__card mix web">
           <Link to={"https://chatsapplication.netlify.app"} target="_blank" rel="noreferrer">
-            <img src="assets/image/chat.webp" alt="project" />
+            <div className="blog__card">
+              <img src="assets/image/chat.webp"  alt="project" />
+              <p style={{textAlign:"left"}}>Chat</p>
+            <h4> users to communicate with each other</h4>
+            <Link to="#">Technologies ( HTML, CSS, React.js, Node.js, MySQL )</Link>
+            </div>
           </Link>
         </div>
+      
         <div className="project__card mix game">
           <img src="assets/image/project-2.jpg" alt="project" />
         </div>
@@ -47,6 +58,7 @@ export const Projects = () => {
         <div className="project__card mix design">
           <img src="assets/image/project-6.jpg" alt="project" />
         </div>
+        
       </div>
     </section>
   );

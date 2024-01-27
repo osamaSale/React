@@ -28,8 +28,8 @@ export const Navbar = () => {
                         <li className="link"><a href={"#Home"}>Home</a></li>
                         <li className="link"><a href={"#About"}>About</a></li>
                         <li className="link"><a href={"#Projects"}>Projects</a></li>
-                        <li className="link"><Link to="#service">Services</Link></li>
-                        <li className="link"><Link to="#client">Clients</Link></li>
+                        <li className="link"><a href={"#Service"}>Services</a></li>
+                        <li className="link"><a href={"#Education"}>Education</a></li>
                         <li className="link"><Link to="#blog">Blog</Link></li>
                         <li className="link btn"><Link to="#contact">Contact</Link></li>
                     </ul>
