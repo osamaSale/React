@@ -57,6 +57,7 @@
   background-image: var(--gradient);
   border-radius: 5rem;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 img {
@@ -490,6 +491,7 @@ nav {
   margin-top: 4rem;
   display: grid;
   gap: 2rem 1rem;
+  justify-content: center;
 }
 
 .blog__card img {
@@ -638,7 +640,7 @@ nav {
   }
 
   .blog__grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contact__form .input__row {

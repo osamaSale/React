@@ -15,7 +15,6 @@ export const Projects = () => {
             All
           </button>
           <button className="btn project__btn" data-filter=".web">Web Apps</button>
-          <button className="btn project__btn" data-filter=".game">Games</button>
           <button className="btn project__btn" data-filter=".design">
             Designs
           </button>
@@ -45,15 +44,22 @@ export const Projects = () => {
             </div>
           </Link>
         </div>
+        <div className="project__card mix design">
+          <Link to={"https://profileosamasalem.netlify.app"} target="_blank" rel="noreferrer">
+            <div className="blog__card">
+              <img src="assets/image/Profile.webp"  alt="project" />
+              <p style={{textAlign:"left"}}>Profile</p>
+            <h4>Profile Web Design</h4>
+            <Link to="#">Technologies ( HTML, CSS, React.js )</Link>
+            </div>
+          </Link>
+        </div>
       
-        <div className="project__card mix game">
+        <div className="project__card mix design">
           <img src="assets/image/project-2.jpg" alt="project" />
         </div>
         <div className="project__card mix design">
           <img src="assets/image/project-3.jpg" alt="project" />
-        </div>
-        <div className="project__card mix game">
-          <img src="assets/image/project-5.jpg" alt="project" />
         </div>
         <div className="project__card mix design">
           <img src="assets/image/project-6.jpg" alt="project" />

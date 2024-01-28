@@ -6,9 +6,9 @@ export const Navbar = () => {
     return (
         <header className="header">
             <div className="header__socials">
-                <Link to="#"><i className="ri-mail-fill"></i></Link>
-                <Link to={"https://github.com/osamaSale"}><i className="ri-github-fill"></i></Link>
-                <Link to="#"><i className="ri-linkedin-fill"></i></Link>
+                <Link to={`mailto:${"osama.mohamad.salem@gmail.com"}?subject=${""}&body=${""}`}><i className="ri-mail-fill"></i></Link>
+                <Link to={"https://github.com/osamaSale"} target="_blank" rel="noreferrer"><i className="ri-github-fill"></i></Link>
+                <Link to={"https://www.linkedin.com/in/osama-salem-a94777258/"} target="_blank" rel="noreferrer"><i className="ri-linkedin-fill"></i></Link>
             </div>
             <nav>
                 <div className="nav__bar">
@@ -30,16 +30,14 @@ export const Navbar = () => {
                         <li className="link"><a href={"#Projects"}>Projects</a></li>
                         <li className="link"><a href={"#Service"}>Services</a></li>
                         <li className="link"><a href={"#Education"}>Education</a></li>
-                        <li className="link"><Link to="#blog">Blog</Link></li>
-                        <li className="link btn"><Link to="#contact">Contact</Link></li>
+                        <li className="link"><a href={"#Skills"}>Skills</a></li>
+                        <li className="link btn"><a href={"#Contact"}>Contact</a></li>
                     </ul>
                 </div>
             </nav>
-            <div className="section__container header__container" id="home">
+            <div className="section__container header__container" id="Home">
                 <div className="header__image">
-                    <img src="assets/image/header.png" alt="header"
-
-                    />
+                    <img src="assets/image/header.png" alt="header" />
                 </div>
                 <div className="header__content">
                     <h4>
@@ -63,7 +61,7 @@ export const Navbar = () => {
                     <p>
                         I am a full stack developer, analytical and hardworking who enjoys  solving problems and coming up with interesting insights about what I  do. Being a fast-learner is one of my core skills that I'm proud of.
                     </p>
-                    <button className="btn">Hire Me Now</button>
+                    <a href='tel:+962799895632' className="btn">0799895632</a>
                 </div>
             </div>
         </header>

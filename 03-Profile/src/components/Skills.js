@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Skills = () => {
     return (
-        <section className="section__container blog__container" id="blog">
+        <section className="section__container blog__container" id="Skills">
         <h2 className="section__header">Skills</h2>
         <p className="section__description">Take a look at some of the technologies I know.</p>
         <div className="blog__grid">

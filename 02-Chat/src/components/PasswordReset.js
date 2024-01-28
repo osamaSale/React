@@ -53,6 +53,7 @@ export const PasswordReset = ({ update, number }) => {
                                                         dispatch(getAllUsers())
                                                         update()
                                                         let data1 = { user_name: "Osama", user_email: email, message: `VerifyPassword : ${number}` }
+                                                     
                                                         emailjs.send('service_pyguoec', 'template_airpmzr', data1, 'DUOrlJz1ktRqkBB2k')
                                                             .then(function (response) {
                                                                 console.log(response)
