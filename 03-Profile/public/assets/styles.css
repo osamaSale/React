@@ -189,6 +189,21 @@ nav {
   max-width: 500px;
   height: 400px;
   margin: auto;
+  animation: imgg 2s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes imgg {
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-22px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+  
 }
 
 .header__content {
@@ -222,6 +237,8 @@ nav {
 .about__image img {
   height: 400px;
   margin: auto;
+  animation: imgg 2s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 .about__content .section__header {
