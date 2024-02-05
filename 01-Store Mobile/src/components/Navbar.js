@@ -369,22 +369,22 @@ export const Navbar = ({ update }) => {
                                         </li>
                                         <li className="nav-item">
 
-                                            <Link className="nav-link border-bottom-0 pb-3" to="/" >
-                                                <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            <Link className="nav-link " to="/" >
+                                                <button className="nav-link  border-bottom-0" data-bs-dismiss="offcanvas" aria-label="Close">
                                                     Home
                                                 </button>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link border-bottom-0 pb-3" to="/about" data-bs-dismiss="offcanvas" aria-label="Close">
-                                                <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            <Link className="nav-link" to="/about" data-bs-dismiss="offcanvas" aria-label="Close">
+                                                <button className="nav-link  border-bottom-0" data-bs-dismiss="offcanvas" aria-label="Close">
                                                     About Us
                                                 </button>
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link border-bottom-0 pb-3" to="/contact">
-                                                <button className="nav-link border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                                            <Link className="nav-link " to="/contact">
+                                                <button className="nav-link  border-bottom-0" data-bs-dismiss="offcanvas" aria-label="Close">
                                                     Contact Us
                                                 </button>
                                             </Link>
