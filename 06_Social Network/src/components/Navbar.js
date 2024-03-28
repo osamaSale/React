@@ -11,7 +11,7 @@ export const Navbar = () => {
             <nav className="navbar navbar-expand-lg">
                 <div className="container">
 
-                    <Link className="navbar-brand" to="index.html">
+                    <Link className="navbar-brand" to="/">
                         <img className="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo" />
                         <img className="dark-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo" />
                     </Link>
@@ -63,7 +63,7 @@ export const Navbar = () => {
                                 <ul className="dropdown-menu" aria-labelledby="pagesMenu">
                                     <li> <Link className="dropdown-item" to="albums.html">Albums </Link></li>
                                     <li> <Link className="dropdown-item" to="celebration.html">Celebration </Link></li>
-                                    <li> <Link className="dropdown-item" to="messaging.html">Messaging </Link></li>
+                                    <li> <Link className="dropdown-item" to="/messaging">Messaging </Link></li>
 
                                     <li className="dropdown-submenu dropend">
                                         <Link className="dropdown-item dropdown-toggle" to="#!">Profile </Link>
@@ -147,7 +147,7 @@ export const Navbar = () => {
 
                     <ul className="nav flex-nowrap align-items-center ms-sm-3 list-unstyled">
                         <li className="nav-item ms-2">
-                            <Link className="nav-link bg-light icon-md btn btn-light p-0" to="messaging.html">
+                            <Link className="nav-link bg-light icon-md btn btn-light p-0" to="/messaging">
                                 <i className="bi bi-chat-left-text-fill fs-6"> </i>
                             </Link>
                         </li>

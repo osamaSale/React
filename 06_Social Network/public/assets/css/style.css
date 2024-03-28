@@ -17956,3 +17956,13 @@ a.badge:hover {
 
 /*User CSS*/
 /*# sourceMappingURL=style.css.map */
+
+
+
+.custom-scrollbar{
+  width: 100%;
+  max-height: calc(75% - -2.4rem);
+  margin: 0.8rem auto;
+  overflow: auto;
+  overflow: overlay;
+}
