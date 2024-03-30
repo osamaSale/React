@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 export const Messaging = () => {
-    
+
     return (
         <>
             <main>
@@ -50,141 +51,143 @@ export const Messaging = () => {
                                                 </button>
                                             </form>
 
-                                            <div className="mt-4 h-100">
-                                                <div className="chat-tab-list custom-scrollbar">
-                                                    <ul className="nav flex-column nav-pills nav-pills-soft">
-                                                        <li data-bs-dismiss="offcanvas">
+                                            <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'leave' }, overflowBehavior: { x: 'hidden', y: 'scroll' } }} className="sh-10">
+                                                <div className="mt-4 h-100 ">
+                                                    <div className="chat-tab-list custom-scrollbar">
+                                                        <ul className="nav flex-column nav-pills nav-pills-soft">
+                                                            <li data-bs-dismiss="offcanvas">
 
-                                                            <Link to="#chat-1" className="nav-link active text-start" id="chat-1-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar avatar-story me-2 status-online">
-                                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                                <Link to="#chat-1" className="nav-link active text-start" id="chat-1-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar avatar-story me-2 status-online">
+                                                                            <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block">
+                                                                            <h6 className="mb-0 mt-1">Frances Guerrero</h6>
+                                                                            <div className="small text-secondary">Frances sent a photo.</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block">
-                                                                        <h6 className="mb-0 mt-1">Frances Guerrero</h6>
-                                                                        <div className="small text-secondary">Frances sent a photo.</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                </Link>
+                                                            </li>
 
-                                                        <li data-bs-dismiss="offcanvas">
-                                                            <Link to="#chat-2" className="nav-link text-start" id="chat-2-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar me-2 status-offline">
-                                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="" />
+                                                            <li data-bs-dismiss="offcanvas">
+                                                                <Link to="#chat-2" className="nav-link text-start" id="chat-2-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar me-2 status-offline">
+                                                                            <img className="avatar-img rounded-circle" src="assets/images/avatar/11.jpg" alt="" />
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block">
+                                                                            <h6 className="mb-0 mt-1">Carolyn Ortiz</h6>
+                                                                            <div className="small text-secondary">You missed a call form🤙</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block">
-                                                                        <h6 className="mb-0 mt-1">Carolyn Ortiz</h6>
-                                                                        <div className="small text-secondary">You missed a call form🤙</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                </Link>
+                                                            </li>
 
-                                                        <li data-bs-dismiss="offcanvas">
-                                                            <Link to="#chat-3" className="nav-link text-start" id="chat-3-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar avatar-story me-2">
-                                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="" />
+                                                            <li data-bs-dismiss="offcanvas">
+                                                                <Link to="#chat-3" className="nav-link text-start" id="chat-3-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar avatar-story me-2">
+                                                                            <img className="avatar-img rounded-circle" src="assets/images/avatar/12.jpg" alt="" />
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block">
+                                                                            <h6 className="mb-0 mt-1">Billy Vasquez</h6>
+                                                                            <div className="small text-secondary">Day sweetness 😊</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block">
-                                                                        <h6 className="mb-0 mt-1">Billy Vasquez</h6>
-                                                                        <div className="small text-secondary">Day sweetness 😊</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                </Link>
+                                                            </li>
 
-                                                        <li data-bs-dismiss="offcanvas">
-                                                            <Link to="#chat-4" className="nav-link text-start" id="chat-4-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar me-2">
-                                                                        <ul className="avatar-group avatar-group-two">
-                                                                            <li className="avatar avatar-xs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/01.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/02.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                        </ul>
+                                                            <li data-bs-dismiss="offcanvas">
+                                                                <Link to="#chat-4" className="nav-link text-start" id="chat-4-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar me-2">
+                                                                            <ul className="avatar-group avatar-group-two">
+                                                                                <li className="avatar avatar-xs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/01.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/02.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block">
+                                                                            <h6 className="mb-0 mt-1">Dennis, Ortiz</h6>
+                                                                            <div className="small text-secondary">Ortiz: I'm adding jhon</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block">
-                                                                        <h6 className="mb-0 mt-1">Dennis, Ortiz</h6>
-                                                                        <div className="small text-secondary">Ortiz: I'm adding jhon</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                </Link>
+                                                            </li>
 
-                                                        <li data-bs-dismiss="offcanvas">
-                                                            <Link to="#chat-5" className="nav-link text-start" id="chat-5-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar me-2">
-                                                                        <ul className="avatar-group avatar-group-three">
-                                                                            <li className="avatar avatar-xs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/03.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/04.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/05.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                        </ul>
+                                                            <li data-bs-dismiss="offcanvas">
+                                                                <Link to="#chat-5" className="nav-link text-start" id="chat-5-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar me-2">
+                                                                            <ul className="avatar-group avatar-group-three">
+                                                                                <li className="avatar avatar-xs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/03.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/04.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/05.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block">
+                                                                            <h6 className="mb-0 mt-1">Knight, Billy, Bryan</h6>
+                                                                            <div className="small text-secondary">Billy: Thank you!</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block">
-                                                                        <h6 className="mb-0 mt-1">Knight, Billy, Bryan</h6>
-                                                                        <div className="small text-secondary">Billy: Thank you!</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
+                                                                </Link>
+                                                            </li>
 
-                                                        <li data-bs-dismiss="offcanvas">
-                                                            <Link to="#chat-6" className="nav-link text-start" id="chat-6-tab" data-bs-toggle="pill"
-                                                                role="tab">
-                                                                <div className="d-flex">
-                                                                    <div className="flex-shrink-0 avatar me-2">
-                                                                        <ul className="avatar-group avatar-group-four">
-                                                                            <li className="avatar avatar-xxs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/06.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xxs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/07.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xxs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/08.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                            <li className="avatar avatar-xxs">
-                                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/placeholder.jpg"
-                                                                                    alt="avatar" />
-                                                                            </li>
-                                                                        </ul>
+                                                            <li data-bs-dismiss="offcanvas">
+                                                                <Link to="#chat-6" className="nav-link text-start" id="chat-6-tab" data-bs-toggle="pill"
+                                                                    role="tab">
+                                                                    <div className="d-flex">
+                                                                        <div className="flex-shrink-0 avatar me-2">
+                                                                            <ul className="avatar-group avatar-group-four">
+                                                                                <li className="avatar avatar-xxs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/06.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xxs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/07.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xxs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/08.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                                <li className="avatar avatar-xxs">
+                                                                                    <img className="avatar-img rounded-circle" src="assets/images/avatar/placeholder.jpg"
+                                                                                        alt="avatar" />
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div className="flex-grow-1 d-block overflow-hidden">
+                                                                            <h6 className="mb-0 mt-1 text-truncate w-75">Webestica crew </h6>
+                                                                            <div className="small text-secondary">You: Okay thanks, everyone.</div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div className="flex-grow-1 d-block overflow-hidden">
-                                                                        <h6 className="mb-0 mt-1 text-truncate w-75">Webestica crew </h6>
-                                                                        <div className="small text-secondary">You: Okay thanks, everyone.</div>
-                                                                    </div>
-                                                                </div>
-                                                            </Link>
-                                                        </li>
-                                                    </ul>
+                                                                </Link>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </OverlayScrollbarsComponent>
                                         </div>
                                     </div>
                                 </div>
@@ -192,10 +195,13 @@ export const Messaging = () => {
                         </div>
 
                         <div className="col-lg-8 col-xxl-9">
-                            <div className="card card-chat rounded-start-lg-0 border-start-lg-0">
-                                <div className="card-body h-75">
-                                    <div className="tab-content py-0 mb-0 h-75" id="chatTabsContent">
-                                        <div className="fade tab-pane show active h-100" id="chat-1" role="tabpanel" aria-labelledby="chat-1-tab">
+                            <div className="card card-chat rounded-start-lg-0 border-start-lg-0 ">
+                            <OverlayScrollbarsComponent options={{ scrollbars: { autoHide: 'leave' }, overflowBehavior: { x: 'hidden', y: 'scroll' } }} className="sh-10">
+                                         
+                                <div className="card-body h-100">
+                                    <div className="tab-content py-0 mb-0 " id="chatTabsContent">
+                                          
+                                        <div className="fade tab-pane show active h-75" id="chat-1" role="tabpanel" aria-labelledby="chat-1-tab">
                                             <div className="d-sm-flex justify-content-between align-items-center">
                                                 <div className="d-flex mb-2 mb-sm-0">
                                                     <div className="flex-shrink-0 avatar me-2">
@@ -237,151 +243,154 @@ export const Messaging = () => {
                                                 </div>
                                             </div>
                                             <hr />
-                                            <div className="chat-conversation-content custom-scrollbar">
-                                                <div className="text-center small my-2">Jul 16, 2022, 06:15 am</div>
+                                      
+                                                    <div className="chat-conversation-content ">
+                                                        <div className="text-center small my-2">Jul 16, 2022, 06:15 am</div>
 
-                                                <div className="d-flex mb-1">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-2 px-3 rounded-2">Applauded no discovery in newspaper
-                                                                    allowance am northward😊</div>
-                                                                <div className="small my-2">6:15 AM</div>
+                                                        <div className="d-flex mb-1">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex justify-content-end text-end mb-1">
-                                                    <div className="w-100">
-                                                        <div className="d-flex flex-column align-items-end">
-                                                            <div className="bg-primary text-white p-2 px-3 rounded-2">With pleasure</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="d-flex justify-content-end text-end mb-1">
-                                                    <div className="w-100">
-                                                        <div className="d-flex flex-column align-items-end">
-                                                            <div className="bg-primary text-white p-2 px-3 rounded-2">No visited raising gravity outward
-                                                                subject my cottage Mr be.</div>
-                                                            <div className="d-flex my-2">
-                                                                <div className="small text-secondary">6:20 AM</div>
-                                                                <div className="small ms-2"><i className="fa-solid fa-check-double text-info"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex mb-1">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-2 px-3 rounded-2">Please find the attached updated
-                                                                    files</div>
-                                                                <div className="small my-2">12:16 PM</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex mb-1">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-2 px-3 rounded-2">How promotion excellent curiosity
-                                                                    yet attempted happiness Gay prosperous impression😮</div>
-                                                                <div className="small my-2">3:22 PM</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex mb-1">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-2 px-3 rounded-2">
-                                                                    <p className="small mb-0">Congratulations:)</p>
-                                                                    <div className="card shadow-none p-2 border border-2 rounded mt-2">
-                                                                        <img src="assets/images/elements/14.svg" alt="" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="small my-2">3:22 PM</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex justify-content-end text-end mb-1">
-                                                    <div className="w-100">
-                                                        <div className="d-flex flex-column align-items-end">
-                                                            <div className="bg-primary text-white p-2 px-3 rounded-2">And sir dare view but over man So at
-                                                                within mr to simple assure Mr disposing.</div>
-
-                                                            <div className="d-flex my-2">
-                                                                <div className="small text-secondary">5:35 PM</div>
-                                                                <div className="small ms-2"><i className="fa-solid fa-check"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex justify-content-end text-end mb-1">
-                                                    <div className="w-100">
-                                                        <div className="d-flex flex-column align-items-end">
-                                                            <img className="rounded h-200px" src="assets/images/avatar/05.jpg" alt="" />
-                                                            <div className="small my-2">5:36 PM</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="text-center small my-2">2 New Messages</div>
-
-                                                <div className="d-flex mb-2">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-2 px-3 rounded-2">Traveling alteration impression 🤐
-                                                                    six all uncommonly Chamber hearing inhabit joy highest private.</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="d-flex mb-1">
-                                                    <div className="flex-shrink-0 avatar avatar-xs me-2">
-                                                        <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
-                                                    </div>
-                                                    <div className="flex-grow-1">
-                                                        <div className="w-100">
-                                                            <div className="d-flex flex-column align-items-start">
-                                                                <div className="bg-light text-secondary p-3 rounded-2">
-                                                                    <div className="typing d-flex align-items-center">
-                                                                        <div className="dot"></div>
-                                                                        <div className="dot"></div>
-                                                                        <div className="dot"></div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-2 px-3 rounded-2">Applauded no discovery in newspaper
+                                                                            allowance am northward😊</div>
+                                                                        <div className="small my-2">6:15 AM</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        <div className="d-flex justify-content-end text-end mb-1">
+                                                            <div className="w-100">
+                                                                <div className="d-flex flex-column align-items-end">
+                                                                    <div className="bg-primary text-white p-2 px-3 rounded-2">With pleasure</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="d-flex justify-content-end text-end mb-1">
+                                                            <div className="w-100">
+                                                                <div className="d-flex flex-column align-items-end">
+                                                                    <div className="bg-primary text-white p-2 px-3 rounded-2">No visited raising gravity outward
+                                                                        subject my cottage Mr be.</div>
+                                                                    <div className="d-flex my-2">
+                                                                        <div className="small text-secondary">6:20 AM</div>
+                                                                        <div className="small ms-2"><i className="fa-solid fa-check-double text-info"></i></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
+                                                        <div className="d-flex mb-1">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                            </div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-2 px-3 rounded-2">Please find the attached updated
+                                                                            files</div>
+                                                                        <div className="small my-2">12:16 PM</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="d-flex mb-1">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                            </div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-2 px-3 rounded-2">How promotion excellent curiosity
+                                                                            yet attempted happiness Gay prosperous impression😮</div>
+                                                                        <div className="small my-2">3:22 PM</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="d-flex mb-1">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                            </div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-2 px-3 rounded-2">
+                                                                            <p className="small mb-0">Congratulations:)</p>
+                                                                            <div className="card shadow-none p-2 border border-2 rounded mt-2">
+                                                                                <img src="assets/images/elements/14.svg" alt="" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="small my-2">3:22 PM</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="d-flex justify-content-end text-end mb-1">
+                                                            <div className="w-100">
+                                                                <div className="d-flex flex-column align-items-end">
+                                                                    <div className="bg-primary text-white p-2 px-3 rounded-2">And sir dare view but over man So at
+                                                                        within mr to simple assure Mr disposing.</div>
+
+                                                                    <div className="d-flex my-2">
+                                                                        <div className="small text-secondary">5:35 PM</div>
+                                                                        <div className="small ms-2"><i className="fa-solid fa-check"></i></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="d-flex justify-content-end text-end mb-1">
+                                                            <div className="w-100">
+                                                                <div className="d-flex flex-column align-items-end">
+                                                                    <img className="rounded h-200px" src="assets/images/avatar/05.jpg" alt="" />
+                                                                    <div className="small my-2">5:36 PM</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="text-center small my-2">2 New Messages</div>
+
+                                                        <div className="d-flex mb-2">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                            </div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-2 px-3 rounded-2">Traveling alteration impression 🤐
+                                                                            six all uncommonly Chamber hearing inhabit joy highest private.</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="d-flex mb-1">
+                                                            <div className="flex-shrink-0 avatar avatar-xs me-2">
+                                                                <img className="avatar-img rounded-circle" src="assets/images/avatar/10.jpg" alt="" />
+                                                            </div>
+                                                            <div className="flex-grow-1">
+                                                                <div className="w-100">
+                                                                    <div className="d-flex flex-column align-items-start">
+                                                                        <div className="bg-light text-secondary p-3 rounded-2">
+                                                                            <div className="typing d-flex align-items-center">
+                                                                                <div className="dot"></div>
+                                                                                <div className="dot"></div>
+                                                                                <div className="dot"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                              
+                                       
                                         </div>
 
 
@@ -430,7 +439,6 @@ export const Messaging = () => {
                                             </div>
                                             <hr />
                                             <div className="chat-conversation-content overflow-auto custom-scrollbar">
-
                                                 <div className="text-center small my-2">Jul 16, 2022, 06:15 am</div>
 
                                                 <div className="d-flex mb-1">
@@ -1117,7 +1125,9 @@ export const Messaging = () => {
                                         </div>
 
                                     </div>
+
                                 </div>
+</OverlayScrollbarsComponent>
                                 <div className="card-footer">
                                     <div className="d-sm-flex align-items-end">
                                         <textarea className="form-control mb-sm-0 mb-3" data-autoresize placeholder="Type a message"
@@ -1135,8 +1145,8 @@ export const Messaging = () => {
                     </div>
                 </div>
 
-            </main>
-        {/*     <div class="position-fixed bottom-0 end-0 p-3">
+            </main >
+            {/*     <div class="position-fixed bottom-0 end-0 p-3">
 
                 <div id="chatToast" class="toast bg-mode" role="alert" aria-live="assertive" aria-atomic="true"
                     data-bs-autohide="false">

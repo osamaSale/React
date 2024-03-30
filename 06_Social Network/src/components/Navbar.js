@@ -68,7 +68,7 @@ export const Navbar = () => {
                                     <li className="dropdown-submenu dropend">
                                         <Link className="dropdown-item dropdown-toggle" to="#!">Profile </Link>
                                         <ul className="dropdown-menu" data-bs-popper="none">
-                                            <li> <Link className="dropdown-item" to="my-profile.html">Feed </Link> </li>
+                                            <li> <Link className="dropdown-item" to="/myProfile">Feed </Link> </li>
                                             <li> <Link className="dropdown-item" to="my-profile-about.html">About </Link> </li>
                                             <li> <Link className="dropdown-item" to="my-profile-connections.html">Connections </Link> </li>
                                             <li> <Link className="dropdown-item" to="my-profile-media.html">Media </Link> </li>
@@ -255,7 +255,7 @@ export const Navbar = () => {
                                             <p className="small m-0">Web Developer</p>
                                         </div>
                                     </div>
-                                    <Link className="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" to="my-profile.html">View profile </Link>
+                                    <Link className="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" to="/myProfile">View profile </Link>
                                 </li>
 
                                 <li><Link className="dropdown-item" to="settings.html"><i className="bi bi-gear fa-fw me-2"></i>Settings & Privacy </Link></li>

@@ -70,7 +70,7 @@ export const Index = () => {
 
                                                 <ul className="nav nav-link-secondary flex-column fw-bold gap-2">
                                                     <li className="nav-item">
-                                                        <Link className="nav-link" to="my-profile.html"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/home-outline-filled.svg" alt="" /><span>Feed </span></Link>
+                                                        <Link className="nav-link" to="/myProfile"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/home-outline-filled.svg" alt="" /><span>Feed </span></Link>
                                                     </li>
                                                     <li className="nav-item">
                                                         <Link className="nav-link" to="my-profile-connections.html"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/person-outline-filled.svg" alt="" /><span>Connections </span></Link>
@@ -95,7 +95,7 @@ export const Index = () => {
                                             </div>
 
                                             <div className="card-footer text-center py-2">
-                                                <Link className="btn btn-link btn-sm" to="my-profile.html">View Profile </Link>
+                                                <Link className="btn btn-link btn-sm" to="/myProfile">View Profile </Link>
                                             </div>
                                         </div>
 
@@ -514,13 +514,13 @@ export const Index = () => {
                                             <div className="col-6">
 
                                                 <Link className="h-100" to="assets/images/post/1by1/03.jpg" data-glightbox data-gallery="image-popup">
-                                                    <img className="rounded img-fluid" src="assets/images/post/1by1/03.jpg" alt="Image" />
+                                                    <img className="rounded img-fluid" src="assets/images/post/1by1/03.jpg" alt="" />
                                                 </Link>
                                             </div>
                                             <div className="col-6">
 
                                                 <Link to="assets/images/post/3by2/01.jpg" data-glightbox data-gallery="image-popup">
-                                                    <img className="rounded img-fluid" src="assets/images/post/3by2/01.jpg" alt="Image" />
+                                                    <img className="rounded img-fluid" src="assets/images/post/3by2/01.jpg" alt="" />
                                                 </Link>
 
                                                 <div className="position-relative bg-dark mt-3 rounded">

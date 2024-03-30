@@ -3,6 +3,7 @@ import './App.css';
 import { Index } from './components/Index';
 import { Navbar } from './components/Navbar';
 import { Messaging } from './components/Messaging';
+import { MyProfile } from './components/Profile/MyProfile';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Index />} />
         <Route path='/messaging' element={<Messaging />} />
+        <Route path='/myProfile' element={<MyProfile />} />
       </Routes>
     </div>
   );

@@ -80,7 +80,7 @@ body.os-dragging * {
 #os-dummy-scrollbar-size {
   position: fixed;
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+/*   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; */
   visibility: hidden;
   overflow: scroll;
   height: 500px;
@@ -208,7 +208,7 @@ body.os-dragging * {
   opacity: 1 !important;
   z-index: 1 !important;
   clip: auto !important;
-  vertical-align: baseline !important;
+ /*  vertical-align: baseline !important; */
   padding: 0;
 }
 .os-host-rtl > .os-padding > .os-viewport > .os-content > .os-textarea {
@@ -386,7 +386,6 @@ html.os-html > .os-host > .os-scrollbar {
 .os-scrollbar-corner {
   position: absolute;
   opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   z-index: 1;
 }
 .os-scrollbar-corner {

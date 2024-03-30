@@ -17959,10 +17959,13 @@ a.badge:hover {
 
 
 
-.custom-scrollbar{
-  width: 100%;
-  max-height: calc(75% - -2.4rem);
-  margin: 0.8rem auto;
-  overflow: auto;
-  overflow: overlay;
-}
+/* .custom-scrollbar{
+  direction: initial;
+    box-sizing: border-box !important;
+    position: relative;
+    display: block;
+    height: 350px;
+    width: 100%;
+    visibility: visible;
+    overflow: overlay;
+} */
