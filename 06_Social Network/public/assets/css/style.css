@@ -203,6 +203,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: all 0.5s;
 }
 
 hr {
@@ -219,7 +220,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   line-height: 1.25;
-  color: var(--bs-heading-color);
+ /*  color: var(--bs-heading-color); */
 }
 
 h1, .h1 {
@@ -4884,7 +4885,7 @@ textarea.form-control-lg {
   --bs-card-spacer-y: 1.25rem;
   --bs-card-spacer-x: 1.25rem;
   --bs-card-title-spacer-y: 0.5rem;
-  --bs-card-title-color: var(--bs-heading-color);
+ /*  --bs-card-title-color: var(--bs-heading-color); */
   --bs-card-subtitle-color: ;
   --bs-card-border-width: 1px;
   --bs-card-border-color: rgba(0, 0, 0, 0.09);
