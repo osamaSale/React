@@ -5,6 +5,9 @@ import { Navbar } from './components/Navbar';
 import { Messaging } from './components/Messaging';
 import { MyProfile } from './components/Profile/MyProfile';
 import useLocalStorage from "react-use-localstorage";
+import { MyProfileAbout } from './components/Profile/MyProfile-About';
+import { MyProfileConnections } from './components/Profile/MyProfile-Connections';
+import { MyProfileMedia } from './components/Profile/MyProfile-Media';
 function App() {
   // Check user set theme mode...
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -22,6 +25,9 @@ function App() {
           <Route path='/' element={<Index />} />
           <Route path='/messaging' element={<Messaging />} />
           <Route path='/myProfile' element={<MyProfile />} />
+          <Route path='/myProfile-about' element={<MyProfileAbout />} />
+          <Route path='/myProfile-connections' element={<MyProfileConnections />} />
+          <Route path='/myProfile-media' element={<MyProfileMedia />} />
         </Routes>
       </div>
   );
