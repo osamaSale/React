@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { Modals } from './Modals';
 export const Index = () => {
     return (
-        <div>
             <main>
-                <div className="container" style={{marginTop: '80px'}}>
+                <div className="container" >
                     <div className="row g-4">
 
                         <div className="col-lg-3">
@@ -1667,10 +1666,10 @@ export const Index = () => {
 
                     </div>
                 </div>
-
+                <Modals/>
             </main>
-        <Modals/>
-        </div>
+       
+   
     );
 }
 

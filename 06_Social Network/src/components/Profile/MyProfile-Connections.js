@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 export const MyProfileConnections = () => {
     return (
-        <div>
             <main>
 
-                <div className="container" style={{marginTop: '80px'}}>
+                <div className="container" >
                     <div className="row g-4">
                         <div className="col-lg-8 vstack gap-4">
                            <MyProfileHeader/>
@@ -437,7 +436,7 @@ export const MyProfileConnections = () => {
 
 
             </main>
-        </div>
+
     );
 }
 

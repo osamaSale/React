@@ -1,7 +1,7 @@
 import React from 'react';
 import { MyProfileHeader } from './MyProfile-Header';
 import { Link } from 'react-router-dom';
-
+import {Modals} from "../Modals"
 export const MyProfileMedia = () => {
     return (
         <main>
@@ -32,9 +32,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3">
 
-                                        <Link hrefLang="./assets/images/albums/01.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/01.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/01.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -163,9 +163,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3 position-relative">
 
-                                        <Link to="assets/images/albums/02.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/02.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/02.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -290,9 +290,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3">
 
-                                        <Link to="assets/images/albums/03.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/03.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/03.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -417,9 +417,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3">
 
-                                        <Link to="assets/images/albums/04.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/04.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/04.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -545,9 +545,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3">
 
-                                        <Link to="assets/images/albums/05.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/05.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/05.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -672,9 +672,9 @@ export const MyProfileMedia = () => {
 
                                     <div className="col-sm-6 col-md-4 col-lg-3">
 
-                                        <Link to="assets/images/albums/06.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
+                                        <a href="assets/images/albums/06.jpg" data-gallery="image-popup" data-glightbox="description: .custom-desc2; descPosition: left;">
                                             <img className="rounded img-fluid" src="assets/images/albums/06.jpg" alt="" />
-                                        </Link>
+                                        </a>
 
                                         <ul className="nav nav-stack py-2 small">
                                             <li className="nav-item">
@@ -1037,8 +1037,7 @@ export const MyProfileMedia = () => {
 
                 </div>
             </div>
-
-
+            <Modals />
         </main>
     );
 }

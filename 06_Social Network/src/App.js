@@ -8,6 +8,10 @@ import useLocalStorage from "react-use-localstorage";
 import { MyProfileAbout } from './components/Profile/MyProfile-About';
 import { MyProfileConnections } from './components/Profile/MyProfile-Connections';
 import { MyProfileMedia } from './components/Profile/MyProfile-Media';
+import { MyProfileVideos } from './components/Profile/MyProfile-Videos';
+import { MyProfileEvents } from './components/Profile/MyProfile-Events';
+import { MyProfileActivity } from './components/Profile/MyProfile-Activity';
+import { Settings } from './components/Settings';
 function App() {
   // Check user set theme mode...
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -24,10 +28,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/messaging' element={<Messaging />} />
+          <Route path='/settings' element={<Settings />} />
           <Route path='/myProfile' element={<MyProfile />} />
           <Route path='/myProfile-about' element={<MyProfileAbout />} />
           <Route path='/myProfile-connections' element={<MyProfileConnections />} />
           <Route path='/myProfile-media' element={<MyProfileMedia />} />
+          <Route path='/myProfile-videos' element={<MyProfileVideos />} />
+          <Route path='/myProfile-events' element={<MyProfileEvents />} />
+          <Route path='/myProfile-activity' element={<MyProfileActivity />} />
         </Routes>
       </div>
   );

@@ -4,7 +4,6 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 export const Messaging = () => {
 
     return (
-        <>
             <main>
                 <div className="container">
                     <div className="row gx-0">
@@ -1146,41 +1145,7 @@ export const Messaging = () => {
                 </div>
 
             </main >
-            {/*     <div class="position-fixed bottom-0 end-0 p-3">
-
-                <div id="chatToast" class="toast bg-mode" role="alert" aria-live="assertive" aria-atomic="true"
-                    data-bs-autohide="false">
-                    <div class="toast-header bg-mode d-flex justify-content-between">
-                  
-                        <h6 class="mb-0">New message</h6>
-                        <button class="btn btn-secondary-soft-hover py-1 px-2" data-bs-dismiss="toast" aria-label="Close"><i
-                            class="fa-solid fa-xmark"></i></button>
-                    </div>
-                
-                    <div class="toast-body collapse show" id="collapseChat">
-                    
-                        <form>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text border-0">To</span>
-                                <input class="form-control" type="text" placeholder="Type a name or multiple names" />
-                            </div>
-                        </form>
-                       
-                        <div class="h-200px"></div>
-                    
-                        <div class="d-sm-flex align-items-end">
-                            <textarea class="form-control mb-sm-0 mb-3" placeholder="Type a message" rows="1"
-                                spellcheck="false"></textarea>
-                            <button class="btn btn-sm btn-danger-soft ms-sm-2"><i class="fa-solid fa-face-smile fs-6"></i></button>
-                            <button class="btn btn-sm btn-secondary-soft ms-2"><i class="fa-solid fa-paperclip fs-6"></i></button>
-                            <button class="btn btn-sm btn-primary ms-2"><i class="fa-solid fa-paper-plane fs-6"></i></button>
-                        </div>
-                    </div>
-                </div>
-             
-
-            </div> */}
-        </>
+      
     );
 }
 

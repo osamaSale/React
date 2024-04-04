@@ -113,7 +113,7 @@ export const Navbar = ({ theme, setTheme }) => {
                                 <Link className="nav-link dropdown-toggle" to="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account  </Link>
                                 <ul className="dropdown-menu" aria-labelledby="postMenu">
                                     <li> <Link className="dropdown-item" to="create-page.html">Create a page </Link></li>
-                                    <li> <Link className="dropdown-item" to="settings.html">Settings </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/settings">Settings </Link> </li>
                                     <li> <Link className="dropdown-item" to="notifications.html">Notifications </Link> </li>
                                     <li> <Link className="dropdown-item" to="help.html">Help center </Link> </li>
                                     <li> <Link className="dropdown-item" to="help-details.html">Help details </Link> </li>
@@ -149,7 +149,7 @@ export const Navbar = ({ theme, setTheme }) => {
                             </Link>
                         </li>
                         <li className="nav-item ms-2">
-                            <Link className="nav-link bg-light icon-md btn btn-light p-0" to="settings.html">
+                            <Link className="nav-link bg-light icon-md btn btn-light p-0" to="/settings">
                                 <i className="bi bi-gear-fill fs-6"> </i>
                             </Link>
                         </li>
@@ -255,7 +255,7 @@ export const Navbar = ({ theme, setTheme }) => {
                                     <Link className="dropdown-item btn btn-primary-soft btn-sm my-2 text-center" to="/myProfile">View profile </Link>
                                 </li>
 
-                                <li><Link className="dropdown-item" to="settings.html"><i className="bi bi-gear fa-fw me-2"></i>Settings & Privacy </Link></li>
+                                <li><Link className="dropdown-item" to="/settings"><i className="bi bi-gear fa-fw me-2"></i>Settings & Privacy </Link></li>
                                 <li>
                                     <Link className="dropdown-item" to="https://support.webestica.com/" target="_blank">
                                         <i className="fa-fw bi bi-life-preserver me-2"></i>Support
