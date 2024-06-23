@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 export const Navbar = ({ theme, setTheme }) => {
-
+    const location = useLocation();
+    if (location.pathname === "/sign-in" || location.pathname === "/register") { return }
+   
     return (
         <header className="navbar-light fixed-top header-static bg-mode" >
 
@@ -112,16 +114,16 @@ export const Navbar = ({ theme, setTheme }) => {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account  </Link>
                                 <ul className="dropdown-menu" aria-labelledby="postMenu">
-                                    <li> <Link className="dropdown-item" to="create-page.html">Create a page </Link></li>
+                                    <li> <Link className="dropdown-item" to="/create-page">Create a page </Link></li>
                                     <li> <Link className="dropdown-item" to="/settings">Settings </Link> </li>
-                                    <li> <Link className="dropdown-item" to="notifications.html">Notifications </Link> </li>
-                                    <li> <Link className="dropdown-item" to="help.html">Help center </Link> </li>
-                                    <li> <Link className="dropdown-item" to="help-details.html">Help details </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/notifications">Notifications </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/help">Help center </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/help-details">Help details </Link> </li>
 
                                     <li className="dropdown-submenu dropstart">
                                         <Link className="dropdown-item dropdown-toggle" to="#">Authentication </Link>
                                         <ul className="dropdown-menu dropdown-menu-end" data-bs-popper="none">
-                                            <li> <Link className="dropdown-item" to="sign-in.html">Sign in </Link> </li>
+                                            <li> <Link className="dropdown-item" to="/sign-in">Sign in </Link> </li>
                                             <li> <Link className="dropdown-item" to="sign-up.html">Sing up </Link> </li>
                                             <li> <Link className="dropdown-item" to="forgot-password.html">Forgot password </Link> </li>
                                             <li className="dropdown-divider"></li>
@@ -130,9 +132,8 @@ export const Navbar = ({ theme, setTheme }) => {
                                             <li> <Link className="dropdown-item" to="forgot-password-advance.html">Forgot password advance </Link> </li>
                                         </ul>
                                     </li>
-                                    <li> <Link className="dropdown-item" to="error-404.html">Error 404 </Link> </li>
-                                    <li> <Link className="dropdown-item" to="offline.html">Offline </Link> </li>
-                                    <li> <Link className="dropdown-item" to="privacy-and-terms.html">Privacy & terms </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/error-404">Error 404 </Link> </li>
+                                    <li> <Link className="dropdown-item" to="/offline">Offline </Link> </li>
                                 </ul>
                             </li>
 

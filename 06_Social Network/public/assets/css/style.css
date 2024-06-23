@@ -750,6 +750,7 @@ progress {
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 576px) {
@@ -15850,10 +15851,11 @@ header {
     padding: 0 0.7rem 0 0;
   }
 }
-header.fixed-top + main {
+/* header.fixed-top + main {
   padding-top: calc(1.5rem + 56px);
   margin-bottom: 1.5rem;
-}
+} */
+
 
 .navbar-toggler .navbar-toggler-animation {
   -webkit-transition: all 0.3s ease-in-out;
@@ -15955,6 +15957,8 @@ body {
 
 main {
   background-color: var(--bs-body-bg);
+  padding-top: calc(1.5rem + 56px);
+  margin-bottom: 1.5rem;
 }
 
 header {

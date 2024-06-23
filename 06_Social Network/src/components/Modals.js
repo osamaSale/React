@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 export const Modals = () => {
+    const location = useLocation();
+    if (location.pathname === "/sign-in" || location.pathname === "/register") { return }
     return (
         <div>
             {/*    <!-- Main Chat START --> */}
@@ -846,6 +848,67 @@ export const Modals = () => {
 
                         <div className="modal-footer">
                             <button type="button" className="btn btn-success-soft">Create now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/*    <!-- Modal login activity START --> */}
+            <div className="modal fade" id="modalLoginActivity" tabIndex="-1" aria-labelledby="modalLabelLoginActivity" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="modalLabelLoginActivity">Where You're Logged in </h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <ul className="list-group list-group-flush">
+
+                                <li className="list-group-item d-flex justify-content-between align-items-center px-0 pb-3">
+                                    <div className="me-2">
+                                        <h6 className="mb-0">London, UK</h6>
+                                        <ul className="nav nav-divider small">
+                                            <li className="nav-item">Active now </li>
+                                            <li className="nav-item">This Apple iMac </li>
+                                        </ul>
+                                    </div>
+                                    <button className="btn btn-sm btn-primary-soft"> Logout </button>
+                                </li>
+
+                                <li className="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                                    <div className="me-2">
+                                        <h6 className="mb-0">California, USA</h6>
+                                        <ul className="nav nav-divider small">
+                                            <li className="nav-item">Active now </li>
+                                            <li className="nav-item">This Apple iMac </li>
+                                        </ul>
+                                    </div>
+                                    <button className="btn btn-sm btn-primary-soft"> Logout </button>
+                                </li>
+
+                                <li className="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                                    <div className="me-2">
+                                        <h6 className="mb-0">New york, USA</h6>
+                                        <ul className="nav nav-divider small">
+                                            <li className="nav-item">Active now </li>
+                                            <li className="nav-item">This Windows </li>
+                                        </ul>
+                                    </div>
+                                    <button className="btn btn-sm btn-primary-soft"> Logout </button>
+                                </li>
+
+                                <li className="list-group-item d-flex justify-content-between align-items-center px-0 pt-3">
+                                    <div className="me-2">
+                                        <h6 className="mb-0">Mumbai, India</h6>
+                                        <ul className="nav nav-divider small">
+                                            <li className="nav-item">Active now </li>
+                                            <li className="nav-item">This Windows </li>
+                                        </ul>
+                                    </div>
+                                    <button className="btn btn-sm btn-primary-soft"> Logout </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
