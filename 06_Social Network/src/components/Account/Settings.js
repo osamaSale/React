@@ -14,7 +14,7 @@ export const Settings = () => {
                             </button>
                         </div>
                         <nav className="navbar navbar-light navbar-expand-lg mx-0">
-                            <div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+                            <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar">
                               
                                 <div className="offcanvas-header">
                                     <button type="button" className="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -107,12 +107,12 @@ export const Settings = () => {
                                      
                                             <div className="col-sm-6 col-lg-4">
                                                 <label className="form-label">First name</label>
-                                                <input type="text" className="form-control" placeholder="" value="Sam" />
+                                                <input type="text" className="form-control" placeholder="Sam"  />
                                             </div>
                                       
                                             <div className="col-sm-6 col-lg-4">
                                                 <label className="form-label">Last name</label>
-                                                <input type="text" className="form-control" placeholder="" value="Lanson" />
+                                                <input type="text" className="form-control" placeholder="Lanson"  />
                                             </div>
                                           
                                             <div className="col-sm-6 col-lg-4">
@@ -122,18 +122,18 @@ export const Settings = () => {
                                         
                                             <div className="col-sm-6">
                                                 <label className="form-label">User name</label>
-                                                <input type="text" className="form-control" placeholder="" value="@samlanson" />
+                                                <input type="text" className="form-control" placeholder="@samlanson"  />
                                             </div>
                                         
                                             <div className="col-lg-6">
                                                 <label className="form-label">Birthday </label>
-                                                <input type="text" className="form-control flatpickr" value="12/12/1990" />
+                                                <input type="text" className="form-control flatpickr" placeholder='12/12/1990'  />
                                             </div>
                                             
                                             <div className="col-12">
                                                 <div className="form-check">
-                                                    <input className="form-check-input" type="checkbox" value="" id="allowChecked" checked />
-                                                        <label className="form-check-label" for="allowChecked" >
+                                                    <input className="form-check-input" type="checkbox"  id="allowChecked"  />
+                                                        <label className="form-check-label" htmlFor="allowChecked" >
                                                             Allow anyone to add you to their team
                                                         </label>
                                                 </div>
@@ -141,21 +141,21 @@ export const Settings = () => {
                                          
                                             <div className="col-sm-6">
                                                 <label className="form-label">Phone number</label>
-                                                <input type="text" className="form-control" placeholder="" value="(678) 324-1251" />
+                                                <input type="text" className="form-control" placeholder="(678) 324-1251"  />
                                                 
                                                     <Link className="btn btn-sm btn-dashed rounded mt-2" to="#!"> <i className="bi bi-plus-circle-dotted me-1"></i>Add new phone number</Link>
                                             </div>
                                          
                                             <div className="col-sm-6">
                                                 <label className="form-label">Email</label>
-                                                <input type="text" className="form-control" placeholder="" value="sam@webestica.com" />
+                                                <input type="text" className="form-control" placeholder="sam@webestica.com"  />
                                                    
                                                     <Link className="btn btn-sm btn-dashed rounded mt-2" to="#!"> <i className="bi bi-plus-circle-dotted me-1"></i>Add new email address</Link>
                                             </div>
                                            
                                             <div className="col-12">
                                                 <label className="form-label">Overview</label>
-                                                <textarea className="form-control" rows="4" placeholder="Description (Required)">Interested has all Devonshire difficulty gay assistance joy. Handsome met debating sir dwelling age material. As style lived he worse dried. Offered related so visitors we private removed. Moderate do subjects to distance.</textarea>
+                                                <textarea className="form-control" rows="4" placeholder="Description (Required)" defaultValue="Interested has all Devonshire difficulty gay assistance joy. Handsome met debating sir dwelling age material. As style lived he worse dried. Offered related so visitors we private removed. Moderate do subjects to distance." />
                                                 <small>Character limit: 300</small>
                                             </div>
                                      
@@ -232,7 +232,7 @@ export const Settings = () => {
                                                     <p className="small mb-0">Joy say painful removed reached end.</p>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked"  />
                                                 </div>
                                             </li>
                                       
@@ -242,7 +242,7 @@ export const Settings = () => {
                                                     <p className="small mb-0">Ask a quick six seven offer see among.</p>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked2" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked2"  />
                                                 </div>
                                             </li>
                                       
@@ -272,7 +272,7 @@ export const Settings = () => {
                                                     <p className="small mb-0">Fulfilled direction use continually.</p>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked5" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked5"  />
                                                 </div>
                                             </li>
                                       
@@ -293,15 +293,15 @@ export const Settings = () => {
                                                             <div className="accordion-body p-0 pt-3">
                                                           
                                                                 <div className="form-check">
-                                                                    <input className="form-check-input" type="checkbox" value="" id="NotiSwitchCheckChecked6" checked />
-                                                                        <label className="form-check-label" for="NotiSwitchCheckChecked6">
+                                                                    <input className="form-check-input" type="checkbox"  id="NotiSwitchCheckChecked6"  />
+                                                                        <label className="form-check-label" htmlFor="NotiSwitchCheckChecked6">
                                                                             Product emails
                                                                         </label>
                                                                 </div>
                                                           
                                                                 <div className="form-check">
-                                                                    <input className="form-check-input" type="checkbox" value="" id="NotiSwitchCheckChecke7" />
-                                                                        <label className="form-check-label" for="NotiSwitchCheckChecke7">
+                                                                    <input className="form-check-input" type="checkbox"  id="NotiSwitchCheckChecke7" />
+                                                                        <label className="form-check-label" htmlFor="NotiSwitchCheckChecke7">
                                                                             Feedback emails
                                                                         </label>
                                                                 </div>
@@ -311,28 +311,28 @@ export const Settings = () => {
                                                                   
                                                                         <div className="form-check">
                                                                             <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio1" />
-                                                                                <label className="form-check-label" for="NotiRadio1">
+                                                                                <label className="form-check-label" htmlFor="NotiRadio1">
                                                                                     Daily
                                                                                 </label>
                                                                         </div>
                                                                   
                                                                         <div className="form-check">
-                                                                            <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio2" checked />
-                                                                                <label className="form-check-label" for="NotiRadio2">
+                                                                            <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio2"  />
+                                                                                <label className="form-check-label" htmlFor="NotiRadio2">
                                                                                     Weekly
                                                                                 </label>
                                                                         </div>
                                                                   
                                                                         <div className="form-check">
                                                                             <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio3" />
-                                                                                <label className="form-check-label" for="NotiRadio3">
+                                                                                <label className="form-check-label" htmlFor="NotiRadio3">
                                                                                     Periodically
                                                                                 </label>
                                                                         </div>
                                                                   
                                                                         <div className="form-check">
-                                                                            <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio4" checked />
-                                                                                <label className="form-check-label" for="NotiRadio4">
+                                                                            <input className="form-check-input" type="radio" name="NotiRadio" id="NotiRadio4"  />
+                                                                                <label className="form-check-label" htmlFor="NotiRadio4">
                                                                                     Off
                                                                                 </label>
                                                                         </div>
@@ -350,7 +350,7 @@ export const Settings = () => {
                                                     <p className="small mb-0">Rendered six say his striking confined. </p>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked8" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="NotiSwitchCheckChecked8"  />
                                                 </div>
                                             </li>
                                       
@@ -470,21 +470,21 @@ export const Settings = () => {
                                                   
                                                         <div className="form-check">
                                                             <input className="form-check-input" type="radio" name="ComRadio" id="ComRadio5" />
-                                                                <label className="form-check-label" for="ComRadio5">
+                                                                <label className="form-check-label" htmlFor="ComRadio5">
                                                                     Everyone on social (recommended)
                                                                 </label>
                                                         </div>
                                                   
                                                         <div className="form-check">
-                                                            <input className="form-check-input" type="radio" name="ComRadio" id="ComRadio2" checked />
-                                                                <label className="form-check-label" for="ComRadio2">
+                                                            <input className="form-check-input" type="radio" name="ComRadio" id="ComRadio2"  />
+                                                                <label className="form-check-label" htmlFor="ComRadio2">
                                                                     Only people who know your email address
                                                                 </label>
                                                         </div>
                                                   
                                                         <div className="form-check">
                                                             <input className="form-check-input" type="radio" name="ComRadio" id="ComRadio3" />
-                                                                <label className="form-check-label" for="ComRadio3">
+                                                                <label className="form-check-label" htmlFor="ComRadio3">
                                                                     Only people who appear in your mutual connection list
                                                                 </label>
                                                         </div>
@@ -517,7 +517,7 @@ export const Settings = () => {
                                                                     <p className="mb-0">Allow connections to add you on group </p>
                                                                 </div>
                                                                 <div className="form-check form-switch">
-                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked2" checked />
+                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked2"  />
                                                                 </div>
                                                             </li>
                                                       
@@ -527,7 +527,7 @@ export const Settings = () => {
                                                                     <p className="small">Your personal information is safe with our marketing partners unless you respond to their Sponsored Messages </p>
                                                                 </div>
                                                                 <div className="form-check form-switch">
-                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked3" checked />
+                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked3"  />
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -551,7 +551,7 @@ export const Settings = () => {
                                                                     <p className="mb-0">Allow search engines to show your profile?</p>
                                                                 </div>
                                                                 <div className="form-check form-switch">
-                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked4" checked />
+                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked4"  />
                                                                 </div>
                                                             </li>
                                                       
@@ -570,7 +570,7 @@ export const Settings = () => {
                                                                     <p className="small">Your personal information is safe with our marketing partners unless you respond to their Sponsored Messages </p>
                                                                 </div>
                                                                 <div className="form-check form-switch">
-                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked6" checked />
+                                                                    <input className="form-check-input" type="checkbox" role="switch" id="comSwitchCheckChecked6"  />
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -606,7 +606,7 @@ export const Settings = () => {
                                                     <h6 className="mb-0">Enable message request notifications</h6>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked"  />
                                                 </div>
                                             </li>
                                            
@@ -615,7 +615,7 @@ export const Settings = () => {
                                                     <h6 className="mb-0">Invitations from your network</h6>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked2" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked2"  />
                                                 </div>
                                             </li>
                                            
@@ -642,7 +642,7 @@ export const Settings = () => {
                                                     <h6 className="mb-0">Messages from activity on my page or channel</h6>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked5" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked5"  />
                                                 </div>
                                             </li>
                                            
@@ -651,7 +651,7 @@ export const Settings = () => {
                                                     <h6 className="mb-0">Personalise tips for my page</h6>
                                                 </div>
                                                 <div className="form-check form-switch">
-                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked6" checked />
+                                                    <input className="form-check-input" type="checkbox" role="switch" id="msgSwitchCheckChecked6"  />
                                                 </div>
                                             </li>
                                         </ul>
@@ -724,8 +724,8 @@ export const Settings = () => {
                                             <li>If you delete your account, you will lose your all data.</li>
                                         </ul>
                                         <div className="form-check form-check-md my-4">
-                                            <input className="form-check-input" type="checkbox" value="" id="deleteaccountCheck" />
-                                            <label className="form-check-label" for="deleteaccountCheck">Yes, I'd like to delete my account</label>
+                                            <input className="form-check-input" type="checkbox"  id="deleteaccountCheck" />
+                                            <label className="form-check-label" htmlFor="deleteaccountCheck">Yes, I'd like to delete my account</label>
                                         </div>
                                         <Link to="#" className="btn btn-success-soft btn-sm mb-2 mb-sm-0">Keep my account</Link>
                                         <Link to="#" className="btn btn-danger btn-sm mb-0">Delete my account</Link>

@@ -18,7 +18,6 @@ const UserList = ({ setEditingUser }) => {
 
   return (
     <div className='card p-3'>
-
       <div className="table-responsive">
         <h1>User List</h1>
         <table className="table table-striped table-hover">

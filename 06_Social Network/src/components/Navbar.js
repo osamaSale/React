@@ -58,7 +58,7 @@ export const Navbar = ({ theme, setTheme }) => {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages </Link>
                                 <ul className="dropdown-menu" aria-labelledby="pagesMenu">
-                                    <li> <Link className="dropdown-item" to="albums.html">Albums </Link></li>
+                                    <li> <Link className="dropdown-item" to="/albums">Albums </Link></li>
                                     <li> <Link className="dropdown-item" to="celebration.html">Celebration </Link></li>
                                     <li> <Link className="dropdown-item" to="/messaging">Messaging </Link></li>
 
