@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 export const Modals = () => {
     const location = useLocation();
-    if (location.pathname === "/sign-in" || location.pathname === "/register") { return }
+    if (location.pathname === "/sign-in" || location.pathname === "/sign-up" || location.pathname === "/forgot-password" || location.pathname === '/sign-in-advance') { return }
     return (
         <div>
             {/*    <!-- Main Chat START --> */}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 export const Navbar = ({ theme, setTheme }) => {
     const location = useLocation();
-    if (location.pathname === "/sign-in" || location.pathname === "/register") { return }
+    if (location.pathname === "/sign-in" || location.pathname === "/sign-up" || location.pathname === "/forgot-password" || location.pathname === '/sign-in-advance') { return }
    
     return (
         <header className="navbar-light fixed-top header-static bg-mode" >
@@ -124,12 +124,11 @@ export const Navbar = ({ theme, setTheme }) => {
                                         <Link className="dropdown-item dropdown-toggle" to="#">Authentication </Link>
                                         <ul className="dropdown-menu dropdown-menu-end" data-bs-popper="none">
                                             <li> <Link className="dropdown-item" to="/sign-in">Sign in </Link> </li>
-                                            <li> <Link className="dropdown-item" to="sign-up.html">Sing up </Link> </li>
+                                            <li> <Link className="dropdown-item" to="/sign-up">Sing up </Link> </li>
                                             <li> <Link className="dropdown-item" to="forgot-password.html">Forgot password </Link> </li>
                                             <li className="dropdown-divider"></li>
-                                            <li> <Link className="dropdown-item" to="sign-in-advance.html">Sign in advance </Link> </li>
-                                            <li> <Link className="dropdown-item" to="sign-up-advance.html">Sing up advance </Link> </li>
-                                            <li> <Link className="dropdown-item" to="forgot-password-advance.html">Forgot password advance </Link> </li>
+                                            <li> <Link className="dropdown-item" to="/sign-in-advance">Sign in advance </Link> </li>
+                    
                                         </ul>
                                     </li>
                                     <li> <Link className="dropdown-item" to="/error-404">Error 404 </Link> </li>
@@ -138,7 +137,7 @@ export const Navbar = ({ theme, setTheme }) => {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" to="my-profile-connections.html">My network </Link>
+                                <Link className="nav-link" to="/my-profile-connections">My network </Link>
                             </li>
                         </ul>
                     </div>

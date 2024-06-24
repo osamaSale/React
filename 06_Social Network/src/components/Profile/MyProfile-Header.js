@@ -51,7 +51,7 @@ export const MyProfileHeader = () => {
                 <ul className="nav nav-bottom-line align-items-center justify-content-center justify-content-md-start mb-0 border-0">
                   <li className="nav-item"> <Link className={location.pathname === "/myProfile" ?"nav-link active" : "nav-link"} to="/myProfile"> Posts </Link> </li>
                   <li className="nav-item"> <Link className={location.pathname === "/myProfile-about" ?"nav-link active" : "nav-link"} to="/myProfile-about"> About </Link> </li>
-                  <li className="nav-item"> <Link className={location.pathname === "/myProfile-connections" ?"nav-link active" : "nav-link"} to="/myProfile-connections"> Connections <span className="badge bg-success bg-opacity-10 text-success small"> 230</span> </Link> </li>
+                  <li className="nav-item"> <Link className={location.pathname === "/my-profile-connections" ?"nav-link active" : "nav-link"} to="/my-profile-connections"> Connections <span className="badge bg-success bg-opacity-10 text-success small"> 230</span> </Link> </li>
                   <li className="nav-item"> <Link className={location.pathname === "/myProfile-media" ?"nav-link active" : "nav-link"}  to="/myProfile-media"> Media</Link> </li>
                   <li className="nav-item"> <Link className={location.pathname === "/myProfile-videos" ?"nav-link active" : "nav-link"} to="/myProfile-videos"> Videos</Link> </li>
                   <li className="nav-item"> <Link className={location.pathname === "/myProfile-events" ?"nav-link active" : "nav-link"} to="/myProfile-events"> Events</Link> </li>
