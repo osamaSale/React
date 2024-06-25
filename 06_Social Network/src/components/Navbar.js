@@ -8,7 +8,7 @@ export const Navbar = ({ theme, setTheme }) => {
         <header className="navbar-light fixed-top header-static bg-mode" >
 
             <nav className="navbar navbar-expand-lg">
-                <div className="container">
+                <div className="container-fluid">
 
                     <Link className="navbar-brand" to="/">
                         <img className="light-mode-item navbar-brand-item" src="assets/images/logo.svg" alt="logo" />
@@ -41,8 +41,8 @@ export const Navbar = ({ theme, setTheme }) => {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link active dropdown-toggle" to="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Demo </Link>
                                 <ul className="dropdown-menu" aria-labelledby="homeMenu">
-                                    <li> <Link className="dropdown-item active" to="index.html">Home default </Link></li>
-                                    <li> <Link className="dropdown-item" to="index-classic.html">Home classic </Link></li>
+                                    <li> <Link className="dropdown-item active" to="/">Home default </Link></li>
+                                    <li> <Link className="dropdown-item" to="/index-classic">Home classic </Link></li>
                                     <li> <Link className="dropdown-item" to="index-post.html">Home post </Link></li>
                                     <li> <Link className="dropdown-item" to="index-video.html">Home video </Link></li>
                                     <li> <Link className="dropdown-item" to="index-event.html">Home event </Link></li>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Modals } from '../Modals';
 import { MyProfileHeader } from './MyProfile-Header';
 export const MyProfile = () => {
   return (
@@ -596,12 +595,8 @@ export const MyProfile = () => {
             </div>
 
           </div>
-
-
         </div>
       </div>
-
-      <Modals />
     </main>
   );
 }

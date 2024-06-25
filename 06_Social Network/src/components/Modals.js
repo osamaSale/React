@@ -605,7 +605,7 @@ export const Modals = () => {
                     </div>
                 </div>
             </div>
-
+            {/* <!-- Modal create Feed photo START --> */}
             <div className="modal fade" id="feedActionPhoto" tabIndex="-1" aria-labelledby="feedActionPhotoLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">

@@ -24,6 +24,7 @@ import { SignIn } from './components/Account/Authentication/SignIn';
 import { SignUp } from './components/Account/Authentication/SignUp';
 import { ForgotPassword } from './components/Account/Authentication/ForgotPassword';
 import { SignInAdvance } from './components/Account/Authentication/SignInAdvance';
+import { IndexClassic } from './components/IndexClassic';
 function App() {
   // Check user set theme mode...
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -39,6 +40,7 @@ function App() {
       <Navbar theme={theme} setTheme={setTheme} />
       <Routes>
         <Route path='/' element={<Index />} />
+        <Route path='/index-classic' element={<IndexClassic />} />
         <Route path='/albums' element={<Albums />} />
         <Route path='/messaging' element={<Messaging />} />
         <Route path='/settings' element={<Settings />} />
@@ -52,7 +54,7 @@ function App() {
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/sign-in-advance' element={<SignInAdvance />} />
-        <Route path='/myProfile' element={<MyProfile />} />
+        <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/myProfile-about' element={<MyProfileAbout />} />
         <Route path='/my-profile-connections' element={<MyProfileConnections />} />
         <Route path='/myProfile-media' element={<MyProfileMedia />} />

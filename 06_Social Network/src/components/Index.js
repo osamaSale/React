@@ -4,7 +4,7 @@ import { Modals } from './Modals';
 export const Index = () => {
     return (
             <main>
-                <div className="container" >
+                <div className="container-fluid" >
                     <div className="row g-4">
 
                         <div className="col-lg-3">
@@ -95,7 +95,7 @@ export const Index = () => {
                                             </div>
 
                                             <div className="card-footer text-center py-2">
-                                                <Link className="btn btn-link btn-sm" to="/myProfile">View Profile </Link>
+                                                <Link className="btn btn-link btn-sm" to="/my-profile">View Profile </Link>
                                             </div>
                                         </div>
 
@@ -129,7 +129,7 @@ export const Index = () => {
 
                         <div className="col-md-8 col-lg-6 vstack gap-4">
 
-                            <div className="d-flex gap-2 mb-n3">
+                           {/*  <div className="d-flex gap-2 mb-n3">
                                 <div className="position-relative">
                                     <div className="card border border-2 border-dashed h-150px px-4 px-sm-5 shadow-none d-flex align-items-center justify-content-center text-center">
                                         <div>
@@ -141,7 +141,7 @@ export const Index = () => {
 
 
                                 <div id="stories" className="storiesWrapper stories-square stories user-icon carousel scroll-enable"></div>
-                            </div>
+                            </div> */}
 
                             <div className="card card-body">
                                 <div className="d-flex mb-3">

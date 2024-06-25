@@ -663,3 +663,16 @@ html.os-html > .os-host > .os-scrollbar {
   right: -6px;
   left: -2px;
 }
+[data-overlayscrollbars-padding],
+[data-overlayscrollbars-viewport] {
+  box-sizing: inherit;
+  position: relative;
+  flex: auto !important;
+  height: auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  z-index: 0;
+}

@@ -68,10 +68,10 @@ export const Albums = () => {
 
                                             <ul className="nav nav-link-secondary flex-column fw-bold gap-2">
                                                 <li className="nav-item">
-                                                    <Link className="nav-link" to="my-profile.html"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/home-outline-filled.svg" alt="" /><span>Feed </span></Link>
+                                                    <Link className="nav-link" to="/my-profile"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/home-outline-filled.svg" alt="" /><span>Feed </span></Link>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <Link className="nav-link" to="my-profile-connections.html"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/person-outline-filled.svg" alt="" /><span>Connections </span></Link>
+                                                    <Link className="nav-link" to="/my-profile-connections"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/person-outline-filled.svg" alt="" /><span>Connections </span></Link>
                                                 </li>
                                                 <li className="nav-item">
                                                     <Link className="nav-link" to="blog.html"> <img className="me-2 h-20px fa-fw" src="assets/images/icon/earth-outline-filled.svg" alt="" /><span>Latest News </span></Link>
@@ -93,7 +93,7 @@ export const Albums = () => {
                                         </div>
 
                                         <div className="card-footer text-center py-2">
-                                            <Link className="btn btn-link btn-sm" to="my-profile.html">View Profile </Link>
+                                            <Link className="btn btn-link btn-sm" to="/my-profile">View Profile </Link>
                                         </div>
                                     </div>
 
