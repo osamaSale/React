@@ -2,29 +2,39 @@
 import React, { useState, useEffect } from 'react';
 import { register, login, getNotifications, createNotification } from './services/notificationService';
 import { io } from 'socket.io-client';
-
 const socket = io('http://localhost:5000');
 
 function App() {
+  const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
   const [notifications, setNotifications] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
-  const token = localStorage.getItem('token');
+  const [onlineUsers, setOnlineUsers] = useState([]);
   useEffect(() => {
-  
+
     if (token) {
       fetchNotifications();
+
+
+      socket.emit('user-online', user.id);
+
+      socket.on('online-users', (users) => {
+        setOnlineUsers(users);
+      });
       socket.on('new-notification', (notification) => {
         setNotifications((prevNotifications) => [notification, ...prevNotifications]);
       });
 
       return () => {
         socket.off('new-notification');
+        socket.off('online-users');
       };
     }
-  }, [token]);
+  }, [token, user]);
+  console.log(onlineUsers)
 
   const fetchNotifications = async () => {
     const { data } = await getNotifications();
@@ -46,6 +56,8 @@ function App() {
     try {
       const { data } = await login(username, password);
       localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify(data.user));
+
       alert('Login successful');
     } catch (err) {
       alert('Login failed');
