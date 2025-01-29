@@ -33,7 +33,10 @@ import { Payment } from './components/Account/Payment';
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
+    // other code
     update()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const update = () => {
     dispatch(getAllUsers())
