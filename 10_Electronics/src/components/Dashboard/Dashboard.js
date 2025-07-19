@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Header } from "./Header";
 
 export const Dashboard = () => {
   const sales = [
@@ -52,129 +53,7 @@ export const Dashboard = () => {
     <main className="content-wrapper">
       <div className="container pt-4 pt-lg-5 pb-5">
         <div className="row pt-sm-2 pt-md-3 pt-lg-0 pb-2 pb-sm-3 pb-md-4 pb-lg-5">
-          {/*   <!-- Sidebar navigation that turns into offcanvas on screens < 992px wide (lg breakpoint) --> */}
-          <aside className="col-lg-3">
-            <div
-              className="d-none d-lg-block"
-              style={{ marginTop: "-105px" }}
-            ></div>
-            <div
-              className="offcanvas-lg offcanvas-start sticky-lg-top pe-lg-0 pe-xl-4"
-              id="accountSidebar"
-            >
-              <div
-                className="d-none d-lg-block"
-                style={{ paddingTop: "105px" }}
-              ></div>
-
-              {/* Header */}
-              <div className="offcanvas-header align-items-start d-lg-block py-3 p-lg-0">
-                <div className="d-flex align-items-start flex-lg-column gap-lg-3">
-                  {/* Avatar for large screens */}
-                  <div
-                    className="ratio ratio-1x1 border rounded-circle overflow-hidden d-none d-lg-block"
-                    style={{ width: "86px" }}
-                  >
-                    <img src="/assets/img/account/avatar.png" alt="Avatar" />
-                  </div>
-                  {/* Avatar for small screens */}
-                  <div
-                    className="ratio ratio-1x1 border rounded-circle overflow-hidden flex-shrink-0 d-lg-none"
-                    style={{ width: "48px" }}
-                  >
-                    <img src="/assets/img/account/avatar.png" alt="Avatar" />
-                  </div>
-                  <div className="w-100 ps-2 ms-1 ms-lg-0 ps-lg-0">
-                    <h4 className="h6 mb-1 mb-lg-2">Createx Studio</h4>
-                    <p className="fs-sm mb-0">
-                      Digital products &amp; bespoke development
-                    </p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  className="btn-close d-lg-none mt-n2"
-                  data-bs-dismiss="offcanvas"
-                  data-bs-target="#accountSidebar"
-                  aria-label="Close"
-                ></button>
-              </div>
-
-              {/* Body */}
-              <div className="offcanvas-body d-block pt-2 pt-lg-4 pb-lg-0">
-                <nav className="list-group list-group-borderless">
-                  <Link
-                    to="/account-marketplace-dashboard"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill pe-none active"
-                  >
-                    <i className="bi-grid fs-base opacity-75 me-2"></i>
-                    Dashboard
-                  </Link>
-                  <Link
-                    to="/account-marketplace-products"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi-layers fs-base opacity-75 me-2"></i>
-                    Products (4)
-                  </Link>
-                  <Link
-                    to="/account-marketplace-sales"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi-pie-chart fs-base opacity-75 me-2"></i>
-                    Sales
-                  </Link>
-                  <Link
-                    to="/account-marketplace-payouts"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi bi-currency-dollar fs-base opacity-75 me-2"></i>
-                    Payouts
-                  </Link>
-                </nav>
-
-                <h6 className="pt-4 ps-2 ms-1">User account</h6>
-                <nav className="list-group list-group-borderless">
-                  <Link
-                    to="/account-marketplace-purchases"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi bi-bag fs-base opacity-75 me-2"></i>
-                    Purchases (6)
-                  </Link>
-                  <Link
-                    to="/account-marketplace-favorites"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi-heart fs-base opacity-75 me-2"></i>
-                    Favorites
-                  </Link>
-                  <Link
-                    to="/account-marketplace-settings"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi bi-gear fs-base opacity-75 me-2"></i>
-                    Settings
-                  </Link>
-                  <Link
-                    to="/account-signin"
-                    className="list-group-item list-group-item-action d-flex align-items-center rounded-pill"
-                  >
-                    <i className="bi bi-box-arrow-right fs-base opacity-75 me-2"></i>
-                    Log out
-                  </Link>
-                </nav>
-              </div>
-
-              {/* CTA */}
-              <div className="offcanvas-header d-lg-block p-lg-0">
-                <button className="btn btn-dark rounded-pill w-100 animate-scale mt-lg-4">
-                  <i className="bi-plus-circle fs-base animate-target me-2 ms-n1"></i>
-                  Add product
-                </button>
-              </div>
-            </div>
-          </aside>
+        <Header/>
           {/* <!-- Dashboard content --> */}
           <div className="col-lg-9 pt-2 pt-xl-3">
             {/* Header */}
@@ -196,34 +75,33 @@ export const Dashboard = () => {
             </div>
 
             {/* Stats */}
-            {/* <div className="row g-3 g-xl-4 pb-3 mb-2 mb-sm-3">
-              <StatCard
-                title="Earnings (before taxes)"
-                value="$842.00"
-                subtitle="Sales 01/09/2024 - 13/09/2024"
-                bg="success-subtle"
-              />
-              <StatCard
-                title="Your balance"
-                value="$735.00"
-                subtitle="To be paid on 15/09/2024"
-                bg="info-subtle"
-              />
-              <StatCard
-                title="Lifetime earnings"
-                value="$9,156.74"
-                subtitle="Based on list price"
-                bg="warning-subtle"
-              />
-            </div> */}
-
-            {/* Earnings Chart (placeholder) */}
-            <div className="pb-3 mb-2 mb-sm-3">
-              <div className="border rounded-4 py-4 px-3 px-sm-4">
-                <h2 className="h5 text-center text-sm-start mb-sm-4">
-                  Earnings history
-                </h2>
-                <canvas id="earningsChart" height="120" />
+            <div className="row g-3 g-xl-4 pb-3 mb-2 mb-sm-3">
+              <div className="col-md-4 col-sm-6">
+                <div className="h-100 bg-success-subtle rounded-4 text-center p-4">
+                  <h2 className="fs-sm pb-2 mb-1">Earnings (before taxes)</h2>
+                  <div className="h2 pb-1 mb-2">$842.00</div>
+                  <p className="fs-sm text-body-secondary mb-0">
+                    Sales 01/09/2024 - 13/09/2024
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-4 col-sm-6">
+                <div className="h-100 bg-info-subtle rounded-4 text-center p-4">
+                  <h2 className="fs-sm pb-2 mb-1">Your balance</h2>
+                  <div className="h2 pb-1 mb-2">$735.00</div>
+                  <p className="fs-sm text-body-secondary mb-0">
+                    To be paid on 15/09/2024
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-4 col-sm-12">
+                <div className="h-100 bg-warning-subtle rounded-4 text-center p-4">
+                  <h2 className="fs-sm pb-2 mb-1">Lifetime earnings</h2>
+                  <div className="h2 pb-1 mb-2">$9,156.74</div>
+                  <p className="fs-sm text-body-secondary mb-0">
+                    Based on list price
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -269,7 +147,7 @@ export const Dashboard = () => {
                               src={`${sale.image}`}
                               alt="Product"
                               className="hover-effect-target"
-                              style={{position:"sticky"}}
+                              style={{ position: "sticky" }}
                             />
                           </div>
                           <div className="ps-2 ms-1">

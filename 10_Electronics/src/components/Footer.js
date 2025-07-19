@@ -1,101 +1,107 @@
-import React from 'react';
+import React from "react";
 
-export const Footer = () =>{
-    return (
-        <>
-       <footer className="footer position-relative bg-dark">
-      <span className="position-absolute top-0 start-0 w-100 h-100 bg-body d-none d-block-dark"></span>
-      <div className="container position-relative z-1 pt-sm-2 pt-md-3 pt-lg-4" data-bs-theme="dark">
-        {/* Accordion Footer Links */}
-        <div className="accordion py-5" id="footerLinks">
-          <div className="row">
-            <div className="col-md-4 d-sm-flex flex-md-column align-items-center align-items-md-start pb-3 mb-sm-4">
-              <h4 className="mb-sm-0 mb-md-4 me-4">
-                <a className="text-dark-emphasis text-decoration-none" href="index.html">Cartzilla</a>
-              </h4>
-              <p className="text-body fs-sm text-sm-end text-md-start mb-sm-0 mb-md-3 ms-0 ms-sm-auto ms-md-0 me-4">
-                Got questions? Contact us 24/7
-              </p>
-              <div className="dropdown" style={{ maxWidth: "250px" }}>
+export const Footer = () => {
+  return (
+    <footer className="footer bg-dark pb-4" data-bs-theme="dark">
+      <div className="container pb-md-3">
+        {/* Subscription + Links */}
+        <div className="py-5">
+          <div className="row py-sm-1 py-md-2 py-lg-3">
+            {/* Subscription + Social */}
+            <div className="col-lg-5 mb-4 mb-sm-5 mb-lg-0">
+              <h6 className="mb-4">Join our newsletter, get discounts 🔥</h6>
+              <form
+                className="needs-validation d-flex gap-2 pb-sm-2 pb-lg-0 mb-4 mb-lg-5"
+                noValidate
+              >
+                <input
+                  type="email"
+                  className="form-control form-control-lg w-100 rounded-pill"
+                  placeholder="Your email"
+                  style={{ maxWidth: "340px" }}
+                  required
+                />
                 <button
-                  type="button"
-                  className="btn btn-secondary dropdown-toggle justify-content-between w-100"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+                  type="submit"
+                  className="btn btn-lg btn-primary rounded-pill"
                 >
-                  Help and consultation
+                  Subscribe
                 </button>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#!">Help center & FAQ</a></li>
-                  <li><a className="dropdown-item" href="#!">Support chat</a></li>
-                  <li><a className="dropdown-item" href="#!">Open support ticket</a></li>
-                  <li><a className="dropdown-item" href="#!">Call center</a></li>
-                </ul>
+              </form>
+              <div className="d-flex gap-3">
+                <a
+                  className="btn btn-icon btn-secondary rounded-circle"
+                  href="#!"
+                  aria-label="Instagram"
+                >
+                  <i className="bi-instagram fs-base"></i>
+                </a>
+                <a
+                  className="btn btn-icon btn-secondary rounded-circle"
+                  href="#!"
+                  aria-label="Facebook"
+                >
+                  <i className="bi-facebook fs-base"></i>
+                </a>
+                <a
+                  className="btn btn-icon btn-secondary rounded-circle"
+                  href="#!"
+                  aria-label="YouTube"
+                >
+                  <i className="bi-youtube fs-base"></i>
+                </a>
+                <a
+                  className="btn btn-icon btn-secondary rounded-circle"
+                  href="#!"
+                  aria-label="Telegram"
+                >
+                  <i className="bi-telegram fs-base"></i>
+                </a>
               </div>
             </div>
 
-            {/* Footer Columns */}
-            <div className="col-md-8">
-              <div className="row row-cols-1 row-cols-sm-3 gx-3 gx-md-4">
-
-                {/* Reusable section */}
-                {[
-                  {
-                    id: "company",
-                    title: "Company",
-                    links: ["About company", "Our team", "Careers", "Contact us", "News"],
-                  },
-                  {
-                    id: "account",
-                    title: "Account",
-                    links: [
-                      "Your account",
-                      "Shipping rates & policies",
-                      "Refunds & replacements",
-                      "Delivery info",
-                      "Order tracking",
-                      "Taxes & fees",
-                    ],
-                  },
-                  {
-                    id: "customer",
-                    title: "Customer service",
-                    links: [
-                      "Payment methods",
-                      "Money back guarantee",
-                      "Product returns",
-                      "Support center",
-                      "Shipping",
-                      "Terms & conditions",
-                    ],
-                  },
-                ].map(section => (
-                  <div key={section.id} className="accordion-item col border-0">
-                    <h6 className="accordion-header" id={`${section.id}Heading`}>
-                      <span className="text-dark-emphasis d-none d-sm-block">{section.title}</span>
+            {/* Accordion Columns */}
+            <div className="col-lg-7">
+              <div className="accordion ps-lg-4" id="footerLinks">
+                <div className="row">
+                  {/* Categories */}
+                  <div className="accordion-item col-sm-4 border-0">
+                    <h6 className="accordion-header" id="categoriesHeading">
+                      <span className="text-dark-emphasis d-none d-sm-block">
+                        Categories
+                      </span>
                       <button
                         type="button"
                         className="accordion-button collapsed py-3 d-sm-none"
                         data-bs-toggle="collapse"
-                        data-bs-target={`#${section.id}Links`}
+                        data-bs-target="#categoriesLinks"
                         aria-expanded="false"
-                        aria-controls={`${section.id}Links`}
+                        aria-controls="categoriesLinks"
                       >
-                        {section.title}
+                        Categories
                       </button>
                     </h6>
                     <div
                       className="accordion-collapse collapse d-sm-block"
-                      id={`${section.id}Links`}
-                      aria-labelledby={`${section.id}Heading`}
+                      id="categoriesLinks"
+                      aria-labelledby="categoriesHeading"
                       data-bs-parent="#footerLinks"
                     >
-                      <ul className="nav flex-column gap-2 pt-sm-3 pb-3 mt-n1 mb-1">
-                        {section.links.map((link, i) => (
-                          <li key={i} className="d-flex w-100 pt-1">
-                            <a className="nav-link animate-underline animate-target d-inline fw-normal text-truncate p-0" href="#!">
-                              {link}
+                      <ul className="nav flex-column gap-2 pt-sm-3 pb-3 pb-sm-0 mt-n1 mb-1 mb-sm-0">
+                        {[
+                          "Vectors",
+                          "Photos",
+                          "3D illustrations",
+                          "AI images",
+                          "Templates",
+                          "Mockups",
+                        ].map((text) => (
+                          <li className="d-flex w-100 pt-1" key={text}>
+                            <a
+                              className="nav-link animate-underline animate-target d-inline fw-normal text-truncate p-0"
+                              href="#!"
+                            >
+                              {text}
                             </a>
                           </li>
                         ))}
@@ -103,85 +109,114 @@ export const Footer = () =>{
                     </div>
                     <hr className="d-sm-none my-0" />
                   </div>
-                ))}
 
+                  {/* Members */}
+                  <div className="accordion-item col-sm-4 border-0">
+                    <h6 className="accordion-header" id="membersHeading">
+                      <span className="text-dark-emphasis d-none d-sm-block">
+                        For members
+                      </span>
+                      <button
+                        type="button"
+                        className="accordion-button collapsed py-3 d-sm-none"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#membersLinks"
+                        aria-expanded="false"
+                        aria-controls="membersLinks"
+                      >
+                        For members
+                      </button>
+                    </h6>
+                    <div
+                      className="accordion-collapse collapse d-sm-block"
+                      id="membersLinks"
+                      aria-labelledby="membersHeading"
+                      data-bs-parent="#footerLinks"
+                    >
+                      <ul className="nav flex-column gap-2 pt-sm-3 pb-3 pb-sm-0 mt-n1 mb-1 mb-sm-0">
+                        {[
+                          "Licenses",
+                          "Return policy",
+                          "Payment methods",
+                          "Become a vendor",
+                        ].map((text) => (
+                          <li className="d-flex w-100 pt-1" key={text}>
+                            <a
+                              className="nav-link animate-underline animate-target d-inline fw-normal text-truncate p-0"
+                              href="#!"
+                            >
+                              {text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <hr className="d-sm-none my-0" />
+                  </div>
+
+                  {/* Support */}
+                  <div className="accordion-item col-sm-4 border-0">
+                    <h6 className="accordion-header" id="supportHeading">
+                      <span className="text-dark-emphasis d-none d-sm-block">
+                        Support
+                      </span>
+                      <button
+                        type="button"
+                        className="accordion-button collapsed py-3 d-sm-none"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#supportLinks"
+                        aria-expanded="false"
+                        aria-controls="supportLinks"
+                      >
+                        Support
+                      </button>
+                    </h6>
+                    <div
+                      className="accordion-collapse collapse d-sm-block"
+                      id="supportLinks"
+                      aria-labelledby="supportHeading"
+                      data-bs-parent="#footerLinks"
+                    >
+                      <ul className="nav flex-column gap-2 pt-sm-3 pb-3 pb-sm-0 mt-n1 mb-1 mb-sm-0">
+                        {["FAQs", "Search guide", "Contact"].map((text) => (
+                          <li className="d-flex w-100 pt-1" key={text}>
+                            <a
+                              className="nav-link animate-underline animate-target d-inline fw-normal text-truncate p-0"
+                              href="#!"
+                            >
+                              {text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <hr className="d-sm-none my-0" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Tags */}
-        <div className="d-flex flex-column gap-3 pb-3 pb-md-4 pb-lg-5 mt-n2 mt-sm-n4 mt-lg-0 mb-4">
-          {[
-            [
-              "Computers",
-              "Smartphones",
-              "TV, Video",
-              "Speakers",
-              "Cameras",
-              "Printers",
-              "Video Games",
-              "Headphones",
-              "Wearable",
-              "HDD/SSD",
-              "Smart Home",
-              "Apple Devices",
-              "Tablets",
-            ],
-            [
-              "Monitors",
-              "Scanners",
-              "Servers",
-              "Heating and Cooling",
-              "E-readers",
-              "Data Storage",
-              "Networking",
-              "Power Strips",
-              "Plugs and Outlets",
-              "Detectors and Sensors",
-              "Accessories",
-            ],
-          ].map((tagGroup, i) => (
-            <ul key={i} className="nav align-items-center text-body-tertiary gap-2">
-              {tagGroup.map((tag, j) => (
-                <React.Fragment key={j}>
-                  <li className="animate-underline">
-                    <a className="nav-link fw-normal p-0 animate-target" href="#!">
-                      {tag}
-                    </a>
-                  </li>
-                  {j < tagGroup.length - 1 && <li className="px-1">/</li>}
-                </React.Fragment>
-              ))}
-            </ul>
-          ))}
-        </div>
-
         {/* Copyright */}
-        <div className="d-md-flex align-items-center border-top py-4">
-          <div className="d-flex gap-2 gap-sm-3 justify-content-center ms-md-auto mb-4 mb-md-0 order-md-2">
-            {["visa", "mastercard", "paypal", "google-pay", "apple-pay"].map((name, i) => (
-              <div key={i}>
-                <img src={`assets/img/payment-methods/${name}-dark-mode.svg`} alt={name.replace("-", " ")} />
-              </div>
-            ))}
-          </div>
-          <p className="text-body fs-xs text-center text-md-start mb-0 me-4 order-md-1">
-            © All rights reserved. Made by{" "}
-            <span className="animate-underline">
-              <a
-                className="animate-target text-dark-emphasis fw-medium text-decoration-none"
-                href="https://createx.studio/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Createx Studio
-              </a>
-            </span>
-          </p>
-        </div>
+        <p className="fs-xs text-body text-center text-lg-start mb-0">
+          © All rights reserved. Made with{" "}
+          <i className="bi-heart-filled align-middle"></i> by{" "}
+          <span className="animate-underline">
+            <a
+              className="animate-target text-white text-decoration-none"
+              href="https://createx.studio/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Createx Studio
+            </a>
+          </span>
+        </p>
       </div>
+
+      {/* Spacer for sticky offcanvas */}
+      <div className="d-lg-none" style={{ height: "3.75rem" }}></div>
     </footer>
-        </>
-    )
-}
+  );
+};

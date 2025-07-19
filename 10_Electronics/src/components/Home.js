@@ -128,23 +128,7 @@ export const Home = () => {
       dark: "assets/img/shop/electronics/brands/sony-dark-mode.svg",
     },
   ];
-  const vlogItems = [
-    {
-      duration: "6:16",
-      title: "5 New Cool Gadgets You Must See on Cartzilla - Cheap Budget",
-      img: "assets/img/home/electronics/vlog/01.jpg",
-    },
-    {
-      duration: "10:20",
-      title: "5 Super Useful Gadgets on Cartzilla You Must Have in 2023",
-      img: "assets/img/home/electronics/vlog/02.jpg",
-    },
-    {
-      duration: "8:40",
-      title: "Top 5 New Amazing Gadgets on Cartzilla You Must See",
-      img: "assets/img/home/electronics/vlog/03.jpg",
-    },
-  ];
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -2040,104 +2024,7 @@ const targetDate = useMemo(() => new Date('2025-10-15T12:00:00'), []);
         </div>
       </section>
       {/*  <!-- Subscription form + Vlog --> */}
-      <section className="bg-body-tertiary py-5">
-        <div className="container pt-sm-2 pt-md-3 pt-lg-4 pt-xl-5">
-          <div className="row">
-            {/* Left Side: Newsletter */}
-            <div className="col-md-6 col-lg-5 mb-5 mb-md-0">
-              <h2 className="h4 mb-2">Sign up to our newsletter</h2>
-              <p className="text-body pb-2 pb-ms-3">
-                Receive our latest updates about our products &amp; promotions
-              </p>
-              <form
-                className="d-flex needs-validation pb-1 pb-sm-2 pb-md-3 pb-lg-0 mb-4 mb-lg-5"
-                noValidate
-              >
-                <div className="position-relative w-100 me-2">
-                  <input
-                    type="email"
-                    className="form-control form-control-lg"
-                    placeholder="Your email"
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn btn-lg btn-primary">
-                  Subscribe
-                </button>
-              </form>
-              <div className="d-flex gap-3">
-                <Link
-                  className="btn btn-icon btn-secondary rounded-circle"
-                  href="#!"
-                  aria-label="Instagram"
-                >
-                  <i className="bi bi-instagram fs-base"></i>
-                 </Link>
-                <Link
-                  className="btn btn-icon btn-secondary rounded-circle"
-                  href="#!"
-                  aria-label="Facebook"
-                >
-                  <i className="bi bi-facebook fs-base"></i>
-                 </Link>
-                <Link
-                  className="btn btn-icon btn-secondary rounded-circle"
-                  href="#!"
-                  aria-label="YouTube"
-                >
-                  <i className="bi bi-youtube fs-base"></i>
-                 </Link>
-                <Link
-                  className="btn btn-icon btn-secondary rounded-circle"
-                  href="#!"
-                  aria-label="Telegram"
-                >
-                  <i className="bi bi-telegram fs-base"></i>
-                 </Link>
-              </div>
-            </div>
-
-            {/* Right Side: Vlog List */}
-            <div className="col-md-6 col-lg-5 col-xl-4 offset-lg-1 offset-xl-2">
-              <ul className="list-unstyled d-flex flex-column gap-4 ps-md-4 ps-lg-0 mb-3">
-                {vlogItems.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="nav flex-nowrap align-items-center position-relative"
-                  >
-                    <img
-                      src={item.img}
-                      className="rounded"
-                      width="140"
-                      alt="Video cover"
-                    />
-                    <div className="ps-3">
-                      <div className="fs-xs text-body-secondary lh-sm mb-2">
-                        {item.duration}
-                      </div>
-                      <Link
-                        className="nav-link fs-sm hover-effect-underline stretched-link p-0"
-                        href="#!"
-                      >
-                        {item.title}
-                       </Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <div className="nav ps-md-4 ps-lg-0">
-                <Link
-                  className="btn nav-link animate-underline text-decoration-none px-0"
-                  href="#!"
-                >
-                  <span className="animate-target">View all</span>
-                  <i className="bi bi-chevron-right fs-base ms-1"></i>
-                 </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    
     </main>
   );
 };

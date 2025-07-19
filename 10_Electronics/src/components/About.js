@@ -24,7 +24,7 @@ export const About = () => {
               <img
                 src="assets/img/about/v1/hero.jpg"
                 className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-5"
-                alt="Image"
+                alt=""
               />
             </div>
           </div>
@@ -55,13 +55,13 @@ export const About = () => {
                   plans of millions of people. You can find literally everything
                   here.
                 </p>
-                <a
+                <Link
                   className="btn btn-lg btn-outline-dark animate-slide-down"
-                  href="#mission"
+                  to="#mission"
                 >
                   Learn more
                   <i className="bi-arrow-down fs-lg animate-target ms-2 me-n1"></i>
-                </a>
+                 </Link>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ export const About = () => {
             <div className="position-relative h-100">
               <div className="ratio ratio-16x9" />
               <img
-                alt="Image"
+                alt=""
                 className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-5"
                 src="assets/img/blog/grid/v2/01.jpg"
               />
@@ -172,7 +172,7 @@ export const About = () => {
             <div className="position-relative h-100">
               <div className="ratio ratio-16x9" />
               <img
-                alt="Image"
+                alt=""
                 className="position-absolute top-0 start-0 w-100 h-100 object-fit-cover rounded-5"
                 src="assets/img/blog/grid/v2/02.jpg"
               />
@@ -208,51 +208,51 @@ export const About = () => {
         <div className="d-flex align-items-center justify-content-between pb-3 mb-2 mb-sm-3 mt-xxl-3">
           <h2 className="mb-0">Blog and news</h2>
           <div className="nav ms-3">
-            <a
+            <Link
               className="nav-link animate-underline px-0 py-2"
-              href="blog-grid-v2.html"
+              to="blog-grid-v2.html"
             >
               <span className="animate-target">View all</span>
               <i className="bi-chevron-right fs-base ms-1" />
-            </a>
+             </Link>
           </div>
         </div>
         <div className="row gy-5 mb-xxl-3">
           <article className="col-md-6">
-            <a
+            <Link
               className="ratio d-flex hover-effect-scale rounded-4 overflow-hidden"
-              href="#!"
+              to="#!"
               style={{
                 "--cz-aspect-ratio": "calc(500 / 636 * 100%)",
               }}
             >
               <img
-                alt="Image"
+                alt=""
                 className="hover-effect-target"
                 src="assets/img/blog/grid/v2/15.jpg"
               />
-            </a>
+             </Link>
             <div className="pt-4">
               <div className="nav pb-2 mb-1">
-                <a
+                <Link
                   className="nav-link text-body fs-xs text-uppercase p-0"
-                  href="#!"
+                  to="#!"
                 >
                   Home decoration
-                </a>
+                 </Link>
               </div>
               <h3 className="h5 mb-3">
-                <a className="hover-effect-underline" href="#!">
+                <Link className="hover-effect-underline" to="#!">
                   Decorate your home for the festive season in 3 easy steps
-                </a>
+                 </Link>
               </h3>
               <div className="nav align-items-center gap-2 fs-xs">
-                <a
+                <Link
                   className="nav-link text-body-secondary fs-xs fw-normal p-0"
-                  href="#!"
+                  to="#!"
                 >
                   Ava Johnson
-                </a>
+                 </Link>
                 <hr className="vr my-1 mx-1" />
                 <span className="text-body-secondary">September 11, 2024</span>
               </div>
@@ -261,41 +261,41 @@ export const About = () => {
           <div className="col-md-6">
             <div className="row row-cols-1 row-cols-sm-2 gy-5">
               <article className="col">
-                <a
+                <Link
                   className="ratio d-flex hover-effect-scale rounded-4 overflow-hidden"
-                  href="#!"
+                  to="#!"
                   style={{
                     "--cz-aspect-ratio": "calc(260 / 306 * 100%)",
                   }}
                 >
                   <img
-                    alt="Image"
+                    alt=""
                     className="hover-effect-target"
                     src="assets/img/blog/grid/v2/10.jpg"
                   />
-                </a>
+                 </Link>
                 <div className="pt-4">
                   <div className="nav pb-2 mb-1">
-                    <a
+                    <Link
                       className="nav-link text-body fs-xs text-uppercase p-0"
-                      href="#!"
+                      to="#!"
                     >
                       Furniture
-                    </a>
+                    </Link>
                   </div>
                   <h3 className="h6 mb-3">
-                    <a className="hover-effect-underline" href="#!">
+                    <Link className="hover-effect-underline" to="#!">
                       Furnishing your space: a guide to choosing the perfect
                       furniture pieces
-                    </a>
+                     </Link>
                   </h3>
                   <div className="nav align-items-center gap-2 fs-xs">
-                    <a
+                    <Link
                       className="nav-link text-body-secondary fs-xs fw-normal p-0"
-                      href="#!"
+                      to="#!"
                     >
                       Oliver Harris
-                    </a>
+                    </Link>
                     <hr className="vr my-1 mx-1" />
                     <span className="text-body-secondary">
                       September 5, 2024
@@ -304,41 +304,41 @@ export const About = () => {
                 </div>
               </article>
               <article className="col">
-                <a
+                <Link
                   className="ratio d-flex hover-effect-scale rounded-4 overflow-hidden"
-                  href="#!"
+                  to="#!"
                   style={{
                     "--cz-aspect-ratio": "calc(260 / 306 * 100%)",
                   }}
                 >
                   <img
-                    alt="Image"
+                    alt=""
                     className="hover-effect-target"
                     src="assets/img/blog/grid/v2/11.jpg"
                   />
-                </a>
+                 </Link>
                 <div className="pt-4">
                   <div className="nav pb-2 mb-1">
-                    <a
+                    <Link
                       className="nav-link text-body fs-xs text-uppercase p-0"
-                      href="#!"
+                      to="#!"
                     >
                       Interior design
-                    </a>
+                     </Link>
                   </div>
                   <h3 className="h6 mb-3">
-                    <a className="hover-effect-underline" href="#!">
+                    <Link className="hover-effect-underline" to="#!">
                       Transform your living space with these chic interior
                       design tips
-                    </a>
+                     </Link>
                   </h3>
                   <div className="nav align-items-center gap-2 fs-xs">
-                    <a
+                    <Link
                       className="nav-link text-body-secondary fs-xs fw-normal p-0"
-                      href="#!"
+                      to="#!"
                     >
                       Ethan Miller
-                    </a>
+                     </Link>
                     <hr className="vr my-1 mx-1" />
                     <span className="text-body-secondary">August 23, 2024</span>
                   </div>
@@ -348,7 +348,7 @@ export const About = () => {
           </div>
         </div>
       </section>
-      ;
+      
     </main>
   );
 };
